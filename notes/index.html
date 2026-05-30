@@ -12,17 +12,25 @@
     <header class="site-header">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">&#128218;</span>
-                <h1>Laurel Library</h1>
+                <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                    <span class="logo-icon">&#128218;</span>
+                    <h1>Laurel Library</h1>
+                </a>
             </div>
             <nav class="main-nav">
                 <a href="../index.html">Home</a>
                 <a href="index.html" class="active">Notes</a>
                 <a href="../about.html">About</a>
             </nav>
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
-                <div id="search-results" class="search-results"></div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                    <span class="icon-sun">&#9728;&#65039;</span>
+                    <span class="icon-moon">&#127769;</span>
+                </button>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                    <div id="search-results" class="search-results"></div>
+                </div>
             </div>
         </div>
     </header>
@@ -65,5 +73,6 @@
         document.addEventListener('DOMContentLoaded', loadNotes);
     </script>
     <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/features.js"></script>
 </body>
 </html>

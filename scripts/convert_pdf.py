@@ -1,9 +1,7 @@
 """
-PDF to HTML Converter for Laurel Library (v3)
-- Inline tables/images at their correct position in the document flow
-- Unique image naming per document (no collisions between PDFs)
-- Robust watermark removal
-- Proper paragraph merging and list handling
+PDF to HTML Converter for Laurel Library (v4)
+Fixes: text spacing, aggressive watermark/branding removal, paragraph merging,
+       empty list filtering, bold span consolidation, scalability for 1000+ PDFs.
 
 Usage:
     py convert_pdf.py input.pdf -c geography -t "Title" -e "UPSC, SSC"
@@ -17,36 +15,45 @@ import json
 import argparse
 import re
 import hashlib
+import time
 from pathlib import Path
 from PIL import Image
 import io
+import struct
 
-# --- Watermark Detection ---
+# --- Configuration ---
 
 WATERMARK_PATTERNS = [
     r'testbook\.com',
     r'testbook',
-    r'PASS\s*PRO\s*MAX',
-    r'pass\s*pro\s*max',
     r'www\.testbook\.com',
+    r'pass\s*pro\s*max',
+    r'PASS\s*PRO\s*MAX',
 ]
 
-WATERMARK_EXACT = {'testbook', 'testbook.com', 'www.testbook.com', 'pass pro max',
-                   'pass', 'pro', 'max', 'pass pro', 'pro max'}
+WATERMARK_WORDS = {'testbook', 'testbook.com', 'www.testbook.com', 'pass pro max'}
 
-# Track seen image hashes to detect repeated watermarks across pages
+# Colors commonly found in testbook branding (RGB)
+BRAND_COLORS = [
+    (40, 40, 80),    # dark navy
+    (200, 50, 30),   # red
+    (230, 170, 50),  # gold/yellow
+]
+
+# --- State ---
 _seen_img_hashes = set()
+_page_bg_hashes = set()  # track page background images
 
 
 def is_watermark_text(text):
-    """Check if text is a watermark."""
+    """Check if text is a watermark/branding."""
     t = text.strip().lower()
     if not t:
         return True
-    if t in WATERMARK_EXACT:
+    if t in WATERMARK_WORDS:
         return True
     for pat in WATERMARK_PATTERNS:
-        if re.search(pat, t):
+        if re.search(pat, t, re.IGNORECASE):
             return True
     return False
 
@@ -60,47 +67,143 @@ def clean_cell_text(text):
     return text.strip()
 
 
-def is_watermark_image(img_data, img_w, img_h, page_w, page_h):
-    """Determine if an image is a watermark/logo/badge."""
+def fix_spacing(text):
+    """
+    Fix missing spaces in extracted text.
+    ONLY handles clear-cut cases to avoid breaking valid text:
+    - CamelCase: "divisionsOf" -> "divisions Of"
+    - ALL-CAPS concatenation: "DIVISIONSOFINDIA" -> "DIVISIONS OF INDIA"
+    - Letter(paren: "India(" -> "India ("
+    """
+    if not text:
+        return text
+    
+    # Handle ALL-CAPS concatenated text: "PHYSIOGRAPHICDIVISIONSOFINDIA"
+    if re.search(r'[A-Z]{10,}', text):
+        # Insert spaces around known uppercase words embedded in long caps sequences
+        caps_words = r'(?<=[A-Z])(OF|THE|AND|IN|TO|FOR|FROM|BY|AT|ON)(?=[A-Z])'
+        text = re.sub(caps_words, r' \1 ', text)
+        text = re.sub(r'\s{2,}', ' ', text)
+    
+    # Insert space between lowercase followed by uppercase: "divisionsOf" -> "divisions Of"
+    text = re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
+    
+    # Insert space between letter and opening paren: "India(" -> "India ("
+    text = re.sub(r'([a-zA-Z])\(', r'\1 (', text)
+    # Insert space between closing paren and letter: ")The" -> ") The"
+    text = re.sub(r'\)([A-Za-z])', r') \1', text)
+    
+    # Collapse multiple spaces
+    text = re.sub(r'\s{2,}', ' ', text)
+    return text.strip()
+
+
+def is_watermark_image(img_data, img_w, img_h, page_w, page_h, page_num):
+    """
+    Determine if an image is a watermark/logo/branding/background.
+    Balances between removing branding and keeping content diagrams.
+    """
     try:
-        data_len = len(img_data)
-        # Very small images are usually logos
-        if img_w < 200 and img_h < 100:
+        # 1. Very small images are logos/icons
+        if img_w < 200 and img_h < 120:
             return True
-        # Full-width thin banners
-        if img_w > page_w * 0.7 and img_h < 130:
+
+        # 2. Full-width thin banners (headers/footers)
+        if img_w > page_w * 0.7 and img_h < 120:
             return True
-        # Check if we've seen this exact image before (repeated = watermark)
+
+        # 3. Near-full-page images are backgrounds/templates
+        page_area = page_w * page_h
+        img_area = img_w * img_h
+        if img_area > page_area * 0.85:
+            return True
+
+        # 4. First page: large images likely cover art/branding
+        if page_num == 0 and img_area > page_area * 0.4:
+            return True
+
+        # 5. Hash-based deduplication (same image across pages = watermark)
         img_hash = hashlib.md5(img_data).hexdigest()
         if img_hash in _seen_img_hashes:
             return True
         _seen_img_hashes.add(img_hash)
-        # Check transparency
+
+        # 6. Check image content
         image = Image.open(io.BytesIO(img_data))
+        
+        # High transparency = watermark overlay
         if image.mode == 'RGBA':
             alpha = image.split()[3]
             pixels = list(alpha.getdata())
             transparent = sum(1 for p in pixels if p < 50)
-            if transparent > len(pixels) * 0.6:
+            if transparent > len(pixels) * 0.5:
                 return True
+            image = image.convert('RGB')
+        elif image.mode != 'RGB':
+            image = image.convert('RGB')
+
+        # 7. Sample pixels to check if image is mostly uniform/empty
+        w, h = image.size
+        if w > 10 and h > 10:
+            step_x = max(1, w // 20)
+            step_y = max(1, h // 20)
+            samples = []
+            for sy in range(0, h, step_y):
+                for sx in range(0, w, step_x):
+                    samples.append(image.getpixel((sx, sy)))
+                    if len(samples) >= 400:
+                        break
+                if len(samples) >= 400:
+                    break
+
+            if samples:
+                # Check if >85% pixels are very similar = solid background
+                from collections import Counter
+                quantized = [(r // 40, g // 40, b // 40) for r, g, b in samples]
+                counter = Counter(quantized)
+                most_common_count = counter.most_common(1)[0][1]
+                if most_common_count > len(samples) * 0.85:
+                    return True
+
+                # Mostly white/light grey = empty template
+                light_pixels = sum(1 for r, g, b in samples if r > 220 and g > 220 and b > 220)
+                if light_pixels > len(samples) * 0.88:
+                    return True
+
+                # Mostly dark = dark background/cover
+                dark_pixels = sum(1 for r, g, b in samples if r < 40 and g < 40 and b < 40)
+                if dark_pixels > len(samples) * 0.80:
+                    return True
+
         return False
     except Exception:
         return False
+
+
+def is_content_image(img_data, img_w, img_h, page_w, page_h, page_num):
+    """
+    Positive check: is this likely a content diagram/map/chart?
+    Content images tend to have:
+    - Moderate size (not tiny, not full-page)
+    - Multiple colors (not uniform)
+    - Appear after page 0
+    """
+    # Let watermark check decide
+    return not is_watermark_image(img_data, img_w, img_h, page_w, page_h, page_num)
 
 
 # --- Page Extraction ---
 
 def extract_page(doc, page_num):
     """
-    Extract content from a page as a list of positioned items.
-    Each item has a 'y' position so we can place tables/images inline.
-    Returns: list of items sorted by Y position.
+    Extract content from a page as positioned items.
+    Uses default text extraction (no TEXT_PRESERVE_WHITESPACE) for proper spacing.
     """
     page = doc[page_num]
     rect = page.rect
-    items = []  # Each item: {"type": "text"|"table"|"image", "y": float, "data": ...}
+    items = []
 
-    # 1. Detect tables with their position
+    # 1. Detect tables
     table_rects = []
     try:
         tabs = page.find_tables()
@@ -112,6 +215,7 @@ def extract_page(doc, page_num):
                     for row in rows:
                         clean_row = [clean_cell_text(str(cell)) if cell else '' for cell in row]
                         clean_rows.append(clean_row)
+                    # Check table has real content
                     total_content = sum(len(c) for row in clean_rows for c in row)
                     if total_content > 20:
                         items.append({
@@ -123,8 +227,8 @@ def extract_page(doc, page_num):
     except Exception:
         pass
 
-    # 2. Extract text lines (skip anything inside table rects)
-    blocks = page.get_text("dict", flags=fitz.TEXT_PRESERVE_WHITESPACE)["blocks"]
+    # 2. Extract text - NO TEXT_PRESERVE_WHITESPACE so PyMuPDF adds spaces
+    blocks = page.get_text("dict")["blocks"]
 
     for block in blocks:
         if block["type"] != 0:
@@ -146,7 +250,7 @@ def extract_page(doc, page_num):
 
             for span in line["spans"]:
                 t = span["text"]
-                if t.strip() in ('', '\u200b', '​'):
+                if not t.strip():
                     continue
                 if is_watermark_text(t):
                     continue
@@ -156,11 +260,17 @@ def extract_page(doc, page_num):
                     "flags": span["flags"],
                     "font": span["font"],
                 })
+                # Add space between spans if needed
+                if full_text and not full_text.endswith(' ') and not t.startswith(' '):
+                    full_text += ' '
                 full_text += t
 
             full_text = full_text.strip()
             if not full_text or is_watermark_text(full_text):
                 continue
+
+            # Apply spacing fix
+            full_text = fix_spacing(full_text)
 
             max_size = max((s["size"] for s in spans_data), default=10)
             any_bold = any(s["flags"] & 16 for s in spans_data)
@@ -174,308 +284,479 @@ def extract_page(doc, page_num):
                     "size": max_size,
                     "bold": any_bold,
                     "x": line["bbox"][0],
-                    "y": line["bbox"][1],
+                    "width": line["bbox"][2] - line["bbox"][0],
                 }
             })
 
-    # 3. Extract images with position
+    # 3. Extract images
     img_list = page.get_images(full=True)
     for img_info in img_list:
         xref = img_info[0]
         try:
             base = doc.extract_image(xref)
             img_data = base["image"]
-            if not is_watermark_image(img_data, base["width"], base["height"], rect.width, rect.height):
-                # Get image position on page
+            img_w = base["width"]
+            img_h = base["height"]
+            
+            if is_content_image(img_data, img_w, img_h, rect.width, rect.height, page_num):
                 img_rects = page.get_image_rects(xref)
                 y_pos = img_rects[0].y0 if img_rects else rect.height * 0.5
                 items.append({
                     "type": "image",
                     "y": y_pos,
                     "data": {"bytes": img_data, "ext": base["ext"],
-                             "width": base["width"], "height": base["height"]}
+                             "width": img_w, "height": img_h}
                 })
         except Exception:
             continue
 
-    # Sort all items by Y position
     items.sort(key=lambda x: x["y"])
     return items
 
 
-# --- Text Classification & Merging ---
+# --- Text Merging & Classification ---
 
-def classify(elem):
-    """Classify a text element."""
+def classify(elem, page_width=595):
+    """Classify a text element into a role."""
     text = elem["text"]
     size = elem["size"]
     bold = elem["bold"]
+    x = elem.get("x", 0)
 
+    # Bullet point detection
+    if re.match(r'^[●•\-▶►]\s+', text):
+        return "li"
+    if re.match(r'^[○▪◦■▸]\s+', text):
+        return "li-sub"
+    # Numbered list
+    if re.match(r'^\d+[.)]\s+', text) and len(text) < 200:
+        return "li"
+
+    # Headings
     if size >= 16:
-        return "h1"
+        return "h2"
     if size >= 13 and bold:
         return "h2"
-    if size >= 11 and bold and len(text) < 100:
+    if size >= 11 and bold and len(text) < 120:
         return "h3"
-    if re.match(r'^[●•\-]\s*\u200b?\s*', text):
-        return "li"
-    if re.match(r'^[○▪◦]\s*\u200b?\s*', text) or (elem["x"] > 85 and re.match(r'^[○▪◦■]\s', text)):
-        return "li-sub"
+
     return "p"
 
 
-def merge_text_items(text_items):
-    """Merge consecutive text lines into paragraphs/lists."""
+def should_merge_lines(prev, curr, page_width=595):
+    """Determine if two consecutive text lines should merge into one paragraph."""
+    if not prev or not curr:
+        return False
+    
+    prev_data = prev["data"]
+    curr_data = curr["data"]
+    
+    # Don't merge if roles differ significantly
+    prev_role = classify(prev_data)
+    curr_role = classify(curr_data)
+    
+    if prev_role != curr_role:
+        return False
+    if prev_role in ("h2", "h3"):
+        return False  # Don't merge headings
+    
+    # Check Y gap - should be within normal line spacing
+    y_gap = curr["y"] - prev["y"]
+    line_height = prev_data["size"] * 1.5
+    
+    if y_gap > line_height * 1.8:
+        return False  # Too much vertical gap = new paragraph
+    
+    # Check if previous line looks like it was cut mid-sentence
+    prev_text = prev_data["text"].rstrip()
+    curr_text = curr_data["text"].lstrip()
+    
+    # If prev line doesn't end with sentence terminator and is short, merge
+    if not prev_text[-1:] in ('.', '!', '?', ':', ';') and len(prev_text) < page_width * 0.08:
+        return True
+    
+    # If curr starts with lowercase, it's a continuation
+    if curr_text and curr_text[0].islower():
+        return True
+    
+    # If X positions are similar and gap is small, likely same paragraph
+    x_diff = abs(curr_data["x"] - prev_data["x"])
+    if x_diff < 30 and y_gap < line_height * 1.3:
+        return True
+    
+    return False
+
+
+def merge_items_to_blocks(text_items, page_width=595):
+    """
+    Merge text items into logical blocks (paragraphs, headings, list items).
+    More aggressive merging to avoid fragmentation.
+    """
     if not text_items:
         return []
 
-    elements = [item["data"] for item in text_items]
-    merged = []
+    blocks = []
     i = 0
 
-    while i < len(elements):
-        el = elements[i]
-        role = classify(el)
+    while i < len(text_items):
+        item = text_items[i]
+        data = item["data"]
+        role = classify(data, page_width)
 
-        if role in ("h1", "h2", "h3"):
-            merged.append({"role": role, "text": el["text"], "spans": el["spans"]})
+        if role in ("h2", "h3"):
+            blocks.append({
+                "role": role,
+                "text": data["text"],
+                "spans": data["spans"],
+            })
             i += 1
             continue
 
         if role in ("li", "li-sub"):
-            text = re.sub(r'^[●•\-○▪◦■]\s*\u200b?\s*', '', el["text"])
-            spans = list(el["spans"])
+            # Collect the bullet text and any continuation lines
+            text = re.sub(r'^[●•\-▶►○▪◦■▸]\s+', '', data["text"])
+            text = re.sub(r'^\d+[.)]\s+', '', text)
+            spans = list(data["spans"])
             j = i + 1
-            while j < len(elements):
-                nxt = elements[j]
-                nxt_role = classify(nxt)
+            # Merge continuation lines into this bullet
+            while j < len(text_items):
+                nxt = text_items[j]
+                nxt_data = nxt["data"]
+                nxt_role = classify(nxt_data, page_width)
                 if nxt_role == "p":
-                    gap = nxt["y"] - elements[j-1]["y"]
-                    if gap < el["size"] * 2 and abs(nxt["x"] - el["x"]) < 40:
-                        text += " " + nxt["text"]
-                        spans.extend(nxt["spans"])
+                    y_gap = nxt["y"] - text_items[j-1]["y"]
+                    if y_gap < data["size"] * 2.5:
+                        text += " " + nxt_data["text"]
+                        spans.extend(nxt_data["spans"])
                         j += 1
                     else:
                         break
                 else:
                     break
-            merged.append({"role": role, "text": text.strip(), "spans": spans})
+            
+            if text.strip():  # Skip empty bullets
+                blocks.append({
+                    "role": role,
+                    "text": text.strip(),
+                    "spans": spans,
+                })
             i = j
             continue
 
-        # Paragraph
-        text = el["text"]
-        spans = list(el["spans"])
+        # Paragraph - merge consecutive paragraph lines
+        text = data["text"]
+        spans = list(data["spans"])
         j = i + 1
-        while j < len(elements):
-            nxt = elements[j]
-            nxt_role = classify(nxt)
-            if nxt_role != "p":
-                break
-            gap = nxt["y"] - elements[j-1]["y"]
-            if gap < el["size"] * 2 and abs(nxt["x"] - el["x"]) < 30:
-                text += " " + nxt["text"]
-                spans.extend(nxt["spans"])
-                j += 1
+        while j < len(text_items):
+            if should_merge_lines(text_items[j-1], text_items[j], page_width):
+                nxt_data = text_items[j]["data"]
+                nxt_role = classify(nxt_data, page_width)
+                if nxt_role == "p":
+                    text += " " + nxt_data["text"]
+                    spans.extend(nxt_data["spans"])
+                    j += 1
+                else:
+                    break
             else:
                 break
-        merged.append({"role": "p", "text": text.strip(), "spans": spans})
+
+        if text.strip():
+            blocks.append({
+                "role": "p",
+                "text": text.strip(),
+                "spans": spans,
+            })
         i = j
 
-    return merged
+    return blocks
 
 
 # --- HTML Generation ---
 
-def spans_to_html(spans):
-    """Convert spans to inline HTML with bold/italic."""
-    parts = []
+def consolidate_bold_spans(spans):
+    """
+    Merge consecutive bold (or non-bold) spans to avoid word-by-word <strong> tags.
+    Returns list of {text, bold, italic}.
+    """
+    if not spans:
+        return []
+
+    consolidated = []
     for span in spans:
         t = span["text"].strip()
-        if not t or t == '\u200b' or is_watermark_text(t):
+        if not t or is_watermark_text(t):
             continue
-        t = re.sub(r'^[●•\-○▪◦■]\s*\u200b?\s*', '', t)
+        # Remove bullet chars from spans
+        t = re.sub(r'^[●•\-○▪◦■▶►▸]\s*', '', t)
         if not t:
             continue
-        t_esc = escape(t)
-        bold = span["flags"] & 16
-        italic = span["flags"] & 2
-        if bold and italic:
-            parts.append(f"<strong><em>{t_esc}</em></strong>")
-        elif bold:
-            parts.append(f"<strong>{t_esc}</strong>")
-        elif italic:
-            parts.append(f"<em>{t_esc}</em>")
-        else:
-            parts.append(t_esc)
 
-    result = " ".join(parts)
+        bold = bool(span["flags"] & 16)
+        italic = bool(span["flags"] & 2)
+        
+        # Apply spacing fix to individual spans too
+        t = fix_spacing(t)
+
+        if consolidated and consolidated[-1]["bold"] == bold and consolidated[-1]["italic"] == italic:
+            consolidated[-1]["text"] += " " + t
+        else:
+            consolidated.append({"text": t, "bold": bold, "italic": italic})
+
+    return consolidated
+
+
+def spans_to_html(spans):
+    """Convert spans to inline HTML with consolidated bold/italic."""
+    parts = consolidate_bold_spans(spans)
+    html_parts = []
+    
+    for part in parts:
+        t = escape_html(part["text"])
+        if part["bold"] and part["italic"]:
+            html_parts.append(f"<strong><em>{t}</em></strong>")
+        elif part["bold"]:
+            html_parts.append(f"<strong>{t}</strong>")
+        elif part["italic"]:
+            html_parts.append(f"<em>{t}</em>")
+        else:
+            html_parts.append(t)
+
+    result = " ".join(html_parts)
+    # Clean up spacing around punctuation
     result = re.sub(r'\s+([,.:;!?)\]])', r'\1', result)
     result = re.sub(r'([([\[])\s+', r'\1', result)
     result = re.sub(r'\s{2,}', ' ', result)
     return result
 
 
-def escape(text):
-    """HTML-escape."""
-    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+def escape_html(text):
+    """HTML-escape text."""
+    return (text.replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace('"', "&quot;"))
 
 
 def table_to_html(rows):
-    """Render a table as HTML."""
+    """Render table as HTML."""
     if not rows or len(rows) < 2:
         return ""
+    # Filter empty rows
     rows = [r for r in rows if any(c.strip() for c in r)]
     if len(rows) < 2:
         return ""
 
-    h = ['<table>', '<thead><tr>']
+    h = ['<div class="table-wrapper"><table>', '<thead><tr>']
     for cell in rows[0]:
-        h.append(f'<th>{escape(cell)}</th>')
+        h.append(f'<th>{escape_html(cell)}</th>')
     h.append('</tr></thead><tbody>')
     for row in rows[1:]:
         h.append('<tr>')
         for cell in row:
-            h.append(f'<td>{escape(cell)}</td>')
+            h.append(f'<td>{escape_html(cell)}</td>')
         h.append('</tr>')
-    h.append('</tbody></table>')
+    h.append('</tbody></table></div>')
     return '\n'.join(h)
 
 
-def text_block_to_html(merged_items):
-    """Convert merged text items to HTML."""
+def blocks_to_html(blocks):
+    """Convert merged blocks to HTML."""
     parts = []
     in_ul = False
-    in_sub = False
-    seen_h1 = set()
+    in_ol = False
 
-    for el in merged_items:
-        role = el["role"]
-        text = el["text"]
+    for block in blocks:
+        role = block["role"]
+        text = block["text"]
 
-        if role == "h1":
-            key = text.lower().strip()
-            if key in seen_h1:
-                continue
-            seen_h1.add(key)
-
+        # Close open lists if role isn't a list item
         if role not in ("li", "li-sub"):
-            if in_sub:
-                parts.append("</ul></li>")
-                in_sub = False
             if in_ul:
                 parts.append("</ul>")
                 in_ul = False
+            if in_ol:
+                parts.append("</ol>")
+                in_ol = False
 
-        formatted = spans_to_html(el["spans"])
+        # Apply spacing fix to the display text
+        display_text = fix_spacing(text)
+        formatted = spans_to_html(block["spans"])
+        # If spans produced empty output, use escaped display text
+        if not formatted.strip():
+            formatted = escape_html(display_text)
 
-        if role in ("h1", "h2"):
-            parts.append(f'<h2>{escape(text)}</h2>')
+        if role == "h2":
+            parts.append(f'<h2>{escape_html(display_text)}</h2>')
         elif role == "h3":
-            parts.append(f'<h3>{escape(text)}</h3>')
-        elif role == "li":
-            if in_sub:
-                parts.append("</ul></li>")
-                in_sub = False
+            parts.append(f'<h3>{escape_html(display_text)}</h3>')
+        elif role in ("li", "li-sub"):
             if not in_ul:
                 parts.append("<ul>")
                 in_ul = True
-            parts.append(f"<li>{formatted}</li>")
-        elif role == "li-sub":
-            if not in_ul:
-                parts.append("<ul>")
-                in_ul = True
-            if not in_sub:
-                if parts and parts[-1].endswith("</li>"):
-                    parts[-1] = parts[-1][:-5]
-                    parts.append("<ul>")
-                else:
-                    parts.append("<li><ul>")
-                in_sub = True
-            parts.append(f"<li>{formatted}</li>")
-        else:
+            if formatted.strip():
+                parts.append(f"<li>{formatted}</li>")
+        elif role == "p":
             if formatted.strip():
                 parts.append(f"<p>{formatted}</p>")
 
-    if in_sub:
-        parts.append("</ul></li>")
+    # Close any open lists
     if in_ul:
         parts.append("</ul>")
+    if in_ol:
+        parts.append("</ol>")
 
     return "\n".join(parts)
 
 
 # --- Main Conversion ---
 
-def convert_pdf(pdf_path, output_dir, category, title=None, exam="General"):
-    """Convert a single PDF to HTML with inline tables and images."""
+def convert_pdf(pdf_path, output_dir, category, title=None, exam="General", verbose=False):
+    """Convert a single PDF to HTML."""
     global _seen_img_hashes
-    _seen_img_hashes = set()  # Reset for each document
+    _seen_img_hashes = set()
 
     doc = fitz.open(pdf_path)
     if not title:
         title = Path(pdf_path).stem.replace("-", " ").replace("_", " ").title()
 
     slug = slugify(title)
-
-    # Use slug as image prefix to avoid collisions between PDFs
     img_prefix = slug
     img_dir = os.path.join(output_dir, "images")
     os.makedirs(img_dir, exist_ok=True)
 
-    all_page_items = []  # Flat list of all items across pages
+    page_width = doc[0].rect.width if len(doc) > 0 else 595
+
+    all_items = []
     img_count = 0
+    skipped_images = 0
 
     for pn in range(len(doc)):
-        page_text = doc[pn].get_text().strip()
-        cleaned = clean_cell_text(page_text)
+        page = doc[pn]
+        page_text = page.get_text().strip()
 
-        # Skip cover pages that have only title/branding and no real content
-        if pn == 0 and len(cleaned) < 50:
-            continue
+        # Skip cover/branding pages (first page with minimal real text)
+        if pn == 0:
+            # Remove watermark text to see what's left
+            cleaned = page_text.lower()
+            for pat in WATERMARK_PATTERNS:
+                cleaned = re.sub(pat, '', cleaned, flags=re.IGNORECASE)
+            cleaned = re.sub(r'[^a-z0-9\s]', '', cleaned).strip()
+            # If very little real text content, skip the cover page
+            real_words = [w for w in cleaned.split() if len(w) > 3]
+            if len(real_words) < 10:
+                if verbose:
+                    print(f"    Skipping page {pn+1} (cover/branding)")
+                continue
+
+        # Skip decorative title pages (page with only large text, no paragraphs)
+        if pn <= 2:
+            blocks = page.get_text("dict")["blocks"]
+            text_blocks = [b for b in blocks if b.get("type") == 0]
+            total_lines = sum(len(b.get("lines", [])) for b in text_blocks)
+            # Count lines with large font (heading-like)
+            large_lines = 0
+            for b in text_blocks:
+                for line in b.get("lines", []):
+                    for span in line.get("spans", []):
+                        if span.get("size", 0) >= 14:
+                            large_lines += 1
+                            break
+            # If most lines are headings and there's very little content, it's a title card
+            if total_lines > 0 and total_lines <= 8 and large_lines >= total_lines * 0.5:
+                if verbose:
+                    print(f"    Skipping page {pn+1} (decorative title page)")
+                continue
 
         page_items = extract_page(doc, pn)
 
-        # Process images: save to disk and replace data with path
+        # Process images
         for item in page_items:
             if item["type"] == "image":
                 img_count += 1
-                fname = f"{img_prefix}_{img_count}.{item['data']['ext']}"
+                ext = item["data"]["ext"]
+                if ext == "jpeg" or ext == "jpg":
+                    ext = "jpg"
+                fname = f"{img_prefix}_{img_count}.{ext}"
                 img_path = os.path.join(img_dir, fname)
                 with open(img_path, "wb") as f:
                     f.write(item["data"]["bytes"])
-                item["data"] = {"path": f"images/{fname}"}
+                item["data"] = {"path": f"images/{fname}",
+                                "width": item["data"]["width"],
+                                "height": item["data"]["height"]}
 
-        all_page_items.extend(page_items)
+        all_items.extend(page_items)
 
     doc.close()
 
-    # Now build HTML body with items in order (text, tables, images interleaved)
+    # Build HTML body
     body_parts = []
-    text_buffer = []  # Buffer text items to merge them
+    text_buffer = []
 
-    for item in all_page_items:
+    for item in all_items:
         if item["type"] == "text":
             text_buffer.append(item)
         else:
-            # Flush text buffer before inserting table/image
+            # Flush text buffer
             if text_buffer:
-                merged = merge_text_items(text_buffer)
-                body_parts.append(text_block_to_html(merged))
+                blocks = merge_items_to_blocks(text_buffer, page_width)
+                body_parts.append(blocks_to_html(blocks))
                 text_buffer = []
 
             if item["type"] == "table":
                 body_parts.append(table_to_html(item["data"]))
             elif item["type"] == "image":
                 path = item["data"]["path"]
-                body_parts.append(f'<figure><img src="{path}" alt="Diagram" loading="lazy"></figure>')
+                body_parts.append(
+                    f'<figure><img src="{path}" alt="Diagram" loading="lazy"></figure>'
+                )
 
     # Flush remaining text
     if text_buffer:
-        merged = merge_text_items(text_buffer)
-        body_parts.append(text_block_to_html(merged))
+        blocks = merge_items_to_blocks(text_buffer, page_width)
+        body_parts.append(blocks_to_html(blocks))
 
-    body_html = "\n".join(body_parts)
+    body_html = "\n".join(p for p in body_parts if p.strip())
+
+    # Remove duplicate consecutive headings (same text)
+    body_html = re.sub(r'(<h[23]>(.+?)</h[23]>)\s*\n?\s*<h[23]>\2</h[23]>', r'\1', body_html)
+    
+    # Remove garbled ALL-CAPS headings (title card remnants)
+    # These appear at the start of the document from decorative title pages
+    heading_count = [0]  # mutable counter for closure
+    
+    def is_garbled_heading(match):
+        text = match.group(2)
+        words = text.split()
+        if len(words) < 2:
+            return False
+        
+        heading_count[0] += 1
+        alpha_chars = [c for c in text if c.isalpha()]
+        if not alpha_chars:
+            return False
+        uppercase_ratio = sum(1 for c in alpha_chars if c.isupper()) / len(alpha_chars)
+        
+        # First few headings that are mostly ALL-CAPS = title card remnants
+        if heading_count[0] <= 3 and uppercase_ratio > 0.7:
+            return True
+        
+        # Long concatenated tokens (>12 chars) in mostly-uppercase text
+        has_long_token = any(len(w) > 12 for w in words if w.isalpha())
+        if uppercase_ratio > 0.7 and has_long_token:
+            return True
+        
+        # Multiple single-char fragments
+        single_chars = sum(1 for w in words if len(w) == 1 and w.isalpha())
+        if single_chars >= 2:
+            return True
+        
+        return False
+    
+    body_html = re.sub(
+        r'<(h[23])>(.+?)</\1>\n?',
+        lambda m: '' if is_garbled_heading(m) else m.group(0),
+        body_html
+    )
 
     # Generate page
     html = generate_page(title, category, body_html, exam)
@@ -483,30 +764,34 @@ def convert_pdf(pdf_path, output_dir, category, title=None, exam="General"):
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
 
-    print(f"  OK: {Path(pdf_path).name} -> {slug}.html ({img_count} images)")
+    print(f"  ✓ {Path(pdf_path).name} → {slug}.html ({img_count} images)")
 
-    # Gather keywords from all text
-    all_text_elements = [item["data"] for item in all_page_items if item["type"] == "text"]
-    merged_for_kw = merge_text_items([{"data": e} for e in all_text_elements])
+    # Gather keywords
+    all_text = [item["data"] for item in all_items if item["type"] == "text"]
+    keywords = extract_keywords(all_text)
 
     return {
         "title": title,
         "category": category,
         "path": f"notes/{category}/{slug}.html",
         "exam": exam,
-        "keywords": extract_keywords(merged_for_kw)
+        "keywords": keywords
     }
 
 
 def generate_page(title, category, body, exam):
-    """Generate the full HTML page."""
+    """Generate full HTML page with dark mode, print support, bookmarks."""
     cat_display = category.replace('-', ' ').title()
+    title_esc = escape_html(title)
+    cat_esc = escape_html(cat_display)
+    exam_esc = escape_html(exam)
+    
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{escape(title)} - Laurel Library</title>
+    <title>{title_esc} - Laurel Library</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -515,17 +800,25 @@ def generate_page(title, category, body, exam):
     <header class="site-header">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">&#128218;</span>
-                <h1>Laurel Library</h1>
+                <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                    <span class="logo-icon">&#128218;</span>
+                    <h1>Laurel Library</h1>
+                </a>
             </div>
             <nav class="main-nav">
                 <a href="../../index.html">Home</a>
                 <a href="../index.html">Notes</a>
                 <a href="../../about.html">About</a>
             </nav>
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
-                <div id="search-results" class="search-results"></div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                    <span class="icon-sun">&#9728;&#65039;</span>
+                    <span class="icon-moon">&#127769;</span>
+                </button>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                    <div id="search-results" class="search-results"></div>
+                </div>
             </div>
         </div>
     </header>
@@ -535,9 +828,19 @@ def generate_page(title, category, body, exam):
             <div class="breadcrumbs">
                 <a href="../../index.html">Home</a>
                 <span>&rsaquo;</span>
-                <a href="index.html">{escape(cat_display)}</a>
+                <a href="index.html">{cat_esc}</a>
                 <span>&rsaquo;</span>
-                {escape(title)}
+                <span>{title_esc}</span>
+            </div>
+
+            <div class="note-actions">
+                <button class="btn-bookmark" id="btn-bookmark" title="Bookmark this note">
+                    <span class="bookmark-icon">&#9734;</span> Bookmark
+                </button>
+                <button class="btn-print" onclick="window.print()" title="Print this note">
+                    &#128424; Print
+                </button>
+                <span class="reading-progress" id="reading-progress">0% read</span>
             </div>
 
             <div class="notes-page">
@@ -546,10 +849,12 @@ def generate_page(title, category, body, exam):
                     <ul id="toc-list"></ul>
                 </aside>
 
-                <article class="article-content">
-                    <h1>{escape(title)}</h1>
-                    <div class="meta" style="margin-bottom:20px; color: var(--color-text-light);">
-                        {escape(cat_display)} &bull; {escape(exam)}
+                <article class="article-content" id="article-content">
+                    <h1>{title_esc}</h1>
+                    <div class="meta">
+                        <span class="meta-category">{cat_esc}</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">{exam_esc}</span>
                     </div>
                     {body}
                 </article>
@@ -563,10 +868,15 @@ def generate_page(title, category, body, exam):
         </div>
     </footer>
 
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/search.js"></script>
+    <script src="../../assets/js/features.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {{
-            var article = document.querySelector('.article-content');
+        // TOC generation
+        (function() {{
+            var article = document.getElementById('article-content');
             var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
             var headings = article.querySelectorAll('h2, h3');
             headings.forEach(function(heading, idx) {{
                 var id = 'section-' + idx;
@@ -576,15 +886,13 @@ def generate_page(title, category, body, exam):
                 a.href = '#' + id;
                 a.textContent = heading.textContent;
                 if (heading.tagName === 'H3') {{
-                    a.style.paddingLeft = '20px';
-                    a.style.fontSize = '0.85rem';
+                    li.classList.add('toc-sub');
                 }}
                 li.appendChild(a);
                 tocList.appendChild(li);
             }});
-        }});
+        }})();
     </script>
-    <script src="../../assets/js/search.js"></script>
 </body>
 </html>"""
 
@@ -592,25 +900,25 @@ def generate_page(title, category, body, exam):
 # --- Utilities ---
 
 def slugify(text):
-    """URL-safe slug."""
+    """Create URL-safe slug."""
     s = text.lower()
     s = re.sub(r'[^a-z0-9\s-]', '', s)
     s = re.sub(r'[\s]+', '-', s)
     s = re.sub(r'-+', '-', s)
-    return s.strip('-')
+    return s.strip('-')[:80]  # Cap length for very long titles
 
 
 def extract_keywords(elements):
-    """Extract search keywords."""
+    """Extract search keywords from text elements."""
     words = set()
     for el in elements:
         text = el.get("text", "")
-        text = re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
+        text = fix_spacing(text)
         for w in text.lower().split():
             w = re.sub(r'[^a-z]', '', w)
             if 3 < len(w) < 20:
                 words.add(w)
-    return " ".join(sorted(list(words))[:40])
+    return " ".join(sorted(list(words))[:50])
 
 
 def update_indexes(base_dir, note_info):
@@ -654,36 +962,148 @@ def update_indexes(base_dir, note_info):
 def main():
     parser = argparse.ArgumentParser(description="Convert PDFs to HTML for Laurel Library")
     parser.add_argument("input", help="PDF file or folder of PDFs")
-    parser.add_argument("--category", "-c", required=True, help="Category slug")
+    parser.add_argument("--category", "-c", required=True, help="Category slug (e.g., geography)")
     parser.add_argument("--title", "-t", help="Note title (auto-detected if omitted)")
-    parser.add_argument("--exam", "-e", default="General", help="Target exam")
+    parser.add_argument("--exam", "-e", default="General", help="Target exams (e.g., 'UPSC, SSC')")
     parser.add_argument("--output", "-o", default=None, help="Output base directory")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
     args = parser.parse_args()
 
     base = Path(args.output) if args.output else Path(__file__).parent.parent
     out_dir = base / "notes" / args.category
     os.makedirs(out_dir, exist_ok=True)
 
+    # Ensure category index exists
+    cat_index = out_dir / "index.html"
+    if not cat_index.exists():
+        create_category_index(out_dir, args.category)
+
     inp = Path(args.input)
+    start_time = time.time()
+
     if inp.is_file() and inp.suffix.lower() == '.pdf':
-        info = convert_pdf(str(inp), str(out_dir), args.category, args.title, args.exam)
+        info = convert_pdf(str(inp), str(out_dir), args.category, args.title, args.exam, args.verbose)
         update_indexes(str(base), info)
     elif inp.is_dir():
         pdfs = sorted(inp.glob("*.pdf"))
-        print(f"Found {len(pdfs)} PDFs...")
-        for pdf in pdfs:
+        total = len(pdfs)
+        print(f"Found {total} PDFs in {inp.name}/")
+        print(f"{'─' * 50}")
+        
+        success = 0
+        errors = []
+        for i, pdf in enumerate(pdfs, 1):
+            print(f"  [{i}/{total}] Processing: {pdf.name}")
             try:
-                info = convert_pdf(str(pdf), str(out_dir), args.category, None, args.exam)
+                info = convert_pdf(str(pdf), str(out_dir), args.category, None, args.exam, args.verbose)
                 update_indexes(str(base), info)
+                success += 1
             except Exception as e:
-                print(f"  ERROR: {pdf.name}: {e}")
-                import traceback
-                traceback.print_exc()
+                errors.append((pdf.name, str(e)))
+                print(f"  ✗ ERROR: {pdf.name}: {e}")
+                if args.verbose:
+                    import traceback
+                    traceback.print_exc()
+        
+        elapsed = time.time() - start_time
+        print(f"{'─' * 50}")
+        print(f"Done! {success}/{total} converted in {elapsed:.1f}s")
+        if errors:
+            print(f"\n{len(errors)} errors:")
+            for name, err in errors:
+                print(f"  - {name}: {err}")
     else:
         print(f"Error: {args.input} is not a valid PDF or directory")
         sys.exit(1)
 
-    print(f"\nDone! Preview: py -m http.server 8000")
+    elapsed = time.time() - start_time
+    if elapsed > 0:
+        print(f"\nTotal time: {elapsed:.1f}s")
+    print(f"Preview: py -m http.server 8000")
+
+
+def create_category_index(out_dir, category):
+    """Create a basic category index page."""
+    cat_display = category.replace('-', ' ').title()
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{cat_display} - Laurel Library</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                    <span class="logo-icon">&#128218;</span>
+                    <h1>Laurel Library</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../index.html">Notes</a>
+                <a href="../../about.html">About</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                    <span class="icon-sun">&#9728;&#65039;</span>
+                    <span class="icon-moon">&#127769;</span>
+                </button>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a>
+                <span>&rsaquo;</span>
+                <a href="../index.html">Notes</a>
+                <span>&rsaquo;</span>
+                <span>{cat_display}</span>
+            </div>
+            <h2 class="section-title">{cat_display}</h2>
+            <div class="notes-list" id="category-notes"></div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
+        </div>
+    </footer>
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/search.js"></script>
+    <script src="../../assets/js/features.js"></script>
+    <script>
+        fetch('../../notes/index.json')
+            .then(r => r.json())
+            .then(data => {{
+                var container = document.getElementById('category-notes');
+                var notes = data.notes.filter(n => n.category === '{category}');
+                notes.forEach(function(note) {{
+                    var a = document.createElement('a');
+                    a.className = 'note-card';
+                    a.href = note.path.replace('notes/{category}/', '');
+                    a.innerHTML = '<h4>' + note.title + '</h4><div class="meta">' + note.exam + '</div>';
+                    container.appendChild(a);
+                }});
+                if (notes.length === 0) {{
+                    container.innerHTML = '<p>No notes yet in this category.</p>';
+                }}
+            }});
+    </script>
+</body>
+</html>"""
+    with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as f:
+        f.write(html)
 
 
 if __name__ == "__main__":
