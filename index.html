@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laurel Library - Competitive Exam Notes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">&#128218;</span>
+                <h1>Laurel Library</h1>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="notes/index.html">Notes</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Your Competitive Exam Companion</h2>
+                <p>Comprehensive study notes for SSC, UPSC, GATE, IIT-JEE, NEET &amp; more</p>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="container">
+                <h3 class="section-title">Browse by Subject</h3>
+                <div class="category-grid" id="category-grid">
+                    <!-- Categories will be populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-notes">
+            <div class="container">
+                <h3 class="section-title">Recently Added</h3>
+                <div class="notes-list" id="recent-notes">
+                    <!-- Recent notes will be populated dynamically -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

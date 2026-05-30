@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Notes - Laurel Library</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">&#128218;</span>
+                <h1>Laurel Library</h1>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html">Home</a>
+                <a href="index.html" class="active">Notes</a>
+                <a href="../about.html">About</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 40px 20px;">
+            <h2 class="section-title">All Notes</h2>
+            <div class="notes-list" id="all-notes"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
+        </div>
+    </footer>
+
+    <script>
+        async function loadNotes() {
+            try {
+                const response = await fetch('index.json');
+                const data = await response.json();
+                const container = document.getElementById('all-notes');
+                
+                if (!data.notes || data.notes.length === 0) {
+                    container.innerHTML = '<p>No notes available yet.</p>';
+                    return;
+                }
+
+                container.innerHTML = data.notes.map(function(note) {
+                    return '<a href="../' + note.path + '" class="note-card">' +
+                        '<h4>' + note.title + '</h4>' +
+                        '<div class="meta">' + note.category.replace('-', ' ') + ' &bull; ' + (note.exam || 'General') + '</div>' +
+                    '</a>';
+                }).join('');
+            } catch (e) {
+                document.getElementById('all-notes').innerHTML = '<p>No notes available yet.</p>';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', loadNotes);
+    </script>
+    <script src="../assets/js/search.js"></script>
+</body>
+</html>
