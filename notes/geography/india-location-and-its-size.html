@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>India: Location and Its Size - Laurel Library</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#5c3d2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -20,6 +22,7 @@
             <nav class="main-nav">
                 <a href="../../index.html">Home</a>
                 <a href="../index.html">Notes</a>
+                <a href="../../exams/index.html">Exams</a>
                 <a href="../../about.html">About</a>
             </nav>
             <div class="header-actions">
@@ -52,12 +55,21 @@
                 <button class="btn-print" onclick="window.print()" title="Print this note">
                     &#128424; Print
                 </button>
-                <span class="reading-progress" id="reading-progress">0% read</span>
+                <button class="btn-quiz" id="btn-quiz" title="Quiz yourself">
+                    &#128300; Quiz
+                </button>
+                <button class="btn-flashcards" id="btn-flashcards" title="Flashcards">
+                    &#127183; Flashcards
+                </button>
+                <span class="reading-time">&#128337; 5 min read</span>
             </div>
 
             <div class="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4>Table of Contents</h4>
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
                     <ul id="toc-list"></ul>
                 </aside>
 
@@ -229,10 +241,47 @@
 <p>India is located <strong>east</strong> of the <strong>Prime Meridian</strong>. ​ The standard time for India, known as Indian Standard Time (IST), is based on the time ​ at the <strong>82.5° E longitude</strong>, which is 5 hours 30 minutes ahead of GMT (Greenwich Mean Time).</p>
 <p>The IST Passes through <strong>5</strong> Indian states namely <strong>Uttar Pradesh.</strong>, <strong>Madhya Pradesh</strong>, ​ <strong>Chhattisgarh</strong>, <strong>Andhra Pradesh</strong>, and <strong>Orissa</strong>.</p>
 <p>This is India’s standard time zone, which places India to the east of the <strong>Prime Meridian</strong>. ​</p>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="physiographic-divisions-of-india-himalayas-and-northern-plains.html" class="note-card"><h4>Physiographic Divisions of India: Himalayas and Northern Plains</h4><div class="meta">UPSC, SSC</div></a></div>
+            </section>
                 </article>
             </div>
         </div>
     </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <!-- Flashcards Modal -->
+    <div class="modal" id="flashcard-modal">
+        <div class="modal-content flashcard-container">
+            <div class="modal-header">
+                <h3>Flashcards</h3>
+                <button class="modal-close" id="flashcard-close">&times;</button>
+            </div>
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-inner" id="flashcard-inner">
+                    <div class="flashcard-front" id="flashcard-front"></div>
+                    <div class="flashcard-back" id="flashcard-back"></div>
+                </div>
+            </div>
+            <div class="flashcard-nav">
+                <button id="fc-prev">&#9664; Prev</button>
+                <span id="fc-count">1/1</span>
+                <button id="fc-next">Next &#9654;</button>
+            </div>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="container">
@@ -240,16 +289,17 @@
         </div>
     </footer>
 
-    <script src="../../assets/js/app.js"></script>
     <script src="../../assets/js/search.js"></script>
     <script src="../../assets/js/features.js"></script>
     <script>
-        // TOC generation
+        // TOC generation with collapse support
         (function() {
             var article = document.getElementById('article-content');
             var tocList = document.getElementById('toc-list');
             if (!article || !tocList) return;
             var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
             headings.forEach(function(heading, idx) {
                 var id = 'section-' + idx;
                 heading.id = id;
@@ -257,12 +307,52 @@
                 var a = document.createElement('a');
                 a.href = '#' + id;
                 a.textContent = heading.textContent;
-                if (heading.tagName === 'H3') {
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
                     li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
                 }
-                li.appendChild(a);
-                tocList.appendChild(li);
             });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
         })();
     </script>
 </body>

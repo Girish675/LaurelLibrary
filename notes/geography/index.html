@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geography Notes - Laurel Library</title>
+    <title>Geography - Laurel Library</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#5c3d2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -12,69 +14,67 @@
     <header class="site-header">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">&#128218;</span>
-                <h1>Laurel Library</h1>
+                <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                    <span class="logo-icon">&#128218;</span>
+                    <h1>Laurel Library</h1>
+                </a>
             </div>
             <nav class="main-nav">
                 <a href="../../index.html">Home</a>
-                <a href="../index.html" class="active">Notes</a>
+                <a href="../index.html">Notes</a>
+                <a href="../../exams/index.html">Exams</a>
                 <a href="../../about.html">About</a>
             </nav>
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
-                <div id="search-results" class="search-results"></div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                    <span class="icon-sun">&#9728;&#65039;</span>
+                    <span class="icon-moon">&#127769;</span>
+                </button>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                    <div id="search-results" class="search-results"></div>
+                </div>
             </div>
         </div>
     </header>
-
     <main>
-        <div class="container" style="padding: 40px 20px;">
+        <div class="container">
             <div class="breadcrumbs">
                 <a href="../../index.html">Home</a>
                 <span>&rsaquo;</span>
                 <a href="../index.html">Notes</a>
                 <span>&rsaquo;</span>
-                Geography
+                <span>Geography</span>
             </div>
-
-            <h2 class="section-title">Geography Notes</h2>
+            <h2 class="section-title">Geography</h2>
             <div class="notes-list" id="category-notes"></div>
         </div>
     </main>
-
     <footer class="site-footer">
         <div class="container">
             <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
         </div>
     </footer>
-
-    <script>
-        async function loadCategoryNotes() {
-            try {
-                const response = await fetch('../index.json');
-                const data = await response.json();
-                const container = document.getElementById('category-notes');
-                
-                const notes = data.notes.filter(function(n) { return n.category === 'geography'; });
-                
-                if (notes.length === 0) {
-                    container.innerHTML = '<p>No notes in this category yet.</p>';
-                    return;
-                }
-
-                container.innerHTML = notes.map(function(note) {
-                    var filename = note.path.split('/').pop();
-                    return '<a href="' + filename + '" class="note-card">' +
-                        '<h4>' + note.title + '</h4>' +
-                        '<div class="meta">' + (note.exam || 'General') + '</div>' +
-                    '</a>';
-                }).join('');
-            } catch (e) {
-                document.getElementById('category-notes').innerHTML = '<p>No notes available yet.</p>';
-            }
-        }
-        document.addEventListener('DOMContentLoaded', loadCategoryNotes);
-    </script>
+    <script src="../../assets/js/app.js"></script>
     <script src="../../assets/js/search.js"></script>
+    <script src="../../assets/js/features.js"></script>
+    <script>
+        fetch('../../notes/index.json')
+            .then(r => r.json())
+            .then(data => {
+                var container = document.getElementById('category-notes');
+                var notes = data.notes.filter(n => n.category === 'geography');
+                notes.forEach(function(note) {
+                    var a = document.createElement('a');
+                    a.className = 'note-card';
+                    a.href = note.path.replace('notes/geography/', '');
+                    a.innerHTML = '<h4>' + note.title + '</h4><div class="meta">' + note.exam + '</div>';
+                    container.appendChild(a);
+                });
+                if (notes.length === 0) {
+                    container.innerHTML = '<p>No notes yet in this category.</p>';
+                }
+            });
+    </script>
 </body>
 </html>

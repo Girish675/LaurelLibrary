@@ -41,7 +41,7 @@ BRAND_COLORS = [
 ]
 
 # --- State ---
-_seen_img_hashes = set()
+_seen_img_hashes = {}  # hash -> count for dedup (only filter at 3+)
 _page_bg_hashes = set()  # track page background images
 
 
@@ -101,48 +101,45 @@ def fix_spacing(text):
 def is_watermark_image(img_data, img_w, img_h, page_w, page_h, page_num):
     """
     Determine if an image is a watermark/logo/branding/background.
-    Balances between removing branding and keeping content diagrams.
+    CONSERVATIVE: only filter images that are clearly not content.
+    When in doubt, KEEP the image.
     """
     try:
-        # 1. Very small images are logos/icons
-        if img_w < 200 and img_h < 120:
+        # 1. Tiny icons/logos only (very small in both dimensions)
+        if img_w < 80 and img_h < 80:
             return True
 
-        # 2. Full-width thin banners (headers/footers)
-        if img_w > page_w * 0.7 and img_h < 120:
+        # 2. Full-width thin banners (headers/footers with <60px height)
+        if img_w > page_w * 0.8 and img_h < 60:
             return True
 
-        # 3. Near-full-page images are backgrounds/templates
+        # 3. Near-full-page images are backgrounds (>92% of page area)
         page_area = page_w * page_h
         img_area = img_w * img_h
-        if img_area > page_area * 0.85:
+        if img_area > page_area * 0.92:
             return True
 
-        # 4. First page: large images likely cover art/branding
-        if page_num == 0 and img_area > page_area * 0.4:
-            return True
-
-        # 5. Hash-based deduplication (same image across pages = watermark)
+        # 4. Hash-based deduplication: only filter if seen 3+ times
         img_hash = hashlib.md5(img_data).hexdigest()
-        if img_hash in _seen_img_hashes:
+        _seen_img_hashes[img_hash] = _seen_img_hashes.get(img_hash, 0) + 1
+        if _seen_img_hashes[img_hash] >= 3:
             return True
-        _seen_img_hashes.add(img_hash)
 
-        # 6. Check image content
+        # 5. Check image content for truly empty/uniform images
         image = Image.open(io.BytesIO(img_data))
         
-        # High transparency = watermark overlay
+        # High transparency = watermark overlay (>70% transparent)
         if image.mode == 'RGBA':
             alpha = image.split()[3]
             pixels = list(alpha.getdata())
-            transparent = sum(1 for p in pixels if p < 50)
-            if transparent > len(pixels) * 0.5:
+            transparent = sum(1 for p in pixels if p < 30)
+            if transparent > len(pixels) * 0.7:
                 return True
             image = image.convert('RGB')
         elif image.mode != 'RGB':
             image = image.convert('RGB')
 
-        # 7. Sample pixels to check if image is mostly uniform/empty
+        # 6. Sample pixels - only filter if >92% same color (truly solid)
         w, h = image.size
         if w > 10 and h > 10:
             step_x = max(1, w // 20)
@@ -157,22 +154,17 @@ def is_watermark_image(img_data, img_w, img_h, page_w, page_h, page_num):
                     break
 
             if samples:
-                # Check if >85% pixels are very similar = solid background
                 from collections import Counter
                 quantized = [(r // 40, g // 40, b // 40) for r, g, b in samples]
                 counter = Counter(quantized)
                 most_common_count = counter.most_common(1)[0][1]
-                if most_common_count > len(samples) * 0.85:
+                # Only filter if >92% pixels are same color = truly solid/blank
+                if most_common_count > len(samples) * 0.92:
                     return True
 
-                # Mostly white/light grey = empty template
-                light_pixels = sum(1 for r, g, b in samples if r > 220 and g > 220 and b > 220)
-                if light_pixels > len(samples) * 0.88:
-                    return True
-
-                # Mostly dark = dark background/cover
-                dark_pixels = sum(1 for r, g, b in samples if r < 40 and g < 40 and b < 40)
-                if dark_pixels > len(samples) * 0.80:
+                # Almost entirely white (>94%) = blank placeholder
+                light_pixels = sum(1 for r, g, b in samples if r > 240 and g > 240 and b > 240)
+                if light_pixels > len(samples) * 0.94:
                     return True
 
         return False
@@ -610,10 +602,10 @@ def blocks_to_html(blocks):
 
 # --- Main Conversion ---
 
-def convert_pdf(pdf_path, output_dir, category, title=None, exam="General", verbose=False):
+def convert_pdf(pdf_path, output_dir, category, title=None, exam="General", verbose=False, pyq=""):
     """Convert a single PDF to HTML."""
     global _seen_img_hashes
-    _seen_img_hashes = set()
+    _seen_img_hashes = {}
 
     doc = fitz.open(pdf_path)
     if not title:
@@ -758,8 +750,25 @@ def convert_pdf(pdf_path, output_dir, category, title=None, exam="General", verb
         body_html
     )
 
+    # Detect mnemonics/tricks and wrap in callout boxes
+    mnemonic_patterns = [
+        (r'<p>((?:TRICK|MNEMONIC|TIP|REMEMBER|NOTE|HINT|SHORTCUT|FORMULA)[:\s].+?)</p>', 'tip'),
+        (r'<li>((?:TRICK|MNEMONIC|TIP|REMEMBER|NOTE|HINT|SHORTCUT|FORMULA)[:\s].+?)</li>', 'tip'),
+    ]
+    for pat, ctype in mnemonic_patterns:
+        body_html = re.sub(pat, 
+            lambda m: f'<div class="callout callout-{ctype}"><span class="callout-icon">💡</span> {m.group(1)}</div>', 
+            body_html, flags=re.IGNORECASE)
+
+    # Count words for reading time
+    plain_text = re.sub(r'<[^>]+>', ' ', body_html)
+    word_count = len(plain_text.split())
+
+    # Get related notes from existing index
+    related_notes = get_related_notes(str(Path(output_dir).parent.parent), category, title)
+
     # Generate page
-    html = generate_page(title, category, body_html, exam)
+    html = generate_page(title, category, body_html, exam, word_count, related_notes)
     out_path = os.path.join(output_dir, f"{slug}.html")
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
@@ -774,17 +783,57 @@ def convert_pdf(pdf_path, output_dir, category, title=None, exam="General", verb
         "title": title,
         "category": category,
         "path": f"notes/{category}/{slug}.html",
+        "slug": slug,
         "exam": exam,
-        "keywords": keywords
+        "pyq": pyq,
+        "keywords": keywords,
+        "word_count": word_count,
+        "reading_time": max(1, round(word_count / 200))
     }
 
 
-def generate_page(title, category, body, exam):
-    """Generate full HTML page with dark mode, print support, bookmarks."""
+def get_related_notes(base_dir, category, current_title):
+    """Get related notes from same category for 'Related Notes' section."""
+    idx_path = os.path.join(base_dir, "notes", "index.json")
+    if not os.path.exists(idx_path):
+        return []
+    try:
+        with open(idx_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        related = []
+        for note in data.get("notes", []):
+            if note.get("category") == category and note.get("title") != current_title:
+                # Get just the filename relative to the category folder
+                path = note.get("path", "")
+                filename = path.split("/")[-1] if "/" in path else path
+                related.append({
+                    "title": note["title"],
+                    "file": filename,
+                    "exam": note.get("exam", "")
+                })
+        return related[:4]
+    except Exception:
+        return []
+
+
+def generate_page(title, category, body, exam, word_count=0, related_notes=None):
+    """Generate full HTML page with all features."""
     cat_display = category.replace('-', ' ').title()
     title_esc = escape_html(title)
     cat_esc = escape_html(cat_display)
     exam_esc = escape_html(exam)
+    reading_time = max(1, round(word_count / 200))
+    
+    related_html = ""
+    if related_notes:
+        cards = ""
+        for note in related_notes[:4]:
+            cards += f'<a href="{note["file"]}" class="note-card"><h4>{escape_html(note["title"])}</h4><div class="meta">{escape_html(note.get("exam", ""))}</div></a>'
+        related_html = f'''
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid">{cards}</div>
+            </section>'''
     
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -793,6 +842,8 @@ def generate_page(title, category, body, exam):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title_esc} - Laurel Library</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#5c3d2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -808,6 +859,7 @@ def generate_page(title, category, body, exam):
             <nav class="main-nav">
                 <a href="../../index.html">Home</a>
                 <a href="../index.html">Notes</a>
+                <a href="../../exams/index.html">Exams</a>
                 <a href="../../about.html">About</a>
             </nav>
             <div class="header-actions">
@@ -840,12 +892,21 @@ def generate_page(title, category, body, exam):
                 <button class="btn-print" onclick="window.print()" title="Print this note">
                     &#128424; Print
                 </button>
-                <span class="reading-progress" id="reading-progress">0% read</span>
+                <button class="btn-quiz" id="btn-quiz" title="Quiz yourself">
+                    &#128300; Quiz
+                </button>
+                <button class="btn-flashcards" id="btn-flashcards" title="Flashcards">
+                    &#127183; Flashcards
+                </button>
+                <span class="reading-time">&#128337; {reading_time} min read</span>
             </div>
 
             <div class="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4>Table of Contents</h4>
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
                     <ul id="toc-list"></ul>
                 </aside>
 
@@ -857,10 +918,43 @@ def generate_page(title, category, body, exam):
                         <span class="meta-exam">{exam_esc}</span>
                     </div>
                     {body}
+                    {related_html}
                 </article>
             </div>
         </div>
     </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <!-- Flashcards Modal -->
+    <div class="modal" id="flashcard-modal">
+        <div class="modal-content flashcard-container">
+            <div class="modal-header">
+                <h3>Flashcards</h3>
+                <button class="modal-close" id="flashcard-close">&times;</button>
+            </div>
+            <div class="flashcard" id="flashcard">
+                <div class="flashcard-inner" id="flashcard-inner">
+                    <div class="flashcard-front" id="flashcard-front"></div>
+                    <div class="flashcard-back" id="flashcard-back"></div>
+                </div>
+            </div>
+            <div class="flashcard-nav">
+                <button id="fc-prev">&#9664; Prev</button>
+                <span id="fc-count">1/1</span>
+                <button id="fc-next">Next &#9654;</button>
+            </div>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="container">
@@ -868,16 +962,17 @@ def generate_page(title, category, body, exam):
         </div>
     </footer>
 
-    <script src="../../assets/js/app.js"></script>
     <script src="../../assets/js/search.js"></script>
     <script src="../../assets/js/features.js"></script>
     <script>
-        // TOC generation
+        // TOC generation with collapse support
         (function() {{
             var article = document.getElementById('article-content');
             var tocList = document.getElementById('toc-list');
             if (!article || !tocList) return;
             var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
             headings.forEach(function(heading, idx) {{
                 var id = 'section-' + idx;
                 heading.id = id;
@@ -885,12 +980,52 @@ def generate_page(title, category, body, exam):
                 var a = document.createElement('a');
                 a.href = '#' + id;
                 a.textContent = heading.textContent;
-                if (heading.tagName === 'H3') {{
+                if (heading.tagName === 'H2') {{
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {{
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {{
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }}
+                    }});
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                }} else {{
                     li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {{
+                        currentSubList.appendChild(li);
+                    }} else {{
+                        tocList.appendChild(li);
+                    }}
                 }}
-                li.appendChild(a);
-                tocList.appendChild(li);
             }});
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {{
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {{
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {{
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    }});
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {{
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    }});
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                }});
+            }}
         }})();
     </script>
 </body>
@@ -965,6 +1100,7 @@ def main():
     parser.add_argument("--category", "-c", required=True, help="Category slug (e.g., geography)")
     parser.add_argument("--title", "-t", help="Note title (auto-detected if omitted)")
     parser.add_argument("--exam", "-e", default="General", help="Target exams (e.g., 'UPSC, SSC')")
+    parser.add_argument("--pyq", default="", help="PYQ references (e.g., 'SSC CGL 2024, UPSC Prelims 2023')")
     parser.add_argument("--output", "-o", default=None, help="Output base directory")
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
     args = parser.parse_args()
@@ -982,7 +1118,7 @@ def main():
     start_time = time.time()
 
     if inp.is_file() and inp.suffix.lower() == '.pdf':
-        info = convert_pdf(str(inp), str(out_dir), args.category, args.title, args.exam, args.verbose)
+        info = convert_pdf(str(inp), str(out_dir), args.category, args.title, args.exam, args.verbose, args.pyq)
         update_indexes(str(base), info)
     elif inp.is_dir():
         pdfs = sorted(inp.glob("*.pdf"))
@@ -995,7 +1131,7 @@ def main():
         for i, pdf in enumerate(pdfs, 1):
             print(f"  [{i}/{total}] Processing: {pdf.name}")
             try:
-                info = convert_pdf(str(pdf), str(out_dir), args.category, None, args.exam, args.verbose)
+                info = convert_pdf(str(pdf), str(out_dir), args.category, None, args.exam, args.verbose, args.pyq)
                 update_indexes(str(base), info)
                 success += 1
             except Exception as e:
@@ -1032,6 +1168,8 @@ def create_category_index(out_dir, category):
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{cat_display} - Laurel Library</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#5c3d2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -1047,6 +1185,7 @@ def create_category_index(out_dir, category):
             <nav class="main-nav">
                 <a href="../../index.html">Home</a>
                 <a href="../index.html">Notes</a>
+                <a href="../../exams/index.html">Exams</a>
                 <a href="../../about.html">About</a>
             </nav>
             <div class="header-actions">

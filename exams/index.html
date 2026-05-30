@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse by Exam - Laurel Library</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#5c3d2e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                    <span class="logo-icon">&#128218;</span>
+                    <h1>Laurel Library</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html">Home</a>
+                <a href="../notes/index.html">Notes</a>
+                <a href="index.html" class="active">Exams</a>
+                <a href="../about.html">About</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                    <span class="icon-sun">&#9728;&#65039;</span>
+                    <span class="icon-moon">&#127769;</span>
+                </button>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="../index.html">Home</a>
+                <span>&rsaquo;</span>
+                <span>Browse by Exam</span>
+            </div>
+
+            <h2 class="section-title">Browse by Exam</h2>
+            <p style="margin-bottom: 25px; color: var(--color-text-light);">Find notes tagged for your target exam. Each note can appear under multiple exams.</p>
+
+            <div id="exam-content"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/features.js"></script>
+    <script>
+        (function() {
+            var examInfo = {
+                'UPSC': { icon: '🏛️', desc: 'Civil Services, IAS, IPS, IFS' },
+                'SSC': { icon: '📋', desc: 'CGL, CHSL, MTS, GD Constable' },
+                'GATE': { icon: '⚙️', desc: 'Graduate Aptitude Test in Engineering' },
+                'IIT-JEE': { icon: '🎓', desc: 'JEE Main & Advanced' },
+                'NEET': { icon: '🩺', desc: 'National Eligibility Entrance Test' },
+                'General': { icon: '📚', desc: 'General study material' }
+            };
+
+            fetch('../notes/index.json')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    var notes = data.notes || [];
+                    var examMap = {};
+
+                    notes.forEach(function(note) {
+                        var exams = (note.exam || 'General').split(',').map(function(e) { return e.trim(); });
+                        exams.forEach(function(exam) {
+                            if (!examMap[exam]) examMap[exam] = [];
+                            examMap[exam].push(note);
+                        });
+                    });
+
+                    var container = document.getElementById('exam-content');
+                    var html = '';
+
+                    // Exam cards overview
+                    html += '<div class="exam-grid">';
+                    Object.keys(examMap).sort().forEach(function(exam) {
+                        var info = examInfo[exam] || { icon: '📝', desc: '' };
+                        var count = examMap[exam].length;
+                        html += '<a href="#exam-' + exam.replace(/[^a-zA-Z0-9]/g, '') + '" class="exam-card">';
+                        html += '<h4>' + info.icon + ' ' + exam + '</h4>';
+                        html += '<p>' + info.desc + '</p>';
+                        html += '<span class="exam-count">' + count + ' note' + (count !== 1 ? 's' : '') + '</span>';
+                        html += '</a>';
+                    });
+                    html += '</div>';
+
+                    // Notes listed by exam
+                    Object.keys(examMap).sort().forEach(function(exam) {
+                        var info = examInfo[exam] || { icon: '📝', desc: '' };
+                        html += '<section class="exam-notes-section" id="exam-' + exam.replace(/[^a-zA-Z0-9]/g, '') + '">';
+                        html += '<h3>' + info.icon + ' ' + exam + '</h3>';
+                        html += '<div class="notes-list">';
+                        examMap[exam].forEach(function(note) {
+                            html += '<a href="../' + note.path + '" class="note-card">';
+                            html += '<h4>' + note.title + '</h4>';
+                            html += '<div class="meta">' + (note.category || '') + '</div>';
+                            html += '</a>';
+                        });
+                        html += '</div></section>';
+                    });
+
+                    container.innerHTML = html;
+                })
+                .catch(function() {
+                    document.getElementById('exam-content').innerHTML = '<p>No notes available yet.</p>';
+                });
+        })();
+    </script>
+</body>
+</html>

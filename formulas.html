@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula & Key Facts Reference - Laurel Library</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#5c3d2e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                    <span class="logo-icon">&#128218;</span>
+                    <h1>Laurel Library</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="notes/index.html">Notes</a>
+                <a href="exams/index.html">Exams</a>
+                <a href="about.html">About</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                    <span class="icon-sun">&#9728;&#65039;</span>
+                    <span class="icon-moon">&#127769;</span>
+                </button>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a>
+                <span>&rsaquo;</span>
+                <span>Formula & Key Facts</span>
+            </div>
+
+            <h2 class="section-title">Formula & Key Facts Quick Reference</h2>
+            <p style="margin-bottom: 15px; color: var(--color-text-light);">Key formulae, dates, and constants extracted from all notes. Filter by subject.</p>
+
+            <div style="margin-bottom: 20px;">
+                <select id="formula-filter" style="padding: 8px 15px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-card-bg); color: var(--color-text); font-size: 0.9rem;">
+                    <option value="all">All Subjects</option>
+                </select>
+            </div>
+
+            <div id="formula-content"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/features.js"></script>
+    <script>
+        (function() {
+            fetch('notes/index.json')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    var notes = data.notes || [];
+                    var container = document.getElementById('formula-content');
+                    var filter = document.getElementById('formula-filter');
+                    var categories = new Set();
+
+                    notes.forEach(function(note) {
+                        if (note.category) categories.add(note.category);
+                    });
+
+                    categories.forEach(function(cat) {
+                        var option = document.createElement('option');
+                        option.value = cat;
+                        option.textContent = cat.replace('-', ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
+                        filter.appendChild(option);
+                    });
+
+                    // Extract formulae from note content by fetching each note
+                    var formulaData = {};
+                    var promises = notes.map(function(note) {
+                        return fetch(note.path)
+                            .then(function(r) { return r.text(); })
+                            .then(function(html) {
+                                var parser = new DOMParser();
+                                var doc = parser.parseFromString(html, 'text/html');
+                                var strongs = doc.querySelectorAll('strong');
+                                var facts = [];
+                                strongs.forEach(function(el) {
+                                    var text = el.textContent.trim();
+                                    var parent = el.parentElement;
+                                    if (text.length > 3 && text.length < 80 && parent) {
+                                        var ctx = parent.textContent.trim();
+                                        // Only include facts with numbers/measurements
+                                        if (/\d/.test(ctx) && ctx.length < 300) {
+                                            facts.push({ term: text, detail: ctx, source: note.title });
+                                        }
+                                    }
+                                });
+                                if (facts.length > 0) {
+                                    var cat = note.category || 'general';
+                                    if (!formulaData[cat]) formulaData[cat] = [];
+                                    formulaData[cat] = formulaData[cat].concat(facts.slice(0, 20));
+                                }
+                            })
+                            .catch(function() {});
+                    });
+
+                    Promise.all(promises).then(function() {
+                        renderFormulae('all');
+                    });
+
+                    filter.addEventListener('change', function() {
+                        renderFormulae(filter.value);
+                    });
+
+                    function renderFormulae(filterVal) {
+                        var html = '';
+                        var keys = Object.keys(formulaData).sort();
+                        if (keys.length === 0) {
+                            container.innerHTML = '<p style="color:var(--color-text-light)">No formulae extracted yet. Add more notes to populate this page.</p>';
+                            return;
+                        }
+                        keys.forEach(function(cat) {
+                            if (filterVal !== 'all' && filterVal !== cat) return;
+                            var catName = cat.replace('-', ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
+                            html += '<section class="formula-section">';
+                            html += '<h3>' + catName + '</h3>';
+                            formulaData[cat].forEach(function(item) {
+                                html += '<div class="formula-card">';
+                                html += '<strong>' + item.term + '</strong>';
+                                html += '<p style="margin:5px 0 0;font-size:0.88rem;color:var(--color-text-light)">' + item.detail + '</p>';
+                                html += '<small style="color:var(--color-text-light);opacity:0.7">Source: ' + item.source + '</small>';
+                                html += '</div>';
+                            });
+                            html += '</section>';
+                        });
+                        container.innerHTML = html || '<p>No formulae found for this filter.</p>';
+                    }
+                })
+                .catch(function() {
+                    document.getElementById('formula-content').innerHTML = '<p>Unable to load notes index.</p>';
+                });
+        })();
+    </script>
+</body>
+</html>

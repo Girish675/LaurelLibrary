@@ -53,22 +53,22 @@ function renderSearchResults(results) {
     // Determine base path to root
     const depth = (window.location.pathname.match(/\//g) || []).length;
     let basePath = '';
-    // Calculate relative path from current page to root
-    const pathParts = window.location.pathname.split('/').filter(Boolean);
-    // Find where 'notes' appears to determine depth from root
     const currentPath = window.location.pathname;
     if (currentPath.includes('/notes/') && currentPath.split('/notes/')[1].includes('/')) {
         basePath = '../../';
-    } else if (currentPath.includes('/notes/')) {
+    } else if (currentPath.includes('/notes/') || currentPath.includes('/exams/')) {
         basePath = '../';
     }
 
-    container.innerHTML = results.map(r => `
-        <a href="${basePath}${r.path}">
+    container.innerHTML = results.map(r => {
+        const query = document.getElementById('search-input') ? document.getElementById('search-input').value : '';
+        const separator = r.path.includes('?') ? '&' : '?';
+        const href = query ? `${basePath}${r.path}${separator}highlight=${encodeURIComponent(query)}` : `${basePath}${r.path}`;
+        return `<a href="${href}">
             <strong>${r.title}</strong>
             <br><small>${r.category}</small>
-        </a>
-    `).join('');
+        </a>`;
+    }).join('');
     container.classList.add('active');
 }
 
