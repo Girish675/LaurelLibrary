@@ -905,9 +905,6 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                 <button class="btn-quiz" id="btn-quiz" title="Quiz yourself">
                     &#128300; Quiz
                 </button>
-                <button class="btn-flashcards" id="btn-flashcards" title="Flashcards">
-                    &#127183; Flashcards
-                </button>
                 <span class="reading-time">&#128337; {reading_time} min read</span>
             </div>
 
@@ -942,27 +939,6 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                 <button class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
-        </div>
-    </div>
-
-    <!-- Flashcards Modal -->
-    <div class="modal" id="flashcard-modal">
-        <div class="modal-content flashcard-container">
-            <div class="modal-header">
-                <h3>Flashcards</h3>
-                <button class="modal-close" id="flashcard-close">&times;</button>
-            </div>
-            <div class="flashcard" id="flashcard">
-                <div class="flashcard-inner" id="flashcard-inner">
-                    <div class="flashcard-front" id="flashcard-front"></div>
-                    <div class="flashcard-back" id="flashcard-back"></div>
-                </div>
-            </div>
-            <div class="flashcard-nav">
-                <button id="fc-prev">&#9664; Prev</button>
-                <span id="fc-count">1/1</span>
-                <button id="fc-next">Next &#9654;</button>
-            </div>
         </div>
     </div>
 

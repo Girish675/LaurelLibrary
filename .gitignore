@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Source PDFs (not for deployment)
+*.pdf
+Indian Geography/

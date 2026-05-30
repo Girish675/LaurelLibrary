@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>33 Sobriquet - Laurel Library</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#5c3d2e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                    <span class="logo-icon">&#128218;</span>
+                    <h1>Laurel Library</h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../index.html">Notes</a>
+                <a href="../../exams/index.html">Exams</a>
+                <a href="../../about.html">About</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
+                    <span class="icon-sun">&#9728;&#65039;</span>
+                    <span class="icon-moon">&#127769;</span>
+                </button>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="../../index.html">Home</a>
+                <span>&rsaquo;</span>
+                <a href="index.html">Geography</a>
+                <span>&rsaquo;</span>
+                <span>33 Sobriquet</span>
+            </div>
+
+            <div class="note-actions">
+                <button class="btn-bookmark" id="btn-bookmark" title="Bookmark this note">
+                    <span class="bookmark-icon">&#9734;</span> Bookmark
+                </button>
+                <button class="btn-print" onclick="window.print()" title="Print this note">
+                    &#128424; Print
+                </button>
+                <button class="btn-quiz" id="btn-quiz" title="Quiz yourself">
+                    &#128300; Quiz
+                </button>
+                <span class="reading-time">&#128337; 4 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>33 Sobriquet</h1>
+                    <div class="meta">
+                        <span class="meta-category">Geography</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">UPSC, SSC</span>
+                    </div>
+                    <h2>SOBRIQUET</h2>
+<p>In the context of geography, a <strong>&quot;sobriquet&quot;</strong> refers to a <strong>nickname or descriptive label</strong> given to a place based on its characteristics, history, or cultural significance. These sobriquets can help convey the essence or identity of a location in a memorable way.</p>
+<h2>Indian Cities Sobriquets</h2>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Sobriquet (Nickname)</th>
+<th>City Name</th>
+<th>State</th>
+</tr></thead><tbody>
+<tr>
+<td>City of Taj</td>
+<td>Agra</td>
+<td>Uttar Pradesh</td>
+</tr>
+<tr>
+<td>Boston/Manchester of India</td>
+<td>Ahmedabad</td>
+<td>Gujarat</td>
+</tr>
+<tr>
+<td>Sangam City</td>
+<td>Allahabad</td>
+<td>Uttar Pradesh</td>
+</tr>
+<tr>
+<td>Land of Black Diamond</td>
+<td>Asansol</td>
+<td>West Bengal</td>
+</tr>
+<tr>
+<td>City of Peace</td>
+<td>Bardhaman</td>
+<td>West Bengal</td>
+</tr>
+<tr>
+<td>Temple City of India</td>
+<td>Bhubaneswar</td>
+<td>Odisha</td>
+</tr>
+<tr>
+<td>The Venice of the East</td>
+<td>Alappuzha</td>
+<td>Kerala</td>
+</tr>
+<tr>
+<td>Garden City of India</td>
+<td>Bengaluru</td>
+<td>Karnataka</td>
+</tr>
+<tr>
+<td>Detroit of Asia</td>
+<td>Chennai</td>
+<td>Tamil Nadu</td>
+</tr>
+<tr>
+<td>Automobile Capital of India</td>
+<td>Chennai</td>
+<td>Tamil Nadu</td>
+</tr>
+<tr>
+<td>Textile City of India</td>
+<td>Coimbatore</td>
+<td>Tamil Nadu</td>
+</tr>
+<tr>
+<td>Scotland of India</td>
+<td>Coorg</td>
+<td>Karnataka</td>
+</tr>
+<tr>
+<td>School Capital of India</td>
+<td>Dehradun</td>
+<td>Uttarakhand</td>
+</tr>
+<tr>
+<td>Queen of the Hills</td>
+<td>Darjeeling</td>
+<td>West Bengal</td>
+</tr>
+<tr>
+<td>Tea City of India</td>
+<td>Dibrugarh</td>
+<td>Assam</td>
+</tr>
+<tr>
+<td>Ruhr of India</td>
+<td>Durgapur</td>
+<td>West Bengal</td>
+</tr>
+<tr>
+<td>Gateway of North East India</td>
+<td>Guwahati</td>
+<td>Assam</td>
+</tr>
+<tr>
+<td>Switzerland of the East</td>
+<td>Hafol ng</td>
+<td>Assam</td>
+</tr>
+<tr>
+<td>City of Pearls</td>
+<td>Hyderabad</td>
+<td>Telangana</td>
+</tr>
+<tr>
+<td>Pink City</td>
+<td>Jaipur</td>
+<td>Rajasthan</td>
+</tr>
+</tbody></table></div>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Golden City of India</th>
+<th>Jaisalmer</th>
+<th>Rajasthan</th>
+</tr></thead><tbody>
+<tr>
+<td>Steel City of India</td>
+<td>Jamshedpur</td>
+<td>Jharkhand</td>
+</tr>
+<tr>
+<td>Pittsburgh of India</td>
+<td>Jamshedpur</td>
+<td>Jharkhand</td>
+</tr>
+<tr>
+<td>Perfume Capital of India</td>
+<td>Kannauj</td>
+<td>Uttar Pradesh</td>
+</tr>
+<tr>
+<td>Land of Looms and Lores</td>
+<td>Kannur</td>
+<td>Kerala</td>
+</tr>
+<tr>
+<td>Leather City of the World</td>
+<td>Kanpur</td>
+<td>Uttar Pradesh</td>
+</tr>
+<tr>
+<td>Manchester of the East</td>
+<td>Kanpur</td>
+<td>Uttar Pradesh</td>
+</tr>
+<tr>
+<td>Queen of the Arabian Sea</td>
+<td>Kochi</td>
+<td>Kerala</td>
+</tr>
+<tr>
+<td>City of Wrestlers</td>
+<td>Kolhapur</td>
+<td>Maharashtra</td>
+</tr>
+<tr>
+<td>City of Joy</td>
+<td>Kolkata</td>
+<td>West Bengal</td>
+</tr>
+<tr>
+<td>City of Letters</td>
+<td>Kottayam</td>
+<td>Kerala</td>
+</tr>
+<tr>
+<td>Prince of Arabian Sea</td>
+<td>Kollam</td>
+<td>Kerala</td>
+</tr>
+<tr>
+<td>Shiraz-e-Hind</td>
+<td>Lucknow</td>
+<td>Uttar Pradesh</td>
+</tr>
+<tr>
+<td>Athens of the East</td>
+<td>Madurai</td>
+<td>Tamil Nadu</td>
+</tr>
+<tr>
+<td>Mango City of Bengal</td>
+<td>Malda</td>
+<td>West Bengal</td>
+</tr>
+<tr>
+<td>Rome of the East</td>
+<td>Mangalore</td>
+<td>Karnataka</td>
+</tr>
+<tr>
+<td>City of Seven Islands</td>
+<td>Mumbai</td>
+<td>Maharashtra</td>
+</tr>
+<tr>
+<td>White City</td>
+<td>Udaipur</td>
+<td>Rajasthan</td>
+</tr>
+<tr>
+<td>Spiritual Capital of India</td>
+<td>Varanasi</td>
+<td>Uttar Pradesh</td>
+</tr>
+<tr>
+<td>Blue City</td>
+<td>Jodhpur</td>
+<td>Rajasthan</td>
+</tr>
+<tr>
+<td>Wine Capital of India</td>
+<td>Nashik</td>
+<td>Maharashtra</td>
+</tr>
+<tr>
+<td>Diamond City of India</td>
+<td>Surat</td>
+<td>Gujarat</td>
+</tr>
+<tr>
+<td>Evergreen City of India</td>
+<td>Trivandrum</td>
+<td>Kerala</td>
+</tr>
+<tr>
+<td>City of Destiny</td>
+<td>Visakhapatnam</td>
+<td>Andhra Pradesh</td>
+</tr>
+<tr>
+<td>Land of Warriors</td>
+<td>Zunheboto</td>
+<td>Nagaland</td>
+</tr>
+<tr>
+<td>All Seasons State</td>
+<td>Himachal
+Pradesh</td>
+<td>Himachal Pradesh</td>
+</tr>
+<tr>
+<td>Blue Mountains</td>
+<td>Nilgiri</td>
+<td>South India</td>
+</tr>
+</tbody></table></div>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Sorrow of Bengal</th>
+<th>Damodar River</th>
+<th>West Bengal</th>
+</tr></thead><tbody>
+<tr>
+<td>Sorrow of Assam</td>
+<td>Brahmaputra
+River</td>
+<td>Assam</td>
+</tr>
+<tr>
+<td>Spice Garden of India</td>
+<td>Kerala</td>
+<td>Kerala</td>
+</tr>
+<tr>
+<td>Land of Sunrise in India</td>
+<td>Arunachal
+Pradesh</td>
+<td>North-East India</td>
+</tr>
+<tr>
+<td>House of Clouds</td>
+<td>Meghalaya</td>
+<td>North-East India</td>
+</tr>
+<tr>
+<td>God’s Own Land of India</td>
+<td>Kerala</td>
+<td>South India</td>
+</tr>
+<tr>
+<td>Textile City of India</td>
+<td>Surat</td>
+<td>Gujarat</td>
+</tr>
+</tbody></table></div>
+<h2>World Cities Sobriquets</h2>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Sobriquet (Nickname)</th>
+<th>City/Country</th>
+<th>Region</th>
+</tr></thead><tbody>
+<tr>
+<td>Britain of the East</td>
+<td>Japan</td>
+<td>East Asia</td>
+</tr>
+<tr>
+<td>Battle fei ld of Europe</td>
+<td>Belgium</td>
+<td>Western Europe</td>
+</tr>
+<tr>
+<td>City of Cycles</td>
+<td>Beijing</td>
+<td>China</td>
+</tr>
+<tr>
+<td>City of Dreaming Spires</td>
+<td>Oxford</td>
+<td>United Kingdom</td>
+</tr>
+<tr>
+<td>City of Eternal Springs</td>
+<td>Quito</td>
+<td>Ecuador</td>
+</tr>
+<tr>
+<td>City of Sky Scrappers</td>
+<td>New York</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>City of Magnifcient Distances</td>
+<td>Washington DC</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>City of Golden Gate</td>
+<td>San Francisco</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>City of Seven Hills</td>
+<td>Rome</td>
+<td>Italy</td>
+</tr>
+<tr>
+<td>Forbidden City</td>
+<td>Lhasa</td>
+<td>Tibet</td>
+</tr>
+<tr>
+<td>Gateway of Tears</td>
+<td>Strait of Bab-el
+Mandeb</td>
+<td></td>
+</tr>
+<tr>
+<td>George Cross Island</td>
+<td>Malta</td>
+<td>Mediterranean
+Sea</td>
+</tr>
+</tbody></table></div>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Granite City</th>
+<th>Aberdeen</th>
+<th>Scotland</th>
+</tr></thead><tbody>
+<tr>
+<td>Herring Pond</td>
+<td>Atlantic Ocean</td>
+<td></td>
+</tr>
+<tr>
+<td>Holy Land</td>
+<td>Palestine</td>
+<td>West Asia</td>
+</tr>
+<tr>
+<td>Hermit Kingdom</td>
+<td>Korea</td>
+<td>East Asia</td>
+</tr>
+<tr>
+<td>Island of Cloves</td>
+<td>Madagascar</td>
+<td>Indian Ocean</td>
+</tr>
+<tr>
+<td>Land of Eagles</td>
+<td>Albania</td>
+<td>Eastern Europe</td>
+</tr>
+<tr>
+<td>Land of Golden Fleece</td>
+<td>Australia</td>
+<td></td>
+</tr>
+<tr>
+<td>Land of Lilies</td>
+<td>Canada</td>
+<td>North America</td>
+</tr>
+<tr>
+<td>Land of Golden Pagoda</td>
+<td>Myanmar</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>Land of Maple</td>
+<td>Canada</td>
+<td>North America</td>
+</tr>
+<tr>
+<td>Land of Thousand Lakes</td>
+<td>Finland</td>
+<td></td>
+</tr>
+<tr>
+<td>Land of Morning Calm</td>
+<td>Korea</td>
+<td>East Asia</td>
+</tr>
+<tr>
+<td>Land of Rising Sun</td>
+<td>Japan</td>
+<td>East Asia</td>
+</tr>
+<tr>
+<td>Land of Setting Sun</td>
+<td>United Kingdom</td>
+<td>Western Europe</td>
+</tr>
+<tr>
+<td>Land of Midnight Sun</td>
+<td>Norway</td>
+<td>Northwestern
+Europe</td>
+</tr>
+<tr>
+<td>Land of Tulips</td>
+<td>Netherlands</td>
+<td>Western Europe</td>
+</tr>
+<tr>
+<td>Land of White Elephant</td>
+<td>Thailand</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>Land of Thunder Bolt</td>
+<td>Bhutan</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>Land of Thousand Elephants</td>
+<td>Laos</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>Manchester of the Orient</td>
+<td>Osaka</td>
+<td>Japan</td>
+</tr>
+<tr>
+<td>Land of Thunder Dragon</td>
+<td>China</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>Nation of Thousand Hills</td>
+<td>Rwanda</td>
+<td>Africa</td>
+</tr>
+<tr>
+<td>Pearl of Arabia</td>
+<td>Bahrain</td>
+<td>Southwest Asia</td>
+</tr>
+<tr>
+<td>Pillars of Hercules</td>
+<td>Strait of Gibraltar</td>
+<td>Europe</td>
+</tr>
+<tr>
+<td>Roof of the World</td>
+<td>Pamirs Plateau</td>
+<td>Asia</td>
+</tr>
+</tbody></table></div>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Sorrow of China</th>
+<th>Huang Ho River</th>
+<th>China</th>
+</tr></thead><tbody>
+<tr>
+<td>Sick Man of Europe</td>
+<td>Turkey</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>Sugar Bowl of the World</td>
+<td>Cuba</td>
+<td>Caribbean Sea</td>
+</tr>
+<tr>
+<td>White City</td>
+<td>Belgrade</td>
+<td>Serbia</td>
+</tr>
+<tr>
+<td>Windy City</td>
+<td>Chicago</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>World's Bread Basket</td>
+<td>Prairies of North
+America</td>
+<td></td>
+</tr>
+<tr>
+<td>Island of Fire</td>
+<td>Iceland</td>
+<td>Western Europe</td>
+</tr>
+<tr>
+<td>Land of Windmills</td>
+<td>Holland</td>
+<td>Western Europe</td>
+</tr>
+<tr>
+<td>World's Loneliest Islands</td>
+<td>Tristan Da Cunha</td>
+<td></td>
+</tr>
+<tr>
+<td>Workshop of Europe</td>
+<td>Belgium</td>
+<td>Western Europe</td>
+</tr>
+<tr>
+<td>White Man’s Grave</td>
+<td>Guinea Coast</td>
+<td>West Africa</td>
+</tr>
+<tr>
+<td>Store House of the World</td>
+<td>Mexico</td>
+<td>Central America</td>
+</tr>
+<tr>
+<td>Modern Babylon</td>
+<td>London</td>
+<td>United Kingdom</td>
+</tr>
+<tr>
+<td>Sea of the Mountains</td>
+<td>British Columbia</td>
+<td>Western Canada</td>
+</tr>
+<tr>
+<td>Saw Mill of Europe</td>
+<td>Sweden</td>
+<td>Northern Europe</td>
+</tr>
+<tr>
+<td>The Eye of Greece</td>
+<td>Athens</td>
+<td>Southeastern
+Europe</td>
+</tr>
+<tr>
+<td>Rich Port</td>
+<td>Puerto Rico</td>
+<td>Caribbean Sea</td>
+</tr>
+<tr>
+<td>Rich Coast</td>
+<td>Costa Rica</td>
+<td>Central America</td>
+</tr>
+<tr>
+<td>Playground of Europe</td>
+<td>Switzerland</td>
+<td>Central Europe</td>
+</tr>
+<tr>
+<td>Pearl of Orient</td>
+<td>Hong Kong</td>
+<td>China</td>
+</tr>
+<tr>
+<td>Mother-in-Law of Europe</td>
+<td>Denmark</td>
+<td>Western Europe</td>
+</tr>
+<tr>
+<td>Land of the Humming Bird</td>
+<td>Trinidad</td>
+<td>Caribbean Sea</td>
+</tr>
+<tr>
+<td>Land of the Flying Fish</td>
+<td>Barbados</td>
+<td>Caribbean Sea</td>
+</tr>
+<tr>
+<td>Land of Kangaroos</td>
+<td>Australia</td>
+<td></td>
+</tr>
+</tbody></table></div>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Gift of the Nile</th>
+<th>Egypt</th>
+<th>Northeast Africa</th>
+</tr></thead><tbody>
+<tr>
+<td>Dark Continent</td>
+<td>Africa</td>
+<td></td>
+</tr>
+<tr>
+<td>Cockpit of Europe</td>
+<td>Belgium</td>
+<td>Western Europe</td>
+</tr>
+<tr>
+<td>City of Popes</td>
+<td>Rome</td>
+<td>Italy</td>
+</tr>
+<tr>
+<td>City of Arabian Nights</td>
+<td>Baghdad</td>
+<td>Iraq</td>
+</tr>
+</tbody></table></div>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="01-physiographic-divisions-of-india-himalayas-and-northern-plains.html" class="note-card"><h4>01 Physiographic Divisions Of India   Himalayas And Northern Plains</h4><div class="meta">UPSC, SSC</div></a><a href="02-physiographic-divisions-of-india-plateaus-and-deserts.html" class="note-card"><h4>02 Physiographic Divisions Of India   Plateaus And Deserts</h4><div class="meta">UPSC, SSC</div></a><a href="03-physiographic-divisions-of-india-coastal-plains-and-islands.html" class="note-card"><h4>03 Physiographic Divisions Of India   Coastal Plains And Islands</h4><div class="meta">UPSC, SSC</div></a><a href="04-india-location-and-its-size.html" class="note-card"><h4>04 India  Location And Its Size</h4><div class="meta">UPSC, SSC</div></a></div>
+            </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/search.js"></script>
+    <script src="../../assets/js/features.js"></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
