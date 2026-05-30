@@ -103,20 +103,21 @@ def is_watermark_image(img_data, img_w, img_h, page_w, page_h, page_num):
     Determine if an image is a watermark/logo/branding/background.
     CONSERVATIVE: only filter images that are clearly not content.
     When in doubt, KEEP the image.
+    NOTE: img_w, img_h are RENDERED dimensions in page points (not pixels).
     """
     try:
-        # 1. Tiny icons/logos only (very small in both dimensions)
-        if img_w < 80 and img_h < 80:
+        # 1. Tiny rendered images (< 40pt in both dimensions = ~0.5 inch)
+        if img_w < 40 and img_h < 40:
             return True
 
-        # 2. Full-width thin banners (headers/footers with <60px height)
-        if img_w > page_w * 0.8 and img_h < 60:
+        # 2. Full-width thin banners (headers/footers with <30pt height)
+        if img_w > page_w * 0.8 and img_h < 30:
             return True
 
-        # 3. Near-full-page images are backgrounds (>92% of page area)
+        # 3. Near-full-page images are backgrounds (>90% of page area)
         page_area = page_w * page_h
         img_area = img_w * img_h
-        if img_area > page_area * 0.92:
+        if img_area > page_area * 0.90:
             return True
 
         # 4. Hash-based deduplication: only filter if seen 3+ times
@@ -290,9 +291,18 @@ def extract_page(doc, page_num):
             img_w = base["width"]
             img_h = base["height"]
             
-            if is_content_image(img_data, img_w, img_h, rect.width, rect.height, page_num):
-                img_rects = page.get_image_rects(xref)
-                y_pos = img_rects[0].y0 if img_rects else rect.height * 0.5
+            # Get RENDERED size on page (in points) for accurate size checks
+            img_rects = page.get_image_rects(xref)
+            if img_rects:
+                rendered_w = img_rects[0].width
+                rendered_h = img_rects[0].height
+                y_pos = img_rects[0].y0
+            else:
+                rendered_w = img_w
+                rendered_h = img_h
+                y_pos = rect.height * 0.5
+            
+            if is_content_image(img_data, rendered_w, rendered_h, rect.width, rect.height, page_num):
                 items.append({
                     "type": "image",
                     "y": y_pos,

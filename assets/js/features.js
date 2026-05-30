@@ -267,27 +267,49 @@
             var article = document.getElementById('article-content');
             if (!article) return [];
             var result = [];
+            var seen = {};
+
+            // 1. Heading → content pairs (best for revision)
             var headingsEl = article.querySelectorAll('h2, h3');
             headingsEl.forEach(function(h) {
+                var content = [];
                 var next = h.nextElementSibling;
-                if (next && (next.tagName === 'P' || next.tagName === 'UL')) {
-                    var back = next.textContent.trim();
-                    if (back.length > 10 && back.length < 500) {
-                        result.push({ front: h.textContent, back: back });
+                // Collect content until next heading (max 3 elements)
+                var count = 0;
+                while (next && count < 3 && !/^H[1-3]$/.test(next.tagName)) {
+                    if (next.tagName === 'P' || next.tagName === 'UL' || next.tagName === 'OL') {
+                        content.push(next.textContent.trim());
+                    }
+                    next = next.nextElementSibling;
+                    count++;
+                }
+                var back = content.join(' ').substring(0, 400);
+                if (back.length > 20) {
+                    var front = h.textContent.trim();
+                    if (!seen[front]) {
+                        seen[front] = true;
+                        result.push({ front: front, back: back });
                     }
                 }
             });
+
+            // 2. Bold terms → surrounding context (key facts for revision)
             var strongs = article.querySelectorAll('strong');
             strongs.forEach(function(el) {
                 var term = el.textContent.trim();
+                if (term.length < 4 || term.length > 80) return;
+                // Skip if it's just a common word (not a key concept)
+                if (/^[a-z]/.test(term) && term.split(' ').length < 2) return;
                 var parent = el.parentElement;
-                if (term.length > 3 && term.length < 60 && parent) {
-                    var ctx = parent.textContent.trim();
-                    if (ctx.length > 20 && ctx.length < 300 && ctx !== term) {
-                        result.push({ front: 'What is ' + term + '?', back: ctx });
-                    }
+                if (!parent) return;
+                var ctx = parent.textContent.trim();
+                if (ctx.length < 25 || ctx.length > 400 || ctx === term) return;
+                if (!seen[term]) {
+                    seen[term] = true;
+                    result.push({ front: term, back: ctx });
                 }
             });
+
             return result;
         }
 
