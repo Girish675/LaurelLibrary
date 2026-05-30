@@ -1,20 +1,13 @@
 """
-PDF to HTML Converter for Laurel Library (v2 - Improved)
-Converts PDF study notes to clean HTML pages with watermark removal.
-
-Key features:
-- Watermark text and image filtering
-- Proper table detection and rendering
-- Paragraph merging (handles line-wrapped text)
-- Proper bullet list handling
-- Clean output without artifacts
-
-Requirements:
-    pip install PyMuPDF Pillow
+PDF to HTML Converter for Laurel Library (v3)
+- Inline tables/images at their correct position in the document flow
+- Unique image naming per document (no collisions between PDFs)
+- Robust watermark removal
+- Proper paragraph merging and list handling
 
 Usage:
-    py convert_pdf.py input.pdf --category geography --title "India: Location and Size"
-    py convert_pdf.py input_folder/ --category geography  (batch mode)
+    py convert_pdf.py input.pdf -c geography -t "Title" -e "UPSC, SSC"
+    py convert_pdf.py folder/ -c geography -e "UPSC, SSC"
 """
 
 import fitz  # PyMuPDF
@@ -23,12 +16,13 @@ import sys
 import json
 import argparse
 import re
+import hashlib
 from pathlib import Path
 from PIL import Image
 import io
 
+# --- Watermark Detection ---
 
-# Watermark patterns to detect and remove
 WATERMARK_PATTERNS = [
     r'testbook\.com',
     r'testbook',
@@ -40,40 +34,48 @@ WATERMARK_PATTERNS = [
 WATERMARK_EXACT = {'testbook', 'testbook.com', 'www.testbook.com', 'pass pro max',
                    'pass', 'pro', 'max', 'pass pro', 'pro max'}
 
+# Track seen image hashes to detect repeated watermarks across pages
+_seen_img_hashes = set()
+
 
 def is_watermark_text(text):
     """Check if text is a watermark."""
-    text_clean = text.strip().lower()
-    if not text_clean:
+    t = text.strip().lower()
+    if not t:
         return True
-    if text_clean in WATERMARK_EXACT:
+    if t in WATERMARK_EXACT:
         return True
-    for pattern in WATERMARK_PATTERNS:
-        if re.search(pattern, text_clean):
+    for pat in WATERMARK_PATTERNS:
+        if re.search(pat, t):
             return True
     return False
 
 
 def clean_cell_text(text):
-    """Remove watermark text from table cells."""
+    """Remove watermark from table cell text."""
     if not text:
         return ''
-    for pattern in WATERMARK_PATTERNS:
-        text = re.sub(pattern, '', text, flags=re.IGNORECASE)
+    for pat in WATERMARK_PATTERNS:
+        text = re.sub(pat, '', text, flags=re.IGNORECASE)
     return text.strip()
 
 
 def is_watermark_image(img_data, img_w, img_h, page_w, page_h):
-    """Check if image is a watermark/logo."""
+    """Determine if an image is a watermark/logo/badge."""
     try:
-        # Known repeated watermark sizes (testbook logo, badge, etc.)
         data_len = len(img_data)
-        if data_len in (11863, 50472):  # Known watermark image sizes
+        # Very small images are usually logos
+        if img_w < 200 and img_h < 100:
             return True
-        if img_w < 150 and img_h < 80:
+        # Full-width thin banners
+        if img_w > page_w * 0.7 and img_h < 130:
             return True
-        if img_w > page_w * 0.7 and img_h < 120:
+        # Check if we've seen this exact image before (repeated = watermark)
+        img_hash = hashlib.md5(img_data).hexdigest()
+        if img_hash in _seen_img_hashes:
             return True
+        _seen_img_hashes.add(img_hash)
+        # Check transparency
         image = Image.open(io.BytesIO(img_data))
         if image.mode == 'RGBA':
             alpha = image.split()[3]
@@ -86,13 +88,19 @@ def is_watermark_image(img_data, img_w, img_h, page_w, page_h):
         return False
 
 
+# --- Page Extraction ---
+
 def extract_page(doc, page_num):
-    """Extract structured content from a single page."""
+    """
+    Extract content from a page as a list of positioned items.
+    Each item has a 'y' position so we can place tables/images inline.
+    Returns: list of items sorted by Y position.
+    """
     page = doc[page_num]
     rect = page.rect
+    items = []  # Each item: {"type": "text"|"table"|"image", "y": float, "data": ...}
 
-    # 1. Detect tables
-    tables = []
+    # 1. Detect tables with their position
     table_rects = []
     try:
         tabs = page.find_tables()
@@ -104,16 +112,18 @@ def extract_page(doc, page_num):
                     for row in rows:
                         clean_row = [clean_cell_text(str(cell)) if cell else '' for cell in row]
                         clean_rows.append(clean_row)
-                    # Only keep tables with meaningful content
                     total_content = sum(len(c) for row in clean_rows for c in row)
                     if total_content > 20:
-                        tables.append(clean_rows)
+                        items.append({
+                            "type": "table",
+                            "y": tab.bbox[1],
+                            "data": clean_rows
+                        })
                         table_rects.append(tab.bbox)
     except Exception:
         pass
 
-    # 2. Extract text elements (skip table areas)
-    elements = []
+    # 2. Extract text lines (skip anything inside table rects)
     blocks = page.get_text("dict", flags=fitz.TEXT_PRESERVE_WHITESPACE)["blocks"]
 
     for block in blocks:
@@ -121,7 +131,7 @@ def extract_page(doc, page_num):
             continue
 
         bbox = block["bbox"]
-        # Skip if inside a table rect
+        # Skip if overlapping table
         in_table = False
         for trect in table_rects:
             if bbox[1] >= trect[1] - 5 and bbox[3] <= trect[3] + 5:
@@ -136,7 +146,6 @@ def extract_page(doc, page_num):
 
             for span in line["spans"]:
                 t = span["text"]
-                # Skip zero-width space
                 if t.strip() in ('', '\u200b', '​'):
                     continue
                 if is_watermark_text(t):
@@ -156,31 +165,48 @@ def extract_page(doc, page_num):
             max_size = max((s["size"] for s in spans_data), default=10)
             any_bold = any(s["flags"] & 16 for s in spans_data)
 
-            elements.append({
-                "text": full_text,
-                "spans": spans_data,
-                "size": max_size,
-                "bold": any_bold,
-                "x": line["bbox"][0],
+            items.append({
+                "type": "text",
                 "y": line["bbox"][1],
+                "data": {
+                    "text": full_text,
+                    "spans": spans_data,
+                    "size": max_size,
+                    "bold": any_bold,
+                    "x": line["bbox"][0],
+                    "y": line["bbox"][1],
+                }
             })
 
-    # 3. Extract useful images
-    images = []
-    for img_info in page.get_images(full=True):
+    # 3. Extract images with position
+    img_list = page.get_images(full=True)
+    for img_info in img_list:
         xref = img_info[0]
         try:
             base = doc.extract_image(xref)
-            if not is_watermark_image(base["image"], base["width"], base["height"], rect.width, rect.height):
-                images.append({"data": base["image"], "ext": base["ext"]})
+            img_data = base["image"]
+            if not is_watermark_image(img_data, base["width"], base["height"], rect.width, rect.height):
+                # Get image position on page
+                img_rects = page.get_image_rects(xref)
+                y_pos = img_rects[0].y0 if img_rects else rect.height * 0.5
+                items.append({
+                    "type": "image",
+                    "y": y_pos,
+                    "data": {"bytes": img_data, "ext": base["ext"],
+                             "width": base["width"], "height": base["height"]}
+                })
         except Exception:
             continue
 
-    return elements, tables, images
+    # Sort all items by Y position
+    items.sort(key=lambda x: x["y"])
+    return items
 
+
+# --- Text Classification & Merging ---
 
 def classify(elem):
-    """Classify element role."""
+    """Classify a text element."""
     text = elem["text"]
     size = elem["size"]
     bold = elem["bold"]
@@ -198,11 +224,12 @@ def classify(elem):
     return "p"
 
 
-def merge_elements(elements):
-    """Merge line-wrapped text into coherent blocks."""
-    if not elements:
+def merge_text_items(text_items):
+    """Merge consecutive text lines into paragraphs/lists."""
+    if not text_items:
         return []
 
+    elements = [item["data"] for item in text_items]
     merged = []
     i = 0
 
@@ -216,11 +243,9 @@ def merge_elements(elements):
             continue
 
         if role in ("li", "li-sub"):
-            # Strip bullet character and zero-width space
             text = re.sub(r'^[●•\-○▪◦■]\s*\u200b?\s*', '', el["text"])
             spans = list(el["spans"])
             j = i + 1
-            # Merge continuation lines
             while j < len(elements):
                 nxt = elements[j]
                 nxt_role = classify(nxt)
@@ -238,7 +263,7 @@ def merge_elements(elements):
             i = j
             continue
 
-        # Paragraph - merge wrapped lines
+        # Paragraph
         text = el["text"]
         spans = list(el["spans"])
         j = i + 1
@@ -260,14 +285,15 @@ def merge_elements(elements):
     return merged
 
 
+# --- HTML Generation ---
+
 def spans_to_html(spans):
-    """Convert spans to formatted HTML."""
+    """Convert spans to inline HTML with bold/italic."""
     parts = []
     for span in spans:
         t = span["text"].strip()
         if not t or t == '\u200b' or is_watermark_text(t):
             continue
-        # Remove bullet characters from span text
         t = re.sub(r'^[●•\-○▪◦■]\s*\u200b?\s*', '', t)
         if not t:
             continue
@@ -284,7 +310,6 @@ def spans_to_html(spans):
             parts.append(t_esc)
 
     result = " ".join(parts)
-    # Fix spacing around punctuation
     result = re.sub(r'\s+([,.:;!?)\]])', r'\1', result)
     result = re.sub(r'([([\[])\s+', r'\1', result)
     result = re.sub(r'\s{2,}', ' ', result)
@@ -292,15 +317,14 @@ def spans_to_html(spans):
 
 
 def escape(text):
-    """HTML-escape text."""
+    """HTML-escape."""
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
-def table_html(rows):
-    """Convert table rows to HTML table element."""
+def table_to_html(rows):
+    """Render a table as HTML."""
     if not rows or len(rows) < 2:
         return ""
-    # Remove empty rows
     rows = [r for r in rows if any(c.strip() for c in r)]
     if len(rows) < 2:
         return ""
@@ -318,25 +342,23 @@ def table_html(rows):
     return '\n'.join(h)
 
 
-def build_body(merged, tables, images_html):
-    """Build the article body HTML."""
+def text_block_to_html(merged_items):
+    """Convert merged text items to HTML."""
     parts = []
     in_ul = False
     in_sub = False
     seen_h1 = set()
 
-    for el in merged:
+    for el in merged_items:
         role = el["role"]
         text = el["text"]
 
-        # Deduplicate h1
         if role == "h1":
             key = text.lower().strip()
             if key in seen_h1:
                 continue
             seen_h1.add(key)
 
-        # Close lists if leaving list context
         if role not in ("li", "li-sub"):
             if in_sub:
                 parts.append("</ul></li>")
@@ -347,9 +369,7 @@ def build_body(merged, tables, images_html):
 
         formatted = spans_to_html(el["spans"])
 
-        if role == "h1":
-            parts.append(f'<h2>{escape(text)}</h2>')
-        elif role == "h2":
+        if role in ("h1", "h2"):
             parts.append(f'<h2>{escape(text)}</h2>')
         elif role == "h3":
             parts.append(f'<h3>{escape(text)}</h3>')
@@ -366,7 +386,7 @@ def build_body(merged, tables, images_html):
                 parts.append("<ul>")
                 in_ul = True
             if not in_sub:
-                if parts[-1].endswith("</li>"):
+                if parts and parts[-1].endswith("</li>"):
                     parts[-1] = parts[-1][:-5]
                     parts.append("<ul>")
                 else:
@@ -382,15 +402,100 @@ def build_body(merged, tables, images_html):
     if in_ul:
         parts.append("</ul>")
 
-    # Add tables
-    for t in tables:
-        parts.append(table_html(t))
-
-    # Add images
-    if images_html:
-        parts.append(images_html)
-
     return "\n".join(parts)
+
+
+# --- Main Conversion ---
+
+def convert_pdf(pdf_path, output_dir, category, title=None, exam="General"):
+    """Convert a single PDF to HTML with inline tables and images."""
+    global _seen_img_hashes
+    _seen_img_hashes = set()  # Reset for each document
+
+    doc = fitz.open(pdf_path)
+    if not title:
+        title = Path(pdf_path).stem.replace("-", " ").replace("_", " ").title()
+
+    slug = slugify(title)
+
+    # Use slug as image prefix to avoid collisions between PDFs
+    img_prefix = slug
+    img_dir = os.path.join(output_dir, "images")
+    os.makedirs(img_dir, exist_ok=True)
+
+    all_page_items = []  # Flat list of all items across pages
+    img_count = 0
+
+    for pn in range(len(doc)):
+        page_text = doc[pn].get_text().strip()
+        cleaned = clean_cell_text(page_text)
+
+        # Skip cover pages that have only title/branding and no real content
+        if pn == 0 and len(cleaned) < 50:
+            continue
+
+        page_items = extract_page(doc, pn)
+
+        # Process images: save to disk and replace data with path
+        for item in page_items:
+            if item["type"] == "image":
+                img_count += 1
+                fname = f"{img_prefix}_{img_count}.{item['data']['ext']}"
+                img_path = os.path.join(img_dir, fname)
+                with open(img_path, "wb") as f:
+                    f.write(item["data"]["bytes"])
+                item["data"] = {"path": f"images/{fname}"}
+
+        all_page_items.extend(page_items)
+
+    doc.close()
+
+    # Now build HTML body with items in order (text, tables, images interleaved)
+    body_parts = []
+    text_buffer = []  # Buffer text items to merge them
+
+    for item in all_page_items:
+        if item["type"] == "text":
+            text_buffer.append(item)
+        else:
+            # Flush text buffer before inserting table/image
+            if text_buffer:
+                merged = merge_text_items(text_buffer)
+                body_parts.append(text_block_to_html(merged))
+                text_buffer = []
+
+            if item["type"] == "table":
+                body_parts.append(table_to_html(item["data"]))
+            elif item["type"] == "image":
+                path = item["data"]["path"]
+                body_parts.append(f'<figure><img src="{path}" alt="Diagram" loading="lazy"></figure>')
+
+    # Flush remaining text
+    if text_buffer:
+        merged = merge_text_items(text_buffer)
+        body_parts.append(text_block_to_html(merged))
+
+    body_html = "\n".join(body_parts)
+
+    # Generate page
+    html = generate_page(title, category, body_html, exam)
+    out_path = os.path.join(output_dir, f"{slug}.html")
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    print(f"  OK: {Path(pdf_path).name} -> {slug}.html ({img_count} images)")
+
+    # Gather keywords from all text
+    all_text_elements = [item["data"] for item in all_page_items if item["type"] == "text"]
+    merged_for_kw = merge_text_items([{"data": e} for e in all_text_elements])
+
+    return {
+        "title": title,
+        "category": category,
+        "path": f"notes/{category}/{slug}.html",
+        "exam": exam,
+        "keywords": extract_keywords(merged_for_kw)
+    }
 
 
 def generate_page(title, category, body, exam):
@@ -484,6 +589,8 @@ def generate_page(title, category, body, exam):
 </html>"""
 
 
+# --- Utilities ---
+
 def slugify(text):
     """URL-safe slug."""
     s = text.lower()
@@ -494,23 +601,20 @@ def slugify(text):
 
 
 def extract_keywords(elements):
-    """Extract keywords for search."""
+    """Extract search keywords."""
     words = set()
     for el in elements:
-        # Split on whitespace and also break camelCase/concatenated words
-        text = el["text"]
-        # Insert spaces before capital letters in concatenated text
+        text = el.get("text", "")
         text = re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
         for w in text.lower().split():
             w = re.sub(r'[^a-z]', '', w)
-            if 3 < len(w) < 20:  # Skip very short and very long (concatenated) words
+            if 3 < len(w) < 20:
                 words.add(w)
     return " ".join(sorted(list(words))[:40])
 
 
 def update_indexes(base_dir, note_info):
-    """Update index files."""
-    # notes/index.json
+    """Update notes/index.json and search-index.json."""
     idx_path = os.path.join(base_dir, "notes", "index.json")
     if os.path.exists(idx_path):
         with open(idx_path, "r", encoding="utf-8") as f:
@@ -528,7 +632,6 @@ def update_indexes(base_dir, note_info):
     with open(idx_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    # search-index.json
     search_path = os.path.join(base_dir, "search-index.json")
     if os.path.exists(search_path):
         with open(search_path, "r", encoding="utf-8") as f:
@@ -546,67 +649,7 @@ def update_indexes(base_dir, note_info):
         json.dump(search_data, f, indent=2, ensure_ascii=False)
 
 
-def convert_pdf(pdf_path, output_dir, category, title=None, exam="General"):
-    """Main entry: convert one PDF to HTML."""
-    doc = fitz.open(pdf_path)
-    if not title:
-        title = Path(pdf_path).stem.replace("-", " ").replace("_", " ").title()
-
-    all_elements = []
-    all_tables = []
-    all_images = []
-    img_idx = 0
-
-    for pn in range(len(doc)):
-        # Skip pure cover pages
-        page_text = doc[pn].get_text().strip()
-        cleaned = clean_cell_text(page_text)
-        if pn == 0 and len(cleaned) < 80:
-            continue
-
-        elems, tables, images = extract_page(doc, pn)
-        all_elements.extend(elems)
-        all_tables.extend(tables)
-
-        for img in images:
-            img_idx += 1
-            fname = f"img_{img_idx}.{img['ext']}"
-            img_dir = os.path.join(output_dir, "images")
-            os.makedirs(img_dir, exist_ok=True)
-            with open(os.path.join(img_dir, fname), "wb") as f:
-                f.write(img["data"])
-            all_images.append(f"images/{fname}")
-
-    doc.close()
-
-    # Merge fragmented lines
-    merged = merge_elements(all_elements)
-
-    # Build images HTML
-    imgs_html = "\n".join(
-        f'<figure><img src="{p}" alt="Diagram" loading="lazy"></figure>' for p in all_images
-    ) if all_images else ""
-
-    # Build body
-    body = build_body(merged, all_tables, imgs_html)
-
-    # Generate full page HTML
-    slug = slugify(title)
-    html = generate_page(title, category, body, exam)
-
-    out_path = os.path.join(output_dir, f"{slug}.html")
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(html)
-
-    print(f"  OK: {Path(pdf_path).name} -> {slug}.html")
-    return {
-        "title": title,
-        "category": category,
-        "path": f"notes/{category}/{slug}.html",
-        "exam": exam,
-        "keywords": extract_keywords(merged)
-    }
-
+# --- Entry Point ---
 
 def main():
     parser = argparse.ArgumentParser(description="Convert PDFs to HTML for Laurel Library")
@@ -634,11 +677,13 @@ def main():
                 update_indexes(str(base), info)
             except Exception as e:
                 print(f"  ERROR: {pdf.name}: {e}")
+                import traceback
+                traceback.print_exc()
     else:
         print(f"Error: {args.input} is not a valid PDF or directory")
         sys.exit(1)
 
-    print(f"\nDone! Preview with: py -m http.server 8000")
+    print(f"\nDone! Preview: py -m http.server 8000")
 
 
 if __name__ == "__main__":
