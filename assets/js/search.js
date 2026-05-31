@@ -10,9 +10,9 @@
 
     LL.search = {
         load: function() {
-            var paths = ['search-index.json', '../search-index.json', '../../search-index.json',
-                         'notes/index.json', '../notes/index.json', '../../notes/index.json'];
-            
+            var b = LL.basePath || '';
+            var paths = [b + 'search-index.json', b + 'notes/index.json'];
+
             function tryPath(i) {
                 if (i >= paths.length) return;
                 fetch(paths[i]).then(function(r) {

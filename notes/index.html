@@ -24,6 +24,8 @@
                 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><span>Notes</span></nav><h1 class="section-title">Study Notes</h1>
                 <p class="section-subtitle">Browse all available study material organized by subject</p>
 
+                <div id="exam-banner"></div>
+
                 <div class="tabs" id="notes-tabs" role="tablist">
                     <button type="button" class="tab active" role="tab" data-filter="all" aria-selected="true">All</button>
                 </div>
@@ -42,31 +44,60 @@
     <script src="../assets/js/search.js" defer></script>
     <script>
     (function() {
-        var notes = [], activeFilter = 'all';
+        var notes = [], activeFilter = 'all', examFilter = null;
+
+        function examMatches(noteExam, examName) {
+            if (!noteExam) return false;
+            var tokens = noteExam.split(',').map(function(t) { return t.trim().toLowerCase(); });
+            var target = examName.toLowerCase();
+            return tokens.some(function(t) { return t === target || t.indexOf(target) !== -1 || target.indexOf(t) !== -1; });
+        }
 
         async function init() {
             try {
                 var r = await fetch('index.json');
                 if (r.ok) { var d = await r.json(); notes = d.notes || []; }
             } catch(e) {}
+            var params = new URLSearchParams(window.location.search);
+            examFilter = params.get('exam');
+            var catParam = params.get('category');
+            if (catParam) activeFilter = catParam;
+            renderExamBanner();
             buildTabs();
             renderNotes();
             LL.init();
         }
 
+        function renderExamBanner() {
+            var banner = document.getElementById('exam-banner');
+            if (!banner) return;
+            if (!examFilter) { banner.innerHTML = ''; return; }
+            banner.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;' +
+                'background:rgba(15,52,96,0.06);border:1px solid var(--c-border);border-radius:var(--radius-md);' +
+                'padding:var(--space-3) var(--space-4);margin-bottom:var(--space-4)">' +
+                '<span style="font-weight:600;color:var(--c-primary)">Showing notes for <strong>' + LL.escapeHtml(examFilter) + '</strong></span>' +
+                '<a href="index.html" class="tag" style="text-decoration:none">✕ Clear filter</a></div>';
+        }
+
         function buildTabs() {
             var cats = new Set();
-            notes.forEach(function(n) { cats.add(n.category); });
+            var pool = examFilter ? notes.filter(function(n) { return examMatches(n.exam, examFilter); }) : notes;
+            pool.forEach(function(n) { cats.add(n.category); });
             var tabs = document.getElementById('notes-tabs');
             if (!tabs) return;
             cats.forEach(function(c) {
                 var btn = document.createElement('button');
+                btn.type = 'button';
                 btn.className = 'tab';
                 btn.setAttribute('role', 'tab');
                 btn.setAttribute('data-filter', c);
+                if (c === activeFilter) { btn.classList.add('active'); btn.setAttribute('aria-selected','true'); }
                 btn.textContent = c.charAt(0).toUpperCase() + c.slice(1).replace(/-/g, ' ');
                 tabs.appendChild(btn);
             });
+            // sync the "All" tab active state
+            var allTab = tabs.querySelector('[data-filter="all"]');
+            if (allTab && activeFilter !== 'all') { allTab.classList.remove('active'); allTab.setAttribute('aria-selected','false'); }
             tabs.addEventListener('click', function(e) {
                 if (e.target.classList.contains('tab')) {
                     tabs.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
@@ -82,10 +113,15 @@
             var list = document.getElementById('notes-list');
             var count = document.getElementById('notes-count');
             if (!list) return;
-            var filtered = activeFilter === 'all' ? notes : notes.filter(function(n) { return n.category === activeFilter; });
+            var filtered = notes;
+            if (examFilter) filtered = filtered.filter(function(n) { return examMatches(n.exam, examFilter); });
+            if (activeFilter !== 'all') filtered = filtered.filter(function(n) { return n.category === activeFilter; });
             if (count) count.textContent = filtered.length + ' note' + (filtered.length !== 1 ? 's' : '');
             if (filtered.length === 0) {
-                list.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><h3>No notes yet</h3><p>Notes for this category are coming soon.</p></div>';
+                var msg = examFilter
+                    ? 'Notes for <strong>' + LL.escapeHtml(examFilter) + '</strong> are coming soon. Meanwhile, explore <a href="index.html">all notes</a>.'
+                    : 'Notes for this category are coming soon.';
+                list.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><h3>No notes found</h3><p>' + msg + '</p></div>';
                 return;
             }
             list.innerHTML = filtered.map(function(n) {

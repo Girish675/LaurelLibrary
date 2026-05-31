@@ -1,4 +1,4 @@
-const CACHE_NAME = 'laurel-library-v2.1';
+const CACHE_NAME = 'laurel-library-v2.2';
 const OFFLINE_URL = './offline.html';
 
 const PRECACHE_URLS = [

@@ -48,20 +48,48 @@
             { name:'Teaching', icon:'🎓', desc:'UGC NET, CSIR NET, CTET, State TET, KVS, NVS, DSSSB', tags:['NET','TET','KVS'], subjects:['Education','Subject-specific','Child Dev.'], level:'National' }
         ];
 
-        function render() {
+        function examMatches(noteExam, examName) {
+            if (!noteExam) return false;
+            var tokens = noteExam.split(',').map(function(t) { return t.trim().toLowerCase(); });
+            var target = examName.toLowerCase();
+            return tokens.some(function(t) { return t === target || t.indexOf(target) !== -1 || target.indexOf(t) !== -1; });
+        }
+
+        function render(counts) {
             var grid = document.getElementById('exam-grid');
             if (!grid) return;
+            counts = counts || {};
             grid.innerHTML = exams.map(function(ex) {
-                return '<div class="exam-card"><div class="exam-icon" style="font-size:2.5rem">' + ex.icon + '</div>' +
-                    '<h3>' + ex.name + '</h3>' +
+                var count = counts[ex.name] || 0;
+                var countLabel = count > 0
+                    ? '<span class="tag" style="background:rgba(27,138,90,0.12);color:var(--c-accent)">' + count + ' note' + (count === 1 ? '' : 's') + '</span>'
+                    : '<span class="tag" style="opacity:.6">Coming soon</span>';
+                return '<a href="../notes/index.html?exam=' + encodeURIComponent(ex.name) + '" class="exam-card" style="text-decoration:none;color:inherit;display:block">' +
+                    '<div class="exam-icon" style="font-size:2.5rem">' + ex.icon + '</div>' +
+                    '<h3>' + ex.name + ' <span style="font-size:var(--text-xs);font-weight:500;color:var(--c-text-muted)">(' + ex.level + ')</span></h3>' +
                     '<p>' + ex.desc + '</p>' +
                     '<div class="exam-tags">' + ex.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div>' +
                     '<div style="margin-top:var(--space-sm);font-size:var(--text-xs);color:var(--c-text-muted)">' +
-                    '<strong>Subjects:</strong> ' + ex.subjects.join(', ') + '</div></div>';
+                    '<strong>Subjects:</strong> ' + ex.subjects.join(', ') + '</div>' +
+                    '<div style="margin-top:var(--space-sm)">' + countLabel + '</div></a>';
             }).join('');
         }
 
-        document.addEventListener('DOMContentLoaded', function() { render(); LL.init(); });
+        function loadCounts() {
+            fetch('../notes/index.json')
+                .then(function(r) { return r.ok ? r.json() : { notes: [] }; })
+                .then(function(data) {
+                    var notes = data.notes || [];
+                    var counts = {};
+                    exams.forEach(function(ex) {
+                        counts[ex.name] = notes.filter(function(n) { return examMatches(n.exam, ex.name); }).length;
+                    });
+                    render(counts);
+                })
+                .catch(function() { render({}); });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() { render({}); loadCounts(); LL.init(); });
     })();
     </script>
 </body>
