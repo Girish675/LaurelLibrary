@@ -51,20 +51,40 @@
             { id:'civil', name:'Civil Engineering', icon:'🏗️', desc:'Structures, geotechnical, transportation, water resources', topics:['Structural Engineering','Geotechnical','Transportation','Water Resources','Environmental'] }
         ];
 
-        function render() {
+        function render(counts) {
             var grid = document.getElementById('subjects-grid');
             if (!grid) return;
+            counts = counts || {};
             grid.innerHTML = subjects.map(function(s) {
-                return '<a href="../notes/' + s.id + '/index.html" class="category-card" style="align-items:flex-start;flex-direction:column;padding:var(--space-lg)">' +
+                var count = counts[s.id] || 0;
+                var countLabel = count > 0
+                    ? '<span class="tag" style="background:rgba(27,138,90,0.12);color:var(--c-accent)">' + count + ' note' + (count === 1 ? '' : 's') + '</span>'
+                    : '<span class="tag" style="opacity:.6">Coming soon</span>';
+                return '<a href="../notes/index.html?category=' + encodeURIComponent(s.id) + '" class="category-card" style="align-items:flex-start;flex-direction:column;padding:var(--space-lg)">' +
                     '<div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm)">' +
                     '<span style="font-size:2rem">' + s.icon + '</span>' +
                     '<h3 style="margin:0;font-size:var(--text-md)">' + s.name + '</h3></div>' +
                     '<p style="color:var(--c-text-secondary);font-size:var(--text-sm);margin:0 0 var(--space-sm)">' + s.desc + '</p>' +
-                    '<div class="exam-tags">' + s.topics.slice(0,3).map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div></a>';
+                    '<div class="exam-tags">' + s.topics.slice(0,3).map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div>' +
+                    '<div style="margin-top:var(--space-sm)">' + countLabel + '</div></a>';
             }).join('');
         }
 
-        document.addEventListener('DOMContentLoaded', function() { render(); LL.init(); });
+        function loadCounts() {
+            fetch('../notes/index.json')
+                .then(function(r) { return r.ok ? r.json() : { notes: [] }; })
+                .then(function(data) {
+                    var notes = data.notes || [];
+                    var counts = {};
+                    subjects.forEach(function(s) {
+                        counts[s.id] = notes.filter(function(n) { return n.category === s.id; }).length;
+                    });
+                    render(counts);
+                })
+                .catch(function() { render({}); });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() { render({}); loadCounts(); LL.init(); });
     })();
     </script>
 </body>
