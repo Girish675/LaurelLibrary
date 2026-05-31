@@ -274,6 +274,22 @@ LL.init = function() {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register(LL.basePath + 'sw.js').catch(function() {});
     }
+
+    // Back to top button
+    if (!document.querySelector('.back-to-top')) {
+        var backBtn = document.createElement('button');
+        backBtn.type = 'button';
+        backBtn.className = 'back-to-top';
+        backBtn.setAttribute('aria-label', 'Back to top');
+        backBtn.innerHTML = '\u2191';
+        document.body.appendChild(backBtn);
+        backBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        window.addEventListener('scroll', function() {
+            backBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+    }
 };
 
 window.LL = LL;

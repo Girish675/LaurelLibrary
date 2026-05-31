@@ -194,4 +194,41 @@
         // XP for reading
         setTimeout(function() { LL.xp.add(5, 'Reading a note'); }, 30000);
     }
+
+    // ===== Related Notes =====
+    (function() {
+        var article = document.getElementById('article-content');
+        if (!article) return;
+        var path = window.location.pathname;
+        var marker = '/notes/';
+        var idx = path.indexOf(marker);
+        if (idx === -1) return;
+        var rest = path.substring(idx + marker.length); // e.g. "geography/01-foo.html"
+        var segments = rest.split('/');
+        if (segments.length < 2) return;
+        var category = segments[0];
+        var currentFile = segments[segments.length - 1];
+
+        fetch(LL.basePath + 'notes/index.json').then(function(r) {
+            return r.ok ? r.json() : null;
+        }).then(function(data) {
+            if (!data || !data.notes) return;
+            var related = data.notes.filter(function(n) {
+                return n.category === category && n.path.split('/').pop() !== currentFile;
+            }).slice(0, 4);
+            if (related.length === 0) return;
+
+            var section = document.createElement('section');
+            section.className = 'related-notes';
+            section.innerHTML = '<h2>Related Notes</h2><div class="related-grid">' +
+                related.map(function(n) {
+                    var mins = n.reading_time ? n.reading_time + ' min read' : '';
+                    return '<a href="' + LL.basePath + n.path + '" class="note-card">' +
+                        '<h4>' + LL.escapeHtml(n.title) + '</h4>' +
+                        '<div class="meta"><span class="tag">' + LL.escapeHtml((n.exam || 'General').split(',')[0]) + '</span>' +
+                        (mins ? '<span>' + mins + '</span>' : '') + '</div></a>';
+                }).join('') + '</div>';
+            article.parentNode.appendChild(section);
+        }).catch(function() {});
+    })();
 })();

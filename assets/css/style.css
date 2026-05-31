@@ -495,8 +495,16 @@ select.input{cursor:pointer}
 .toc-collapse-btn{background:none;border:none;color:var(--c-text-muted);font-size:var(--text-xs);cursor:pointer;padding:var(--space-1)}
 .notes-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-5)}
 .related-notes{margin-top:var(--space-10);padding-top:var(--space-8);border-top:1px solid var(--c-border)}
-.related-notes h3{font-size:var(--text-xl);font-weight:700;margin-bottom:var(--space-5)}
+.related-notes h2,.related-notes h3{font-size:var(--text-xl);font-weight:700;margin-bottom:var(--space-5)}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--space-4)}
+
+/* ===== Back to top ===== */
+.back-to-top{position:fixed;bottom:var(--space-6);right:var(--space-6);width:44px;height:44px;border-radius:var(--radius-full);background:var(--c-primary);color:var(--c-text-inverse);border:none;font-size:1.25rem;line-height:1;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity var(--duration-normal) var(--ease),transform var(--duration-normal) var(--ease),visibility var(--duration-normal);z-index:var(--z-sticky)}
+.back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.back-to-top:hover{background:var(--c-primary-dark)}
+[data-theme="dark"] .back-to-top{background:var(--c-accent);color:var(--c-text-inverse)}
+[data-theme="dark"] .back-to-top:hover{background:var(--c-accent-dark)}
+@media print{.back-to-top{display:none}}
 
 /* ===== Compatibility with existing note pages ===== */
 .btn-bookmark,.btn-print,.btn-quiz{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:500;color:var(--c-text-secondary);cursor:pointer;transition:all var(--duration-fast) var(--ease)}

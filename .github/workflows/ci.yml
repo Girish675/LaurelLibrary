@@ -35,17 +35,23 @@ jobs:
           echo "Checking internal link targets..."
           errors=0
           for file in $(find . -name '*.html' -not -path './.git/*'); do
-            # Extract href values pointing to local files
-            grep -oP 'href="\K[^"#]+' "$file" 2>/dev/null | \
-            grep -v '^http' | grep -v '^mailto:' | grep -v '^javascript:' | \
+            dir=$(dirname "$file")
+            # Extract href values pointing to local files (skip external/site-absolute/special schemes)
             while read -r link; do
-              dir=$(dirname "$file")
+              [ -z "$link" ] && continue
+              case "$link" in
+                http*|//*|/*|mailto:*|tel:*|javascript:*|data:*) continue ;;
+              esac
+              # Skip anything that is not a plain file path (e.g. JS template fragments inside <script>)
+              case "$link" in
+                *[!A-Za-z0-9_./%~-]*) continue ;;
+              esac
               target="$dir/$link"
               if [ ! -f "$target" ] && [ ! -f "$link" ]; then
                 echo "BROKEN: $file -> $link"
                 errors=$((errors+1))
               fi
-            done
+            done < <(grep -oP 'href="\K[^"#]+' "$file" 2>/dev/null)
           done
           if [ "$errors" -gt 0 ]; then
             echo "Found $errors broken links"
@@ -55,7 +61,7 @@ jobs:
 
       - name: Validate JSON files
         run: |
-          for f in notes/index.json notes/search-index.json manifest.json; do
+          for f in notes/index.json search-index.json manifest.json; do
             if [ -f "$f" ]; then
               python3 -m json.tool "$f" > /dev/null && echo "Valid: $f" || { echo "Invalid JSON: $f"; exit 1; }
             fi

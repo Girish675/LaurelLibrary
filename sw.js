@@ -1,37 +1,40 @@
-const CACHE_NAME = 'laurel-library-v2.0';
-const OFFLINE_URL = '/offline.html';
+const CACHE_NAME = 'laurel-library-v2.1';
+const OFFLINE_URL = './offline.html';
 
 const PRECACHE_URLS = [
-    '/',
-    '/index.html',
-    '/offline.html',
-    '/about.html',
-    '/formulas.html',
-    '/dashboard.html',
-    '/assets/css/style.css',
-    '/assets/js/components.js',
-    '/assets/js/features.js',
-    '/assets/js/search.js',
-    '/assets/js/app.js',
-    '/notes/index.html',
-    '/notes/index.json',
-    '/exams/index.html',
-    '/subjects/index.html',
-    '/tools/index.html',
-    '/tools/pomodoro.html',
-    '/tools/flashcards.html',
-    '/tools/gpa-calculator.html',
-    '/tools/planner.html',
-    '/resources/index.html',
-    '/search-index.json',
-    '/manifest.json'
+    './',
+    './index.html',
+    './offline.html',
+    './about.html',
+    './formulas.html',
+    './dashboard.html',
+    './assets/css/style.css',
+    './assets/js/components.js',
+    './assets/js/features.js',
+    './assets/js/search.js',
+    './assets/js/app.js',
+    './notes/index.html',
+    './notes/index.json',
+    './exams/index.html',
+    './subjects/index.html',
+    './tools/index.html',
+    './tools/pomodoro.html',
+    './tools/flashcards.html',
+    './tools/gpa-calculator.html',
+    './tools/planner.html',
+    './resources/index.html',
+    './search-index.json',
+    './manifest.json'
 ];
 
 // Install: precache shell assets
 self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function(cache) {
-            return cache.addAll(PRECACHE_URLS);
+            // Cache individually so one failure doesn't abort the whole install
+            return Promise.all(PRECACHE_URLS.map(function(url) {
+                return cache.add(url).catch(function() {});
+            }));
         }).then(function() {
             return self.skipWaiting();
         })

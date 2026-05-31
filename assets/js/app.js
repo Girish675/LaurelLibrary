@@ -93,7 +93,6 @@
         if (!grid) return;
         var exams = [
             { name: 'UPSC', icon: '🏛️', desc: 'Civil Services, CDS, NDA, CAPF', tags: ['IAS','IPS','IFS'] },
-            { name: 'UPSC', icon: '🏛️', desc: 'Civil Services, CDS, NDA, CAPF', tags: ['IAS','IPS','IFS'] },
             { name: 'SSC', icon: '🏆', desc: 'CGL, CHSL, MTS, CPO, Stenographer', tags: ['CGL','CHSL'] },
             { name: 'Banking', icon: '🏦', desc: 'IBPS PO/Clerk, SBI PO/Clerk, RBI', tags: ['IBPS','SBI'] },
             { name: 'GATE', icon: '⚙️', desc: 'Engineering & Science streams', tags: ['CSE','ECE','EE'] },
