@@ -65,6 +65,12 @@
                     <div id="d-bookmarks"></div>
                 </div>
 
+                <!-- Achievements -->
+                <div style="margin:var(--space-xl) 0">
+                    <h2 style="font-size:var(--text-lg);margin-bottom:var(--space-md)">🏅 Achievements</h2>
+                    <div class="badge-grid" id="d-badges"></div>
+                </div>
+
                 <!-- Reset -->
                 <div style="margin:var(--space-xl) 0;padding:var(--space-lg);background:var(--c-bg-alt);border-radius:var(--radius-lg)">
                     <h3 style="margin:0 0 var(--space-xs)">Reset Data</h3>
@@ -115,6 +121,23 @@
                         '<div class="meta"><span>' + new Date(b.date).toLocaleDateString('en-IN') + '</span></div></a>';
                 }).join('') + '</div>';
             }
+
+            // Badges
+            var badges = [
+                { icon: '🔥', name: '7 Day Streak', desc: 'Study 7 days in a row', unlocked: streak >= 7 },
+                { icon: '💪', name: '30 Day Streak', desc: 'Study 30 days in a row', unlocked: streak >= 30 },
+                { icon: '📚', name: '100 Topics', desc: 'Complete 100 study sessions', unlocked: LL.xp.get() >= 500 },
+                { icon: '🏆', name: 'Top Performer', desc: 'Reach Level 10', unlocked: LL.xp.level() >= 10 },
+                { icon: '🌅', name: 'Early Bird', desc: 'Start your first study session', unlocked: LL.xp.get() > 0 },
+                { icon: '⭐', name: 'Bookworm', desc: 'Save 10 notes', unlocked: bm.length >= 10 }
+            ];
+            var badgesEl = document.getElementById('d-badges');
+            badgesEl.innerHTML = badges.map(function(b) {
+                return '<div class="badge-item' + (b.unlocked ? ' unlocked' : '') + '">' +
+                    '<div class="badge-icon">' + b.icon + '</div>' +
+                    '<div class="badge-name">' + b.name + '</div>' +
+                    '<div class="badge-desc">' + b.desc + '</div></div>';
+            }).join('');
 
             // Reset button
             document.getElementById('d-reset').addEventListener('click', function() {

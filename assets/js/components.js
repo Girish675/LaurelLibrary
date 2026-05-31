@@ -49,11 +49,11 @@ LL.renderHeader = function(activePage) {
 
     return '<a href="#main-content" class="skip-link">Skip to content</a>' +
         '<header class="site-header" role="banner"><div class="container header-inner">' +
-        '<div class="logo"><a href="' + b + 'index.html"><div class="logo-icon">📚</div><span class="logo-text">Laurel Library</span></a></div>' +
+        '<div class="logo"><a href="' + b + 'index.html"><div class="logo-icon"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4c-3 2-5 5-5 9 0 3 1 5 3 7-2-1-4-3-5-6-1 4 1 8 4 10-2 0-4-1-5-3 0 3 2 6 5 7h6c3-1 5-4 5-7-1 2-3 3-5 3 3-2 5-6 4-10-1 3-3 5-5 6 2-2 3-4 3-7 0-4-2-7-5-9z" fill="currentColor"/></svg></div><span class="logo-text">LAUREL<span class="logo-text-lib">LIBRARY</span></span></a></div>' +
         '<nav class="main-nav" role="navigation" aria-label="Main navigation" id="main-nav">' + navLinks + '</nav>' +
         '<div class="header-actions">' +
         '<button type="button" class="search-trigger" id="search-trigger" aria-label="Search">' + LL.icons.search + '<span>Search...</span><span class="shortcut">Ctrl+K</span></button>' +
-        '<button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode"><span class="icon-moon">' + LL.icons.moon + '</span><span class="icon-sun">' + LL.icons.sun + '</span></button>' +
+        '<button type="button" class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode"><span class="icon-moon">' + LL.icons.moon + '</span><span class="icon-sun">' + LL.icons.sun + '</span></button>' +
         '<button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">' + LL.icons.menu + '</button>' +
         '</div></div></header>';
 };
@@ -63,7 +63,7 @@ LL.renderFooter = function() {
     var b = LL.basePath;
     return '<footer class="site-footer" role="contentinfo"><div class="container">' +
         '<div class="footer-grid">' +
-        '<div class="footer-brand"><span class="logo-text">📚 Laurel Library</span><p>Free, open-source study notes and tools for competitive exam aspirants in India. No ads, no paywalls.</p></div>' +
+        '<div class="footer-brand"><span class="logo-text">🏛️ LAUREL LIBRARY</span><p>Your Success, Our Mission. Free study notes and tools for competitive exam aspirants in India.</p></div>' +
         '<div class="footer-column"><h4>Platform</h4>' +
         '<a href="' + b + 'notes/index.html">Notes</a>' +
         '<a href="' + b + 'exams/index.html">Exams</a>' +

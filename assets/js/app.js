@@ -10,11 +10,11 @@
         { id: 'history', name: 'History', icon: '📜', desc: 'Ancient, medieval & modern India' },
         { id: 'polity', name: 'Polity', icon: '⚖️', desc: 'Constitution, governance & law' },
         { id: 'economics', name: 'Economics', icon: '📊', desc: 'Micro, macro & Indian economy' },
-        { id: 'science', name: 'Science', icon: '🔬', desc: 'Physics, chemistry & biology' },
-        { id: 'mathematics', name: 'Mathematics', icon: '📐', desc: 'Algebra, calculus & geometry' },
-        { id: 'reasoning', name: 'Reasoning', icon: '🧩', desc: 'Logical & analytical reasoning' },
+        { id: 'science', name: 'General Science', icon: '🔬', desc: 'Physics, chemistry & biology' },
+        { id: 'mathematics', name: 'Mathematics', icon: 'π', desc: 'Algebra, calculus & geometry' },
+        { id: 'reasoning', name: 'Reasoning', icon: '🧠', desc: 'Logical & analytical reasoning' },
         { id: 'english', name: 'English', icon: '📝', desc: 'Grammar, vocabulary & comprehension' },
-        { id: 'current-affairs', name: 'Current Affairs', icon: '📰', desc: 'National & international events' },
+        { id: 'current-affairs', name: 'Current Affairs', icon: '🌐', desc: 'National & international events' },
         { id: 'general-knowledge', name: 'General Knowledge', icon: '💡', desc: 'Static GK & awareness' },
         { id: 'aptitude', name: 'Aptitude', icon: '🧮', desc: 'Quantitative & numerical ability' },
         { id: 'computer-science', name: 'Computer Science', icon: '💻', desc: 'Programming, DSA & OS' }
@@ -93,10 +93,11 @@
         if (!grid) return;
         var exams = [
             { name: 'UPSC', icon: '🏛️', desc: 'Civil Services, CDS, NDA, CAPF', tags: ['IAS','IPS','IFS'] },
-            { name: 'SSC', icon: '📋', desc: 'CGL, CHSL, MTS, CPO, Stenographer', tags: ['CGL','CHSL'] },
+            { name: 'UPSC', icon: '🏛️', desc: 'Civil Services, CDS, NDA, CAPF', tags: ['IAS','IPS','IFS'] },
+            { name: 'SSC', icon: '🏆', desc: 'CGL, CHSL, MTS, CPO, Stenographer', tags: ['CGL','CHSL'] },
             { name: 'Banking', icon: '🏦', desc: 'IBPS PO/Clerk, SBI PO/Clerk, RBI', tags: ['IBPS','SBI'] },
             { name: 'GATE', icon: '⚙️', desc: 'Engineering & Science streams', tags: ['CSE','ECE','EE'] },
-            { name: 'Railways', icon: '🚂', desc: 'RRB NTPC, Group D, ALP, JE', tags: ['NTPC','ALP'] },
+            { name: 'Railways', icon: '🚃', desc: 'RRB NTPC, Group D, ALP, JE', tags: ['NTPC','ALP'] },
             { name: 'Defence', icon: '🎖️', desc: 'CDS, NDA, AFCAT, Territorial Army', tags: ['CDS','NDA'] }
         ];
         grid.innerHTML = exams.map(function(ex) {
