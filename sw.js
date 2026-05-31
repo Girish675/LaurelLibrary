@@ -1,4 +1,4 @@
-const CACHE_NAME = 'laurel-library-v2.2';
+const CACHE_NAME = 'laurel-library-v2.3';
 const OFFLINE_URL = './offline.html';
 
 const PRECACHE_URLS = [
@@ -13,9 +13,11 @@ const PRECACHE_URLS = [
     './assets/js/features.js',
     './assets/js/search.js',
     './assets/js/app.js',
+    './assets/js/exam-data.js',
     './notes/index.html',
     './notes/index.json',
     './exams/index.html',
+    './exams/exam.html',
     './subjects/index.html',
     './tools/index.html',
     './tools/pomodoro.html',

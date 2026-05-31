@@ -197,7 +197,7 @@ ul,ol{list-style:none}
 .badge-info{background:rgba(27,138,90,0.1);color:var(--c-info)}
 
 /* ===== Buttons ===== */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:var(--space-2) var(--space-5);border:1px solid transparent;border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:600;transition:all var(--duration-fast) var(--ease);white-space:nowrap;cursor:pointer;line-height:1.5}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:var(--space-2) var(--space-5);border:1px solid transparent;border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:600;transition:all var(--duration-fast) var(--ease);white-space:nowrap;cursor:pointer;line-height:1.5;background:var(--c-surface-hover);color:var(--c-text)}
 .btn-primary{background:var(--c-accent);color:white}.btn-primary:hover{background:var(--c-accent-dark);color:white}
 .btn-secondary{background:transparent;border-color:var(--c-border);color:var(--c-text)}.btn-secondary:hover{background:var(--c-bg-alt);border-color:var(--c-text-muted)}
 .btn-ghost{background:transparent;color:var(--c-text-secondary);padding:var(--space-2) var(--space-3)}.btn-ghost:hover{background:var(--c-bg-alt);color:var(--c-text)}
@@ -232,7 +232,9 @@ select.input{cursor:pointer}
 .toc-list .toc-children{margin-left:var(--space-4)}
 .toc-children.collapsed{display:none}
 .toc-parent{position:relative}
-.toc-toggle{background:none;border:none;font-size:var(--text-xs);color:var(--c-text-muted);padding:var(--space-1);cursor:pointer;position:absolute;right:0;top:var(--space-2)}
+#toc-list .toc-parent > a{padding-right:var(--space-8)}
+.toc-toggle{background:none;border:none;font-size:var(--text-xs);color:var(--c-text-muted);padding:var(--space-1) var(--space-2);cursor:pointer;position:absolute;right:0;top:var(--space-2);border-radius:var(--radius-sm);line-height:1}
+.toc-toggle:hover{background:var(--c-bg-alt);color:var(--c-accent)}
 
 .article-content{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-lg);padding:var(--space-8) var(--space-10);min-width:0;overflow-wrap:break-word;word-wrap:break-word}
 .article-content h1{font-size:var(--text-3xl);font-weight:800;letter-spacing:var(--tracking-tight);line-height:var(--leading-tight);margin-bottom:var(--space-4)}
@@ -268,6 +270,9 @@ select.input{cursor:pointer}
 
 /* Note Actions */
 .note-actions{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-6);flex-wrap:wrap}
+.note-actions .btn{background:var(--c-surface);border:1px solid var(--c-border);color:var(--c-text)}
+.note-actions .btn:hover{border-color:var(--c-accent);color:var(--c-accent);background:var(--c-surface-hover)}
+.note-actions .btn.bookmarked{border-color:var(--c-accent);color:var(--c-accent)}
 .note-actions .btn svg{width:14px;height:14px}
 .reading-time{font-size:var(--text-sm);color:var(--c-text-muted);display:flex;align-items:center;gap:var(--space-1);margin-left:auto}
 
@@ -502,6 +507,56 @@ select.input{cursor:pointer}
 .related-notes{margin-top:var(--space-10);padding-top:var(--space-8);border-top:1px solid var(--c-border)}
 .related-notes h2,.related-notes h3{font-size:var(--text-xl);font-weight:700;margin-bottom:var(--space-5)}
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--space-4)}
+
+/* ===== Exam Detail Page ===== */
+.exam-hero{background:linear-gradient(135deg,#0a2540 0%,#0f3460 45%,#145f3e 100%);color:#fff;padding:var(--space-12) 0 var(--space-10);position:relative;overflow:hidden}
+.exam-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(27,138,90,0.18) 0%,transparent 45%)}
+.exam-hero .container{position:relative}
+.exam-hero-icon{font-size:3.5rem;line-height:1;margin-bottom:var(--space-3)}
+.exam-hero h1{font-size:var(--text-4xl);font-weight:800;letter-spacing:var(--tracking-tight);margin-bottom:var(--space-2)}
+.exam-hero .exam-fullname{font-size:var(--text-lg);opacity:0.9;max-width:760px;line-height:var(--leading-relaxed)}
+.exam-hero-tags{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-5)}
+.exam-hero-tags .tag{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.25);color:#fff}
+
+/* Sticky subjects bar */
+.subjects-bar{position:sticky;top:var(--header-height);z-index:var(--z-sticky);background:var(--c-surface);border-bottom:1px solid var(--c-border);box-shadow:var(--shadow-sm)}
+.subjects-bar-inner{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) 0;overflow-x:auto;scrollbar-width:none}
+.subjects-bar-inner::-webkit-scrollbar{display:none}
+.subjects-bar-label{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--c-text-muted);white-space:nowrap;flex-shrink:0}
+.subject-chip{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-4);background:var(--c-bg-alt);border:1px solid var(--c-border);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;color:var(--c-text);white-space:nowrap;flex-shrink:0;transition:all var(--duration-fast) var(--ease)}
+.subject-chip:hover{border-color:var(--c-accent);color:var(--c-accent);background:var(--c-surface);transform:translateY(-1px)}
+.subject-chip .chip-count{font-size:var(--text-xs);font-weight:700;background:var(--c-accent);color:#fff;border-radius:var(--radius-full);padding:0 var(--space-2);min-width:18px;text-align:center}
+.subject-chip.muted .chip-count{background:var(--c-text-muted)}
+
+/* Exam content sections */
+.exam-section{padding:var(--space-8) 0;border-bottom:1px solid var(--c-border-light)}
+.exam-section:last-child{border-bottom:none}
+.exam-section h2{font-size:var(--text-2xl);font-weight:700;margin-bottom:var(--space-5);letter-spacing:var(--tracking-tight);display:flex;align-items:center;gap:var(--space-2)}
+.exam-section p{line-height:var(--leading-relaxed);max-width:var(--reading-max);color:var(--c-text-secondary)}
+.quick-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--space-4)}
+.fact{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5)}
+.fact .fact-label{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:var(--tracking-wide);color:var(--c-text-muted);font-weight:700;margin-bottom:var(--space-1)}
+.fact .fact-value{font-size:var(--text-base);font-weight:600;color:var(--c-text)}
+.info-list{display:grid;gap:var(--space-3)}
+.info-list .info-row{display:flex;gap:var(--space-3);background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-md);padding:var(--space-4)}
+.info-list .info-row .info-key{font-weight:700;color:var(--c-primary);min-width:120px;flex-shrink:0}
+[data-theme="dark"] .info-list .info-row .info-key{color:var(--c-accent)}
+.stage-list{display:grid;gap:var(--space-4)}
+.stage-card{background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-accent);border-radius:var(--radius-md);padding:var(--space-5)}
+.stage-card h4{font-size:var(--text-base);font-weight:700;margin-bottom:var(--space-2);color:var(--c-text)}
+.stage-card p{font-size:var(--text-sm);color:var(--c-text-muted)}
+.bullet-list{list-style:disc;margin:var(--space-2) 0 0 var(--space-6);display:grid;gap:var(--space-2)}
+.bullet-list li{line-height:var(--leading-relaxed);color:var(--c-text-secondary)}
+.syllabus-block{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-lg);padding:var(--space-5) var(--space-6);margin-bottom:var(--space-4)}
+.syllabus-block h4{font-size:var(--text-base);font-weight:700;color:var(--c-accent);margin-bottom:var(--space-3)}
+.chip-cloud{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+
+@media(max-width:768px){
+    .exam-hero h1{font-size:var(--text-2xl)}
+    .exam-hero .exam-fullname{font-size:var(--text-base)}
+    .info-list .info-row{flex-direction:column;gap:var(--space-1)}
+    .info-list .info-row .info-key{min-width:0}
+}
 
 /* ===== Back to top ===== */
 .back-to-top{position:fixed;bottom:var(--space-6);right:var(--space-6);width:44px;height:44px;border-radius:var(--radius-full);background:var(--c-primary);color:var(--c-text-inverse);border:none;font-size:1.25rem;line-height:1;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity var(--duration-normal) var(--ease),transform var(--duration-normal) var(--ease),visibility var(--duration-normal);z-index:var(--z-sticky)}

@@ -50,6 +50,32 @@
         });
     }
 
+    // ===== TOC Cleanup: remove dead toggles on sections with no sub-items =====
+    // Runs after the inline TOC builder has finished so dead arrows are removed.
+    function cleanupToc() {
+        var tocList = document.getElementById('toc-list');
+        if (!tocList) return;
+        tocList.querySelectorAll('.toc-parent').forEach(function(li) {
+            var children = li.querySelector('.toc-children');
+            var toggle = li.querySelector('.toc-toggle');
+            if (!children || children.children.length === 0) {
+                if (toggle) toggle.remove();
+                if (children) children.remove();
+                li.classList.remove('toc-parent');
+            }
+        });
+        // "Collapse all" should only show when at least one collapsible section exists
+        var collapseBtn = document.getElementById('toc-collapse-all');
+        if (collapseBtn && tocList.querySelectorAll('.toc-children').length === 0) {
+            collapseBtn.style.display = 'none';
+        }
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', cleanupToc);
+    } else {
+        cleanupToc();
+    }
+
     // ===== TOC Active Tracking =====
     var tocLinks = document.querySelectorAll('#toc-list a');
     if (tocLinks.length > 0) {

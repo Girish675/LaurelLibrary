@@ -76,9 +76,9 @@
             else if (activeFilter !== 'all') label = activeFilter.charAt(0).toUpperCase() + activeFilter.slice(1).replace(/-/g, ' ');
             if (!label) { banner.innerHTML = ''; return; }
             banner.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;' +
-                'background:rgba(15,52,96,0.06);border:1px solid var(--c-border);border-radius:var(--radius-md);' +
+                'background:var(--c-bg-alt);border:1px solid var(--c-border);border-radius:var(--radius-md);' +
                 'padding:var(--space-3) var(--space-4);margin-bottom:var(--space-4)">' +
-                '<span style="font-weight:600;color:var(--c-primary)">Showing notes for <strong>' + LL.escapeHtml(label) + '</strong></span>' +
+                '<span style="font-weight:600;color:var(--c-text)">Showing notes for <strong style="color:var(--c-accent)">' + LL.escapeHtml(label) + '</strong></span>' +
                 '<a href="index.html" class="tag" style="text-decoration:none">✕ Clear filter</a></div>';
         }
 

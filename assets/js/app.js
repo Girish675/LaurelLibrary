@@ -100,7 +100,7 @@
             { name: 'Defence', icon: '🎖️', desc: 'CDS, NDA, AFCAT, Territorial Army', tags: ['CDS','NDA'] }
         ];
         grid.innerHTML = exams.map(function(ex) {
-            return '<a href="notes/index.html?exam=' + encodeURIComponent(ex.name) + '" class="exam-card"><div class="exam-icon">' + ex.icon + '</div>' +
+            return '<a href="exams/exam.html?exam=' + encodeURIComponent(ex.name) + '" class="exam-card"><div class="exam-icon">' + ex.icon + '</div>' +
                 '<h3>' + ex.name + '</h3><p>' + ex.desc + '</p>' +
                 '<div class="exam-tags">' + ex.tags.map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div></a>';
         }).join('');
