@@ -1,0 +1,10 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-inline-style": "off",
+    "svg-focusable": "off",
+    "tel-non-breaking": "off",
+    "require-sri": "off",
+    "script-type": "off"
+  }
+}

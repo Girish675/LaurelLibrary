@@ -23,8 +23,7 @@ jobs:
       - name: Validate static HTML pages
         run: |
           html-validate index.html about.html formulas.html \
-            notes/index.html exams/index.html \
-            --config '{"extends":["html-validate:recommended"],"rules":{"no-inline-style":"off","svg-focusable":"off","tel-non-breaking":"off"}}'
+            notes/index.html exams/index.html
 
       - name: Check for broken internal links
         run: |
