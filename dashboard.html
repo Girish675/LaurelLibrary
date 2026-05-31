@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — Laurel Library</title>
+    <meta name="description" content="Your personal study dashboard. Track study time, streaks, XP, bookmarks, and progress across all subjects.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/dashboard.html">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('dashboard'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <section class="section">
+            <div class="container">
+                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Dashboard</span></div>
+                <h1 class="section-title">Your Dashboard</h1>
+                <p class="section-subtitle">Track your study progress and achievements</p>
+
+                <!-- Stats Grid -->
+                <div class="dashboard-grid" id="dash-stats">
+                    <div class="dash-card">
+                        <div class="dash-label">🔥 Current Streak</div>
+                        <div class="dash-value" id="d-streak">0 days</div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-label">⭐ Total XP</div>
+                        <div class="dash-value" id="d-xp">0</div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-label">📊 Level</div>
+                        <div class="dash-value" id="d-level">1</div>
+                    </div>
+                    <div class="dash-card">
+                        <div class="dash-label">📖 Study Today</div>
+                        <div class="dash-value" id="d-today">0 min</div>
+                    </div>
+                </div>
+
+                <!-- XP Progress -->
+                <div style="margin:var(--space-lg) 0">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:var(--space-xs);font-size:var(--text-sm);color:var(--c-text-secondary)">
+                        <span>Level <span id="d-level2">1</span></span>
+                        <span><span id="d-xp-progress">0</span>/100 XP to next level</span>
+                    </div>
+                    <div class="xp-bar"><div class="xp-fill" id="d-xp-fill" style="width:0%"></div></div>
+                </div>
+
+                <!-- Study History -->
+                <div style="margin:var(--space-xl) 0">
+                    <h2 style="font-size:var(--text-lg);margin-bottom:var(--space-md)">Study History (Last 7 Days)</h2>
+                    <div class="study-chart" id="d-chart"></div>
+                </div>
+
+                <!-- Bookmarks -->
+                <div style="margin:var(--space-xl) 0">
+                    <h2 style="font-size:var(--text-lg);margin-bottom:var(--space-md)">Saved Notes</h2>
+                    <div id="d-bookmarks"></div>
+                </div>
+
+                <!-- Reset -->
+                <div style="margin:var(--space-xl) 0;padding:var(--space-lg);background:var(--c-bg-alt);border-radius:var(--radius-lg)">
+                    <h3 style="margin:0 0 var(--space-xs)">Reset Data</h3>
+                    <p style="color:var(--c-text-secondary);font-size:var(--text-sm);margin:0 0 var(--space-md)">Clear all your study data, bookmarks, and progress. This action cannot be undone.</p>
+                    <button class="btn btn-sm" style="background:var(--c-error);color:#fff" id="d-reset">Reset All Data</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="assets/js/search.js" defer></script>
+    <script>
+    (function() {
+        function render() {
+            // Stats
+            var streak = LL.streak.get();
+            document.getElementById('d-streak').textContent = streak + ' day' + (streak !== 1 ? 's' : '');
+            document.getElementById('d-xp').textContent = LL.xp.get();
+            document.getElementById('d-level').textContent = LL.xp.level();
+            document.getElementById('d-level2').textContent = LL.xp.level();
+            document.getElementById('d-today').textContent = LL.tracker.getToday() + ' min';
+            document.getElementById('d-xp-progress').textContent = LL.xp.progress();
+            document.getElementById('d-xp-fill').style.width = LL.xp.progress() + '%';
+
+            // Study chart
+            var history = LL.tracker.getHistory(7);
+            var maxMin = Math.max.apply(null, history.map(function(h) { return h.minutes; })) || 1;
+            var chart = document.getElementById('d-chart');
+            chart.innerHTML = '<div style="display:flex;align-items:flex-end;gap:var(--space-sm);height:120px">' +
+                history.map(function(h) {
+                    var pct = Math.max((h.minutes / maxMin) * 100, 4);
+                    var day = new Date(h.date + 'T00:00:00').toLocaleDateString('en-IN', { weekday: 'short' });
+                    return '<div style="flex:1;text-align:center">' +
+                        '<div style="background:var(--c-primary);border-radius:var(--radius-sm) var(--radius-sm) 0 0;height:' + pct + '%;min-height:4px;transition:height 0.3s" title="' + h.minutes + ' min"></div>' +
+                        '<div style="font-size:var(--text-xs);color:var(--c-text-muted);margin-top:var(--space-xs)">' + day + '</div>' +
+                        '<div style="font-size:var(--text-xs);color:var(--c-text-secondary)">' + h.minutes + 'm</div></div>';
+                }).join('') + '</div>';
+
+            // Bookmarks
+            var bm = LL.bookmarks.getAll();
+            var bmEl = document.getElementById('d-bookmarks');
+            if (bm.length === 0) {
+                bmEl.innerHTML = '<div class="empty-state"><div class="empty-icon">📑</div><h3>No saved notes</h3><p>Bookmark notes while reading to save them here.</p></div>';
+            } else {
+                bmEl.innerHTML = '<div class="notes-grid">' + bm.map(function(b) {
+                    return '<a href="' + b.path + '" class="note-card"><h4>' + LL.escapeHtml(b.title) + '</h4>' +
+                        '<div class="meta"><span>' + new Date(b.date).toLocaleDateString('en-IN') + '</span></div></a>';
+                }).join('') + '</div>';
+            }
+
+            // Reset button
+            document.getElementById('d-reset').addEventListener('click', function() {
+                if (confirm('Are you sure? This will clear all bookmarks, XP, streaks, and study history.')) {
+                    ['ll-xp','ll-streak','ll-last-visit','ll-study-log','ll-bookmarks','ll-theme'].forEach(function(k) { localStorage.removeItem(k); });
+                    LL.toast('All data has been reset', 'info');
+                    setTimeout(function() { location.reload(); }, 500);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); render(); });
+    })();
+    </script>
+</body>
+</html>

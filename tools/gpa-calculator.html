@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator — Laurel Library</title>
+    <meta name="description" content="Free GPA and CGPA calculator. Supports 10-point, 4-point, and percentage-based grading systems used in Indian universities.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/tools/gpa-calculator.html">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('tools'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <section class="section">
+            <div class="container" style="max-width:700px">
+                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>GPA Calculator</span></div>
+                <h1 class="section-title">🎓 GPA Calculator</h1>
+                <p class="section-subtitle">Calculate your semester GPA and CGPA</p>
+
+                <!-- Scale Selection -->
+                <div class="tabs" style="margin:var(--space-lg) 0;justify-content:center">
+                    <button class="tab active" id="scale-10">10-Point</button>
+                    <button class="tab" id="scale-4">4-Point</button>
+                </div>
+
+                <!-- Subjects Table -->
+                <div style="background:var(--c-bg-alt);padding:var(--space-lg);border-radius:var(--radius-lg)">
+                    <div id="gpa-rows" style="display:grid;gap:var(--space-sm)">
+                        <!-- Rows injected by JS -->
+                    </div>
+                    <div style="display:flex;gap:var(--space-sm);margin-top:var(--space-md)">
+                        <button class="btn btn-sm" id="gpa-add">+ Add Subject</button>
+                        <button class="btn btn-sm" id="gpa-clear" style="margin-left:auto;color:var(--c-error)">Clear All</button>
+                    </div>
+                </div>
+
+                <!-- Calculate -->
+                <div style="text-align:center;margin:var(--space-lg) 0">
+                    <button class="btn btn-primary" id="gpa-calc" style="min-width:200px">Calculate GPA</button>
+                </div>
+
+                <!-- Result -->
+                <div id="gpa-result" style="text-align:center;padding:var(--space-lg);background:var(--c-bg-alt);border-radius:var(--radius-lg);display:none">
+                    <div style="font-size:var(--text-sm);color:var(--c-text-muted)">Your Semester GPA</div>
+                    <div id="gpa-value" style="font-size:3rem;font-weight:800;color:var(--c-primary);margin:var(--space-xs) 0">0.00</div>
+                    <div id="gpa-details" style="font-size:var(--text-sm);color:var(--c-text-secondary)"></div>
+                </div>
+
+                <!-- Grade Reference -->
+                <details style="margin:var(--space-lg) 0;padding:var(--space-md);background:var(--c-bg-alt);border-radius:var(--radius-lg)">
+                    <summary style="cursor:pointer;font-weight:600">Grade Reference</summary>
+                    <div style="margin-top:var(--space-md);overflow-x:auto">
+                        <table style="width:100%;border-collapse:collapse;font-size:var(--text-sm)">
+                            <thead><tr style="border-bottom:2px solid var(--c-border)"><th style="padding:var(--space-xs);text-align:left">Grade</th><th>10-Point</th><th>4-Point</th><th>Percentage</th></tr></thead>
+                            <tbody id="grade-table"></tbody>
+                        </table>
+                    </div>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../assets/js/search.js" defer></script>
+    <script>
+    (function() {
+        var scale = 10;
+        var grades10 = [
+            { grade:'O', points:10, pct:'90-100' },
+            { grade:'A+', points:9, pct:'80-89' },
+            { grade:'A', points:8, pct:'70-79' },
+            { grade:'B+', points:7, pct:'60-69' },
+            { grade:'B', points:6, pct:'55-59' },
+            { grade:'C', points:5, pct:'50-54' },
+            { grade:'P', points:4, pct:'40-49' },
+            { grade:'F', points:0, pct:'Below 40' }
+        ];
+        var grades4 = [
+            { grade:'A+', points:4.0, pct:'90-100' },
+            { grade:'A', points:3.7, pct:'85-89' },
+            { grade:'B+', points:3.3, pct:'80-84' },
+            { grade:'B', points:3.0, pct:'75-79' },
+            { grade:'B-', points:2.7, pct:'70-74' },
+            { grade:'C+', points:2.3, pct:'65-69' },
+            { grade:'C', points:2.0, pct:'60-64' },
+            { grade:'D', points:1.0, pct:'50-59' },
+            { grade:'F', points:0.0, pct:'Below 50' }
+        ];
+
+        function addRow() {
+            var rows = document.getElementById('gpa-rows');
+            var n = rows.children.length + 1;
+            var g = scale === 10 ? grades10 : grades4;
+            var opts = g.map(function(gr) { return '<option value="' + gr.points + '">' + gr.grade + ' (' + gr.points + ')</option>'; }).join('');
+            var row = document.createElement('div');
+            row.style.cssText = 'display:grid;grid-template-columns:1fr 120px 80px 32px;gap:var(--space-xs);align-items:center';
+            row.innerHTML = '<input type="text" placeholder="Subject ' + n + '" class="input gpa-name" maxlength="100">' +
+                '<select class="input gpa-grade">' + opts + '</select>' +
+                '<input type="number" value="3" min="1" max="20" class="input gpa-credit" style="text-align:center">' +
+                '<button class="btn btn-sm gpa-remove" style="padding:4px;color:var(--c-error)" title="Remove">✕</button>';
+            row.querySelector('.gpa-remove').addEventListener('click', function() { row.remove(); });
+            rows.appendChild(row);
+        }
+
+        function renderGradeTable() {
+            var g = scale === 10 ? grades10 : grades4;
+            var table = document.getElementById('grade-table');
+            table.innerHTML = g.map(function(gr) {
+                return '<tr style="border-bottom:1px solid var(--c-border)"><td style="padding:var(--space-xs)">' + gr.grade + '</td>' +
+                    '<td style="text-align:center">' + (scale === 10 ? gr.points : '-') + '</td>' +
+                    '<td style="text-align:center">' + (scale === 4 ? gr.points.toFixed(1) : '-') + '</td>' +
+                    '<td style="text-align:center">' + gr.pct + '</td></tr>';
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            LL.init();
+            for (var i = 0; i < 5; i++) addRow();
+            renderGradeTable();
+
+            document.getElementById('gpa-add').addEventListener('click', addRow);
+            document.getElementById('gpa-clear').addEventListener('click', function() {
+                document.getElementById('gpa-rows').innerHTML = '';
+                document.getElementById('gpa-result').style.display = 'none';
+                for (var i = 0; i < 5; i++) addRow();
+            });
+
+            ['scale-10','scale-4'].forEach(function(id) {
+                document.getElementById(id).addEventListener('click', function() {
+                    scale = id === 'scale-10' ? 10 : 4;
+                    document.getElementById('scale-10').classList.toggle('active', scale === 10);
+                    document.getElementById('scale-4').classList.toggle('active', scale === 4);
+                    document.getElementById('gpa-rows').innerHTML = '';
+                    document.getElementById('gpa-result').style.display = 'none';
+                    for (var i = 0; i < 5; i++) addRow();
+                    renderGradeTable();
+                });
+            });
+
+            document.getElementById('gpa-calc').addEventListener('click', function() {
+                var rows = document.getElementById('gpa-rows').children;
+                var totalPoints = 0, totalCredits = 0;
+                for (var i = 0; i < rows.length; i++) {
+                    var grade = parseFloat(rows[i].querySelector('.gpa-grade').value);
+                    var credit = parseInt(rows[i].querySelector('.gpa-credit').value, 10) || 0;
+                    if (credit > 0) {
+                        totalPoints += grade * credit;
+                        totalCredits += credit;
+                    }
+                }
+                if (totalCredits === 0) { LL.toast('Please add at least one subject with credits', 'warning'); return; }
+                var gpa = totalPoints / totalCredits;
+                document.getElementById('gpa-value').textContent = gpa.toFixed(2);
+                document.getElementById('gpa-details').textContent = 'Total credits: ' + totalCredits + ' | Weighted points: ' + totalPoints.toFixed(1);
+                document.getElementById('gpa-result').style.display = 'block';
+                LL.xp.add(3, 'Calculated GPA');
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

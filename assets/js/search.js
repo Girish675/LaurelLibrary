@@ -1,103 +1,99 @@
-// Client-side search using Fuse.js (lightweight fuzzy search)
-// We load the search index and use a simple implementation
+/**
+ * Laurel Library — Search Module v2.0
+ * Command palette style search with keyboard navigation
+ */
+(function() {
+    'use strict';
+    var LL = window.LL || {};
+    var searchIndex = [];
+    var activeIndex = -1;
 
-let searchIndex = [];
-let searchTimeout = null;
+    LL.search = {
+        load: function() {
+            var paths = ['search-index.json', '../search-index.json', '../../search-index.json',
+                         'notes/index.json', '../notes/index.json', '../../notes/index.json'];
+            
+            function tryPath(i) {
+                if (i >= paths.length) return;
+                fetch(paths[i]).then(function(r) {
+                    if (!r.ok) throw new Error();
+                    return r.json();
+                }).then(function(data) {
+                    if (Array.isArray(data)) {
+                        searchIndex = data;
+                    } else if (data.notes) {
+                        searchIndex = data.notes.map(function(n) {
+                            return { title: n.title, path: n.path, category: n.category, keywords: n.exam || '' };
+                        });
+                    }
+                }).catch(function() { tryPath(i + 1); });
+            }
+            tryPath(0);
+        },
 
-async function loadSearchIndex() {
-    // Try multiple paths to find search-index.json from any page depth
-    const paths = ['search-index.json', '../search-index.json', '../../search-index.json'];
-    for (const path of paths) {
-        try {
-            const response = await fetch(path);
-            if (response.ok) {
-                searchIndex = await response.json();
+        perform: function(query) {
+            var results = document.getElementById('search-results');
+            if (!results) return;
+            if (!query || query.length < 2) {
+                results.innerHTML = '<div class="search-empty">Type to search notes, exams, and subjects...</div>';
+                activeIndex = -1;
                 return;
             }
-        } catch (e) {
-            continue;
+
+            var terms = query.toLowerCase().split(/\s+/);
+            var matches = [];
+
+            searchIndex.forEach(function(item) {
+                var text = (item.title + ' ' + item.category + ' ' + (item.keywords || '')).toLowerCase();
+                var score = 0;
+                terms.forEach(function(t) {
+                    if (text.includes(t)) score++;
+                    if (item.title.toLowerCase().includes(t)) score += 2;
+                });
+                if (score > 0) matches.push({ item: item, score: score });
+            });
+
+            matches.sort(function(a, b) { return b.score - a.score; });
+            matches = matches.slice(0, 10);
+
+            if (matches.length === 0) {
+                results.innerHTML = '<div class="search-empty">No results found for "' + LL.escapeHtml(query) + '"</div>';
+                activeIndex = -1;
+                return;
+            }
+
+            var b = LL.basePath;
+            results.innerHTML = matches.map(function(m, i) {
+                var cat = (m.item.category || '').replace(/-/g, ' ');
+                cat = cat.charAt(0).toUpperCase() + cat.slice(1);
+                return '<a href="' + b + m.item.path + '?highlight=' + encodeURIComponent(query) + '" class="search-result-item' + (i === 0 ? ' active' : '') + '">' +
+                    '<div class="result-icon">📄</div>' +
+                    '<div class="result-text"><h4>' + LL.escapeHtml(m.item.title) + '</h4><p>' + LL.escapeHtml(cat) + '</p></div></a>';
+            }).join('');
+            activeIndex = 0;
         }
-    }
-}
+    };
 
-function performSearch(query) {
-    if (!query || query.length < 2) return [];
-
-    const terms = query.toLowerCase().split(/\s+/);
-    const results = [];
-
-    searchIndex.forEach(item => {
-        const text = `${item.title} ${item.category} ${item.keywords || ''}`.toLowerCase();
-        let score = 0;
-        terms.forEach(term => {
-            if (text.includes(term)) score++;
-        });
-        if (score > 0) {
-            results.push({ ...item, score });
-        }
-    });
-
-    results.sort((a, b) => b.score - a.score);
-    return results.slice(0, 10);
-}
-
-function renderSearchResults(results) {
-    const container = document.getElementById('search-results');
-    if (!container) return;
-
-    if (results.length === 0) {
-        container.classList.remove('active');
-        return;
-    }
-
-    // Determine base path to root
-    const depth = (window.location.pathname.match(/\//g) || []).length;
-    let basePath = '';
-    const currentPath = window.location.pathname;
-    if (currentPath.includes('/notes/') && currentPath.split('/notes/')[1].includes('/')) {
-        basePath = '../../';
-    } else if (currentPath.includes('/notes/') || currentPath.includes('/exams/')) {
-        basePath = '../';
-    }
-
-    container.innerHTML = results.map(r => {
-        const query = document.getElementById('search-input') ? document.getElementById('search-input').value : '';
-        const separator = r.path.includes('?') ? '&' : '?';
-        const href = query ? `${basePath}${r.path}${separator}highlight=${encodeURIComponent(query)}` : `${basePath}${r.path}`;
-        return `<a href="${href}">
-            <strong>${r.title}</strong>
-            <br><small>${r.category}</small>
-        </a>`;
-    }).join('');
-    container.classList.add('active');
-}
-
-// Event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    loadSearchIndex();
-
-    const input = document.getElementById('search-input');
-    if (!input) return;
-
-    input.addEventListener('input', (e) => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-            const results = performSearch(e.target.value);
-            renderSearchResults(results);
-        }, 200);
-    });
-
-    input.addEventListener('blur', () => {
-        setTimeout(() => {
-            const container = document.getElementById('search-results');
-            if (container) container.classList.remove('active');
-        }, 200);
-    });
-
-    input.addEventListener('focus', (e) => {
-        if (e.target.value.length >= 2) {
-            const results = performSearch(e.target.value);
-            renderSearchResults(results);
+    // Keyboard navigation in search
+    document.addEventListener('keydown', function(e) {
+        var results = document.getElementById('search-results');
+        if (!results || !results.querySelector('.search-result-item')) return;
+        var items = results.querySelectorAll('.search-result-item');
+        
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeIndex = Math.min(activeIndex + 1, items.length - 1);
+            items.forEach(function(el, i) { el.classList.toggle('active', i === activeIndex); });
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeIndex = Math.max(activeIndex - 1, 0);
+            items.forEach(function(el, i) { el.classList.toggle('active', i === activeIndex); });
+        } else if (e.key === 'Enter' && activeIndex >= 0 && items[activeIndex]) {
+            e.preventDefault();
+            window.location.href = items[activeIndex].href;
         }
     });
-});
+
+    window.LL = LL;
+    document.addEventListener('DOMContentLoaded', function() { LL.search.load(); });
+})();

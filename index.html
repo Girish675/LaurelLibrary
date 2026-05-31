@@ -3,110 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laurel Library - Free Competitive Exam Notes for UPSC, SSC, GATE, JEE, NEET</title>
-    <meta name="description" content="Laurel Library offers free, well-organized study notes for competitive exams in India — UPSC, SSC, GATE, IIT-JEE, NEET, Banking and more. No ads, no paywalls.">
+    <title>Laurel Library — Free Competitive Exam Preparation Platform</title>
+    <meta name="description" content="India's best free exam prep platform. Study notes, mock tests, flashcards, and tools for UPSC, SSC, GATE, Banking, Railways, and more. No ads, no paywalls.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
-    <meta property="og:title" content="Laurel Library - Free Competitive Exam Notes">
-    <meta property="og:description" content="Comprehensive study notes for UPSC, SSC, GATE, IIT-JEE, NEET and more. Free and open-source.">
+    <meta property="og:title" content="Laurel Library — Free Competitive Exam Preparation">
+    <meta property="og:description" content="Comprehensive study notes, tools & mock tests for UPSC, SSC, GATE, Banking, Railways. Free and open-source.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://girish675.github.io/LaurelLibrary/">
     <meta property="og:image" content="https://girish675.github.io/LaurelLibrary/assets/icons/icon-512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Laurel Library — Free Exam Prep">
+    <meta name="twitter:description" content="Study notes, tools & mock tests for competitive exams. Free.">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#5c3d2e">
+    <meta name="theme-color" content="#1a202c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Laurel Library",
         "url": "https://girish675.github.io/LaurelLibrary/",
-        "description": "Free competitive exam study notes for Indian aspirants",
-        "publisher": {
-            "@type": "Organization",
-            "name": "Laurel Library"
-        },
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://girish675.github.io/LaurelLibrary/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
+        "description": "Free competitive exam study notes and tools for Indian aspirants",
+        "publisher": {"@type": "Organization", "name": "Laurel Library"},
+        "potentialAction": {"@type": "SearchAction", "target": "https://girish675.github.io/LaurelLibrary/?q={search_term_string}", "query-input": "required name=search_term_string"}
     }
     </script>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header" role="banner">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-                    <span class="logo-icon">&#128218;</span>
-                    <h1>Laurel Library</h1>
-                </a>
-            </div>
-            <nav class="main-nav" role="navigation" aria-label="Main navigation">
-                <a href="index.html" class="active" aria-current="page">Home</a>
-                <a href="notes/index.html">Notes</a>
-                <a href="exams/index.html">Exams</a>
-                <a href="about.html">About</a>
-            </nav>
-            <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-                    <span class="icon-sun">&#9728;&#65039;</span>
-                    <span class="icon-moon">&#127769;</span>
-                </button>
-                <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
-                    <div id="search-results" class="search-results"></div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <script src="assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('home'));document.write(LL.renderSearchModal());</script>
 
     <main id="main-content">
+        <!-- Hero -->
         <section class="hero">
             <div class="container">
-                <h2>Your Competitive Exam Companion</h2>
-                <p>Comprehensive study notes for SSC, UPSC, GATE, IIT-JEE, NEET &amp; more</p>
-            </div>
-        </section>
-
-        <section class="categories">
-            <div class="container">
-                <h3 class="section-title">Browse by Subject</h3>
-                <div class="category-grid" id="category-grid">
-                    <!-- Categories will be populated dynamically -->
+                <h1>Your Competitive Exam Companion</h1>
+                <p>Free study notes, smart tools, and exam prep resources — built for aspirants who mean business.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat"><span class="stat-value" id="stat-notes">34</span><span class="stat-label">Study Notes</span></div>
+                    <div class="hero-stat"><span class="stat-value" id="stat-subjects">12</span><span class="stat-label">Subjects</span></div>
+                    <div class="hero-stat"><span class="stat-value" id="stat-streak">0</span><span class="stat-label">Day Streak 🔥</span></div>
+                    <div class="hero-stat"><span class="stat-value" id="stat-xp">0</span><span class="stat-label">XP Earned</span></div>
                 </div>
             </div>
         </section>
 
-        <section class="recent-notes">
+        <!-- Subjects -->
+        <section class="section">
             <div class="container">
-                <h3 class="section-title">Recently Added</h3>
-                <div class="notes-list" id="recent-notes">
-                    <!-- Recent notes will be populated dynamically -->
+                <div class="section-header">
+                    <div><h2 class="section-title">Browse by Subject</h2><p class="section-subtitle">Explore study material organized by topic</p></div>
+                    <a href="subjects/index.html" class="section-link">View all →</a>
+                </div>
+                <div class="card-grid" id="category-grid">
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Notes -->
+        <section class="section" style="background:var(--c-bg-alt)">
+            <div class="container">
+                <div class="section-header">
+                    <div><h2 class="section-title">Recently Added</h2><p class="section-subtitle">Latest study notes and materials</p></div>
+                    <a href="notes/index.html" class="section-link">View all →</a>
+                </div>
+                <div class="notes-grid" id="recent-notes">
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exams -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div><h2 class="section-title">Popular Exams</h2><p class="section-subtitle">Find notes and resources for your target exam</p></div>
+                    <a href="exams/index.html" class="section-link">View all →</a>
+                </div>
+                <div class="card-grid" id="exam-grid"></div>
+            </div>
+        </section>
+
+        <!-- Tools Preview -->
+        <section class="section" style="background:var(--c-bg-alt)">
+            <div class="container">
+                <div class="section-header">
+                    <div><h2 class="section-title">Study Tools</h2><p class="section-subtitle">Smart tools to boost your preparation</p></div>
+                    <a href="tools/index.html" class="section-link">View all →</a>
+                </div>
+                <div class="card-grid">
+                    <a href="tools/pomodoro.html" class="tool-card">
+                        <div class="tool-icon" style="background:rgba(229,62,62,0.1)">⏱️</div>
+                        <h3>Pomodoro Timer</h3>
+                        <p>Focus timer with study/break intervals. Track your daily study hours.</p>
+                    </a>
+                    <a href="tools/flashcards.html" class="tool-card">
+                        <div class="tool-icon" style="background:rgba(49,130,206,0.1)">🗂️</div>
+                        <h3>Flashcards</h3>
+                        <p>Create and review flashcards for quick revision of key concepts.</p>
+                    </a>
+                    <a href="tools/gpa-calculator.html" class="tool-card">
+                        <div class="tool-icon" style="background:rgba(56,161,105,0.1)">🎓</div>
+                        <h3>GPA Calculator</h3>
+                        <p>Calculate your GPA/CGPA with support for multiple grading systems.</p>
+                    </a>
+                    <a href="tools/planner.html" class="tool-card">
+                        <div class="tool-icon" style="background:rgba(214,158,46,0.1)">📅</div>
+                        <h3>Study Planner</h3>
+                        <p>Set daily targets, track progress, and maintain study streaks.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header"><div><h2 class="section-title">Why Laurel Library?</h2></div></div>
+                <div class="feature-grid">
+                    <div class="feature-item"><div class="feature-icon">📖</div><div><h4>Well-Organized Notes</h4><p>Clean, structured notes by subject and topic. No clutter.</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">🆓</div><div><h4>100% Free</h4><p>No ads, no paywalls, no premium tiers. Everything is free.</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">📱</div><div><h4>Works Offline</h4><p>Install as an app. Access notes even without internet.</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">🔍</div><div><h4>Instant Search</h4><p>Find any topic in seconds with global search (Ctrl+K).</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">🌙</div><div><h4>Dark Mode</h4><p>Easy on your eyes during late-night study sessions.</p></div></div>
+                    <div class="feature-item"><div class="feature-icon">🏆</div><div><h4>Study Gamification</h4><p>Earn XP, maintain streaks, and track your progress.</p></div></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer" role="contentinfo">
-        <div class="container">
-            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
-        </div>
-    </footer>
-
+    <script>document.write(LL.renderFooter());</script>
     <script src="assets/js/search.js" defer></script>
     <script src="assets/js/app.js" defer></script>
     <script src="assets/js/features.js" defer></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').catch(function() {});
-        }
-    </script>
+    <script>document.addEventListener('DOMContentLoaded', function() { LL.init(); });</script>
 </body>
 </html>

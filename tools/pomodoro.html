@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer — Laurel Library</title>
+    <meta name="description" content="Free Pomodoro timer for focused study sessions. Customizable work/break intervals with automatic study time tracking.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/tools/pomodoro.html">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('tools'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <section class="section">
+            <div class="container" style="max-width:600px">
+                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>Pomodoro Timer</span></div>
+
+                <div style="text-align:center;padding:var(--space-xl) 0">
+                    <h1 class="section-title">⏱️ Pomodoro Timer</h1>
+                    <p class="section-subtitle">Stay focused with timed study sessions</p>
+
+                    <!-- Mode Tabs -->
+                    <div class="tabs" style="justify-content:center;margin:var(--space-lg) 0">
+                        <button class="tab active" id="pom-mode-work" data-minutes="25">Focus (25m)</button>
+                        <button class="tab" id="pom-mode-short" data-minutes="5">Short Break (5m)</button>
+                        <button class="tab" id="pom-mode-long" data-minutes="15">Long Break (15m)</button>
+                    </div>
+
+                    <!-- Timer Display -->
+                    <div class="pomodoro-display" id="pom-display" style="font-size:5rem;font-weight:800;color:var(--c-primary);margin:var(--space-lg) 0;font-variant-numeric:tabular-nums">
+                        25:00
+                    </div>
+
+                    <!-- Controls -->
+                    <div style="display:flex;gap:var(--space-sm);justify-content:center;margin:var(--space-lg) 0">
+                        <button class="btn btn-primary" id="pom-start" style="min-width:120px">Start</button>
+                        <button class="btn" id="pom-reset">Reset</button>
+                    </div>
+
+                    <!-- Session Counter -->
+                    <div style="margin:var(--space-lg) 0;color:var(--c-text-secondary)">
+                        <span>Sessions today: <strong id="pom-sessions">0</strong></span> &nbsp;|&nbsp;
+                        <span>Study time: <strong id="pom-total">0</strong> min</span>
+                    </div>
+
+                    <!-- Settings -->
+                    <details style="text-align:left;margin:var(--space-lg) 0;padding:var(--space-md);background:var(--c-bg-alt);border-radius:var(--radius-lg)">
+                        <summary style="cursor:pointer;font-weight:600">Settings</summary>
+                        <div style="margin-top:var(--space-md);display:grid;gap:var(--space-md)">
+                            <label style="display:flex;justify-content:space-between;align-items:center">
+                                <span>Focus duration (min)</span>
+                                <input type="number" id="pom-set-work" value="25" min="1" max="120" class="input" style="width:80px;text-align:center">
+                            </label>
+                            <label style="display:flex;justify-content:space-between;align-items:center">
+                                <span>Short break (min)</span>
+                                <input type="number" id="pom-set-short" value="5" min="1" max="30" class="input" style="width:80px;text-align:center">
+                            </label>
+                            <label style="display:flex;justify-content:space-between;align-items:center">
+                                <span>Long break (min)</span>
+                                <input type="number" id="pom-set-long" value="15" min="1" max="60" class="input" style="width:80px;text-align:center">
+                            </label>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../assets/js/search.js" defer></script>
+    <script>
+    (function() {
+        var timer = null, remaining = 25 * 60, isRunning = false, mode = 'work';
+        var sessions = parseInt(localStorage.getItem('ll-pom-sessions-' + new Date().toISOString().split('T')[0]) || '0', 10);
+
+        var display = null, startBtn = null, tabs = null;
+
+        function updateDisplay() {
+            var m = Math.floor(remaining / 60), s = remaining % 60;
+            display.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+            document.title = display.textContent + ' — Pomodoro — Laurel Library';
+        }
+
+        function tick() {
+            remaining--;
+            if (remaining <= 0) {
+                clearInterval(timer);
+                timer = null;
+                isRunning = false;
+                startBtn.textContent = 'Start';
+                if (mode === 'work') {
+                    sessions++;
+                    var today = new Date().toISOString().split('T')[0];
+                    localStorage.setItem('ll-pom-sessions-' + today, sessions);
+                    document.getElementById('pom-sessions').textContent = sessions;
+                    var workMin = parseInt(document.getElementById('pom-set-work').value, 10) || 25;
+                    LL.tracker.log(workMin);
+                    LL.xp.add(10, 'Completed a focus session');
+                    document.getElementById('pom-total').textContent = LL.tracker.getToday();
+                }
+                LL.toast(mode === 'work' ? 'Focus session complete! Take a break.' : 'Break over! Time to focus.', 'success');
+                remaining = 0;
+                updateDisplay();
+                // Auto-switch
+                if (mode === 'work') {
+                    setMode(sessions % 4 === 0 ? 'long' : 'short');
+                } else {
+                    setMode('work');
+                }
+                return;
+            }
+            updateDisplay();
+        }
+
+        function setMode(m) {
+            mode = m;
+            clearInterval(timer); timer = null; isRunning = false;
+            startBtn.textContent = 'Start';
+            var mins;
+            if (m === 'work') mins = parseInt(document.getElementById('pom-set-work').value,10) || 25;
+            else if (m === 'short') mins = parseInt(document.getElementById('pom-set-short').value,10) || 5;
+            else mins = parseInt(document.getElementById('pom-set-long').value,10) || 15;
+            remaining = mins * 60;
+            updateDisplay();
+            tabs.forEach(function(t) { t.classList.toggle('active', t.getAttribute('data-minutes') == mins || 
+                (m === 'work' && t.id === 'pom-mode-work') || (m === 'short' && t.id === 'pom-mode-short') || (m === 'long' && t.id === 'pom-mode-long')); });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            LL.init();
+            display = document.getElementById('pom-display');
+            startBtn = document.getElementById('pom-start');
+            tabs = document.querySelectorAll('.tabs .tab');
+
+            document.getElementById('pom-sessions').textContent = sessions;
+            document.getElementById('pom-total').textContent = LL.tracker.getToday();
+
+            startBtn.addEventListener('click', function() {
+                if (isRunning) {
+                    clearInterval(timer); timer = null; isRunning = false;
+                    startBtn.textContent = 'Resume';
+                } else {
+                    if (remaining <= 0) setMode(mode);
+                    timer = setInterval(tick, 1000);
+                    isRunning = true;
+                    startBtn.textContent = 'Pause';
+                }
+            });
+
+            document.getElementById('pom-reset').addEventListener('click', function() { setMode(mode); });
+
+            tabs.forEach(function(t) {
+                t.addEventListener('click', function() {
+                    var id = t.id;
+                    if (id === 'pom-mode-work') setMode('work');
+                    else if (id === 'pom-mode-short') setMode('short');
+                    else setMode('long');
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

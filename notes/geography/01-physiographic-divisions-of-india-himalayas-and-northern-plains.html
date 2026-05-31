@@ -3,66 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
-    <title>01 Physiographic Divisions Of India   Himalayas And Northern Plains - Laurel Library</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>01 Physiographic Divisions Of India   Himalayas And Northern Plains — Laurel Library</title>
     <meta name="description" content="01 Physiographic Divisions Of India   Himalayas And Northern Plains - study notes for competitive exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
-    <meta name="theme-color" content="#5c3d2e">
+    <meta name="theme-color" content="#1a202c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="#article-content" class="skip-link">Skip to content</a>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
 
-    <header class="site-header" role="banner">
+    <main id="main-content">
         <div class="container">
-            <div class="logo">
-                <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-                    <span class="logo-icon">&#128218;</span>
-                    <h1>Laurel Library</h1>
-                </a>
-            </div>
-            <nav class="main-nav" role="navigation" aria-label="Main navigation">
+            <div class="breadcrumbs" aria-label="Breadcrumb">
                 <a href="../../index.html">Home</a>
+                <span>/</span>
                 <a href="../index.html">Notes</a>
-                <a href="../../exams/index.html">Exams</a>
-                <a href="../../about.html">About</a>
-            </nav>
-            <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-                    <span class="icon-sun">&#9728;&#65039;</span>
-                    <span class="icon-moon">&#127769;</span>
-                </button>
-                <div class="search-bar" role="search">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
-                    <div id="search-results" class="search-results"></div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <div class="breadcrumbs">
-                <a href="../../index.html">Home</a>
-                <span>&rsaquo;</span>
+                <span>/</span>
                 <a href="index.html">Geography</a>
-                <span>&rsaquo;</span>
+                <span>/</span>
                 <span>01 Physiographic Divisions Of India   Himalayas And Northern Plains</span>
             </div>
 
             <div class="note-actions">
-                <button class="btn-bookmark" id="btn-bookmark" title="Bookmark this note">
-                    <span class="bookmark-icon">&#9734;</span> Bookmark
-                </button>
-                <button class="btn-print" onclick="window.print()" title="Print this note">
-                    &#128424; Print
-                </button>
-                <button class="btn-quiz" id="btn-quiz" title="Quiz yourself">
-                    &#128300; Quiz
-                </button>
-                <span class="reading-time">&#128337; 7 min read</span>
+                <button class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 7 min read</span>
             </div>
 
             <div class="notes-page">
@@ -119,7 +90,6 @@
 <p>The Northern Plains can further be classified into four regions based on their relief features:</p>
 <p><strong>Bhabar</strong>: A narrow belt, 8-16 km wide, south of the Shiwaliks where rivers deposit pebbles. Due to the high porosity of this region, streams typically disappear here. <strong>Terai</strong>: South of Bhabar, this 10-20 km wide marshy and swampy belt has re-emerging streams, abundant vegetation, and diverse wildlife. <strong>Bhangar</strong>: This area of older alluvium forms the largest part of the plains, lying above the floodplains and presenting a terrace-like topography with calcareous soil deposits (kankar). <strong>Khadar</strong>: These younger alluvial floodplains are replenished annually by river silt, making them highly fertile and suitable for intensive agriculture.</p>
 <figure><img src="images/01-physiographic-divisions-of-india-himalayas-and-northern-plains_9.png" alt="Diagram" loading="lazy"></figure>
-                    
                 </article>
             </div>
         </div>
@@ -136,12 +106,7 @@
         </div>
     </div>
 
-    <footer class="site-footer" role="contentinfo">
-        <div class="container">
-            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
-        </div>
-    </footer>
-
+    <script>document.write(LL.renderFooter());</script>
     <script src="../../assets/js/search.js" defer></script>
     <script src="../../assets/js/features.js" defer></script>
     <script>
@@ -207,6 +172,7 @@
                 });
             }
         })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
     </script>
 </body>
 </html>

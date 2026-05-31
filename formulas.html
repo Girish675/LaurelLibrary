@@ -3,162 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formula & Key Facts Reference - Laurel Library</title>
-    <meta name="description" content="Quick reference for key formulae, dates, and constants from study notes. Filter by subject for fast exam revision.">
-    <meta name="robots" content="index, follow">
+    <title>Formula Sheets — Laurel Library</title>
+    <meta name="description" content="Quick-reference formula sheets for Mathematics, Physics, and quantitative subjects. Auto-extracted key formulas from study notes.">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/formulas.html">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#5c3d2e">
+    <meta name="theme-color" content="#1a202c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header" role="banner">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-                    <span class="logo-icon">&#128218;</span>
-                    <h1>Laurel Library</h1>
-                </a>
-            </div>
-            <nav class="main-nav" role="navigation" aria-label="Main navigation">
-                <a href="index.html">Home</a>
-                <a href="notes/index.html">Notes</a>
-                <a href="exams/index.html">Exams</a>
-                <a href="about.html">About</a>
-            </nav>
-            <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-                    <span class="icon-sun">&#9728;&#65039;</span>
-                    <span class="icon-moon">&#127769;</span>
-                </button>
-                <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
-                    <div id="search-results" class="search-results"></div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <script src="assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('resources'));document.write(LL.renderSearchModal());</script>
 
     <main id="main-content">
-        <div class="container">
-            <div class="breadcrumbs">
-                <a href="index.html">Home</a>
-                <span>&rsaquo;</span>
-                <span>Formula & Key Facts</span>
+        <section class="section">
+            <div class="container">
+                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="resources/index.html">Resources</a><span>/</span><span>Formula Sheets</span></div>
+                <h1 class="section-title">📋 Formula Sheets</h1>
+                <p class="section-subtitle">Key formulas extracted from study notes for quick revision</p>
+
+                <div id="formula-loading" class="empty-state">
+                    <div class="empty-icon">📋</div>
+                    <h3>Loading formulas...</h3>
+                </div>
+
+                <div id="formula-content" style="display:none">
+                    <div id="formula-count" style="margin:var(--space-md) 0;color:var(--c-text-muted);font-size:var(--text-sm)"></div>
+                    <div id="formula-list" class="article-body"></div>
+                </div>
+
+                <div id="formula-empty" class="empty-state" style="display:none">
+                    <div class="empty-icon">📋</div>
+                    <h3>No formulas found</h3>
+                    <p>Formula sheets will be generated as more quantitative content is added.</p>
+                </div>
             </div>
-
-            <h2 class="section-title">Formula & Key Facts Quick Reference</h2>
-            <p style="margin-bottom: 15px; color: var(--color-text-light);">Key formulae, dates, and constants extracted from all notes. Filter by subject.</p>
-
-            <div style="margin-bottom: 20px;">
-                <select id="formula-filter" style="padding: 8px 15px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-card-bg); color: var(--color-text); font-size: 0.9rem;">
-                    <option value="all">All Subjects</option>
-                </select>
-            </div>
-
-            <div id="formula-content"></div>
-        </div>
+        </section>
     </main>
 
-    <footer class="site-footer" role="contentinfo">
-        <div class="container">
-            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
-        </div>
-    </footer>
-
+    <script>document.write(LL.renderFooter());</script>
     <script src="assets/js/search.js" defer></script>
-    <script src="assets/js/features.js" defer></script>
     <script>
-        (function() {
-            fetch('notes/index.json')
-                .then(function(r) { return r.json(); })
-                .then(function(data) {
-                    var notes = data.notes || [];
-                    var container = document.getElementById('formula-content');
-                    var filter = document.getElementById('formula-filter');
-                    var categories = new Set();
-
-                    notes.forEach(function(note) {
-                        if (note.category) categories.add(note.category);
-                    });
-
-                    categories.forEach(function(cat) {
-                        var option = document.createElement('option');
-                        option.value = cat;
-                        option.textContent = cat.replace('-', ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
-                        filter.appendChild(option);
-                    });
-
-                    // Extract formulae from note content by fetching each note
-                    var formulaData = {};
-                    var promises = notes.map(function(note) {
-                        return fetch(note.path)
-                            .then(function(r) { return r.text(); })
-                            .then(function(html) {
-                                var parser = new DOMParser();
-                                var doc = parser.parseFromString(html, 'text/html');
-                                var strongs = doc.querySelectorAll('strong');
-                                var facts = [];
-                                strongs.forEach(function(el) {
-                                    var text = el.textContent.trim();
-                                    var parent = el.parentElement;
-                                    if (text.length > 3 && text.length < 80 && parent) {
-                                        var ctx = parent.textContent.trim();
-                                        // Only include facts with numbers/measurements
-                                        if (/\d/.test(ctx) && ctx.length < 300) {
-                                            facts.push({ term: text, detail: ctx, source: note.title });
-                                        }
-                                    }
-                                });
-                                if (facts.length > 0) {
-                                    var cat = note.category || 'general';
-                                    if (!formulaData[cat]) formulaData[cat] = [];
-                                    formulaData[cat] = formulaData[cat].concat(facts.slice(0, 20));
-                                }
-                            })
-                            .catch(function() {});
-                    });
-
-                    Promise.all(promises).then(function() {
-                        renderFormulae('all');
-                    });
-
-                    filter.addEventListener('change', function() {
-                        renderFormulae(filter.value);
-                    });
-
-                    function renderFormulae(filterVal) {
-                        var html = '';
-                        var keys = Object.keys(formulaData).sort();
-                        if (keys.length === 0) {
-                            container.innerHTML = '<p style="color:var(--color-text-light)">No formulae extracted yet. Add more notes to populate this page.</p>';
-                            return;
-                        }
-                        keys.forEach(function(cat) {
-                            if (filterVal !== 'all' && filterVal !== cat) return;
-                            var catName = cat.replace('-', ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
-                            html += '<section class="formula-section">';
-                            html += '<h3>' + catName + '</h3>';
-                            formulaData[cat].forEach(function(item) {
-                                html += '<div class="formula-card">';
-                                html += '<strong>' + item.term + '</strong>';
-                                html += '<p style="margin:5px 0 0;font-size:0.88rem;color:var(--color-text-light)">' + item.detail + '</p>';
-                                html += '<small style="color:var(--color-text-light);opacity:0.7">Source: ' + item.source + '</small>';
-                                html += '</div>';
-                            });
-                            html += '</section>';
+    (function() {
+        async function init() {
+            LL.init();
+            try {
+                var r = await fetch('notes/index.json');
+                if (!r.ok) throw new Error();
+                var data = await r.json();
+                var notes = data.notes || [];
+                if (notes.length === 0) {
+                    document.getElementById('formula-loading').style.display = 'none';
+                    document.getElementById('formula-empty').style.display = 'block';
+                    return;
+                }
+                // Try to extract formulas from notes by fetching them
+                var allFormulas = [];
+                var fetched = 0;
+                var total = Math.min(notes.length, 20); // Limit to prevent too many requests
+                
+                for (var i = 0; i < total; i++) {
+                    try {
+                        var nr = await fetch(notes[i].path);
+                        if (!nr.ok) continue;
+                        var html = await nr.text();
+                        var parser = new DOMParser();
+                        var doc = parser.parseFromString(html, 'text/html');
+                        var article = doc.getElementById('article-content') || doc.querySelector('.article-content') || doc.querySelector('main');
+                        if (!article) continue;
+                        
+                        // Find formulas: text containing =, numbers with units, or strong tags with numbers
+                        article.querySelectorAll('strong, b, li').forEach(function(el) {
+                            var text = el.textContent.trim();
+                            if (text.length > 5 && text.length < 200 && (/[=×÷±²³]/.test(text) || /\d+.*(?:km|m|cm|mm|°|%|kg|g|ml|l|sq|cu)/i.test(text))) {
+                                allFormulas.push({ text: text, source: notes[i].title, category: notes[i].category });
+                            }
                         });
-                        container.innerHTML = html || '<p>No formulae found for this filter.</p>';
-                    }
-                })
-                .catch(function() {
-                    document.getElementById('formula-content').innerHTML = '<p>Unable to load notes index.</p>';
+                    } catch(e) {}
+                }
+
+                document.getElementById('formula-loading').style.display = 'none';
+                if (allFormulas.length === 0) {
+                    document.getElementById('formula-empty').style.display = 'block';
+                    return;
+                }
+
+                document.getElementById('formula-content').style.display = 'block';
+                document.getElementById('formula-count').textContent = allFormulas.length + ' formulas/key facts found';
+
+                // Group by category
+                var groups = {};
+                allFormulas.forEach(function(f) {
+                    var cat = f.category || 'General';
+                    if (!groups[cat]) groups[cat] = [];
+                    groups[cat].push(f);
                 });
-        })();
+
+                var html = '';
+                for (var cat in groups) {
+                    var catName = cat.charAt(0).toUpperCase() + cat.slice(1).replace(/-/g, ' ');
+                    html += '<h2 style="margin-top:var(--space-xl)">' + LL.escapeHtml(catName) + '</h2>';
+                    html += '<div style="display:grid;gap:var(--space-xs)">';
+                    groups[cat].forEach(function(f) {
+                        html += '<div style="padding:var(--space-sm) var(--space-md);background:var(--c-bg-alt);border-radius:var(--radius-md);border-left:3px solid var(--c-primary)">' +
+                            '<div style="font-weight:500">' + LL.escapeHtml(f.text) + '</div>' +
+                            '<div style="font-size:var(--text-xs);color:var(--c-text-muted);margin-top:2px">From: ' + LL.escapeHtml(f.source) + '</div></div>';
+                    });
+                    html += '</div>';
+                }
+                document.getElementById('formula-list').innerHTML = html;
+
+            } catch(e) {
+                document.getElementById('formula-loading').style.display = 'none';
+                document.getElementById('formula-empty').style.display = 'block';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', init);
+    })();
     </script>
 </body>
 </html>

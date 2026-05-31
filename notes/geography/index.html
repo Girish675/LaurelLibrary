@@ -3,84 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
-    <title>Geography - Laurel Library</title>
-    <meta name="description" content="Geography study notes for competitive exam preparation. Free on Laurel Library.">
-    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>Geography Notes — Laurel Library</title>
+    <meta name="description" content="Geography study notes for competitive exam preparation — physical, human, economic & Indian geography. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
-    <meta name="theme-color" content="#5c3d2e">
+    <meta name="theme-color" content="#1a202c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="#category-notes" class="skip-link">Skip to content</a>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
 
-    <header class="site-header" role="banner">
-        <div class="container">
-            <div class="logo">
-                <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-                    <span class="logo-icon">&#128218;</span>
-                    <h1>Laurel Library</h1>
-                </a>
-            </div>
-            <nav class="main-nav" role="navigation" aria-label="Main navigation">
-                <a href="../../index.html">Home</a>
-                <a href="../index.html">Notes</a>
-                <a href="../../exams/index.html">Exams</a>
-                <a href="../../about.html">About</a>
-            </nav>
-            <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-                    <span class="icon-sun">&#9728;&#65039;</span>
-                    <span class="icon-moon">&#127769;</span>
-                </button>
-                <div class="search-bar" role="search">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
-                    <div id="search-results" class="search-results"></div>
+    <main id="main-content">
+        <section class="section">
+            <div class="container">
+                <div class="breadcrumbs" aria-label="Breadcrumb">
+                    <a href="../../index.html">Home</a><span>/</span>
+                    <a href="../index.html">Notes</a><span>/</span>
+                    <span>Geography</span>
+                </div>
+                <h1 class="section-title">🌍 Geography</h1>
+                <p class="section-subtitle">Physical, human, economic & Indian geography notes</p>
+                <div id="notes-count" style="margin:var(--space-md) 0;color:var(--c-text-muted);font-size:var(--text-sm)"></div>
+                <div class="notes-grid" id="category-notes">
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
                 </div>
             </div>
-        </div>
-    </header>
-    <main>
-        <div class="container">
-            <div class="breadcrumbs">
-                <a href="../../index.html">Home</a>
-                <span>&rsaquo;</span>
-                <a href="../index.html">Notes</a>
-                <span>&rsaquo;</span>
-                <span>Geography</span>
-            </div>
-            <h2 class="section-title">Geography</h2>
-            <div class="notes-list" id="category-notes"></div>
-        </div>
+        </section>
     </main>
-    <footer class="site-footer" role="contentinfo">
-        <div class="container">
-            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
-        </div>
-    </footer>
-    <script src="../../assets/js/app.js" defer></script>
+
+    <script>document.write(LL.renderFooter());</script>
     <script src="../../assets/js/search.js" defer></script>
-    <script src="../../assets/js/features.js" defer></script>
     <script>
-        fetch('../../notes/index.json')
-            .then(r => r.json())
-            .then(data => {
-                var container = document.getElementById('category-notes');
-                var notes = data.notes.filter(n => n.category === 'geography');
-                notes.forEach(function(note) {
-                    var a = document.createElement('a');
-                    a.className = 'note-card';
-                    a.href = note.path.replace('notes/geography/', '');
-                    a.innerHTML = '<h4>' + note.title + '</h4><div class="meta">' + note.exam + '</div>';
-                    container.appendChild(a);
-                });
-                if (notes.length === 0) {
-                    container.innerHTML = '<p>No notes yet in this category.</p>';
-                }
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                LL.init();
+                fetch('../../notes/index.json')
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        var container = document.getElementById('category-notes');
+                        var notes = (data.notes || []).filter(function(n) { return n.category === 'geography'; });
+                        document.getElementById('notes-count').textContent = notes.length + ' notes';
+                        if (notes.length === 0) {
+                            container.innerHTML = '<div class="empty-state"><div class="empty-icon">🌍</div><h3>No geography notes yet</h3></div>';
+                            return;
+                        }
+                        container.innerHTML = notes.map(function(note) {
+                            var href = note.path.replace('notes/geography/', '');
+                            return '<a href="' + href + '" class="note-card"><h4>' + LL.escapeHtml(note.title) + '</h4>' +
+                                '<div class="meta"><span class="tag">Geography</span><span>' + LL.escapeHtml(note.exam || 'General') + '</span></div></a>';
+                        }).join('');
+                    });
             });
+        })();
     </script>
 </body>
 </html>

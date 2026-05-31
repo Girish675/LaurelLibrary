@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects — Laurel Library</title>
+    <meta name="description" content="Browse study material by subject — Mathematics, Science, Geography, History, Polity, Economics, Reasoning, Aptitude, Computer Science and more.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/subjects/">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('subjects'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <section class="section">
+            <div class="container">
+                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><span>Subjects</span></div>
+                <h1 class="section-title">Subjects</h1>
+                <p class="section-subtitle">Explore study material organized by subject area</p>
+                <div class="card-grid" id="subjects-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../assets/js/search.js" defer></script>
+    <script>
+    (function() {
+        var subjects = [
+            { id:'geography', name:'Geography', icon:'🌍', desc:'Physical, human, economic & Indian geography', topics:['Physical Geography','Indian Geography','World Geography','Climatology','Oceanography'] },
+            { id:'history', name:'History', icon:'📜', desc:'Ancient, medieval, modern India & world history', topics:['Ancient India','Medieval India','Modern India','World History','Art & Culture'] },
+            { id:'polity', name:'Indian Polity', icon:'⚖️', desc:'Constitution, governance, judiciary & public administration', topics:['Constitution','Parliament','Judiciary','Governance','Panchayati Raj'] },
+            { id:'economics', name:'Economics', icon:'📊', desc:'Indian economy, microeconomics, macroeconomics', topics:['Indian Economy','Banking','Budget','International Trade','Economic Surveys'] },
+            { id:'science', name:'General Science', icon:'🔬', desc:'Physics, chemistry, biology for competitive exams', topics:['Physics','Chemistry','Biology','Environment','Space Science'] },
+            { id:'mathematics', name:'Mathematics', icon:'📐', desc:'Algebra, geometry, calculus, number systems', topics:['Algebra','Geometry','Trigonometry','Calculus','Statistics'] },
+            { id:'reasoning', name:'Reasoning', icon:'🧩', desc:'Logical, analytical & verbal reasoning', topics:['Logical Reasoning','Analytical Reasoning','Verbal Reasoning','Non-Verbal','Data Interpretation'] },
+            { id:'aptitude', name:'Quantitative Aptitude', icon:'🧮', desc:'Number systems, arithmetic, data interpretation', topics:['Number System','Percentage','Profit & Loss','Time & Work','Data Interpretation'] },
+            { id:'english', name:'English', icon:'📝', desc:'Grammar, vocabulary, comprehension, essay writing', topics:['Grammar','Vocabulary','Comprehension','Para Jumbles','Error Spotting'] },
+            { id:'current-affairs', name:'Current Affairs', icon:'📰', desc:'Daily, monthly & yearly current events', topics:['National','International','Economy','Science & Tech','Awards & Honours'] },
+            { id:'general-knowledge', name:'General Knowledge', icon:'💡', desc:'Static GK, general awareness, facts & figures', topics:['Indian Polity','Geography','History','Science','Awards'] },
+            { id:'computer-science', name:'Computer Science', icon:'💻', desc:'Data structures, algorithms, OS, databases, networks', topics:['DSA','Operating Systems','DBMS','Computer Networks','Theory of Computation'] },
+            { id:'electronics', name:'Electronics & Communication', icon:'📡', desc:'Signals, circuits, communications, VLSI', topics:['Signals & Systems','Digital Electronics','Communications','Control Systems','Electromagnetics'] },
+            { id:'electrical', name:'Electrical Engineering', icon:'⚡', desc:'Power systems, machines, control, circuits', topics:['Power Systems','Electrical Machines','Control Systems','Circuit Theory','Power Electronics'] },
+            { id:'mechanical', name:'Mechanical Engineering', icon:'🔧', desc:'Thermodynamics, mechanics, manufacturing, design', topics:['Thermodynamics','Fluid Mechanics','Strength of Materials','Manufacturing','Machine Design'] },
+            { id:'civil', name:'Civil Engineering', icon:'🏗️', desc:'Structures, geotechnical, transportation, water resources', topics:['Structural Engineering','Geotechnical','Transportation','Water Resources','Environmental'] }
+        ];
+
+        function render() {
+            var grid = document.getElementById('subjects-grid');
+            if (!grid) return;
+            grid.innerHTML = subjects.map(function(s) {
+                return '<a href="../notes/' + s.id + '/index.html" class="category-card" style="align-items:flex-start;flex-direction:column;padding:var(--space-lg)">' +
+                    '<div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm)">' +
+                    '<span style="font-size:2rem">' + s.icon + '</span>' +
+                    '<h3 style="margin:0;font-size:var(--text-md)">' + s.name + '</h3></div>' +
+                    '<p style="color:var(--c-text-secondary);font-size:var(--text-sm);margin:0 0 var(--space-sm)">' + s.desc + '</p>' +
+                    '<div class="exam-tags">' + s.topics.slice(0,3).map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div></a>';
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() { render(); LL.init(); });
+    })();
+    </script>
+</body>
+</html>

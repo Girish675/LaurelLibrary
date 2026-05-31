@@ -850,79 +850,37 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title_esc} - Laurel Library</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>{title_esc} — Laurel Library</title>
     <meta name="description" content="{title_esc} - {cat_esc} study notes for {exam_esc} exam preparation. Free on Laurel Library.">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
-    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/notes/{category}/{{}}.html">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
-    <meta name="theme-color" content="#5c3d2e">
+    <meta name="theme-color" content="#1a202c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script type="application/ld+json">
-    {{{{
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "{title_esc}",
-        "description": "{title_esc} - {cat_esc} study notes for {exam_esc}",
-        "publisher": {{{{"@type": "Organization", "name": "Laurel Library"}}}},
-        "mainEntityOfPage": {{{{"@type": "WebPage"}}}}
-    }}}}
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="#article-content" class="skip-link">Skip to content</a>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
 
-    <header class="site-header" role="banner">
+    <main id="main-content">
         <div class="container">
-            <div class="logo">
-                <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-                    <span class="logo-icon">&#128218;</span>
-                    <h1>Laurel Library</h1>
-                </a>
-            </div>
-            <nav class="main-nav" role="navigation" aria-label="Main navigation">
+            <div class="breadcrumbs" aria-label="Breadcrumb">
                 <a href="../../index.html">Home</a>
+                <span>/</span>
                 <a href="../index.html">Notes</a>
-                <a href="../../exams/index.html">Exams</a>
-                <a href="../../about.html">About</a>
-            </nav>
-            <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-                    <span class="icon-sun">&#9728;&#65039;</span>
-                    <span class="icon-moon">&#127769;</span>
-                </button>
-                <div class="search-bar" role="search">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
-                    <div id="search-results" class="search-results"></div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <div class="breadcrumbs">
-                <a href="../../index.html">Home</a>
-                <span>&rsaquo;</span>
+                <span>/</span>
                 <a href="index.html">{cat_esc}</a>
-                <span>&rsaquo;</span>
+                <span>/</span>
                 <span>{title_esc}</span>
             </div>
 
             <div class="note-actions">
-                <button class="btn-bookmark" id="btn-bookmark" title="Bookmark this note">
-                    <span class="bookmark-icon">&#9734;</span> Bookmark
-                </button>
-                <button class="btn-print" onclick="window.print()" title="Print this note">
-                    &#128424; Print
-                </button>
-                <button class="btn-quiz" id="btn-quiz" title="Quiz yourself">
-                    &#128300; Quiz
-                </button>
-                <span class="reading-time">&#128337; {reading_time} min read</span>
+                <button class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; {reading_time} min read</span>
             </div>
 
             <div class="notes-page">
@@ -959,12 +917,7 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
         </div>
     </div>
 
-    <footer class="site-footer" role="contentinfo">
-        <div class="container">
-            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
-        </div>
-    </footer>
-
+    <script>document.write(LL.renderFooter());</script>
     <script src="../../assets/js/search.js" defer></script>
     <script src="../../assets/js/features.js" defer></script>
     <script>
@@ -1030,6 +983,7 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                 }});
             }}
         }})();
+        document.addEventListener('DOMContentLoaded', function() {{ LL.init(); }});
     </script>
 </body>
 </html>"""

@@ -3,84 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Study Notes - Laurel Library | Competitive Exam Preparation</title>
-    <meta name="description" content="Browse all free study notes on Laurel Library. Geography, History, Polity, Science, Mathematics and more for UPSC, SSC, GATE, JEE, NEET preparation.">
-    <meta name="robots" content="index, follow">
+    <title>All Study Notes — Laurel Library</title>
+    <meta name="description" content="Browse all free study notes on Laurel Library. Geography, History, Polity, Science, Mathematics and more for competitive exam preparation.">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/notes/">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="manifest" href="../manifest.json">
-    <meta name="theme-color" content="#5c3d2e">
+    <meta name="theme-color" content="#1a202c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header" role="banner">
-        <div class="container">
-            <div class="logo">
-                <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-                    <span class="logo-icon">&#128218;</span>
-                    <h1>Laurel Library</h1>
-                </a>
-            </div>
-            <nav class="main-nav" role="navigation" aria-label="Main navigation">
-                <a href="../index.html">Home</a>
-                <a href="index.html" class="active" aria-current="page">Notes</a>
-                <a href="../exams/index.html">Exams</a>
-                <a href="../about.html">About</a>
-            </nav>
-            <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-                    <span class="icon-sun">&#9728;&#65039;</span>
-                    <span class="icon-moon">&#127769;</span>
-                </button>
-                <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
-                    <div id="search-results" class="search-results"></div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <script src="../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
 
     <main id="main-content">
-        <div class="container" style="padding: 40px 20px;">
-            <h2 class="section-title">All Notes</h2>
-            <div class="notes-list" id="all-notes"></div>
-        </div>
+        <section class="section">
+            <div class="container">
+                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><span>Notes</span></div>
+                <h1 class="section-title">Study Notes</h1>
+                <p class="section-subtitle">Browse all available study material organized by subject</p>
+
+                <div class="tabs" id="notes-tabs" role="tablist">
+                    <button class="tab active" role="tab" data-filter="all" aria-selected="true">All</button>
+                </div>
+
+                <div id="notes-count" style="margin:var(--space-md) 0;color:var(--c-text-muted);font-size:var(--text-sm)"></div>
+                <div class="notes-grid" id="notes-list">
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-card"></div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="site-footer" role="contentinfo">
-        <div class="container">
-            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
-        </div>
-    </footer>
-
-    <script>
-        async function loadNotes() {
-            try {
-                const response = await fetch('index.json');
-                const data = await response.json();
-                const container = document.getElementById('all-notes');
-                
-                if (!data.notes || data.notes.length === 0) {
-                    container.innerHTML = '<p>No notes available yet.</p>';
-                    return;
-                }
-
-                container.innerHTML = data.notes.map(function(note) {
-                    return '<a href="../' + note.path + '" class="note-card">' +
-                        '<h4>' + note.title + '</h4>' +
-                        '<div class="meta">' + note.category.replace('-', ' ') + ' &bull; ' + (note.exam || 'General') + '</div>' +
-                    '</a>';
-                }).join('');
-            } catch (e) {
-                document.getElementById('all-notes').innerHTML = '<p>No notes available yet.</p>';
-            }
-        }
-        document.addEventListener('DOMContentLoaded', loadNotes);
-    </script>
+    <script>document.write(LL.renderFooter());</script>
     <script src="../assets/js/search.js" defer></script>
-    <script src="../assets/js/features.js" defer></script>
+    <script>
+    (function() {
+        var notes = [], activeFilter = 'all';
+
+        async function init() {
+            try {
+                var r = await fetch('index.json');
+                if (r.ok) { var d = await r.json(); notes = d.notes || []; }
+            } catch(e) {}
+            buildTabs();
+            renderNotes();
+            LL.init();
+        }
+
+        function buildTabs() {
+            var cats = new Set();
+            notes.forEach(function(n) { cats.add(n.category); });
+            var tabs = document.getElementById('notes-tabs');
+            if (!tabs) return;
+            cats.forEach(function(c) {
+                var btn = document.createElement('button');
+                btn.className = 'tab';
+                btn.setAttribute('role', 'tab');
+                btn.setAttribute('data-filter', c);
+                btn.textContent = c.charAt(0).toUpperCase() + c.slice(1).replace(/-/g, ' ');
+                tabs.appendChild(btn);
+            });
+            tabs.addEventListener('click', function(e) {
+                if (e.target.classList.contains('tab')) {
+                    tabs.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+                    e.target.classList.add('active');
+                    e.target.setAttribute('aria-selected','true');
+                    activeFilter = e.target.getAttribute('data-filter');
+                    renderNotes();
+                }
+            });
+        }
+
+        function renderNotes() {
+            var list = document.getElementById('notes-list');
+            var count = document.getElementById('notes-count');
+            if (!list) return;
+            var filtered = activeFilter === 'all' ? notes : notes.filter(function(n) { return n.category === activeFilter; });
+            if (count) count.textContent = filtered.length + ' note' + (filtered.length !== 1 ? 's' : '');
+            if (filtered.length === 0) {
+                list.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><h3>No notes yet</h3><p>Notes for this category are coming soon.</p></div>';
+                return;
+            }
+            list.innerHTML = filtered.map(function(n) {
+                var cat = n.category.charAt(0).toUpperCase() + n.category.slice(1).replace(/-/g, ' ');
+                return '<a href="../' + n.path + '" class="note-card"><h4>' + LL.escapeHtml(n.title) + '</h4>' +
+                    '<div class="meta"><span class="tag">' + LL.escapeHtml(cat) + '</span>' +
+                    '<span>' + LL.escapeHtml(n.exam || 'General') + '</span></div></a>';
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    })();
+    </script>
 </body>
 </html>

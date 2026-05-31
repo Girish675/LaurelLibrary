@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards — Laurel Library</title>
+    <meta name="description" content="Create and review custom flashcards for active recall practice. The most effective way to memorize key concepts for competitive exams.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/tools/flashcards.html">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('tools'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <section class="section">
+            <div class="container" style="max-width:700px">
+                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>Flashcards</span></div>
+                <h1 class="section-title">🗂️ Flashcards</h1>
+                <p class="section-subtitle">Create and review custom flashcards for active recall</p>
+
+                <!-- Create Flashcard -->
+                <div style="background:var(--c-bg-alt);padding:var(--space-lg);border-radius:var(--radius-lg);margin:var(--space-lg) 0">
+                    <h3 style="margin:0 0 var(--space-md)">Add New Card</h3>
+                    <div style="display:grid;gap:var(--space-sm)">
+                        <input type="text" id="fc-front" placeholder="Front (question/term)" class="input" maxlength="500">
+                        <textarea id="fc-back" placeholder="Back (answer/definition)" class="input" rows="3" maxlength="1000"></textarea>
+                        <input type="text" id="fc-deck" placeholder="Deck name (optional, e.g. Geography)" class="input" maxlength="100">
+                        <button class="btn btn-primary" id="fc-add">Add Card</button>
+                    </div>
+                </div>
+
+                <!-- Deck Filter -->
+                <div class="tabs" id="fc-decks" style="margin:var(--space-lg) 0">
+                    <button class="tab active" data-deck="all">All</button>
+                </div>
+
+                <!-- Review Area -->
+                <div id="fc-review" style="margin:var(--space-lg) 0;text-align:center">
+                    <div class="empty-state"><div class="empty-icon">🗂️</div><h3>No flashcards yet</h3><p>Add your first card above to start reviewing.</p></div>
+                </div>
+
+                <!-- Stats -->
+                <div id="fc-stats" style="color:var(--c-text-muted);font-size:var(--text-sm);text-align:center;margin:var(--space-md) 0"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../assets/js/search.js" defer></script>
+    <script>
+    (function() {
+        var cards = JSON.parse(localStorage.getItem('ll-flashcards') || '[]');
+        var currentIdx = 0, showingBack = false, activeDeck = 'all';
+
+        function save() { localStorage.setItem('ll-flashcards', JSON.stringify(cards)); }
+
+        function filtered() {
+            return activeDeck === 'all' ? cards : cards.filter(function(c) { return c.deck === activeDeck; });
+        }
+
+        function renderDecks() {
+            var decks = new Set(); cards.forEach(function(c) { if (c.deck) decks.add(c.deck); });
+            var container = document.getElementById('fc-decks');
+            container.innerHTML = '<button class="tab' + (activeDeck === 'all' ? ' active' : '') + '" data-deck="all">All (' + cards.length + ')</button>';
+            decks.forEach(function(d) {
+                var count = cards.filter(function(c) { return c.deck === d; }).length;
+                container.innerHTML += '<button class="tab' + (activeDeck === d ? ' active' : '') + '" data-deck="' + LL.escapeHtml(d) + '">' + LL.escapeHtml(d) + ' (' + count + ')</button>';
+            });
+            container.querySelectorAll('.tab').forEach(function(t) {
+                t.addEventListener('click', function() {
+                    activeDeck = t.getAttribute('data-deck');
+                    currentIdx = 0; showingBack = false;
+                    renderDecks(); renderReview();
+                });
+            });
+        }
+
+        function renderReview() {
+            var area = document.getElementById('fc-review');
+            var f = filtered();
+            if (f.length === 0) {
+                area.innerHTML = '<div class="empty-state"><div class="empty-icon">🗂️</div><h3>No cards' + (activeDeck !== 'all' ? ' in this deck' : '') + '</h3><p>Add cards above to start reviewing.</p></div>';
+                document.getElementById('fc-stats').textContent = '';
+                return;
+            }
+            currentIdx = Math.min(currentIdx, f.length - 1);
+            var card = f[currentIdx];
+            area.innerHTML = '<div class="flashcard-container" style="perspective:1000px;margin:var(--space-md) 0">' +
+                '<div class="flashcard" id="fc-card" style="cursor:pointer;min-height:200px;display:flex;align-items:center;justify-content:center;padding:var(--space-xl);background:var(--c-bg-alt);border-radius:var(--radius-lg);border:2px solid var(--c-border);font-size:var(--text-lg);transition:transform 0.15s">' +
+                '<div>' + (showingBack ? '<div style="font-size:var(--text-xs);color:var(--c-text-muted);margin-bottom:var(--space-xs)">ANSWER</div>' + LL.escapeHtml(card.back) : '<div style="font-size:var(--text-xs);color:var(--c-text-muted);margin-bottom:var(--space-xs)">QUESTION</div>' + LL.escapeHtml(card.front)) + '</div>' +
+                '</div></div>' +
+                '<p style="font-size:var(--text-sm);color:var(--c-text-muted)">Click card to flip</p>' +
+                '<div style="display:flex;gap:var(--space-sm);justify-content:center;margin:var(--space-md) 0">' +
+                '<button class="btn" id="fc-prev" ' + (currentIdx === 0 ? 'disabled' : '') + '>← Previous</button>' +
+                '<button class="btn btn-primary" id="fc-flip">Flip</button>' +
+                '<button class="btn" id="fc-next" ' + (currentIdx >= f.length - 1 ? 'disabled' : '') + '>Next →</button>' +
+                '</div>' +
+                '<button class="btn btn-sm" id="fc-delete" style="margin-top:var(--space-sm);color:var(--c-error)">Delete this card</button>';
+
+            document.getElementById('fc-card').addEventListener('click', flip);
+            document.getElementById('fc-flip').addEventListener('click', flip);
+            document.getElementById('fc-prev').addEventListener('click', function() { currentIdx = Math.max(0, currentIdx - 1); showingBack = false; renderReview(); });
+            document.getElementById('fc-next').addEventListener('click', function() { currentIdx = Math.min(f.length - 1, currentIdx + 1); showingBack = false; renderReview(); });
+            document.getElementById('fc-delete').addEventListener('click', function() {
+                var globalIdx = cards.indexOf(card);
+                if (globalIdx !== -1) { cards.splice(globalIdx, 1); save(); }
+                if (currentIdx >= filtered().length) currentIdx = Math.max(0, filtered().length - 1);
+                showingBack = false; renderDecks(); renderReview();
+            });
+
+            document.getElementById('fc-stats').textContent = 'Card ' + (currentIdx + 1) + ' of ' + f.length;
+        }
+
+        function flip() { showingBack = !showingBack; renderReview(); }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            LL.init();
+            renderDecks(); renderReview();
+
+            document.getElementById('fc-add').addEventListener('click', function() {
+                var front = document.getElementById('fc-front').value.trim();
+                var back = document.getElementById('fc-back').value.trim();
+                var deck = document.getElementById('fc-deck').value.trim() || 'General';
+                if (!front || !back) { LL.toast('Please fill in both sides of the card', 'warning'); return; }
+                cards.push({ front: front, back: back, deck: deck, created: new Date().toISOString() });
+                save();
+                document.getElementById('fc-front').value = '';
+                document.getElementById('fc-back').value = '';
+                LL.toast('Card added!', 'success');
+                LL.xp.add(2, 'Created a flashcard');
+                renderDecks(); renderReview();
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                if (e.key === ' ' || e.key === 'f') { e.preventDefault(); flip(); }
+                else if (e.key === 'ArrowLeft') { currentIdx = Math.max(0, currentIdx - 1); showingBack = false; renderReview(); }
+                else if (e.key === 'ArrowRight') { currentIdx = Math.min(filtered().length - 1, currentIdx + 1); showingBack = false; renderReview(); }
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

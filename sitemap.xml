@@ -11,6 +11,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://girish675.github.io/LaurelLibrary/formulas.html</loc>
+    <lastmod>2026-05-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://girish675.github.io/LaurelLibrary/dashboard.html</loc>
+    <lastmod>2026-05-31</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/index.html</loc>
     <lastmod>2026-05-31</lastmod>
     <priority>0.8</priority>
@@ -21,178 +31,213 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://girish675.github.io/LaurelLibrary/formulas.html</loc>
+    <loc>https://girish675.github.io/LaurelLibrary/subjects/index.html</loc>
+    <lastmod>2026-05-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://girish675.github.io/LaurelLibrary/tools/index.html</loc>
+    <lastmod>2026-05-31</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://girish675.github.io/LaurelLibrary/tools/pomodoro.html</loc>
     <lastmod>2026-05-31</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://girish675.github.io/LaurelLibrary/notes/geography/01-physiographic-divisions-of-india-himalayas-and-northern-plains.html</loc>
+    <loc>https://girish675.github.io/LaurelLibrary/tools/flashcards.html</loc>
+    <lastmod>2026-05-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://girish675.github.io/LaurelLibrary/tools/gpa-calculator.html</loc>
+    <lastmod>2026-05-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://girish675.github.io/LaurelLibrary/tools/planner.html</loc>
+    <lastmod>2026-05-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://girish675.github.io/LaurelLibrary/resources/index.html</loc>
     <lastmod>2026-05-31</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://girish675.github.io/LaurelLibrary/notes/geography/index.html</loc>
+    <lastmod>2026-05-31</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://girish675.github.io/LaurelLibrary/notes/geography/01-physiographic-divisions-of-india-himalayas-and-northern-plains.html</loc>
+    <lastmod>2026-05-31</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/02-physiographic-divisions-of-india-plateaus-and-deserts.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/03-physiographic-divisions-of-india-coastal-plains-and-islands.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/04-india-location-and-its-size.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/05-drainage-system-introduction.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/06-drainage-system-himalayan-river-system.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/07-drainage-system-peninsular-river-system-east-flowing-rivers.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/08-lakes-of-india.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/09-dams-in-india.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/10-indian-climate.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/11-waterfalls-in-india.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/12-soils-in-india.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/13-agriculture.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/14-major-crops-of-india.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/15-transport-roadways.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/16-transport-railways.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/17-transport-waterways.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/18-transport-airways-and-pipelines.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/19-communications.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/20-mineral-resources-in-india-metallic.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/21-mineral-resources-in-india-non-metallic.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/22-conventional-and-non-conventional-resources.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/23-mineral-resources-in-india-coal-petroleum-and-natural-gas.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/24-energy-resources-in-india-thermal-and-hydro-power-plants.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/25-energy-resources-in-india-nuclear-power-plants.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/26-geo-tidal-energy.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/27-wildlife.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/28-wildlife-conservation-efforts-and-endangered-species.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/29-natural-vegetation-of-india.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/30-national-parks.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/31-energy-resources-in-india-solar-and-wind-powerplants.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/32-wildlife-sanctuaries-and-biosphere-reserves.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/33-sobriquet.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://girish675.github.io/LaurelLibrary/notes/geography/34-census-2011.html</loc>
     <lastmod>2026-05-31</lastmod>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>

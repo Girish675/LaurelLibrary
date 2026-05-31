@@ -1,14 +1,29 @@
-const CACHE_NAME = 'laurel-library-v1.2';
+const CACHE_NAME = 'laurel-library-v2.0';
 const OFFLINE_URL = '/offline.html';
 
 const PRECACHE_URLS = [
     '/',
     '/index.html',
     '/offline.html',
+    '/about.html',
+    '/formulas.html',
+    '/dashboard.html',
     '/assets/css/style.css',
+    '/assets/js/components.js',
     '/assets/js/features.js',
     '/assets/js/search.js',
     '/assets/js/app.js',
+    '/notes/index.html',
+    '/notes/index.json',
+    '/exams/index.html',
+    '/subjects/index.html',
+    '/tools/index.html',
+    '/tools/pomodoro.html',
+    '/tools/flashcards.html',
+    '/tools/gpa-calculator.html',
+    '/tools/planner.html',
+    '/resources/index.html',
+    '/search-index.json',
     '/manifest.json'
 ];
 
