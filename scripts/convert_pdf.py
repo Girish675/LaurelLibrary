@@ -846,19 +846,36 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
             </section>'''
     
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title_esc} - Laurel Library</title>
+    <meta name="description" content="{title_esc} - {cat_esc} study notes for {exam_esc} exam preparation. Free on Laurel Library.">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
+    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/notes/{category}/{{}}.html">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#5c3d2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {{{{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{title_esc}",
+        "description": "{title_esc} - {cat_esc} study notes for {exam_esc}",
+        "publisher": {{{{"@type": "Organization", "name": "Laurel Library"}}}},
+        "mainEntityOfPage": {{{{"@type": "WebPage"}}}}
+    }}}}
+    </script>
 </head>
 <body>
-    <header class="site-header">
+    <a href="#article-content" class="skip-link">Skip to content</a>
+
+    <header class="site-header" role="banner">
         <div class="container">
             <div class="logo">
                 <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
@@ -866,7 +883,7 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                     <h1>Laurel Library</h1>
                 </a>
             </div>
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <a href="../../index.html">Home</a>
                 <a href="../index.html">Notes</a>
                 <a href="../../exams/index.html">Exams</a>
@@ -877,8 +894,8 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                     <span class="icon-sun">&#9728;&#65039;</span>
                     <span class="icon-moon">&#127769;</span>
                 </button>
-                <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                <div class="search-bar" role="search">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
                     <div id="search-results" class="search-results"></div>
                 </div>
             </div>
@@ -942,14 +959,14 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
         </div>
     </div>
 
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="container">
             <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
         </div>
     </footer>
 
-    <script src="../../assets/js/search.js"></script>
-    <script src="../../assets/js/features.js"></script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
     <script>
         // TOC generation with collapse support
         (function() {{
@@ -1148,19 +1165,25 @@ def create_category_index(out_dir, category):
     """Create a basic category index page."""
     cat_display = category.replace('-', ' ').title()
     html = f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{cat_display} - Laurel Library</title>
+    <meta name="description" content="{cat_display} study notes for competitive exam preparation. Free on Laurel Library.">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#5c3d2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header">
+    <a href="#category-notes" class="skip-link">Skip to content</a>
+
+    <header class="site-header" role="banner">
         <div class="container">
             <div class="logo">
                 <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
@@ -1168,7 +1191,7 @@ def create_category_index(out_dir, category):
                     <h1>Laurel Library</h1>
                 </a>
             </div>
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <a href="../../index.html">Home</a>
                 <a href="../index.html">Notes</a>
                 <a href="../../exams/index.html">Exams</a>
@@ -1179,8 +1202,8 @@ def create_category_index(out_dir, category):
                     <span class="icon-sun">&#9728;&#65039;</span>
                     <span class="icon-moon">&#127769;</span>
                 </button>
-                <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                <div class="search-bar" role="search">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
                     <div id="search-results" class="search-results"></div>
                 </div>
             </div>
@@ -1199,14 +1222,14 @@ def create_category_index(out_dir, category):
             <div class="notes-list" id="category-notes"></div>
         </div>
     </main>
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="container">
             <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
         </div>
     </footer>
-    <script src="../../assets/js/app.js"></script>
-    <script src="../../assets/js/search.js"></script>
-    <script src="../../assets/js/features.js"></script>
+    <script src="../../assets/js/app.js" defer></script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
     <script>
         fetch('../../notes/index.json')
             .then(r => r.json())

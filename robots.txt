@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://girish675.github.io/LaurelLibrary/sitemap.xml

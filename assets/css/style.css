@@ -1,5 +1,23 @@
-/* ===== Laurel Library - Complete Stylesheet v1.1 ===== */
-/* Dark mode, print support, mobile-first responsive, quiz, flashcards, callouts */
+/* ===== Laurel Library - Complete Stylesheet v1.2 ===== */
+/* Dark mode, print support, mobile-first responsive, quiz, callouts */
+
+/* ===== Skip Link (accessibility) ===== */
+.skip-link {
+    position: absolute;
+    top: -50px;
+    left: 16px;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 0 0 var(--radius) var(--radius);
+    z-index: 200;
+    font-weight: 600;
+    transition: top var(--transition);
+}
+
+.skip-link:focus {
+    top: 0;
+}
 
 :root {
     --color-primary: #5c3d2e;
@@ -542,6 +560,7 @@ body {
 
 .article-content p {
     margin-bottom: 14px;
+    max-width: 75ch;
 }
 
 .article-content ul,

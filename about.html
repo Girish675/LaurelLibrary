@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Laurel Library</title>
+    <title>About - Laurel Library | Free Competitive Exam Notes</title>
+    <meta name="description" content="Learn about Laurel Library — a free, open-source study notes platform for Indian competitive exam aspirants. UPSC, SSC, GATE, JEE, NEET and more.">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#5c3d2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header" role="banner">
         <div class="container">
             <div class="logo">
                 <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
@@ -19,11 +24,11 @@
                     <h1>Laurel Library</h1>
                 </a>
             </div>
-            <nav class="main-nav">
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
                 <a href="index.html">Home</a>
                 <a href="notes/index.html">Notes</a>
                 <a href="exams/index.html">Exams</a>
-                <a href="about.html" class="active">About</a>
+                <a href="about.html" class="active" aria-current="page">About</a>
             </nav>
             <div class="header-actions">
                 <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
@@ -31,14 +36,14 @@
                     <span class="icon-moon">&#127769;</span>
                 </button>
                 <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
                     <div id="search-results" class="search-results"></div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <div class="container">
             <div class="article-content" style="max-width: 800px; margin: 40px auto;">
                 <h1>About Laurel Library</h1>
@@ -68,18 +73,18 @@
                 <p>Notes are curated, cleaned, and formatted into web pages for easy reading. The content is organized by subject and tagged with relevant exams to help you find exactly what you need.</p>
 
                 <h2>Contributing</h2>
-                <p>This is an open project. If you'd like to contribute notes or suggest improvements, visit our <a href="https://github.com/Girish675/LaurelLibrary" style="color: var(--color-secondary);">GitHub repository</a>.</p>
+                <p>This is an open project. If you'd like to contribute notes or suggest improvements, visit our <a href="https://github.com/Girish675/LaurelLibrary" rel="noopener noreferrer" target="_blank" style="color: var(--color-secondary);">GitHub repository</a>.</p>
             </div>
         </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="container">
             <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
         </div>
     </footer>
 
-    <script src="assets/js/search.js"></script>
-    <script src="assets/js/features.js"></script>
+    <script src="assets/js/search.js" defer></script>
+    <script src="assets/js/features.js" defer></script>
 </body>
 </html>

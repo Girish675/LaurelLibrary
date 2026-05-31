@@ -1,17 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laurel Library - Competitive Exam Notes</title>
+    <title>Laurel Library - Free Competitive Exam Notes for UPSC, SSC, GATE, JEE, NEET</title>
+    <meta name="description" content="Laurel Library offers free, well-organized study notes for competitive exams in India — UPSC, SSC, GATE, IIT-JEE, NEET, Banking and more. No ads, no paywalls.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://girish675.github.io/LaurelLibrary/">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <meta property="og:title" content="Laurel Library - Free Competitive Exam Notes">
+    <meta property="og:description" content="Comprehensive study notes for UPSC, SSC, GATE, IIT-JEE, NEET and more. Free and open-source.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://girish675.github.io/LaurelLibrary/">
+    <meta property="og:image" content="https://girish675.github.io/LaurelLibrary/assets/icons/icon-512.png">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#5c3d2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Laurel Library",
+        "url": "https://girish675.github.io/LaurelLibrary/",
+        "description": "Free competitive exam study notes for Indian aspirants",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Laurel Library"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://girish675.github.io/LaurelLibrary/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 </head>
 <body>
-    <header class="site-header">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header" role="banner">
         <div class="container">
             <div class="logo">
                 <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
@@ -19,8 +48,8 @@
                     <h1>Laurel Library</h1>
                 </a>
             </div>
-            <nav class="main-nav">
-                <a href="index.html" class="active">Home</a>
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
+                <a href="index.html" class="active" aria-current="page">Home</a>
                 <a href="notes/index.html">Notes</a>
                 <a href="exams/index.html">Exams</a>
                 <a href="about.html">About</a>
@@ -31,14 +60,14 @@
                     <span class="icon-moon">&#127769;</span>
                 </button>
                 <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off">
+                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
                     <div id="search-results" class="search-results"></div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <section class="hero">
             <div class="container">
                 <h2>Your Competitive Exam Companion</h2>
@@ -65,17 +94,16 @@
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="container">
             <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
         </div>
     </footer>
 
-    <script src="assets/js/search.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/features.js"></script>
+    <script src="assets/js/search.js" defer></script>
+    <script src="assets/js/app.js" defer></script>
+    <script src="assets/js/features.js" defer></script>
     <script>
-        // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').catch(function() {});
         }

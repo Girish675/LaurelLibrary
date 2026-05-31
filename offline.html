@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Laurel Library</title>
+    <style>
+        :root {
+            --color-primary: #5c3d2e;
+            --color-warm-bg: #fdf6ec;
+            --color-text: #3d2c2e;
+            --font-body: 'Segoe UI', sans-serif;
+        }
+        body {
+            font-family: var(--font-body);
+            background: var(--color-warm-bg);
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        .offline-container {
+            max-width: 480px;
+        }
+        .offline-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            color: var(--color-primary);
+            margin-bottom: 12px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .btn-retry {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--color-primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-retry:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📚</div>
+        <h1>You're Offline</h1>
+        <p>It looks like you've lost your internet connection. Previously visited pages may still be available from cache.</p>
+        <button class="btn-retry" onclick="window.location.reload()">Try Again</button>
+    </div>
+</body>
+</html>

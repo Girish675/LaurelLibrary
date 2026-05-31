@@ -1,9 +1,10 @@
-const CACHE_NAME = 'laurel-library-v1.1';
-const OFFLINE_URL = '/index.html';
+const CACHE_NAME = 'laurel-library-v1.2';
+const OFFLINE_URL = '/offline.html';
 
 const PRECACHE_URLS = [
     '/',
     '/index.html',
+    '/offline.html',
     '/assets/css/style.css',
     '/assets/js/features.js',
     '/assets/js/search.js',

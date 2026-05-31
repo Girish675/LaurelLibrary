@@ -1,0 +1,69 @@
+name: CI - Validate HTML & Links
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install html-validate
+        run: npm install -g html-validate
+
+      - name: Validate static HTML pages
+        run: |
+          html-validate index.html about.html formulas.html \
+            notes/index.html exams/index.html \
+            --config '{"extends":["html-validate:recommended"],"rules":{"no-inline-style":"off","svg-focusable":"off","tel-non-breaking":"off"}}'
+
+      - name: Check for broken internal links
+        run: |
+          echo "Checking internal link targets..."
+          errors=0
+          for file in $(find . -name '*.html' -not -path './.git/*'); do
+            # Extract href values pointing to local files
+            grep -oP 'href="\K[^"#]+' "$file" 2>/dev/null | \
+            grep -v '^http' | grep -v '^mailto:' | grep -v '^javascript:' | \
+            while read -r link; do
+              dir=$(dirname "$file")
+              target="$dir/$link"
+              if [ ! -f "$target" ] && [ ! -f "$link" ]; then
+                echo "BROKEN: $file -> $link"
+                errors=$((errors+1))
+              fi
+            done
+          done
+          if [ "$errors" -gt 0 ]; then
+            echo "Found $errors broken links"
+            exit 1
+          fi
+          echo "All internal links valid."
+
+      - name: Validate JSON files
+        run: |
+          for f in notes/index.json notes/search-index.json manifest.json; do
+            if [ -f "$f" ]; then
+              python3 -m json.tool "$f" > /dev/null && echo "Valid: $f" || { echo "Invalid JSON: $f"; exit 1; }
+            fi
+          done
+
+      - name: Validate sitemap.xml
+        run: |
+          if [ -f "sitemap.xml" ]; then
+            python3 -c "
+          import xml.etree.ElementTree as ET
+          tree = ET.parse('sitemap.xml')
+          urls = tree.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}url')
+          print(f'sitemap.xml valid: {len(urls)} URLs')
+          "
+          fi
