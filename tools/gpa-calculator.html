@@ -21,14 +21,13 @@
     <main id="main-content">
         <section class="section">
             <div class="container" style="max-width:700px">
-                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>GPA Calculator</span></div>
-                <h1 class="section-title">🎓 GPA Calculator</h1>
+                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>GPA Calculator</span></nav><h1 class="section-title">🎓 GPA Calculator</h1>
                 <p class="section-subtitle">Calculate your semester GPA and CGPA</p>
 
                 <!-- Scale Selection -->
                 <div class="tabs" style="margin:var(--space-lg) 0;justify-content:center">
-                    <button class="tab active" id="scale-10">10-Point</button>
-                    <button class="tab" id="scale-4">4-Point</button>
+                    <button type="button" class="tab active" id="scale-10">10-Point</button>
+                    <button type="button" class="tab" id="scale-4">4-Point</button>
                 </div>
 
                 <!-- Subjects Table -->
@@ -37,14 +36,14 @@
                         <!-- Rows injected by JS -->
                     </div>
                     <div style="display:flex;gap:var(--space-sm);margin-top:var(--space-md)">
-                        <button class="btn btn-sm" id="gpa-add">+ Add Subject</button>
-                        <button class="btn btn-sm" id="gpa-clear" style="margin-left:auto;color:var(--c-error)">Clear All</button>
+                        <button type="button" class="btn btn-sm" id="gpa-add">+ Add Subject</button>
+                        <button type="button" class="btn btn-sm" id="gpa-clear" style="margin-left:auto;color:var(--c-error)">Clear All</button>
                     </div>
                 </div>
 
                 <!-- Calculate -->
                 <div style="text-align:center;margin:var(--space-lg) 0">
-                    <button class="btn btn-primary" id="gpa-calc" style="min-width:200px">Calculate GPA</button>
+                    <button type="button" class="btn btn-primary" id="gpa-calc" style="min-width:200px">Calculate GPA</button>
                 </div>
 
                 <!-- Result -->
@@ -105,7 +104,7 @@
             row.innerHTML = '<input type="text" placeholder="Subject ' + n + '" class="input gpa-name" maxlength="100">' +
                 '<select class="input gpa-grade">' + opts + '</select>' +
                 '<input type="number" value="3" min="1" max="20" class="input gpa-credit" style="text-align:center">' +
-                '<button class="btn btn-sm gpa-remove" style="padding:4px;color:var(--c-error)" title="Remove">✕</button>';
+                '<button type="button" class="btn btn-sm gpa-remove" style="padding:4px;color:var(--c-error)" title="Remove">✕</button>';
             row.querySelector('.gpa-remove').addEventListener('click', function() { row.remove(); });
             rows.appendChild(row);
         }

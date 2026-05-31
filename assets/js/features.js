@@ -154,10 +154,10 @@
             selected.forEach(function(fact, qIdx) {
                 var question = fact.context.replace(fact.term, '<span class="quiz-blank">______</span>');
                 html += '<div class="quiz-question"><p class="quiz-q"><strong>Q' + (qIdx+1) + '.</strong> ' + question + '</p>' +
-                    '<button class="quiz-reveal btn btn-sm btn-primary" data-answer="' + LL.escapeHtml(fact.term).replace(/"/g,'&quot;') + '">Show Answer</button>' +
+                    '<button type="button" class="quiz-reveal btn btn-sm btn-primary" data-answer="' + LL.escapeHtml(fact.term).replace(/"/g,'&quot;') + '">Show Answer</button>' +
                     '<p class="quiz-answer hidden"><strong>Answer:</strong> ' + LL.escapeHtml(fact.term) + '</p></div>';
             });
-            html += '<button class="quiz-regenerate" id="quiz-regenerate">Generate New Questions</button></div>';
+            html += '<button type="button" class="quiz-regenerate" id="quiz-regenerate">Generate New Questions</button></div>';
             quizBody.innerHTML = html;
             quizBody.querySelectorAll('.quiz-reveal').forEach(function(btn) {
                 btn.addEventListener('click', function() {

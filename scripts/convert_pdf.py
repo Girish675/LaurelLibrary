@@ -866,7 +866,7 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
 
     <main id="main-content">
         <div class="container">
-            <div class="breadcrumbs" aria-label="Breadcrumb">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
                 <a href="../../index.html">Home</a>
                 <span>/</span>
                 <a href="../index.html">Notes</a>
@@ -874,12 +874,12 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                 <a href="index.html">{cat_esc}</a>
                 <span>/</span>
                 <span>{title_esc}</span>
-            </div>
+            </nav>
 
             <div class="note-actions">
-                <button class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
-                <button class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
-                <button class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; {reading_time} min read</span>
             </div>
 
@@ -887,7 +887,7 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header">
                         <span>Table of Contents</span>
-                        <button class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
                 </aside>
@@ -911,7 +911,7 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Quiz Mode</h3>
-                <button class="modal-close" id="quiz-close">&times;</button>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
         </div>
@@ -1165,13 +1165,13 @@ def create_category_index(out_dir, category):
     </header>
     <main>
         <div class="container">
-            <div class="breadcrumbs">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
                 <a href="../../index.html">Home</a>
-                <span>&rsaquo;</span>
+                <span>/</span>
                 <a href="../index.html">Notes</a>
-                <span>&rsaquo;</span>
+                <span>/</span>
                 <span>{cat_display}</span>
-            </div>
+            </nav>
             <h2 class="section-title">{cat_display}</h2>
             <div class="notes-list" id="category-notes"></div>
         </div>

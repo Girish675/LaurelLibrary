@@ -52,9 +52,9 @@ LL.renderHeader = function(activePage) {
         '<div class="logo"><a href="' + b + 'index.html"><div class="logo-icon">📚</div><span class="logo-text">Laurel Library</span></a></div>' +
         '<nav class="main-nav" role="navigation" aria-label="Main navigation" id="main-nav">' + navLinks + '</nav>' +
         '<div class="header-actions">' +
-        '<button class="search-trigger" id="search-trigger" aria-label="Search">' + LL.icons.search + '<span>Search...</span><span class="shortcut">Ctrl+K</span></button>' +
+        '<button type="button" class="search-trigger" id="search-trigger" aria-label="Search">' + LL.icons.search + '<span>Search...</span><span class="shortcut">Ctrl+K</span></button>' +
         '<button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode"><span class="icon-moon">' + LL.icons.moon + '</span><span class="icon-sun">' + LL.icons.sun + '</span></button>' +
-        '<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">' + LL.icons.menu + '</button>' +
+        '<button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">' + LL.icons.menu + '</button>' +
         '</div></div></header>';
 };
 

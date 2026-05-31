@@ -21,8 +21,7 @@
     <main id="main-content">
         <section class="section">
             <div class="container" style="max-width:800px">
-                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>Study Planner</span></div>
-                <h1 class="section-title">📅 Study Planner</h1>
+                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>Study Planner</span></nav><h1 class="section-title">📅 Study Planner</h1>
                 <p class="section-subtitle">Plan your daily study tasks and track completion</p>
 
                 <!-- Add Task -->
@@ -42,7 +41,7 @@
                                 <option>GK</option><option>Aptitude</option><option>Other</option>
                             </select>
                         </div>
-                        <button class="btn btn-primary" id="plan-add">Add</button>
+                        <button type="button" class="btn btn-primary" id="plan-add">Add</button>
                     </div>
                 </div>
 
@@ -64,8 +63,8 @@
 
                 <!-- Actions -->
                 <div style="display:flex;gap:var(--space-sm);margin:var(--space-lg) 0">
-                    <button class="btn btn-sm" id="plan-clear-done" style="color:var(--c-text-muted)">Clear Completed</button>
-                    <button class="btn btn-sm" id="plan-clear-all" style="color:var(--c-error);margin-left:auto">Clear All</button>
+                    <button type="button" class="btn btn-sm" id="plan-clear-done" style="color:var(--c-text-muted)">Clear Completed</button>
+                    <button type="button" class="btn btn-sm" id="plan-clear-all" style="color:var(--c-error);margin-left:auto">Clear All</button>
                 </div>
             </div>
         </section>
@@ -95,7 +94,7 @@
                         '<div style="flex:1;' + (t.done ? 'text-decoration:line-through' : '') + '">' +
                         '<div style="font-weight:500">' + LL.escapeHtml(t.text) + '</div>' +
                         '<div style="font-size:var(--text-xs);color:var(--c-text-muted)">' + LL.escapeHtml(t.subject) + '</div></div>' +
-                        '<button class="plan-delete" data-idx="' + i + '" style="background:none;border:none;color:var(--c-text-muted);cursor:pointer;font-size:1.2rem" title="Delete">✕</button></div>';
+                        '<button type="button" class="plan-delete" data-idx="' + i + '" style="background:none;border:none;color:var(--c-text-muted);cursor:pointer;font-size:1.2rem" title="Delete">✕</button></div>';
                 }).join('');
 
                 list.querySelectorAll('.plan-check').forEach(function(cb) {

@@ -23,7 +23,12 @@ jobs:
       - name: Validate static HTML pages
         run: |
           html-validate index.html about.html formulas.html \
-            notes/index.html exams/index.html
+            dashboard.html \
+            notes/index.html exams/index.html \
+            subjects/index.html resources/index.html \
+            tools/index.html tools/pomodoro.html \
+            tools/flashcards.html tools/gpa-calculator.html \
+            tools/planner.html
 
       - name: Check for broken internal links
         run: |

@@ -51,7 +51,7 @@ def patch_note(filepath):
 
     <main id="main-content">
         <div class="container">
-            <div class="breadcrumbs" aria-label="Breadcrumb">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
                 <a href="../../index.html">Home</a>
                 <span>/</span>
                 <a href="../index.html">Notes</a>
@@ -59,12 +59,12 @@ def patch_note(filepath):
                 <a href="index.html">Geography</a>
                 <span>/</span>
                 <span>{title}</span>
-            </div>
+            </nav>
 
             <div class="note-actions">
-                <button class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
-                <button class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
-                <button class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; {reading_time} min read</span>
             </div>
 
@@ -72,7 +72,7 @@ def patch_note(filepath):
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header">
                         <span>Table of Contents</span>
-                        <button class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
                 </aside>
@@ -89,7 +89,7 @@ def patch_note(filepath):
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Quiz Mode</h3>
-                <button class="modal-close" id="quiz-close">&times;</button>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
         </div>

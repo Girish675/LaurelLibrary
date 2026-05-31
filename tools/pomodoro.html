@@ -21,7 +21,7 @@
     <main id="main-content">
         <section class="section">
             <div class="container" style="max-width:600px">
-                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>Pomodoro Timer</span></div>
+                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>Pomodoro Timer</span></div>
 
                 <div style="text-align:center;padding:var(--space-xl) 0">
                     <h1 class="section-title">⏱️ Pomodoro Timer</h1>
@@ -29,9 +29,9 @@
 
                     <!-- Mode Tabs -->
                     <div class="tabs" style="justify-content:center;margin:var(--space-lg) 0">
-                        <button class="tab active" id="pom-mode-work" data-minutes="25">Focus (25m)</button>
-                        <button class="tab" id="pom-mode-short" data-minutes="5">Short Break (5m)</button>
-                        <button class="tab" id="pom-mode-long" data-minutes="15">Long Break (15m)</button>
+                        <button type="button" class="tab active" id="pom-mode-work" data-minutes="25">Focus (25m)</button>
+                        <button type="button" class="tab" id="pom-mode-short" data-minutes="5">Short Break (5m)</button>
+                        <button type="button" class="tab" id="pom-mode-long" data-minutes="15">Long Break (15m)</button>
                     </div>
 
                     <!-- Timer Display -->
@@ -41,8 +41,8 @@
 
                     <!-- Controls -->
                     <div style="display:flex;gap:var(--space-sm);justify-content:center;margin:var(--space-lg) 0">
-                        <button class="btn btn-primary" id="pom-start" style="min-width:120px">Start</button>
-                        <button class="btn" id="pom-reset">Reset</button>
+                        <button type="button" class="btn btn-primary" id="pom-start" style="min-width:120px">Start</button>
+                        <button type="button" class="btn" id="pom-reset">Reset</button>
                     </div>
 
                     <!-- Session Counter -->

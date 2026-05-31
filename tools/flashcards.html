@@ -21,8 +21,7 @@
     <main id="main-content">
         <section class="section">
             <div class="container" style="max-width:700px">
-                <div class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>Flashcards</span></div>
-                <h1 class="section-title">🗂️ Flashcards</h1>
+                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="index.html">Tools</a><span>/</span><span>Flashcards</span></nav><h1 class="section-title">🗂️ Flashcards</h1>
                 <p class="section-subtitle">Create and review custom flashcards for active recall</p>
 
                 <!-- Create Flashcard -->
@@ -32,13 +31,13 @@
                         <input type="text" id="fc-front" placeholder="Front (question/term)" class="input" maxlength="500">
                         <textarea id="fc-back" placeholder="Back (answer/definition)" class="input" rows="3" maxlength="1000"></textarea>
                         <input type="text" id="fc-deck" placeholder="Deck name (optional, e.g. Geography)" class="input" maxlength="100">
-                        <button class="btn btn-primary" id="fc-add">Add Card</button>
+                        <button type="button" class="btn btn-primary" id="fc-add">Add Card</button>
                     </div>
                 </div>
 
                 <!-- Deck Filter -->
                 <div class="tabs" id="fc-decks" style="margin:var(--space-lg) 0">
-                    <button class="tab active" data-deck="all">All</button>
+                    <button type="button" class="tab active" data-deck="all">All</button>
                 </div>
 
                 <!-- Review Area -->
@@ -68,10 +67,10 @@
         function renderDecks() {
             var decks = new Set(); cards.forEach(function(c) { if (c.deck) decks.add(c.deck); });
             var container = document.getElementById('fc-decks');
-            container.innerHTML = '<button class="tab' + (activeDeck === 'all' ? ' active' : '') + '" data-deck="all">All (' + cards.length + ')</button>';
+            container.innerHTML = '<button type="button" class="tab' + (activeDeck === 'all' ? ' active' : '') + '" data-deck="all">All (' + cards.length + ')</button>';
             decks.forEach(function(d) {
                 var count = cards.filter(function(c) { return c.deck === d; }).length;
-                container.innerHTML += '<button class="tab' + (activeDeck === d ? ' active' : '') + '" data-deck="' + LL.escapeHtml(d) + '">' + LL.escapeHtml(d) + ' (' + count + ')</button>';
+                container.innerHTML += '<button type="button" class="tab' + (activeDeck === d ? ' active' : '') + '" data-deck="' + LL.escapeHtml(d) + '">' + LL.escapeHtml(d) + ' (' + count + ')</button>';
             });
             container.querySelectorAll('.tab').forEach(function(t) {
                 t.addEventListener('click', function() {
@@ -98,11 +97,11 @@
                 '</div></div>' +
                 '<p style="font-size:var(--text-sm);color:var(--c-text-muted)">Click card to flip</p>' +
                 '<div style="display:flex;gap:var(--space-sm);justify-content:center;margin:var(--space-md) 0">' +
-                '<button class="btn" id="fc-prev" ' + (currentIdx === 0 ? 'disabled' : '') + '>← Previous</button>' +
-                '<button class="btn btn-primary" id="fc-flip">Flip</button>' +
-                '<button class="btn" id="fc-next" ' + (currentIdx >= f.length - 1 ? 'disabled' : '') + '>Next →</button>' +
+                '<button type="button" class="btn" id="fc-prev" ' + (currentIdx === 0 ? 'disabled' : '') + '>← Previous</button>' +
+                '<button type="button" class="btn btn-primary" id="fc-flip">Flip</button>' +
+                '<button type="button" class="btn" id="fc-next" ' + (currentIdx >= f.length - 1 ? 'disabled' : '') + '>Next →</button>' +
                 '</div>' +
-                '<button class="btn btn-sm" id="fc-delete" style="margin-top:var(--space-sm);color:var(--c-error)">Delete this card</button>';
+                '<button type="button" class="btn btn-sm" id="fc-delete" style="margin-top:var(--space-sm);color:var(--c-error)">Delete this card</button>';
 
             document.getElementById('fc-card').addEventListener('click', flip);
             document.getElementById('fc-flip').addEventListener('click', flip);
