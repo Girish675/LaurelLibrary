@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>07 Logic Families — Laurel Library</title>
+    <meta name="description" content="07 Logic Families - Digital Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>/</span>
+                <a href="../index.html">Notes</a>
+                <span>/</span>
+                <a href="index.html">Digital Electronics</a>
+                <span>/</span>
+                <span>07 Logic Families</span>
+            </nav>
+
+            <div class="note-actions">
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 5 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>07 Logic Families</h1>
+                    <div class="meta">
+                        <span class="meta-category">Digital Electronics</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">GATE, ESE</span>
+                    </div>
+                    <h2>Logic Families</h2>
+<h2>Basic Gate of a logic family</h2>
+<p>Each IC digital logic family has a Basic Gate.</p>
+<h3>This gate is either the NAND gate or the NOR gate .</h3>
+<p>●</p>
+<h3>Note: A BJT in its simplest construction act as NOT gate or Inverter .</h3>
+<h2>Characteristics of logic family</h2>
+<h3>Propagation delay (t PD )</h3>
+<p>It is defined as average transition delay for a signal to propagate from the input to the output of a logic gate. It is measured in nanoseconds (ns) 𝑡 𝑃𝐻𝐿 +𝑡 𝑃𝐿𝐻 𝑡 𝑃𝐷 = 2 Where, T PHL = Propagation delay when O/P goes from HIGH to LOW T PLH = Propagation delay when O/P goes from LOW to HIGH.</p>
+<h3>Power dissipation (P D )</h3>
+<p>Power drawn by a logic gate from the power supply. It is measured in milli Watts (m W) P D = V CC I avg (in m W) Where, V CC = Collector voltage or supply voltage I avg = Average supply current</p>
+<h3>Figure of Merit or speed power product</h3>
+<p>It is defined as the product of T PD &amp; P D FOM = P D × t PD (in Joule) It is measured in pico Joules (p J) A low value of FOM is desirable.</p>
+<h3>Fanout</h3>
+<p>It is defined as the maximum number of logic gates that can be successfully driven by the output of driving gate.</p>
+<p>𝐼 𝑂𝐻 𝐹𝑎𝑛𝑜𝑢𝑡 𝐻 = 𝐼 𝐼𝐻 𝐼 𝑂𝐿 𝐹𝑎𝑛𝑜𝑢𝑡 𝐿 = 𝐼 𝐼𝐿 Overall fanout = min (fanout H, fanout L)</p>
+<h3>Noise margin</h3>
+<p>It is defined as the maximum noise voltage that can be tolerated by the input of a logic gate without effecting the output. Noise margin at higher level NM H = V OH – V IH Overall Noise Margin = Minimum (NM H, NM L)</p>
+<figure><img src="images/07-logic-families_1.png" alt="Diagram" loading="lazy"></figure>
+<h2>BJT families</h2>
+<h3>RTL (Resistor transistor logic) family</h3>
+<h3>Data sheet of RTL:</h3>
+<p>Basic Gate: NOR Gate Propagation delay: 25 ns Power dissipation: 12 m W FOM: 300 p J Fanout: 5 Noise Margin: 0.4 V</p>
+<h3>Disadvantage:</h3>
+<p>Lower speed of operation Low noise margin Lowest fanout</p>
+<h3>NOTE:</h3>
+<p>In RTL, wired AND logic is possible.</p>
+<h3>DCTL (Direct coupled transistor logic)</h3>
+<p>In RTL logic family, if input resistance removed then resultant is DCTL. Basic Gate: NOR Gate The Problem of current Hogging is associated with this logic family.</p>
+<h3>DTL (Diode transistor logic) family</h3>
+<h3>Data sheet:</h3>
+<p>Basic Gate – NAND Gate Propagation delay – 30 ns Power dissipation – 12 m W FOM – 360 p J Fanout – 8 Noise margin – 1V</p>
+<h3>NOTE</h3>
+<p>In DTL, wired AND logic is possible. The Fanout of DTL can be increased by replacing diode D, by a transistor. This circuit is known as Integrated DTL gate.</p>
+<h3>HTL (High threshold logic) family</h3>
+<p>It is the modification of DTL. Zener diode is used in place of D 2 Noise Margin: 7.5 V In HTL, wired AND logic Gate is possible. Basic Gate: NAND Gate Logic 0 = 2 V ⇒ Higher voltage swing Logic 1 = 12 V ⇒ Higher voltage swing P diss. = 55 m W t pd = 90 ns</p>
+<h3>TTL (Transistor Transistor logic) family</h3>
+<h3>Data sheet</h3>
+<p>Basic Gate: NAND t pd: 9 ns p diss = 10 m W FOM = 90 p J Fanout = 10 Noise margin = 0.4 V Logic 0 = 0.2 V Logic 1 = 2.4 – 5 V</p>
+<h3>Note:</h3>
+<p>In TTL, wired AND logic is Not possible. If any input is open/floating, then no current flows through that input path this is also the case when logic 1 is applied at that input.</p>
+<p>Therefore, open or floating input act as logic 1 in TTL.</p>
+<h3>BJT regions of operations</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>BE Junction</th>
+<th>BC Junction</th>
+<th>Region</th>
+<th>Action</th>
+</tr></thead><tbody>
+<tr>
+<td>ON</td>
+<td>OFF</td>
+<td>Active</td>
+<td>Amplifier</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>OFF</td>
+<td>Cut-off</td>
+<td>Open switch</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>ON</td>
+<td>Saturation</td>
+<td>Closed switch</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>ON</td>
+<td>Reverse Active</td>
+<td>Attenuator</td>
+</tr>
+</tbody></table></div>
+<h3>Schottky TTL</h3>
+<p>Schottky Barrier Diodes are placed between the base &amp; collector of transistor.</p>
+<figure><img src="images/07-logic-families_2.png" alt="Diagram" loading="lazy"></figure>
+<p>It prevents the transistor from entering into saturation region. Transistor operates in Active &amp; cut off regions. Very low propagation delay. Schottky TTL uses a double emitter follower known as Darlington pair to increase the speed of operation.</p>
+<h3>ECL (Emitter coupled logic)</h3>
+<p>Basic Gate: NOR/OR It is Never go in saturation region. Only work in cutoff &amp; Active region. Very low propagation delay (1 ns) ECL provide wired OR logic with NOR output. ECL provide wired AND logic with OR output.</p>
+<h3>Disadvantages:</h3>
+<p>Very high power dissipation. Very low Noise margin</p>
+<p>It is also known as MTL (merged Transistor logic) Basic Gate: NOR FOM: &lt; 1 p J</p>
+<h2>MOS Families</h2>
+<h3>Advantages of MOS families as compared to BJT families</h3>
+<p>It has lower power dissipation. It has higher fan out. It is simpler fabrication process. It has lower cost of fabrication. It has higher packing density.</p>
+<h3>NOTE: -</h3>
+<p>1 In MOS, channel resistance 𝑅∝ () 𝑤 𝐿 Where, w = channel width L = channel length MOS can be used as a Load resistor as well by permanently biasing the Gate for conduction.</p>
+<h3>NMOS</h3>
+<p>Logic ‘0’ = OFF Logic ‘1’ = ON</p>
+<h3>NMOS NOT Gate</h3>
+<p>A T 2 Y 0 OFF 1 1 ON 0</p>
+<h3>NMOS NAND Gate</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>A</th>
+<th>B</th>
+<th>T
+2</th>
+<th>T
+3</th>
+<th>Y</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>OFF</td>
+<td>ON</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>ON</td>
+<td>OFF</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>ON</td>
+<td>ON</td>
+<td>0</td>
+</tr>
+</tbody></table></div>
+<h3>NMOS NOR Gate</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>A</th>
+<th>B</th>
+<th>Q
+1</th>
+<th>Q
+2</th>
+<th>f</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>OFF</td>
+<td>OFF</td>
+<td>H</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>OFF</td>
+<td>ON</td>
+<td>L</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>ON</td>
+<td>OFF</td>
+<td>L</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>ON</td>
+<td>ON</td>
+<td>L</td>
+</tr>
+</tbody></table></div>
+<h2>PMOS</h2>
+<h3>Symbol</h3>
+<p>Logic ‘0’ = ON Logic ‘1’ = OFF</p>
+<h3>PMOS NOT Gate</h3>
+<p>A B Y 0 0 1 0 1 0 1 0 0 1 1 0</p>
+<h2>C MOS (Complementary MOS)</h2>
+<p>In CMOS, only one MOS is ON at any instant. Major power drain occurs in a CMOS when the circuit changes states. Power dissipation depends upon the frequency of the input signal. V DD may range from 3 V to 15 V, typically V DD = 5V</p>
+<h3>CMOS NOT GATE</h3>
+<figure><img src="images/07-logic-families_3.png" alt="Diagram" loading="lazy"></figure>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>A</th>
+<th>Q
+1</th>
+<th>Q
+2</th>
+<th>f</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>ON</td>
+<td>OFF</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>OFF</td>
+<td>ON</td>
+<td>0</td>
+</tr>
+</tbody></table></div>
+<h3>CMOS NAND Gate</h3>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">GATE, ESE</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">GATE, ESE</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">GATE, ESE</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
+    </script>
+</body>
+</html>

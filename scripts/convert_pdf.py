@@ -29,6 +29,9 @@ WATERMARK_PATTERNS = [
     r'www\.testbook\.com',
     r'pass\s*pro\s*max',
     r'PASS\s*PRO\s*MAX',
+    r'F\d+_[A-Za-z._0-9-]+',
+    r'made\s*easy',
+    r'gate\s*academy',
 ]
 
 WATERMARK_WORDS = {'testbook', 'testbook.com', 'www.testbook.com', 'pass pro max'}
@@ -220,6 +223,46 @@ def extract_page(doc, page_num):
     except Exception:
         pass
 
+    # 1.5 Extract vector drawings
+    diagram_rects = []
+    try:
+        paths = page.get_drawings()
+        raw_rects = []
+        for p in paths:
+            r = p["rect"]
+            # Ignore full-page backgrounds and tiny artifacts
+            if r.width > rect.width * 0.9 and r.height > rect.height * 0.9:
+                continue
+            if r.width < 5 and r.height < 5:
+                continue
+            raw_rects.append(r)
+        
+        if raw_rects:
+            merged = []
+            for r in raw_rects:
+                r_inflated = r + (-10, -10, 10, 10)
+                matched = [i for i, m in enumerate(merged) if r_inflated.intersects(m)]
+                if matched:
+                    new_r = r
+                    for i in reversed(matched):
+                        new_r = new_r | merged.pop(i)
+                    merged.append(new_r)
+                else:
+                    merged.append(r)
+            
+            for r in merged:
+                if r.width > 20 and r.height > 20:
+                    diagram_rects.append(r)
+                    pix = page.get_pixmap(clip=r, dpi=150)
+                    img_data = pix.tobytes("png")
+                    items.append({
+                        "type": "image",
+                        "y": r.y0,
+                        "data": {"bytes": img_data, "ext": "png", "width": r.width, "height": r.height}
+                    })
+    except Exception as e:
+        pass
+
     # 2. Extract text - NO TEXT_PRESERVE_WHITESPACE so PyMuPDF adds spaces
     blocks = page.get_text("dict")["blocks"]
 
@@ -235,6 +278,15 @@ def extract_page(doc, page_num):
                 in_table = True
                 break
         if in_table:
+            continue
+
+        # Skip if fully inside a vector diagram
+        in_diagram = False
+        for drect in diagram_rects:
+            if bbox[0] >= drect.x0 - 5 and bbox[1] >= drect.y0 - 5 and bbox[2] <= drect.x1 + 5 and bbox[3] <= drect.y1 + 5:
+                in_diagram = True
+                break
+        if in_diagram:
             continue
 
         for line in block["lines"]:

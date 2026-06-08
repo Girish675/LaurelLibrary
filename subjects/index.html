@@ -45,7 +45,14 @@
             { id:'current-affairs', name:'Current Affairs', icon:'📰', desc:'Daily, monthly & yearly current events', topics:['National','International','Economy','Science & Tech','Awards & Honours'] },
             { id:'general-knowledge', name:'General Knowledge', icon:'💡', desc:'Static GK, general awareness, facts & figures', topics:['Indian Polity','Geography','History','Science','Awards'] },
             { id:'computer-science', name:'Computer Science', icon:'💻', desc:'Data structures, algorithms, OS, databases, networks', topics:['DSA','Operating Systems','DBMS','Computer Networks','Theory of Computation'] },
-            { id:'electronics', name:'Electronics & Communication', icon:'📡', desc:'Signals, circuits, communications, VLSI', topics:['Signals & Systems','Digital Electronics','Communications','Control Systems','Electromagnetics'] },
+            { id:'analog-electronics', name:'Analog Electronics', icon:'📻', desc:'Diodes, BJTs, Op-Amps, Oscillators', topics:['Diodes', 'BJTs', 'MOSFET', 'Op-Amps', 'Oscillators'] },
+            { id:'communications', name:'Communications', icon:'📡', desc:'Analog & digital communication systems', topics:['AM', 'FM', 'Digital Modulation', 'Information Theory'] },
+            { id:'control-systems', name:'Control Systems', icon:'🎛️', desc:'System stability, root locus, bode plots', topics:['Transfer Functions', 'Stability', 'Root Locus', 'State Space'] },
+            { id:'digital-electronics', name:'Digital Electronics', icon:'🔢', desc:'Logic gates, combinational & sequential circuits', topics:['Logic Gates', 'Boolean Algebra', 'Sequential Circuits', 'ADC/DAC'] },
+            { id:'edc', name:'Electronic Devices & Circuits', icon:'🔬', desc:'Semiconductor physics, PN junctions, special diodes', topics:['Semiconductors', 'PN Junction', 'BJT', 'FET'] },
+            { id:'emft', name:'Electromagnetic Field Theory', icon:'🧲', desc:'Maxwell equations, transmission lines, antennas', topics:['Electrostatics', 'Magnetostatics', 'Waveguides', 'Antennas'] },
+            { id:'network-theory', name:'Network Theory', icon:'🔌', desc:'Circuit analysis, theorems, two-port networks', topics:['Network Theorems', 'Transient Analysis', 'Two Port Networks', 'Graph Theory'] },
+            { id:'signals-and-systems', name:'Signals and Systems', icon:'〰️', desc:'Continuous & discrete time signals, transforms', topics:['LTI Systems', 'Fourier Transform', 'Laplace Transform', 'Z-Transform'] },
             { id:'electrical', name:'Electrical Engineering', icon:'⚡', desc:'Power systems, machines, control, circuits', topics:['Power Systems','Electrical Machines','Control Systems','Circuit Theory','Power Electronics'] },
             { id:'mechanical', name:'Mechanical Engineering', icon:'🔧', desc:'Thermodynamics, mechanics, manufacturing, design', topics:['Thermodynamics','Fluid Mechanics','Strength of Materials','Manufacturing','Machine Design'] },
             { id:'civil', name:'Civil Engineering', icon:'🏗️', desc:'Structures, geotechnical, transportation, water resources', topics:['Structural Engineering','Geotechnical','Transportation','Water Resources','Environmental'] }
@@ -60,7 +67,8 @@
                 var countLabel = count > 0
                     ? '<span class="tag" style="background:rgba(27,138,90,0.12);color:var(--c-accent)">' + count + ' note' + (count === 1 ? '' : 's') + '</span>'
                     : '<span class="tag" style="opacity:.6">Coming soon</span>';
-                return '<a href="../notes/index.html?category=' + encodeURIComponent(s.id) + '" class="category-card" style="align-items:flex-start;flex-direction:column;padding:var(--space-lg)">' +
+                var href = count > 0 ? '../notes/index.html?category=' + encodeURIComponent(s.id) : '../404.html';
+                return '<a href="' + href + '" class="category-card" style="align-items:flex-start;flex-direction:column;padding:var(--space-lg)">' +
                     '<div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm)">' +
                     '<span style="font-size:2rem">' + s.icon + '</span>' +
                     '<h3 style="margin:0;font-size:var(--text-md)">' + s.name + '</h3></div>' +

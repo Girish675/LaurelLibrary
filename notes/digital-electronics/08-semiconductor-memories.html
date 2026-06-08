@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>08 Semiconductor Memories — Laurel Library</title>
+    <meta name="description" content="08 Semiconductor Memories - Digital Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>/</span>
+                <a href="../index.html">Notes</a>
+                <span>/</span>
+                <a href="index.html">Digital Electronics</a>
+                <span>/</span>
+                <span>08 Semiconductor Memories</span>
+            </nav>
+
+            <div class="note-actions">
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 11 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>08 Semiconductor Memories</h1>
+                    <div class="meta">
+                        <span class="meta-category">Digital Electronics</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">GATE, ESE</span>
+                    </div>
+                    <h2>Semiconductor memories</h2>
+<h2>Introduction to memories</h2>
+<p>A memory is a semiconductor of magnetic device used for storage of digital data. Computer memory is a device that is used to store data or programs (sequences of instructions) on a temporary or permanent basis for use in an electronic digital computer. Computers represent information in binary code, written as sequences of 0’s and 1’s. Each binary digit may be stored by any physical system that can be in either of two stable states, to represent 0 and 1. Such a system is called bi-stable. Computers do all calculations using a code made of just two numbers; 0 and 1. This system is called binary code. Bits and bytes are the basic building blocks of memory. &quot;Bit&quot; stands for binary digit. A bit is a one or a zero, on or off, which is how all computer information is stored. A byte is made up of eight bits. A nibble (also spelled 'nybble') is 4 bit, half of a byte.</p>
+<h3>Memory size = 2 k ×(no of data lines) bits.</h3>
+<p>●</p>
+<p>●</p>
+<h3>words .</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Unit of Memory</th>
+<th>Abbreviation</th>
+<th>Exact Memory Amount</th>
+</tr></thead><tbody>
+<tr>
+<td>Binary Digit</td>
+<td>Bit, b</td>
+<td>1 or 0</td>
+</tr>
+<tr>
+<td>Byte</td>
+<td>B</td>
+<td>8 bits</td>
+</tr>
+<tr>
+<td>Kilobyte</td>
+<td>KB or K</td>
+<td>1024 bytes</td>
+</tr>
+<tr>
+<td>Megabyte</td>
+<td>MB</td>
+<td>1024 KB</td>
+</tr>
+<tr>
+<td>Gigabyte</td>
+<td>GB</td>
+<td>1024 MB</td>
+</tr>
+<tr>
+<td>Terabyte</td>
+<td>TB</td>
+<td>1024 GB</td>
+</tr>
+</tbody></table></div>
+<h3>Memory Chips-</h3>
+<p>The number of address pins is related to the number of memory locations.</p>
+<h3>●</h3>
+<p>The data pins are typically bi-directional in read-write memories. The number of data pins is related to the size of the memory location. The size or the capacity of each memory chip is specified by (M×N). Where, M specifies the number of locations available in the memory N specifies the number of bits that can be stored in each memory location</p>
+<p>For 'N-Bits' address pins, the number of locations that will accommodate is 2 N.</p>
+<h3>Cache Memory-</h3>
+<h3>Cache Memory is a special very high-speed memory .</h3>
+<p>Cache memory is costlier than main memory or disk memory but economical than CPU registers.</p>
+<h3>Cache memory is an extremely fast memory type that acts as a buffer between RAM and</h3>
+<h3>●</h3>
+<h3>the CPU.</h3>
+<p>It holds frequently requested data and instructions so that they are immediately available to the CPU when needed.</p>
+<h3>Cache memory is used to reduce the average time to access data from the Main</h3>
+<p>●</p>
+<h3>memory .</h3>
+<p>Cache memory is slightly different from RAM as it can’t store huge files.</p>
+<h3>Auxiliary Memory-</h3>
+<p>Auxiliary memory is</p>
+<h3>the non-volatile memory lowest-cost , highest-capacity, and</h3>
+<p>●</p>
+<h3>slowest-access storage in a computer system.</h3>
+<h3>It is where programs and data kept for long-term storage or when not in immediate</h3>
+<p>●</p>
+<h3>use .</h3>
+<h3>It used as permanent storage of data in mainframes and supercomputers.</h3>
+<h3>●</h3>
+<h3>Virtual Memory -</h3>
+<p>A computer can address more memory than the amount physically installed on the system. This extra memory is actually called virtual memory. It allows us to extend the use of physical memory by using the disk. Second, it allows us to have memory protection because each virtual address is translated to a physical address.</p>
+<h2>Specifications</h2>
+<h3>Access time is the time required to access a memory location for reading or writing</h3>
+<p>operation. Random access is the time which is independent of the position of memory location Memory word is a group of bits in a memory which represents instructions or data of same type A memory in which the location can be accessed in a sequence only is referred to as sequential memory e.g., magnetic tape, magnetic bubble etc...</p>
+<h3>Read operation is often called a Fetch operation.</h3>
+<p>●</p>
+<p>location.</p>
+<h2>Classification of memories</h2>
+<h3>Read/Write Memory (RAM)</h3>
+<h3>RAM stands for Random Access Memory .</h3>
+<p>Random-access memory is a form of computer memory that can be read and changed in any order, typically used to store working data and machine code. A random-access memory device allows data items to be read or written in almost the same amount of time irrespective of the physical location of data inside the memory. In contrast, with other direct-access data storage media such as hard disks, CD-RWs, DVD-RWs, and the older magnetic tapes. Read-only memory is a type of non-volatile memory used in computers and other electronic devices.</p>
+<figure><img src="images/08-semiconductor-memories_1.png" alt="Diagram" loading="lazy"></figure>
+<p>The two widely used forms of modern RAM are static RAM (SRAM) and dynamic RAM (DRAM).</p>
+<h3>SRAM -</h3>
+<p>In SRAM, a bit of data is stored using the state of a six-transistor memory cell. The SRAM memories consist of circuits capable of retaining the stored information as long as the power is applied i.e. it requires constant power. SRAM memories are used to build cache memory. It can retain stored data indefinitely and it can be implemented as a flip flop circuit to store one bit of information.</p>
+<h3>DRAM -</h3>
+<p>DRAM stores a bit of data using a transistor and capacitor pair.</p>
+<figure><img src="images/08-semiconductor-memories_2.png" alt="Diagram" loading="lazy"></figure>
+<p>DRAM stores the binary information in the form of electric charges that applied to capacitors. The stored information on the capacitors tends to lose over a period of time and thus the capacitors must be periodically recharged to retain their users. The main memory is generally made up of DRAM chips. Both read and write operations cannot be performed simultaneously.</p>
+<h3>The difference between SRAM and DRAM-</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>SRAM</th>
+<th>DRAM</th>
+</tr></thead><tbody>
+<tr>
+<td>Faster access speed</td>
+<td>Slower access speed</td>
+</tr>
+<tr>
+<td>Used for CPU cache</td>
+<td>Used for computer main memory</td>
+</tr>
+<tr>
+<td>Lower density on a chip</td>
+<td>Higher density on a chip</td>
+</tr>
+<tr>
+<td>More expensive</td>
+<td>Less expensive</td>
+</tr>
+<tr>
+<td>Complex circuitry design</td>
+<td>Not as complex as SRAM</td>
+</tr>
+<tr>
+<td>More power dissipation</td>
+<td>Lower power dissipation</td>
+</tr>
+<tr>
+<td>Refreshing is not required</td>
+<td>Continuous refreshing is required</td>
+</tr>
+<tr>
+<td>Only transistors are needed to store data</td>
+<td>To store data transistor &amp; capacitor are
+required</td>
+</tr>
+<tr>
+<td>Cache memory is build up from SRAM chips</td>
+<td>Main memory is build up from DRAM chips</td>
+</tr>
+</tbody></table></div>
+<h3>ROM</h3>
+<p>ROM is a semiconductor memory that is designed to hold data either permanently or do not change frequently. During normal operation, no new data can be written into RAM, but data can be read from ROM ROM is a Non-volatile memory. Non-volatile memory, NVM or non-volatile storage is a type of computer memory that can retrieve stored information even after having been power cycled (turned off and back on). Whereas Volatile memory is the memory that cannot be retrieved after having been power cycled. It is constructed by diodes, bipolar cells or MOSFETs. Examples of non-volatile memory include Read-Only Memory (ROM), flash memory, ferroelectric RAM, most types of magnetic computer storage devices (e.g. hard disk drives, floppy disks, and magnetic tape), optical discs, and early computer storage methods such as paper tape and punched cards. ROM contains a decoder followed by OR gates.</p>
+<h3>Boolean function implementation using ROM –</h3>
+<h3>●</h3>
+<p>A 2 k ×n ROM contains a k×2 n decoder followed by n OR gates   The k×2 n decoder generates all the 2 k possible min-terms for k input variables     The n OR gates can implement n Boolean functions of k variables each</p>
+<h3>Classifications of ROM’s</h3>
+<figure><img src="images/08-semiconductor-memories_3.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_4.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_5.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_6.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_7.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_8.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_9.png" alt="Diagram" loading="lazy"></figure>
+<p>PROM Masked ROM EPROM EEPROM Flash memory</p>
+<h3>PROM –</h3>
+<p>It is known as programmable read-only memory. A PROM has a fixed AND array but a programmable OR array. it is difficult to manufacture and program. When the AND array is fixed that means we can only get certain min-terms. As OR can be programmable, we can combine them in whatever combinations we like. A programmable ROM is also referred to as a FPROM (field programmable read-only memory) or OTP (one-time programmable) chip. So not all but a few logic functions can be implemented It is known as programmable read-only memory It includes both AND array &amp; OR array Out of these two arrays AND array is fixed and OR array is programmable. A variation of the PROM is an EPROM, which is a PROM that can be erased and reprogrammed without being replaced.</p>
+<h3>Uses – They have several different applications, including cell phones, video game consoles,</h3>
+<p>RFID tags, medical devices, and other electronics.</p>
+<figure><img src="images/08-semiconductor-memories_10.png" alt="Diagram" loading="lazy"></figure>
+<h3>Masked ROM -</h3>
+<p>In this type of ROM, the specification of the ROM (its contents and their location), is taken by the manufacturer from the customer in tabular form in a specified format and then makes corresponding masks for the paths to produce the desired output. This is costly, as the vendor charges special fee from the customer for making a particular ROM (recommended, only if large quantity of the same ROM is required).</p>
+<h3>Uses – They are used in network operating systems, server operating systems, storing of fonts</h3>
+<p>for laser printers, sound data in electronic musical instruments.</p>
+<h3>EPROM –</h3>
+<p>EPROM is an erasable programmable read-only memory. It is a non-volatile memory that means its data will be retained even when the power is turned off. EEPROM (electrically erasable programmable read-only memory) is a user-modifiable read-only memory (ROM) that can be erased and reprogrammed (written to) repeatedly through the application of higher than normal electrical voltage. Data in ROM can be accessed randomly and hence EPROM and EEPROM are random access memory. To erase data in EPROM, 15-20 min are required. EPROM is also called UV-ROM. Programming is done by electric signals and erasing is through ultra-violet rays.</p>
+<h3>Uses – Before the advent of EEPROMs, some micro-controllers, like some versions of Intel</h3>
+<p>8048, the Freescale 68HC11 used EPROM to store their program.</p>
+<h3>EEPROM –</h3>
+<p>EEPROM stands for Electrically Erasable Programmable Read-Only Memory. It is a non-volatile memory in which the information stored Is retained even after the power goes off. A special type of PROM in which the information stored in it can be erased by exposing it to an electrical charge at one byte at a time. EEPROM generally offers excellent capabilities and performance. EEPROMs are constructed as arrays of floating-gate transistors. EEPROM is also known as EAROM or Flash-ROM or NOVRAM.</p>
+<h3>Uses – It is used for storing the computer system BIOS.</h3>
+<h3>Flash ROM –</h3>
+<p>It is an enhanced version of EEPROM. The difference between EEPROM and Flash ROM is that in EEPROM, only 1 byte of data can be deleted or written at a particular time, whereas, in flash memory, blocks of data (usually 512 bytes) can be deleted or written at a particular time. So, Flash ROM is much faster than EEPROM. Flash memory is a non-volatile memory chip used for storage and for transferring data between a personal computer (PC) and digital devices. It can be electronically reprogrammed and erased. It is often found in USB flash drives, MP3 players, digital cameras and solid-state drives.</p>
+<h3>Uses – Many modern PCs have their BIOS stored on a flash memory chip, called as flash BIOS</h3>
+<p>and they are also used in modems as well.</p>
+<h3>NOVRAM (Non-Volatile Random Access Memory) -</h3>
+<p>It is a type of memory that retains its contents when power is turned off. One type of NOVRAM is SRAM that is made non-volatile by connecting it to a constant power source such as a battery. Another type of NVRAM uses EEPROM chips to save its contents when power is turned off. In this case, NVRAM is composed of a combination of SRAM and EEPROM chips.</p>
+<h2>Programmable Logic Devices (PLD)</h2>
+<p>PLD’s (Programmable Logic Devices) are the circuits that contain an array of AND gates and another array of OR gates. These are LSI devices and are classified as- (i) PROM (ii) PAL (iii) PLA A combinational PLD is an IC with programmable gates divided into AND array and OR array to provide AND-OR or SOP realization of a particular Boolean expression.</p>
+<figure><img src="images/08-semiconductor-memories_11.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_12.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_13.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_14.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_15.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_16.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_17.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_18.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_19.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_20.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_21.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_22.png" alt="Diagram" loading="lazy"></figure>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>PROM</th>
+<th>PLA</th>
+<th>PAL</th>
+</tr></thead><tbody>
+<tr>
+<td>AND array is fixed &amp; OR array
+is programmable</td>
+<td>Both AND and OR arrays are
+programmable</td>
+<td>OR array is fixed and AND
+array is programmable</td>
+</tr>
+<tr>
+<td>Cheaper and simple to use</td>
+<td>Costlier and complex than PAL
+and PROM</td>
+<td>Cheaper and simpler</td>
+</tr>
+<tr>
+<td>Only Boolean functions in
+standard SOP form can be
+implemented</td>
+<td>Any Boolean function in SOP
+form can be implemented</td>
+<td>Any Boolean function in SOP
+form can be implemented</td>
+</tr>
+<tr>
+<td>All minterms are decoded and
+it is generally fusible links</td>
+<td>AND array can be
+programmable to get desired
+minterm</td>
+<td>AND array can be
+programmable to get desired
+minterm</td>
+</tr>
+</tbody></table></div>
+<h2>MARAM</h2>
+<p>It stores the data in magnetic form instead of electric charges. It uses far less power than other RAMs so it is good for portable devices. Magnetoresistance is the tendency of a material (often ferromagnetic) to change the value of its electrical resistance in an externally-applied magnetic field. On account of the rising demand for fast, scalable, low power consuming, and non-volatile memory devices, especially in the automotive, enterprise storage, and aerospace and defense sectors, the global market for magneto resistive RAM (MRAM) is likely to gain significant impetus over the forthcoming years.</p>
+<figure><img src="images/08-semiconductor-memories_23.png" alt="Diagram" loading="lazy"></figure>
+<h2>Difference between Volatile and Non-volatile memory</h2>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Volatile Memory</th>
+<th>Non-volatile Memory</th>
+</tr></thead><tbody>
+<tr>
+<td>The data present in volatile memory is not
+permanent.</td>
+<td>The data present in non-volatile memory is
+permanent.</td>
+</tr>
+<tr>
+<td>The data is present till the power supply is
+present.</td>
+<td>The data remains present even after the
+power supply is not present.</td>
+</tr>
+<tr>
+<td>It is used to store computer programs and
+data that the CPU needs in real-time.</td>
+<td>Non-volatile memory is static and remains
+stored permanently.</td>
+</tr>
+<tr>
+<td>RAM and Cache Memory are volatile memory.</td>
+<td>ROM, HDD, Magnetic memory, Flash Memory
+are non-volatile memory.</td>
+</tr>
+<tr>
+<td>Volatile memory is faster than non-volatile
+memory.</td>
+<td>Non-volatile memory is slower than volatile
+memory.</td>
+</tr>
+<tr>
+<td>It has less storage capacity.</td>
+<td>It has a very high storage capacity.</td>
+</tr>
+<tr>
+<td>Volatile memory is costly per unit size.</td>
+<td>Non-volatile memory is cheaper per unit size.</td>
+</tr>
+</tbody></table></div>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">GATE, ESE</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">GATE, ESE</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">GATE, ESE</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
+    </script>
+</body>
+</html>

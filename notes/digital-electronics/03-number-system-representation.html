@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>03 Number System &amp; Representation — Laurel Library</title>
+    <meta name="description" content="03 Number System &amp; Representation - Digital Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>/</span>
+                <a href="../index.html">Notes</a>
+                <span>/</span>
+                <a href="index.html">Digital Electronics</a>
+                <span>/</span>
+                <span>03 Number System &amp; Representation</span>
+            </nav>
+
+            <div class="note-actions">
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 6 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>03 Number System &amp; Representation</h1>
+                    <div class="meta">
+                        <span class="meta-category">Digital Electronics</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">GATE, ESE</span>
+                    </div>
+                    <h3>Number System</h3>
+<p>Number system is a method of Counting.</p>
+<h3>General Representation</h3>
+<p>(N) b Where, N = No. to be represented b = base or radix Range = (0 to b – 1) i.e. N can be b/w (0 to b – 1)</p>
+<h2>Commonly used Number system</h2>
+<p>Decimal No. System Binary Number System Octal Number System Hexadecimal Number System</p>
+<h3>Decimal No. System</h3>
+<p>Base i.e. ‘b’ is 10 (N) 10 for eg. (301) 10 Range (0 – 9) i.e. N can contain digits b/w (0 – 9) Value of digit depends upon its position</p>
+<p>*LSD is least Significant Bit.</p>
+<h3>Binary Number System</h3>
+<p>Base i.e. ‘b’ is 2 (N) 2 i.e. (1011) 2 Range (0 – 1) i.e. N can contain only (0, 1) This 0, 1 in Binary system is known as bits Group of 4 bits = 1 Nibble Group of 8 bits = 1 byte Follows positional value system i.e. Binary number can be converted to Decimal equivalent by summary the weight of various position in binary number which contain bit ‘1’</p>
+<figure><img src="images/03-number-system-representation_1.png" alt="Diagram" loading="lazy"></figure>
+<h3>Octal Number System</h3>
+<p>Base i.e. ‘b’ is 8 (N) 8 i.e. (367) 8 Range (0 – 7) i.e. N can contain digits b/w (0 – 7) Octal Number is converted to Decimal equivalent by summery together the positional weight of each octal digit.</p>
+<h3>Hexadecimal Number System</h3>
+<p>Base i.e. ‘b’ is 16</p>
+<figure><img src="images/03-number-system-representation_2.png" alt="Diagram" loading="lazy"></figure>
+<p>Also known as Alpha Numeric Number system Range (0 – 15)</p>
+<h2>Number System Conversion</h2>
+<h3>Decimal to any Number system</h3>
+<h3>Decimal Number</h3>
+<h3>Integer part – Divide the integer part by ‘base’ {2, 16, 8} &amp; write the remainder until</h3>
+<p>quotient obtained is zero.</p>
+<h3>Fractional part – Multiply the fraction part by ‘base’ {2, 16, 8} &amp; write the integer part</h3>
+<p>till we get fraction equal to zero or we get the repeated pattern.</p>
+<h3>Decimal to Binary</h3>
+<p>(43.90625) 10 → (101011 ⋅ 111010) 2 Remainder → 43 ÷ 2 1 (LSB) → ↑ 21 ÷ 2 1 → 10 ÷ 2 0 → 5 ÷ 2 1 → 2 ÷ 2 0 → 1 ÷ 2 1 (MSB) (43) 10 → (101011) 2</p>
+<p>‘Integer’ → ↓ 0.90625 × 2 = 1.8125 1 → 0.8125 × 2 = 1.625 1</p>
+<h3>Decimal to octal</h3>
+<p>→ 0.625 × 2 = 1.25 1 (43.30) 10 → (53.23146) 8 → 0.25 × 2 = 0.5 0 Reminder → 0.5 × 2 = 1.0 1 → (43) 10 → (53) 8 43÷8→3 5÷8→5 ↑ 0.0 × 2 = 0.0 0 Now fraction become ‘0’ (0.90625) 10 → (0.111010) 2 → 2 ↓ (0.30) 10 → (0.23146) 8 0.30 × 8 = 2.40 → 3 0.40 × 8 = 3.20 → 1 0.20 × 8 = 1.60 → 4 0.60 × 8 = 4.80 → 6 0.80 × 8 = 6.40 0.40 × 8 = 3.20 } Repeat</p>
+<h3>Any Number system to Decimal Number system</h3>
+<h3>Binary to Decimal</h3>
+<p>3 + 1×2 2 + 0×2 1 + 1×2 0 = 13. 01→0×2 −1 + 1×2 −2 = 0 + 1 ↗ 1101→1×2</p>
+<ul>
+<li>1101. 01 () 2↘ 4 = 0. 25</li>
+</ul>
+<p>(1101.01) 2 ⇒ 13 + 0.25 = (13.25) 10</p>
+<h3>Octal to Decimal</h3>
+<p>1 + 6×8° = 38 0. 2→2×8 −1 = 0. 25 ↗ 46→4×8</p>
+<ul>
+<li>46. 2 () 8↘</li>
+</ul>
+<p>(46.2) 8 ⇒ 38 + 0.25 = (38.25) 10</p>
+<h3>Hexadecimal to Decimal</h3>
+<p>1 + 7×10° = 231 0. 2 = 2×16 −1 = 2 16 = 1 𝐸7. 2 () 16 ↗ ↘ 𝐸7 = 𝐸×16 8 = 0. 125 = 231 + 0.125 = (231.125) 10</p>
+<h3>Hexadecimal to Binary</h3>
+<p>Replace hexadecimal Number by its 4 bit binary equivalent.</p>
+<figure><img src="images/03-number-system-representation_3.png" alt="Diagram" loading="lazy"></figure>
+<p>(4AF) 16 → (0100 1010 1111) 2</p>
+<h3>Octal to Binary</h3>
+<p>→ Replace Octal Number by its 3 bit binary equivalent</p>
+<p>(376) 8 → (011 111 110) 2</p>
+<figure><img src="images/03-number-system-representation_4.png" alt="Diagram" loading="lazy"></figure>
+<h3>Binary to Octal</h3>
+<p>Group the binary bit stream in to pairs of ‘3’ by starting it from LSB</p>
+<figure><img src="images/03-number-system-representation_5.png" alt="Diagram" loading="lazy"></figure>
+<h3>Binary to Hexadecimal</h3>
+<p>Group the binary bit stream into pairs of ‘4’ by starting it from LSB</p>
+<figure><img src="images/03-number-system-representation_6.png" alt="Diagram" loading="lazy"></figure>
+<h3>Octal to Hexadecimal</h3>
+<p>→ Convert octal to Binary number → Perform Binary to Hexadecimal conversion 553 () 8 ↓ 101 101 011 () 2 ↓ 𝐵𝑖𝑛𝑎𝑟𝑦 𝑒𝑞𝑢𝑖𝑣𝑎𝑙𝑒𝑛𝑡 𝐵𝑖𝑛𝑎𝑟𝑦 𝑡𝑜 𝐻𝑒𝑥</p>
+<figure><img src="images/03-number-system-representation_7.png" alt="Diagram" loading="lazy"></figure>
+<h3>Hexadecimal to Octal</h3>
+<p>→ Convert Hexadecimal to Binary Number → Perform Binary to octal conversion</p>
+<p>16𝐵 () 16 ↓ 0001 0110 1011 () 2 ↓ 𝐵𝑖𝑛𝑎𝑟𝑦 𝑒𝑞𝑢𝑖𝑣𝑎𝑙𝑒𝑛𝑡 𝐵𝑖𝑛𝑎𝑟𝑦 𝑡𝑜 𝑂𝑐𝑡𝑎𝑙</p>
+<figure><img src="images/03-number-system-representation_8.png" alt="Diagram" loading="lazy"></figure>
+<h2>Signal Number Representation</h2>
+<p>This is useful for the representation of negative Number Mostly used are: → Signal Magnitude Representation → 1 ’s complement representation → 2 ’s complement Representation</p>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Signed Magnitude</th>
+<th>1stComplement</th>
+<th>2ndComplement</th>
+</tr></thead><tbody>
+<tr>
+<td>1) MSB is a sign bit
+For -ve no., sign bit = 1
+For +ve no., sign bit = 0</td>
+<td>-ve no. is represented in 1st
+complement form</td>
+<td>+ve no. is represented in 2st
+complement form.</td>
+</tr>
+<tr>
+<td>2) Two pattern for ‘0’</td>
+<td>Two pattern for ‘0’</td>
+<td>Single pattern for ‘0’</td>
+</tr>
+<tr>
+<td>3) Use different hardware for addition
+and subtraction</td>
+<td>Use same hardware for addition
+and subtraction</td>
+<td>Use same hardware for addition
+and subtraction</td>
+</tr>
+<tr>
+<td>4) Weighted No. System</td>
+<td>Non weighted</td>
+<td>Weighted no. system</td>
+</tr>
+<tr>
+<td>5) Do not assign weight to sign bit</td>
+<td>-</td>
+<td>Assign weight to sign bit i.e.,
+-ve weight to sign bit
++ve weight to rest bits</td>
+</tr>
+<tr>
+<td>𝑛−1 𝑛−1
+6) − 2 − 1 𝑡𝑜 + 2 − 1</td>
+<td>𝑛−1 𝑛−1
+− 2 𝑡𝑜 + 2 − 1</td>
+<td>𝑛−1 𝑛−1
+− 2 𝑡𝑜 2 − 1</td>
+</tr>
+<tr>
+<td>7) Sign bit does not involve in
+computation</td>
+<td>Sign bit involve in computation</td>
+<td>Sign bit involve in computation.</td>
+</tr>
+</tbody></table></div>
+<h3>Trick:</h3>
+<p>For signed number extension</p>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Signed Magnitude</th>
+<th>1stand 2ndcomplement</th>
+</tr></thead><tbody>
+<tr>
+<td>→put ‘0’ b/w sign bit and successive bit</td>
+<td>→copy ‘sign bit’ b/w sign bit and successive bit</td>
+</tr>
+</tbody></table></div>
+<h2>Codes</h2>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Codes</th>
+<th></th>
+<th></th>
+</tr></thead><tbody>
+<tr>
+<td>Non Binary</td>
+<td>Binary</td>
+<td>alphanumeric</td>
+</tr>
+<tr>
+<td>Morse code</td>
+<td>→Gray code
+→Excess 3 code
+→BCD code
+→8421 code</td>
+<td>→ASCII code
+→EBCDIC code</td>
+</tr>
+</tbody></table></div>
+<h3>Weighted Codes</h3>
+<p>→ 8421 → BCD → Binary, Hex, oct</p>
+<h3>Non weighted codes</h3>
+<p>→ excess 3 → Gray code</p>
+<h3>Self-complementary codes</h3>
+<p>→ They are weighted code with sum of weight = 9 and They have property that 9’s complement of decimal no. is obtained directly by complementing each bit in the pattern.</p>
+<p>Eg. 2421, excess 3, 8 4 2 1, 5211, 4311, 3321</p>
+<h3>Trick:</h3>
+<p>Excess 3 is the only Non-weighted code which is self-complementing.</p>
+<h3>BCD code (Binary code Decimal)</h3>
+<p>→ Each digit of decimal Number is represented by binary equivalent</p>
+<p>→ Also known as 8421 code or 4 bit binary code.</p>
+<p>→ during arithmetic operation of invalid BCD is present then add 0110 to get correct result 46 () 10 𝐵𝐶𝐷→ 0100 0110⏟ 𝐵𝐶𝐷 Excess 3 code → BCD + 3 = Excess 3 code For e.g.</p>
+<figure><img src="images/03-number-system-representation_9.png" alt="Diagram" loading="lazy"></figure>
+<h3>Gray code</h3>
+<p>→ Also known as cyclic code, Minimum error code, Reflective code.</p>
+<p>→ In this code, only one bit in the code group changes when going from one step to next.</p>
+<h3>Binary to Gray code</h3>
+<figure><img src="images/03-number-system-representation_10.png" alt="Diagram" loading="lazy"></figure>
+<h3>Gray code to Binary</h3>
+<figure><img src="images/03-number-system-representation_11.png" alt="Diagram" loading="lazy"></figure>
+<h3>Points to Remember</h3>
+<p>Gray codes are not suitable for arithmetic operations. Excess 3 code arithmetic operation used to perform BCD subtraction Largest no. that can be represented using N bits = (2 N 1) 10 BCD code is used in counters, Digit clocks etc.</p>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">GATE, ESE</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
+    </script>
+</body>
+</html>

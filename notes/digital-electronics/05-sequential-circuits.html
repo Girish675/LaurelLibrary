@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>05 Sequential Circuits — Laurel Library</title>
+    <meta name="description" content="05 Sequential Circuits - Digital Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>/</span>
+                <a href="../index.html">Notes</a>
+                <span>/</span>
+                <a href="index.html">Digital Electronics</a>
+                <span>/</span>
+                <span>05 Sequential Circuits</span>
+            </nav>
+
+            <div class="note-actions">
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 7 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>05 Sequential Circuits</h1>
+                    <div class="meta">
+                        <span class="meta-category">Digital Electronics</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">GATE, ESE</span>
+                    </div>
+                    <h2>Flip-Flops</h2>
+<h2>Introduction</h2>
+<p>Sequential circuits are made up of combination circuits &amp; memory elements.</p>
+<figure><img src="images/05-sequential-circuits_1.png" alt="Diagram" loading="lazy"></figure>
+<h3>The binary data stored in the memory elements is known as state</h3>
+<p>of the memory elements.</p>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>State</th>
+<th>Represented by</th>
+</tr></thead><tbody>
+<tr>
+<td>Previous state</td>
+<td>Q
+n-1</td>
+</tr>
+<tr>
+<td>Present state</td>
+<td>Q
+n</td>
+</tr>
+<tr>
+<td>Next state</td>
+<td>Q
+n+1</td>
+</tr>
+</tbody></table></div>
+<h3>If the output depends upon present state than it is ‘ Moore</h3>
+<p>●</p>
+<h3>Sequential Circuits ’</h3>
+<p>If the output depends upon present state &amp; external input, then it is</p>
+<h3>‘ Mealy Sequential Circuit ’.</h3>
+<p>The Moore &amp; Mealy Models of Sequential circuits are commonly</p>
+<h3>known as ‘ Finite State Machines (FSM) ’</h3>
+<h2>Types of Sequential Circuits</h2>
+<h3>Synchronous Sequential Circuit</h3>
+<p>All the memory elements are triggered simultaneously by a common activating signal (known as clock pulse). It is generally ‘Edge triggered’. It is easier to design.</p>
+<h3>Asynchronous Sequential Circuit</h3>
+<p>Different memory elements are triggered at random instants of time independent of each other. It is generally ‘Level triggered’ It is more difficult to design.</p>
+<h2>Latches &amp; flip-flops</h2>
+<h3>Flip – Flops</h3>
+<p>Flip flop is a one-bit memory element which stores one bit of information. Flip flop has two stable states so it is known as ‘bistable multivibrator’.</p>
+<h3>Bloc diagram of flip-flop -</h3>
+<h3>●</h3>
+<p>Flip flop used edge triggering. The output changes as per the input only at triggering point.</p>
+<h3>Latch</h3>
+<p>A latch is a storage device that holds the data using the feedback lane. The latch stores 1-bit until the device set to 1. The latch changes the stored data &amp; constantly trials the inputs when the enable input set to 1. Latch is an electronic logic circuit with two stable states i.e., it is a bistable multivibrator. In its simplest form, flip-flop is called a ‘Latch’, since it latches (or locks) data in it. The Latches use level triggering’. The output changes as per the input till enable is high. A Latch employs cross-coupled feedback connections.</p>
+<h3>NOTE:</h3>
+<p>Under normal or valid operation, Q &amp; are complement of each other.</p>
+<p>𝑄 Whereas, 𝑄= 𝑄= 0 𝑄= 𝑄= 1 }𝐼𝑛𝑣𝑎𝑙𝑖𝑑 𝑠𝑡𝑎𝑡𝑒</p>
+<h2>Triggering</h2>
+<h3>Level triggering</h3>
+<p>Input signals affect the flip-flop only when the clock is at logic ‘1’. (i) Positive level triggering</p>
+<p>(ii) Negative level triggering</p>
+<h3>Edge triggering</h3>
+<p>Input signals affect the flip-flop only if they are present at the positive going or negative going edge of the clock pulse.</p>
+<p>(i) Positive Edge triggering</p>
+<figure><img src="images/05-sequential-circuits_2.png" alt="Diagram" loading="lazy"></figure>
+<p>(ii) Negative Edge triggering</p>
+<p>It consists of two cross coupled NOR gates (NOR Latch) or NAND gates (NAND Latch)</p>
+<h3>NOR Latch</h3>
+<figure><img src="images/05-sequential-circuits_3.png" alt="Diagram" loading="lazy"></figure>
+<h3>Truth Table:</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>S</th>
+<th>R</th>
+<th>Q
+n+1</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>Q (Hold state)
+n</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0 (Reset state)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1 (Set state)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>Q = Q̅ = 0 (Invalid state)</td>
+</tr>
+</tbody></table></div>
+<h3>Characteristic Table:</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>S</th>
+<th>R</th>
+<th>Q
+n</th>
+<th>Q
+n+1</th>
+</tr></thead><tbody>
+<tr>
+<td>0
+0</td>
+<td>0
+0</td>
+<td>0
+1</td>
+<td>0
+1</td>
+</tr>
+<tr>
+<td>0
+0</td>
+<td>1
+1</td>
+<td>0
+0</td>
+<td>0
+0</td>
+</tr>
+<tr>
+<td>1
+1</td>
+<td>0
+0</td>
+<td>0
+1</td>
+<td>1
+1</td>
+</tr>
+<tr>
+<td>1
+1</td>
+<td>1
+1</td>
+<td>0
+1</td>
+<td>Invalid state</td>
+</tr>
+</tbody></table></div>
+<h3>NAND Latch</h3>
+<h3>•</h3>
+<h3>Truth Table:</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>S</th>
+<th>R</th>
+<th>Q
+n+1</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>Q = Q̅ = 1 (Invalid state)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1 (Set state)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0 (Reset state)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>Q (Hold state)
+n</td>
+</tr>
+</tbody></table></div>
+<h3>NOTE -</h3>
+<p>NAND Latch is also known as Latch.</p>
+<p>𝑆𝑅 𝑜𝑟 𝑆 𝐶</p>
+<h3>Special Case -</h3>
+<p>Hold state applied immediately after invalid state in SR Latch.</p>
+<h2>Clocked S-R Flip Flop</h2>
+<figure><img src="images/05-sequential-circuits_4.png" alt="Diagram" loading="lazy"></figure>
+<h3>Truth Table -</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Clock</th>
+<th>S</th>
+<th>R</th>
+<th>Q
+n+1</th>
+<th>State</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>×</td>
+<td>×</td>
+<td>Q
+n</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Q
+n</td>
+<td>Hold</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Set</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>×</td>
+<td>Invalid</td>
+</tr>
+</tbody></table></div>
+<h3>Characteristics Table -</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>S</th>
+<th></th>
+<th>R</th>
+<th>Q
+n</th>
+<th></th>
+<th>Q
+n+1</th>
+<th></th>
+<th>State</th>
+<th></th>
+<th></th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td></td>
+<td>Q (Hold)
+n</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td></td>
+<td>1</td>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td></td>
+<td>Reset</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>Set</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td>0</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>0</td>
+<td>×</td>
+<td></td>
+<td>I</td>
+<td>nvalid</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>×</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Q
+n</td>
+<td></td>
+<td></td>
+<td>Q
+n+1</td>
+<td></td>
+<td>S</td>
+<td></td>
+<td>R</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>0</td>
+<td></td>
+<td></td>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td></td>
+<td>×</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>0</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>×</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody></table></div>
+<h3>Graphical symbol of S-R Latch</h3>
+<h3>●</h3>
+<figure><img src="images/05-sequential-circuits_5.png" alt="Diagram" loading="lazy"></figure>
+<h3>Problem : Invalid states are present when both the inputs ‘S’ &amp; ‘R’ are</h3>
+<p>made HIGH (logic 1). To avoid this difficulty, we use J-K flip-flop.</p>
+<h2>J-K (Jack-Kilby) flip-flop</h2>
+<p>It Resolve the problem of invalid state of SR flip flop.</p>
+<h3>Truth Table of J-K flip-flop</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Clock</th>
+<th>J</th>
+<th>K</th>
+<th>Q
+n+1</th>
+<th>State</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>×</td>
+<td>×</td>
+<td>Q
+n</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Q
+n</td>
+<td>Hold</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Set</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Q̅
+n</td>
+<td>Toggle</td>
+</tr>
+</tbody></table></div>
+<h3>Characteristics Table</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>J</th>
+<th>K</th>
+<th>Q
+n</th>
+<th>Q
+n+1</th>
+<th>State</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Q (Hold)
+n</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>Set</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Toggle</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody></table></div>
+<h3>Excitation table</h3>
+<h3>●</h3>
+<h3>Q n+1</h3>
+<h3>J</h3>
+<h3>K</h3>
+<p>0 0 0 × 0 1 1 × 1 0 × 1 1 1 × 0</p>
+<h3>Characteristics Equation:</h3>
+<h3>●</h3>
+<p>Q n+1 = J n + Q n 𝑄 𝐾</p>
+<h3>Graphical Symbol:</h3>
+<h3>●</h3>
+<figure><img src="images/05-sequential-circuits_6.png" alt="Diagram" loading="lazy"></figure>
+<h3>NOTE:</h3>
+<p>Using JK flip-flop all other flip-flops can be designed thus it is known as ‘Universal flip flop’.</p>
+<h2>Race Around Condition in a JK flip flop</h2>
+<p>In race around condition, the output of the JK flip flop toggle more than once, whereas, ideally it must toggle only once. It occurs when (i) J = K = 1 (ii) T PW (clock pulse width) &gt; T PD (flip flop propagation delay) (iii) When level triggered is applied.</p>
+<h3>Solution:</h3>
+<p>This problem is resolved by ensuring the following condition T PW &lt; T PD &lt; T CLK Or use Master Slave JK flip flop.</p>
+<h2>Master-Slave JK flip flop</h2>
+<p>The overall circuit act as a single flip flop and stores one bit. At any instant, only one flip flop is triggered. The problem of race around condition is not present in Master Slave JK flip flop. The function table of Master Slave JK flip flop is same as JK flip flop.</p>
+<h2>D flip flop</h2>
+<p>It is a flip-flop with delay equal to exactly one cycle of clock. It is also called ‘data transmission flip-flop’ &amp; ‘Transparent Latch’.</p>
+<figure><img src="images/05-sequential-circuits_7.png" alt="Diagram" loading="lazy"></figure>
+<p>The output follows the input (only on the active edges of the clock pulse).</p>
+<h3>Truth Table</h3>
+<h3>●</h3>
+<h3>Cl K</h3>
+<h3>D</h3>
+<h3>Q n+1</h3>
+<p>0 × Q n 1 0 0 1 1 1</p>
+<h3>Characteristics Table</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>D</th>
+<th>Q
+n</th>
+<th>Q
+n+1</th>
+<th>State</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Set</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Set</td>
+</tr>
+</tbody></table></div>
+<h3>Characteristics Equation:</h3>
+<h3>●</h3>
+<p>Q n+1 = D</p>
+<h3>Excitation table:</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Q
+n</th>
+<th>Q
+n+1</th>
+<th>D</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table></div>
+<h2>T flip flop</h2>
+<p>The designation ‘T’ comes from the ability of the flip flop to ‘Toggle’ or ‘change’ state.</p>
+<figure><img src="images/05-sequential-circuits_8.png" alt="Diagram" loading="lazy"></figure>
+<h3>Truth Table</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>ClK</th>
+<th>T</th>
+<th>Q
+n+1</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>×</td>
+<td>Q
+n</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>Q
+n</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>Q̅
+n</td>
+</tr>
+</tbody></table></div>
+<h3>Characteristics Table</h3>
+<h3>●</h3>
+<h3>T</h3>
+<h3>Q n+1</h3>
+<p>0 0 0 0 1 1 1 0 1 1 1 0</p>
+<h3>Characteristics Equation:</h3>
+<h3>●</h3>
+<p>Q n+1 = T ⨁ Q n</p>
+<h3>Excitation table:</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Q
+n</th>
+<th>Q
+n+1</th>
+<th>T</th>
+</tr></thead><tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table></div>
+<h2>Conversion of flip-flops</h2>
+<p>Following are the steps to convert one kind of flip-flop into other kind of flip-flop.</p>
+<h3>Step 1:</h3>
+<h3>Step 2 : Write down the characteristics table of desired flip-flop followed</h3>
+<p>by excitation table of given flip-flop.</p>
+<h3>Step 3 : Using K-map derive the expression for available flip-flop in terms</h3>
+<p>of desired flip-flop.</p>
+<h3>NOTE: -</h3>
+<h3>Some standard Conversion:</h3>
+<h3>●</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>To obtain ↓</th>
+<th>From →</th>
+<th>S</th>
+<th>R</th>
+<th>J</th>
+<th>K</th>
+<th>D</th>
+<th>T</th>
+</tr></thead><tbody>
+<tr>
+<td>SR</td>
+<td></td>
+<td>-</td>
+<td>-</td>
+<td>S</td>
+<td>R</td>
+<td>S + R̅Q
+n</td>
+<td>SQ̅ + RQ
+n n</td>
+</tr>
+<tr>
+<td>JK</td>
+<td></td>
+<td>JQ̅
+n</td>
+<td>KQ
+n</td>
+<td>-</td>
+<td>-</td>
+<td>JQ̅ + K̅Q
+n n</td>
+<td>JQ̅ + KQ
+n n</td>
+</tr>
+<tr>
+<td>D</td>
+<td></td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>D</td>
+<td>-</td>
+<td>D ⨁Q
+n</td>
+</tr>
+<tr>
+<td>T</td>
+<td></td>
+<td>TQ̅
+n</td>
+<td>TQ
+n</td>
+<td>T</td>
+<td>T</td>
+<td>T ⨁Q
+n</td>
+<td>-</td>
+</tr>
+</tbody></table></div>
+<p>To obtain any flip flop from the D – flip flop, simply apply the characteristics equation of that flip – flop on the ‘D’ input.</p>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">GATE, ESE</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">GATE, ESE</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">GATE, ESE</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
+    </script>
+</body>
+</html>

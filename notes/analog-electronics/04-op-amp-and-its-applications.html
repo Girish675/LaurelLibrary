@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>04 Op Amp And Its Applications — Laurel Library</title>
+    <meta name="description" content="04 Op Amp And Its Applications - Analog Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>/</span>
+                <a href="../index.html">Notes</a>
+                <span>/</span>
+                <a href="index.html">Analog Electronics</a>
+                <span>/</span>
+                <span>04 Op Amp And Its Applications</span>
+            </nav>
+
+            <div class="note-actions">
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 4 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>04 Op Amp And Its Applications</h1>
+                    <div class="meta">
+                        <span class="meta-category">Analog Electronics</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">GATE, ESE</span>
+                    </div>
+                    <h3>Operational Amplifier</h3>
+<p>Block diagram of an op-amp:​</p>
+<figure><img src="images/04-op-amp-and-its-applications_1.jpg" alt="Diagram" loading="lazy"></figure>
+<p>Op-amp is a high gain, direct coupled amplifier, used to do all the mathematical operations.​</p>
+<p>Open loop gain ​ →∞ 𝑉 𝑜 −𝑅 𝑓 Close loop gain​ 𝑉 𝑖 = = 𝑅 1</p>
+<figure><img src="images/04-op-amp-and-its-applications_2.jpg" alt="Diagram" loading="lazy"></figure>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝑉 𝑜 𝑅 𝑓 𝑉 𝑖𝑛 = 1 + 𝑅 1</p>
+<h3>Op-amp as a summer</h3>
+<figure><img src="images/04-op-amp-and-its-applications_3.jpg" alt="Diagram" loading="lazy"></figure>
+<p>−𝑅 𝑓 𝑅 𝑓 𝑅 𝑓 𝑉 𝑜 = · 𝑉 1 − 𝑅 𝑛 𝑉 2...− 𝑅 𝑁 𝑉 𝑁 𝑅 1</p>
+<h3>Op-amp as voltage follower</h3>
+<figure><img src="images/04-op-amp-and-its-applications_4.jpg" alt="Diagram" loading="lazy"></figure>
+<p>​ It is used for impedance matching ​ It has unity gain ​ It has high input impedance and very low output impedance</p>
+<h3>Voltage to current converter</h3>
+<p>If then this configuration has 𝑅 1 𝑅 3 = 𝑅 𝑓 𝑅 2 −𝑉 𝑖𝑛 1.​ this current is independent of hence called current source 𝐼 𝐿 = 𝑅 𝐿 𝑅 2 𝐶𝑀𝑅𝑅= ∞ 2.​ ​</p>
+<figure><img src="images/04-op-amp-and-its-applications_5.jpg" alt="Diagram" loading="lazy"></figure>
+<h3>Differential amplifier</h3>
+<figure><img src="images/04-op-amp-and-its-applications_6.jpg" alt="Diagram" loading="lazy"></figure>
+<p>𝑅 2 [] 𝐼𝑓 𝑅 2 𝑅 3 = 𝑅 1 𝑅 4 𝑡ℎ𝑒𝑛 𝑉 𝑜 = 𝑅 1 𝑉 2 −𝑉 1 𝑅 𝑖𝑛 = 𝑅 1 + 𝑅 3</p>
+<h3>Op-amp as an integrator</h3>
+<figure><img src="images/04-op-amp-and-its-applications_7.jpg" alt="Diagram" loading="lazy"></figure>
+<p>​ 𝑉 𝑜 −1 𝑉 𝑖𝑛 = 𝑅𝐶𝑆 ​ 𝑉 𝑜 (𝑡) ∝∫𝑉 𝑖𝑛 (𝑡)𝑑𝑡</p>
+<h3>Op-amp as a differentiator</h3>
+<figure><img src="images/04-op-amp-and-its-applications_8.jpg" alt="Diagram" loading="lazy"></figure>
+<p>​ 𝑉 𝑜 𝑉 𝑖𝑛 =−𝑅𝐶𝑆 ​ 𝑑 𝑉 𝑜 (𝑡) ∝ 𝑑𝑡 𝑉 𝑖𝑛 (𝑡)</p>
+<h3>Op-amp as log amplifier</h3>
+<figure><img src="images/04-op-amp-and-its-applications_9.jpg" alt="Diagram" loading="lazy"></figure>
+<p>​ () 𝑉 𝑜 ∝𝑙𝑜𝑔 𝑒 ⁡ 𝑉 𝑖𝑛</p>
+<h3>Op-amp as antilog or exponential amplifier</h3>
+<figure><img src="images/04-op-amp-and-its-applications_10.jpg" alt="Diagram" loading="lazy"></figure>
+<p>​ 𝑉 𝑖𝑛 (𝑡) 𝑉 𝑜 ∝𝑒</p>
+<h3>Op-amp as precision diode</h3>
+<p>In normal diodes, if, then diode remains off but in precision diode even voltage</p>
+<p>𝑉 𝑖𝑛 &lt; 𝑉 𝑟 of milli volt make diode ON because of high gain of the amplifier.​</p>
+<figure><img src="images/04-op-amp-and-its-applications_11.jpg" alt="Diagram" loading="lazy"></figure>
+<h3>Op-amp as half wave rectifier</h3>
+<figure><img src="images/04-op-amp-and-its-applications_12.jpg" alt="Diagram" loading="lazy"></figure>
+<p>Op-amp as full wave rectifier​</p>
+<figure><img src="images/04-op-amp-and-its-applications_13.jpg" alt="Diagram" loading="lazy"></figure>
+<h3>Op-amp as astable multi-vibrator</h3>
+<figure><img src="images/04-op-amp-and-its-applications_14.jpg" alt="Diagram" loading="lazy"></figure>
+<h3>Op-amp as Schmitt trigger</h3>
+<figure><img src="images/04-op-amp-and-its-applications_15.jpg" alt="Diagram" loading="lazy"></figure>
+<p>𝑅 2 Upper threshold:</p>
+<p>​ 𝑉 𝑠𝑎𝑡 · 𝑅 1 +𝑅 2 𝑅 2 Lower threshold:</p>
+<p>−𝑉 𝑠𝑎𝑡 𝑅 1 +𝑅 2</p>
+<h3>If reference voltage is used:</h3>
+<figure><img src="images/04-op-amp-and-its-applications_16.jpg" alt="Diagram" loading="lazy"></figure>
+<p>​ 𝑉 𝑅 ·𝑅 1 𝑅 2 𝑉 𝑈𝑇 = 𝑅 1 +𝑅 2 + 𝑉 𝑠𝑎𝑡 𝑅 1 +𝑅 2 ​ 𝑉 𝑅 ·𝑅 1 𝑉 𝑠𝑎𝑡 ·𝑅 2 𝑉 𝐿𝑇 = 𝑅 1 +𝑅 2 − 𝑅 1 +𝑅 2 ​</p>
+<figure><img src="images/04-op-amp-and-its-applications_17.jpg" alt="Diagram" loading="lazy"></figure>
+<p>​ Hysteresis width ​ 𝑉 𝐻 = = 𝑉 𝑈𝑇 −𝑉 𝐿𝑇 It is independent of ​ 𝑉 𝑅 𝑅 2 𝑉 𝐻 = 2𝑉 𝑠𝑎𝑡 · 𝑅 1 +𝑅 2 ​</p>
+<figure><img src="images/04-op-amp-and-its-applications_18.jpg" alt="Diagram" loading="lazy"></figure>
+<h3>Difference between Ideal and Practical OP-AMP</h3>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Parameter</th>
+<th>Ideal</th>
+<th>Practical</th>
+</tr></thead><tbody>
+<tr>
+<td>gain</td>
+<td>∞</td>
+<td>5
+2 × 10 𝑉/𝑣</td>
+</tr>
+<tr>
+<td>𝑅
+𝑖𝑛</td>
+<td>∞</td>
+<td>10𝑀Ω</td>
+</tr>
+<tr>
+<td>𝑅
+0</td>
+<td>0</td>
+<td>75Ω</td>
+</tr>
+<tr>
+<td>B.w</td>
+<td>∞</td>
+<td>1 MHz</td>
+</tr>
+<tr>
+<td>CMRR</td>
+<td>∞</td>
+<td>80 − 100 𝑑𝐵</td>
+</tr>
+<tr>
+<td>S.R</td>
+<td>∞</td>
+<td>1 𝑉/µ𝑠𝑒𝑐</td>
+</tr>
+</tbody></table></div>
+<h3>Slew rate</h3>
+<p>It is defined as rate of change of output voltage with change in time.​ 𝑑𝑉 𝑜 𝑑𝑉 𝑜 𝑑𝑉 𝑖𝑛 S.</p>
+<p>​ 𝑅= 𝑑𝑡 = 𝑑𝑉 𝑖𝑛 𝑑𝑡 𝑑𝑣 𝑖𝑛 𝑆. 𝑅= 𝐴 𝑑𝑡 ​ For ​ 𝑉 𝑖𝑛 = 𝐴 𝑚 𝑠𝑖𝑛𝑤 𝑚 𝑡 𝑑𝑉 𝑖𝑛 = 𝐴 𝑚 𝑤 𝑚 𝑐𝑜𝑠⁡𝑤 𝑚 𝑡 𝑑𝑡 ​ 𝑑𝑉 𝑖𝑛 ||| ||| 𝑚𝑎𝑥 = 𝐴 𝑚 𝑤 𝑚 𝑑𝑡</p>
+<p>From (1)​ 𝑑𝑉 𝑖𝑛 ||| ||| 𝑚𝑎𝑥 |𝑆. 𝑅| 𝑚𝑎𝑥 = 𝐴 𝑑𝑡</p>
+<p>​ 𝐼𝑆. 𝑅𝐼 𝑚𝑎𝑥 = 𝐴· 𝐴 𝑚 𝑊 𝑚 ​ If S.R is less, then output does not changes as fast as input and hence output signal get distorted.</p>
+<h3>Frequency Response</h3>
+<figure><img src="images/04-op-amp-and-its-applications_19.jpg" alt="Diagram" loading="lazy"></figure>
+<p>Op-amp can be assumed as a low pass filter​ 𝐴 𝐶𝐿 Hence, 𝐻(𝑓) = 1+𝑗 𝑓 𝑐</p>
+<h3>Input off set voltage</h3>
+<p>It is the voltage we need to apply at the input so that output become zero.​</p>
+<figure><img src="images/04-op-amp-and-its-applications_20.jpg" alt="Diagram" loading="lazy"></figure>
+<p>𝑅 1 ⎡⎢⎣ ⎤⎥⎦ () 𝑉 𝑖𝑜 = 𝑉 𝑜 𝑅 1 +𝑅 2</p>
+<h3>Compensation resistance:</h3>
+<p>𝑅 𝑐𝑜𝑚</p>
+<figure><img src="images/04-op-amp-and-its-applications_21.jpg" alt="Diagram" loading="lazy"></figure>
+<p>𝑅 1 𝑅 𝑓 𝑅 𝑐𝑜𝑚 = 𝑅 1 +𝑅 𝑓</p>
+<h3>Filters using op-amp</h3>
+<figure><img src="images/04-op-amp-and-its-applications_22.jpg" alt="Diagram" loading="lazy"></figure>
+<p>Low Pass Filter 1 𝑓 𝑐 = 2π𝑅 𝑓 𝑐</p>
+<figure><img src="images/04-op-amp-and-its-applications_23.jpg" alt="Diagram" loading="lazy"></figure>
+<p>HPF 1 𝑓 𝑐 = 2π𝑅 1 𝑐</p>
+<figure><img src="images/04-op-amp-and-its-applications_24.jpg" alt="Diagram" loading="lazy"></figure>
+<p>Band Pass Filter​</p>
+<figure><img src="images/04-op-amp-and-its-applications_25.jpg" alt="Diagram" loading="lazy"></figure>
+<h3>All pass filter</h3>
+<p>It has unity gain for all frequency.​</p>
+<figure><img src="images/04-op-amp-and-its-applications_26.jpg" alt="Diagram" loading="lazy"></figure>
+<p>It is used to provide only phase change (either increase or decrease the phase angle) according to operating frequency.</p>
+<p>𝑛𝑑</p>
+<h3>order filter transfer functions</h3>
+<p>2 𝑃 ​ LPF:</p>
+<p>2 +𝐵𝑆+𝐶 𝐴𝑆 𝑃𝑆 ​ BPF:</p>
+<p>2 +𝐵𝑆+𝐶 𝐴𝑆 2 𝑃𝑆 ​ HPF:</p>
+<p>2 +𝐵𝑆+𝐶 𝐴𝑆 𝑃𝑆+𝑄 ​ BRF:</p>
+<p>2 +𝐵𝑆+𝐶 𝐴𝑆 2 −𝐵𝑆+𝐶 𝐴𝑆 ​ APF:</p>
+<p>2 +𝐵𝑆+𝐶 𝐴𝑆</p>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="01-diode-circuits.html" class="note-card"><h4>01 Diode Circuits</h4><div class="meta">GATE, ESE</div></a><a href="02-bipolar-junction-transistors.html" class="note-card"><h4>02 Bipolar Junction Transistors</h4><div class="meta">GATE, ESE</div></a><a href="03-fet-mosfet.html" class="note-card"><h4>03 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
+    </script>
+</body>
+</html>

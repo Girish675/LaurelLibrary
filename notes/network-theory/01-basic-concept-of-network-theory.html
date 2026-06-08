@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>01 Basic Concept Of Network Theory — Laurel Library</title>
+    <meta name="description" content="01 Basic Concept Of Network Theory - Network Theory study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>/</span>
+                <a href="../index.html">Notes</a>
+                <span>/</span>
+                <a href="index.html">Network Theory</a>
+                <span>/</span>
+                <span>01 Basic Concept Of Network Theory</span>
+            </nav>
+
+            <div class="note-actions">
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 9 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>01 Basic Concept Of Network Theory</h1>
+                    <div class="meta">
+                        <span class="meta-category">Network Theory</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">GATE, ESE</span>
+                    </div>
+                    <h2>Basic concept of network theory</h2>
+<h2>Network &amp; circuits</h2>
+<p>Circuit must have a closed Path whereas network may be open or closed path. Every circuit is a network but every network is not circuit. Circuit is the subset of network.</p>
+<p>Consider building to be Network &amp; building’s rooms to be circuit.</p>
+<figure><img src="images/01-basic-concept-of-network-theory_1.png" alt="Diagram" loading="lazy"></figure>
+<p>Quantity which is responsible for electric phenomenon. Q = ne where, n = no. of e or protons q = total charge e = charge on e or protons Fundamental unit: Coulomb (C)</p>
+<figure><img src="images/01-basic-concept-of-network-theory_2.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_3.png" alt="Diagram" loading="lazy"></figure>
+<p>Charge in motion represent a current. { } () = 𝑑𝑞(𝑡) 𝑖𝑡 𝑑𝑡 𝑡 𝑞𝑡 () = 𝐼𝑜 () + ∫𝐼𝑡 ()𝑑𝑡 𝑜 Fundamental unit: Ampere (A)</p>
+<h2>Note :</h2>
+<p>Electron current flows from negative terminal of source to positive terminal. Conventional current flows from positive terminal of source to negative terminal. Conventional current’s direction is opposite to the flow of electron direction. Electron current is obtained due to the movement of free electrons. Conventional current is obtained due to the movement of free positive charges.</p>
+<figure><img src="images/01-basic-concept-of-network-theory_4.png" alt="Diagram" loading="lazy"></figure>
+<p>Amount of work required to move a charge through the element. { } 𝑣= 𝑑𝑤 𝑊 𝑄 = 𝐽 or or Volt (V) 𝑑𝑞 𝐶 Where, W is the potential energy (in Joule) Q is the charge (in Coulomb) Electric field intensity is (-) ve potential gradient. 𝐸= 𝑉 = ∇ V or 𝐸 𝑙</p>
+<p>Direction of voltage is always from (-) ve to (+ve).</p>
+<figure><img src="images/01-basic-concept-of-network-theory_5.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_6.png" alt="Diagram" loading="lazy"></figure>
+<p>The electromotive force is the cause of the potential difference, whereas the potential difference is the effect of the potential difference. The magnitude of emf has always remained constant, whereas the magnitude of the potential difference varies. The electromotive force does not depend on the internal resistance of the circuit whereas the potential difference is directly proportional to the resistance of the circuit. The electromotive force is represented by the symbol ‘E’ whereas the symbol ‘V’ represents the potential difference.</p>
+<figure><img src="images/01-basic-concept-of-network-theory_7.png" alt="Diagram" loading="lazy"></figure>
+<p>Power can be defined as the rate of flow of electrical energy. Mathematically, it can be written as 𝑃= 𝑑𝑤 𝑑𝑡 = 𝑑𝑤 𝑑𝑞. 𝑑𝑞 𝑑𝑡 Or 2 P = VI or P = I 2 R or 𝑃= 𝑉 𝑅 Instantaneous power: P (t) = v (t).i (t) Fundamental unit: Watt (W)</p>
+<p>Sign convention for power calculation:</p>
+<h2>Points to be Remember :</h2>
+<p>1 hp = 746 W −3 𝑊 1𝑚𝑊= 10 −6 𝑊 1μ𝑊= 10 −9 𝑊 1𝑛𝑊= 10 3 𝑊 1𝑘𝑊= 10 6 𝑊 1𝑀𝑊= 10 9 𝑊 1𝐺𝑊= 10</p>
+<figure><img src="images/01-basic-concept-of-network-theory_8.png" alt="Diagram" loading="lazy"></figure>
+<p>The capacity to do work is known as Energy W = ∫Pdt Fundamental unit: Joule (J) The electric power utility companies measure energy in Watt hours (Wh) 1 Wh = 3600 J</p>
+<figure><img src="images/01-basic-concept-of-network-theory_9.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_10.png" alt="Diagram" loading="lazy"></figure>
+<p>At constant temperature, J ∝ E Or J = σ E Where, J = Current density (A/m 2) E= Electric Field intensity (V/m) σ= Conductivity (1/Ohm-m) Current flowing through conductor is proportional to the potential difference between two ends provided external conditions to be constant. i.e., I ∝ V { } { } 𝐼= 𝑉 𝑅= 𝑉 or, or 𝑅 𝐼</p>
+<h2>Points to be Remember :</h2>
+<p>1 is proportional constant. 𝑅</p>
+<figure><img src="images/01-basic-concept-of-network-theory_11.png" alt="Diagram" loading="lazy"></figure>
+<p>Resistance does not depend upon voltage or current. Resistance is depend upon the ratio of voltage to the current.</p>
+<figure><img src="images/01-basic-concept-of-network-theory_12.png" alt="Diagram" loading="lazy"></figure>
+<p>Specific resistance is defined as the resistance offered by a unit length and unit cross-section of the substance to a current when a voltage is applied to it. Its SI unit is Ω−m.</p>
+<p>{ } ρ = 𝑅𝐴 Ohm – m 𝑙 It depends upon type of material but NOT on dimensions. Resistance depends upon temperature, along with dimension. The resistivity of the cube having one-meter side is defined as the resistance offered between the opposite two phases of the one-meter cube.</p>
+<p>R 2 = R 1 [1 + α Δ T] Where, R 2 = Resistance at temperature T 2 R 1 = Resistance at temperature T 1</p>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th></th>
+<th>T</th>
+<th>R</th>
+<th>α</th>
+</tr></thead><tbody>
+<tr>
+<td>Conductor</td>
+<td>↑</td>
+<td>↑</td>
+<td>(+)ve temperature coefficient</td>
+</tr>
+<tr>
+<td>Semiconductor</td>
+<td>↑</td>
+<td>↓</td>
+<td>(-)ve temperature coefficient</td>
+</tr>
+</tbody></table></div>
+<p>Reciprocal of resistance is conductance. { } 𝐴 1 or mho or Siemens 𝐺= 𝑅 𝑉 Reciprocal of resistivity is conductivity. { } σ = 1 1 or Siemens/m ρ Ω−𝑚 Copper and Aluminum have low resistivity. Good conductors have less resistivity. Insulators have a high resistivity. The resistivity of semiconductors lies between conductors and insulators. Gold is a good conductor of electricity and so it has low resistivity.</p>
+<figure><img src="images/01-basic-concept-of-network-theory_13.png" alt="Diagram" loading="lazy"></figure>
+<p>Applicable only for linear elements. Temperature must be constant.</p>
+<figure><img src="images/01-basic-concept-of-network-theory_14.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_15.png" alt="Diagram" loading="lazy"></figure>
+<h2>Inductance</h2>
+<p>{ } 𝑊𝑏 𝐿= 𝑁ϕ or Henry (H) 𝑖 𝐴 If inductance does not depend upon flux linkage or current, then it is known as linear inductor otherwise Non-linear inductor. With any change of flow or direction of current, the electromagnetic field changes. This change of field induces a voltage (V L) across the coil, is given by (Lenz’s law)</p>
+<h2>{</h2>
+<h2>}</h2>
+<p>𝑉 𝐿 =−𝐿 𝑑𝑖 𝑑𝑡</p>
+<p>Practical inductance has very low value of resistance.</p>
+<h2>Inductance of solenoid</h2>
+<h2>{</h2>
+<h2>}</h2>
+<p>2 𝐴 𝐿= µ𝑁 𝑙 Energy stored in inductor: 2 (𝑡) () = 1 J 𝑤𝑡 2 𝐿 𝑖 The inductor stores the energy in the form of magnetic field. A pure inductor does not dissipate energy, but only stores it.</p>
+<h2>Capacitance</h2>
+<p>{ } 𝐶= ϵ𝐴; ϵ: permittivity 𝑑 unit: F/m { } 𝐶= 𝑄 Farad 𝑉 If capacitance does not depend on Q or V then it is Linear capacitor otherwise Non-linear capacitor. { } 𝑖 = 𝐶 𝑑𝑉 𝑑𝑡</p>
+<h2>Note :</h2>
+<p>Reciprocal of capacitance is Elastence. 𝑆= 1 𝐶 Unit: DARAF Energy stored in capacitor 2 (𝑡) () = 1 𝑤𝑡 2 𝐶𝑉 The capacitor stores the energy in the form of electric field.</p>
+<h2>Classification of elements</h2>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Element</th>
+<th>How to identify</th>
+<th>Example</th>
+</tr></thead><tbody>
+<tr>
+<td>Linear</td>
+<td>Characteristic are straight line &amp; passing
+through origin</td>
+<td>R, L, C</td>
+</tr>
+<tr>
+<td>Non-linear</td>
+<td>Otherwise, Non-linear</td>
+<td>Diode, charged capacitor</td>
+</tr>
+<tr>
+<td>Active</td>
+<td>Characteristics may have (-)ve slope or
+combination of both</td>
+<td>Voltage, current source, SCR, op-amp</td>
+</tr>
+<tr>
+<td>Passive</td>
+<td>Characteristics does not have (-)ve slope,
+only (+)ve slope</td>
+<td>R, L, C, transformer</td>
+</tr>
+<tr>
+<td>Bilateral</td>
+<td>Having same characteristics in both the
+direction of current</td>
+<td>R, L, C Diac &amp; triac</td>
+</tr>
+<tr>
+<td>Unilateral</td>
+<td>Otherwise, unilateral</td>
+<td>Diode, SCR, transistor, op-amp</td>
+</tr>
+<tr>
+<td>Lumped &amp;
+distributed</td>
+<td>Separation of R, L, C possible is lumped
+otherwise distributed</td>
+<td>Lumped, R, L, C distributed – Transmission line</td>
+</tr>
+</tbody></table></div>
+<h2>Points to be remember :</h2>
+<p>All the linear elements are bilateral but bilateral element need not to be a linear. KCL &amp; KVL are not applicable for distributed elements. Circuit theory is applicable up to high frequency. At steady state, consider distributed element as lumped element.</p>
+<h2>Sources</h2>
+<figure><img src="images/01-basic-concept-of-network-theory_16.png" alt="Diagram" loading="lazy"></figure>
+<h2>Remember :</h2>
+<p>Ideal voltage source has zero internal resistance. Ideal current source has infinite internal resistance. Dependent sources are useful to represent electrical models for solid state devices e.g. transistors, op-amp. Don’t connect different ideal voltage sources in parallel. Don’t connect different ideal current sources in series.</p>
+<h2>Kirchhoff’s Laws</h2>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>KCL</th>
+<th>KVL</th>
+</tr></thead><tbody>
+<tr>
+<td>Algebraic sum of currents at any
+node is
+zero</td>
+<td>Algebraic sum of voltages in any
+closed
+path is zero</td>
+</tr>
+<tr>
+<td>It expressed as conservation of
+charge</td>
+<td>It expressed as conservation of
+energy</td>
+</tr>
+<tr>
+<td>KCL does not depend on the
+nature of the element</td>
+<td>KVL also does not depend on the
+nature of the element</td>
+</tr>
+<tr>
+<td>KCL is not applicable for
+distributed networks</td>
+<td>KVL is also not applicable for
+distributed networks</td>
+</tr>
+</tbody></table></div>
+<h2>Voltage Division Rule</h2>
+<p>→ For Series connected elements only.</p>
+<h2>(</h2>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝑅 1 𝑅 2 𝑅 [] 𝑉 𝑅1 = 𝑉 𝑅 1 +𝑅 2 𝑅 1 +𝑅 2</p>
+<h2>(</h2>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝐿 1 𝐿 2 𝐿 [] 𝑉 𝐿1 = 𝑉 𝐿 1 +𝐿 2 𝐿 1 +𝐿 2</p>
+<h2>(</h2>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝐶 2 𝐶 1 𝐶 [] 𝑉 𝐶1 = 𝑉 𝐶 1 +𝐶 2 𝐶 1 +𝐶 2</p>
+<h2>(</h2>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝐺 2 𝐺 1 𝐺 [] 𝑉 𝐺1 = 𝑉 𝐺 1 +𝐺 2 𝐺 1 +𝐺 2</p>
+<h2>Current Division Rule</h2>
+<p>→ For Parallel connected elements only.</p>
+<h2>(</h2>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝑅 2 𝑅 1 𝑅 [] 𝐼 𝑅1 = 𝐼 𝑅 1 +𝑅 2 𝑅 1 +𝑅 2</p>
+<h2>(</h2>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝐿 2 𝐿 1 𝐿 [] 𝐼 𝐿1 = 𝐼 𝐿 1 +𝐿 2 𝐿 1 +𝐿 2</p>
+<h2>(</h2>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝐶 1 𝐶 2 𝐶 [] 𝐼 𝐶1 = 𝐼 𝐶 1 +𝐶 2 𝐶 1 +𝐶 2</p>
+<h2>(</h2>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝐺 1 𝐺 2 𝐺 [] 𝐼 𝐺1 = 𝐼 𝐺 1 +𝐺 2 𝐺 1 +𝐺 2</p>
+<h2>Simplification techniques</h2>
+<h3>Nodal Analysis</h3>
+<p>Applicable to both planar &amp; Non-planner networks. No. of equation =n-1</p>
+<h3>Mesh Analysis</h3>
+<p>Applicable only to planar network No. of independent loop (l) = b – n + 1.</p>
+<p>Here, b = branches &amp; n = Nodes.</p>
+<h2>Source Transformation</h2>
+<p>Points to remember:</p>
+<p>Source transformation is only applied to Practical Sources. Above circuit diagram are equivalent in respect with performance, the only difference in connection. This technique is also applicable to dependent sources, but it should be kept in mind that dependent variable lies outside that branch (where source transformation is applied)</p>
+<h2>Delta to Star &amp; Star to Delta</h2>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>DELTA to STAR</th>
+<th>STAR to DELTA</th>
+</tr></thead><tbody>
+<tr>
+<td>[𝑅 ]
+𝑅 𝑅
+𝑅 = 𝑎 𝑐 ,
+1 𝑅 +𝑅+𝑅
+𝑎 𝑏 𝑐</td>
+<td>𝑅 𝑅
+𝑅 = 𝑅 + 𝑅 + 1 2
+𝑎 1 2 𝑅
+3</td>
+</tr>
+</tbody></table></div>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>𝑅 𝑅
+𝑅 = 𝑎 𝑏 ,
+2 𝑅 +𝑅+𝑅
+𝑎 𝑏 𝑐
+𝑅𝑅
+𝑅 = 𝑐 𝑏
+3 𝑅 +𝑅+𝑅
+𝑎 𝑏 𝑐</th>
+<th>𝑅 𝑅
+𝑅 = 𝑅 + 𝑅 + 2 3
+𝑏 2 3 𝑅
+1
+𝑅 𝑅
+𝑅 = 𝑅 + 𝑅 + 1 3
+𝑐 1 3 𝑅
+2</th>
+</tr></thead><tbody>
+<tr>
+<td>𝐿 𝐿 𝐿 𝐿
+[𝐿 ] 𝐿 = 𝑎 𝑐 , 𝐿 = 𝑎 𝑏
+1 𝐿 +𝐿+𝐿 2 𝐿 +𝐿+𝐿
+𝑎 𝑏 𝑐 𝑎 𝑏 𝑐</td>
+<td>𝐿 𝐿
+[𝐿 ] 𝐿 = 𝐿 + 𝐿 + 1 2
+𝑎 1 2 𝐿
+3</td>
+</tr>
+<tr>
+<td>1 . 1 1 . 1
+1 𝐶 𝐶 1 𝐶 𝑐
+[𝐶 ] = 𝑎 𝑐 , = 𝑎 𝑏
+𝑐 𝐶1 + 𝐶1 + 𝐶1 𝐶 𝐶1 + 𝑐1+ 𝑐1
+1 2
+𝑎 𝑏 𝑐 𝑎 𝑏 𝑐</td>
+<td>1 . 1
+1 1 1 𝐶 𝐶
+[𝐶 ] = + + 1 2
+𝐶 𝐶 𝐶 1
+𝑎 1 2 𝐶
+3</td>
+</tr>
+<tr>
+<td>1 . 1 1 . 1
+1 𝐺 𝐺 1 𝐺 𝐺
+[𝐺 ] = 𝑎 𝑐 , = 𝑎 𝑏
+𝐺 𝐺1 + 𝐺1 + 𝐺1 𝐺 𝐺1 + 𝐺1 + 𝐺1
+1 2
+𝑎 𝑏 𝑐 𝑎 𝑏 𝑎</td>
+<td>1 . 1
+1 1 1 𝐺 𝐺
+[𝐺 ] = + + 1 2
+𝐺 𝐺 𝐺 1
+𝑎 1 2 𝐺
+3</td>
+</tr>
+</tbody></table></div>
+                    
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
+    </script>
+</body>
+</html>

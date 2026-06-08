@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>04 Fet &amp; Mosfet — Laurel Library</title>
+    <meta name="description" content="04 Fet &amp; Mosfet - Edc study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>/</span>
+                <a href="../index.html">Notes</a>
+                <span>/</span>
+                <a href="index.html">Edc</a>
+                <span>/</span>
+                <span>04 Fet &amp; Mosfet</span>
+            </nav>
+
+            <div class="note-actions">
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 2 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>04 Fet &amp; Mosfet</h1>
+                    <div class="meta">
+                        <span class="meta-category">Edc</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">GATE, ESE</span>
+                    </div>
+                    <h2>Junction Field Effect Transistor (JFET) :</h2>
+<figure><img src="images/04-fet-mosfet_1.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_2.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_3.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_4.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_5.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_6.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_7.png" alt="Diagram" loading="lazy"></figure>
+<p>2</p>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝑉 𝐺𝑆 𝐼 𝐷 = 𝐼 𝐷𝑆𝑆 1 − 𝑉 𝑝</p>
+<figure><img src="images/04-fet-mosfet_8.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_9.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_10.png" alt="Diagram" loading="lazy"></figure>
+<h3>Pinch-off region:</h3>
+<figure><img src="images/04-fet-mosfet_11.png" alt="Diagram" loading="lazy"></figure>
+<h3>Pinch off voltage:</h3>
+<figure><img src="images/04-fet-mosfet_12.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_13.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_14.png" alt="Diagram" loading="lazy"></figure>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>● 1) I ≤ I always
+n DSS</th>
+<th></th>
+<th></th>
+</tr></thead><tbody>
+<tr>
+<td>●</td>
+<td>2) This also can be used as a ‘Voltage variable resistor’</td>
+<td></td>
+</tr>
+</tbody></table></div>
+<ul>
+<li>1) In Saturation Region 2</li>
+</ul>
+<h2>(</h2>
+<h2>)</h2>
+<p>𝑉 𝐺𝑆 𝐼 𝐷𝑆 = 𝐼 𝐷𝑆𝑆 1 − 𝑉 𝑃</p>
+<p>Where I DSS = Saturation current at V GS = 0 V P = pinch-off voltage I DS = Saturation current at any V GS</p>
+<ul>
+<li>2) μ = r d g m Where μ = amplification factor r d = Drain Resistance g m = Trans conductance −2 𝐼 𝐷𝑆𝑆 𝑉 𝐺𝑆 ⎡⎢⎣ ⎤⎥⎦</li>
+<li>3) 𝑔 𝑚 = 1 − 𝑉 𝑃 𝑉 𝑃 Or 2 𝐼 𝐷 𝐼 𝐷𝑆𝑆 |𝑉 𝑃 |</li>
+</ul>
+<figure><img src="images/04-fet-mosfet_15.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_16.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_17.png" alt="Diagram" loading="lazy"></figure>
+<ul>
+<li><strong>1. Enhancement MOSFET:</strong></li>
+</ul>
+<figure><img src="images/04-fet-mosfet_18.png" alt="Diagram" loading="lazy"></figure>
+<ul>
+<li><strong>2. Depletion mode MOSFET:</strong></li>
+</ul>
+<figure><img src="images/04-fet-mosfet_19.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_20.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_21.png" alt="Diagram" loading="lazy"></figure>
+<h3>Symbol representation of MOSFET:</h3>
+<figure><img src="images/04-fet-mosfet_22.png" alt="Diagram" loading="lazy"></figure>
+<h3>N-channel E MOSFET:</h3>
+<figure><img src="images/04-fet-mosfet_23.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_24.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_25.png" alt="Diagram" loading="lazy"></figure>
+<h3>Transfer characteristics of an n-channel depletion MOSFET is as shown:</h3>
+<figure><img src="images/04-fet-mosfet_26.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-fet-mosfet_27.png" alt="Diagram" loading="lazy"></figure>
+<h3>Transfer characteristics of p-channel depletion MOSFET is as shown:</h3>
+<figure><img src="images/04-fet-mosfet_28.png" alt="Diagram" loading="lazy"></figure>
+<h3>Transfer characteristics of n-channel Enhancement MOSFET is as shown:</h3>
+<figure><img src="images/04-fet-mosfet_29.png" alt="Diagram" loading="lazy"></figure>
+<h3>Transfer characteristics of p-channel Enhancement MOSFET is as shown:</h3>
+<figure><img src="images/04-fet-mosfet_30.png" alt="Diagram" loading="lazy"></figure>
+<h3>N channel MOSFET</h3>
+<ul>
+<li>1) If V DS ≥(V GS V T) → saturation Region µ 𝑛 𝐶 𝑜𝑥 𝑊 2 () 𝐼 𝐷 = 1, V T = Threshold voltage of N-MOS 𝑉 𝐺𝑆 −𝑉 𝑇 2 𝐿</li>
+<li>2) If V DS &lt; V GS V T → linear Region 2 µ 𝑛 𝐶 𝑜𝑥 𝑊 𝑉 𝐷𝑆 () 𝑉 𝐷𝑆 − 𝐼 𝐷 = (𝑉 𝐺𝑆 −𝑉 𝑇 2] 𝐿</li>
+<li>3) If V GS &gt; V T → MOSFET is ON V GS &lt; V T → MOSFET is OFF</li>
+</ul>
+<p>∂𝐼 𝐷</p>
+<ul>
+<li>4) 𝑔 𝑚 = ∂𝑉 𝐺𝑆</li>
+</ul>
+<h3>P Channel MOSFET</h3>
+<ul>
+<li>1) If V SG &gt; |V T | → MOSFET is ON V SG &lt; |V T | → MOSFET is OFF V T = Threshold voltage of P-MOS</li>
+<li>2) If V SD ≥(V SG + V T) → Saturation Region µ 𝑛 𝐶 𝑜𝑥 𝑊 2 () 𝐼 𝐷 = 1 𝑉 𝐺𝑆 + 𝑉 𝑇 2 𝐿</li>
+<li>3) If V SD &lt; V SG + V T → Linear Region µ 𝑛 𝐶 𝑜𝑥 𝑊</li>
+</ul>
+<h2>(</h2>
+<h2>)</h2>
+<p>2 () 𝑉 𝑆𝐷 − 1 𝐼 𝐷 = 𝑉 𝑆𝐺 + 𝑉 𝑇 2 𝑉 𝑆𝐷 𝐿</p>
+<p>∂𝐼 𝐷</p>
+<ul>
+<li>4) 𝑔 𝑚 = ∂𝑉 𝑆𝐺</li>
+</ul>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">GATE, ESE</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">GATE, ESE</div></a><a href="03-bjt.html" class="note-card"><h4>03 Bjt</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
+    </script>
+</body>
+</html>

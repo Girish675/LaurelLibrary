@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>06 Three Phase Circuits — Laurel Library</title>
+    <meta name="description" content="06 Three Phase Circuits - Network Theory study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>/</span>
+                <a href="../index.html">Notes</a>
+                <span>/</span>
+                <a href="index.html">Network Theory</a>
+                <span>/</span>
+                <span>06 Three Phase Circuits</span>
+            </nav>
+
+            <div class="note-actions">
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 3 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>06 Three Phase Circuits</h1>
+                    <div class="meta">
+                        <span class="meta-category">Network Theory</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">GATE, ESE</span>
+                    </div>
+                    <h3>Poly phase system:</h3>
+<p>A system in which the A.C. sources operate at the same frequency but different phases is known as Poly phase system.</p>
+<h3>Why polyphase?</h3>
+<ul>
+<li>1. If we need two phase input then we take it from 3-phase system. In Aluminum industry, 48-phases are required for melting purpose. These 48-phases are formed from 3-phase systems.</li>
+<li>2. Instantaneous power in 3-phases system is constant, hence uniform power transmission and less vibration of three phase machine is achieved.</li>
+<li>3. It is more economic. For 3-phase system the wire requirement is less compared to single phase for the same amount of power transmission.</li>
+</ul>
+<figure><img src="images/06-three-phase-circuits_1.png" alt="Diagram" loading="lazy"></figure>
+<p>In 3-phase system V an, V bn, V cn are 120° apart from each other. But magnitude of all are same i.e. |V an | = |V bn | = |V cn | Phaser addition: V an + V bn + V cn = 0</p>
+<h3>Balanced load:</h3>
+<p>A balanced Load is one in which the phase impedances are equal in magnitude and in phase.</p>
+<figure><img src="images/06-three-phase-circuits_2.png" alt="Diagram" loading="lazy"></figure>
+<h3>Four possible connections are</h3>
+<p>i. Y – Y (star – star connection) ii. Y - Δ (star – delta connection) iii. Δ – Δ (delta – delta connection) iv. Δ – Y (delta –star connection)</p>
+<figure><img src="images/06-three-phase-circuits_3.png" alt="Diagram" loading="lazy"></figure>
+<p>P = 3 V p I P cos θ where θ 𝑃= 3𝑉 𝐿 𝐼 𝐿 cos 𝑐𝑜𝑠 θ is phase lag of phase current from phase voltage. S = P + j Q = 3𝑉 𝐿 𝐼 𝐿 ∠θ</p>
+<h3>Three phase power measurement:</h3>
+<p>Two wattmeter method: Let P 1 and P 2 be the reading of wattmeter W 1 and W 2 respectively. Then Total real power P T = P 1 + P 2 Total reactive power 𝑄 𝑇 = 3[𝑃 2 −𝑃 1]</p>
+<figure><img src="images/06-three-phase-circuits_4.png" alt="Diagram" loading="lazy"></figure>
+<p>Total apparent power 𝑆 𝑇 = 𝑃 𝑇 𝑄 𝑇 3[𝑃 2 −𝑃 1] 𝑡𝑎𝑛θ = 𝑃 𝑇 = 𝑃 2 +𝑃 1 Where θ is the power factor angle now if i. P 2 = P 1 load is resistive ii. P 2 &gt; P 1 load is inductive iii. P 2 &lt; P 1 the load is capacitive</p>
+<figure><img src="images/06-three-phase-circuits_5.png" alt="Diagram" loading="lazy"></figure>
+<ul>
+<li>1. ​ Smaller in size when compared to 3 single phase systems.</li>
+<li>2. ​ It has greater power output</li>
+<li>3. ​ Ease in parallel operation</li>
+<li>4. ​ It has more reliability</li>
+<li>5. ​ Interconnection of systems is possible.</li>
+</ul>
+<figure><img src="images/06-three-phase-circuits_6.png" alt="Diagram" loading="lazy"></figure>
+<p>In a 3 – phase unbalanced system V an, V bn, V cn are not 120° apart from each other. Magnitude of all are not same i.e. |V an | ≠ |V bn | ≠ |V cn |</p>
+<h3>Causes of unbalanced voltage:</h3>
+<ul>
+<li>1. ​ Switching of three phase heavy loads results in current and voltage surges which cause unbalance in the system.</li>
+<li>2. ​ Any large single phase load, or a number of small loads connected to only one phase cause more current to flow from that particular phase causing voltage drop on line</li>
+<li>3. ​ Unbalanced incoming utility supply</li>
+</ul>
+<p>For an unbalanced load if the line currents are I R, I Y, I B then, I R + I Y + I B ≠ 0 For a star connection of load I R + I Y + I B = I N Where I N is the current through neutral point</p>
+<h3>Important points:</h3>
+<p>𝑀𝑎𝑡𝑒𝑟𝑖𝑎𝑙 𝑛𝑒𝑒𝑑𝑒𝑑 𝑓𝑜𝑟 𝑠𝑖𝑛𝑔𝑙𝑒 𝑝ℎ𝑎𝑠𝑒 𝑀𝑎𝑡𝑒𝑟𝑖𝑎𝑙 𝑛𝑒𝑒𝑑𝑒𝑑 𝑓𝑜𝑟 𝑡ℎ𝑟𝑒𝑒 𝑝ℎ𝑎𝑠𝑒 = 4 1.</p>
+<p>3</p>
+<ul>
+<li>2. If the number of phases in a poly phase system is n, then the phase 360° difference between each phase will be 𝑛</li>
+</ul>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="01-basic-concept-of-network-theory.html" class="note-card"><h4>01 Basic Concept Of Network Theory</h4><div class="meta">GATE, ESE</div></a><a href="02-network-theorems.html" class="note-card"><h4>02 Network Theorems</h4><div class="meta">GATE, ESE</div></a><a href="03-transient-analysis.html" class="note-card"><h4>03 Transient Analysis</h4><div class="meta">GATE, ESE</div></a><a href="04-ac-fundamentals.html" class="note-card"><h4>04 Ac Fundamentals</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
+    </script>
+</body>
+</html>

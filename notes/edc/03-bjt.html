@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <title>03 Bjt — Laurel Library</title>
+    <meta name="description" content="03 Bjt - Edc study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#1a202c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="../../assets/js/components.js"></script>
+    <script>document.write(LL.renderHeader('notes'));document.write(LL.renderSearchModal());</script>
+
+    <main id="main-content">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="../../index.html">Home</a>
+                <span>/</span>
+                <a href="../index.html">Notes</a>
+                <span>/</span>
+                <a href="index.html">Edc</a>
+                <span>/</span>
+                <span>03 Bjt</span>
+            </nav>
+
+            <div class="note-actions">
+                <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
+                <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
+                <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 6 min read</span>
+            </div>
+
+            <div class="notes-page">
+                <aside class="sidebar" id="toc-sidebar">
+                    <h4 class="toc-header">
+                        <span>Table of Contents</span>
+                        <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
+                    </h4>
+                    <ul id="toc-list"></ul>
+                </aside>
+
+                <article class="article-content" id="article-content">
+                    <h1>03 Bjt</h1>
+                    <div class="meta">
+                        <span class="meta-category">Edc</span>
+                        <span class="meta-separator">&bull;</span>
+                        <span class="meta-exam">GATE, ESE</span>
+                    </div>
+                    <h2>BJT</h2>
+<p>Symbolic representation of BJT.</p>
+<p>Configurations of Transistor (npn) (active mode)</p>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Transistor
+configurations</th>
+<th>I / P current
+(I)
+i</th>
+<th>O / P current
+(I )
+o</th>
+<th>I / P voltage
+(V)
+i</th>
+<th>O / P voltage
+(V )
+o</th>
+</tr></thead><tbody>
+<tr>
+<td>Common Base (CB)</td>
+<td>I
+E</td>
+<td>I
+C</td>
+<td>V
+BE</td>
+<td>V
+CB</td>
+</tr>
+<tr>
+<td>Common Emitter
+(CE)</td>
+<td>I
+B</td>
+<td>I
+C</td>
+<td>V
+BE</td>
+<td>V
+CE</td>
+</tr>
+<tr>
+<td>Common Collector
+(CC)</td>
+<td>I
+B</td>
+<td>I
+E</td>
+<td>V
+CB</td>
+<td>V
+CE</td>
+</tr>
+</tbody></table></div>
+<p>For AC → notation is i e For Total → notation is I e For DC → notation is I E</p>
+<p>Operating modes of BJT</p>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Emitter Junction</th>
+<th>Collector Junction</th>
+<th>Region</th>
+<th>Operation</th>
+</tr></thead><tbody>
+<tr>
+<td>FB</td>
+<td>RB</td>
+<td>Active</td>
+<td>Amplifier</td>
+</tr>
+<tr>
+<td>FB</td>
+<td>FB</td>
+<td>Saturation</td>
+<td>ON switch</td>
+</tr>
+<tr>
+<td>RB</td>
+<td>RB</td>
+<td>Cut-off</td>
+<td>Off switch</td>
+</tr>
+<tr>
+<td>RB</td>
+<td>FB</td>
+<td>Inverse active</td>
+<td>attenuator</td>
+</tr>
+</tbody></table></div>
+<p>𝐼 𝐶 Common base DC current gain (α) = 𝐼 𝐸 𝐼 𝐶 Common emitter DC current gain (β) = 𝐼 𝐵 𝐼 𝐸 Common collector DC current gain (r) = 𝐼 𝐵 I E = I C + I B Active vs Saturation region (npn transistor)</p>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>Active region</th>
+<th>Saturation region</th>
+</tr></thead><tbody>
+<tr>
+<td>1) I = β I
+C B</td>
+<td>I ≠ βI
+C B</td>
+</tr>
+<tr>
+<td>2) V = 0.7 V
+BE</td>
+<td>V = 0.2
+CE</td>
+</tr>
+<tr>
+<td>3) V = depends on Ckt
+CE</td>
+<td>V = 0.7
+BE</td>
+</tr>
+</tbody></table></div>
+<p>Procedure to find region of transistor Method 1 Assume active region</p>
+<ul>
+<li>1) Apply k VL in Base-emitter Ckt &amp; calculate I B</li>
+<li>2) I C = βI B V BE = 0.7 V</li>
+<li>3) Apply k VL in CE Ckt &amp; calculate V CE</li>
+<li>4) Now from V CE If V CE &gt; 0.2 then active region If V CE &lt; 0.2 then saturation region</li>
+</ul>
+<p>Method 2 Assume saturation region → Apply k VL in base Ckt. &amp; calculate I B → Apply k VL in CE Ckt &amp; calculate I C min → V CE = 0.2 I C ≠βI B 𝐼 𝐶 𝑚𝑖𝑛 →𝐼 𝐵 𝑚𝑖𝑛 = β → If I B min &lt; I B → (saturation region) If I B min &gt; I B → (active region)</p>
+<figure><img src="images/03-bjt_1.png" alt="Diagram" loading="lazy"></figure>
+<p>C E = Emitter bypass capacitor C C = Coupling capacitor</p>
+<p>For DC analysis</p>
+<ul>
+<li>1) frequency (w) = 0, so capacitors are open Ckt 𝐼 𝐶 𝑉 𝑇 𝑉 𝑇</li>
+<li>2) 𝑔 𝑚 = 𝑉 𝑇, 𝑟 π = 𝐼 𝐵, 𝑟 𝐸 = 𝐼 𝐸 g m = trans conductance r E = AC emitter resistance r π = AC base resistance</li>
+</ul>
+<p>For AC analysis</p>
+<ul>
+<li>1) Using hybrid-π model (IF C E is absent)</li>
+</ul>
+<p>Same structure modelling for CE, CC, CB or whether npn or pnp.</p>
+<ul>
+<li>2) By using h-parameter</li>
+</ul>
+<figure><img src="images/03-bjt_2.png" alt="Diagram" loading="lazy"></figure>
+<p>[] = ℎ 𝑖 ℎ 𝑟 ℎ 𝑓 ℎ 𝑜 [] 𝐼 𝑖 𝑉 𝑜 [] 𝑉 𝑖 𝐼 𝑜 Where, 𝑉 𝑖 𝐼 𝑜 𝑉 𝑖 ℎ 𝑖 = 𝐼 𝑖 |, ℎ 𝑓 = 𝐼 𝑖 |, ℎ 𝑟 = 𝑉 𝑜 | 𝑉 𝑜 =0 𝑉 𝑜 =0 𝐼 𝑖 =0 𝐼 𝑜 ℎ 𝑜 = 𝑉 𝑜 | 𝐼 𝑖 =0 −ℎ 𝑓 1) → Current gain 𝐴 𝐼 = 1+ℎ 𝑜 𝑅 𝐿</p>
+<ul>
+<li>2) Z in = R B + h i + A I h r R L → Input impedance 𝑅 𝐿 3) → Voltage gain 𝐴 𝑉 = 𝐴 𝐼 𝑅 𝑖 ℎ 𝑟 ℎ 𝑓 4) → output admittance 𝑦 𝑜 = ℎ 𝑜 − 𝑅 𝑠 +ℎ 𝑖</li>
+</ul>
+<p>High frequency analysis (for CE amplifies only) C π = input capacitance between E &amp; B C μ = capacitance between C &amp; B C π = C de + C je τ𝐼 𝐶 𝐶𝑗 𝑒 0 𝐶 π = 𝑉 𝑇 + 𝑚 () 𝑉 𝐵𝐸 1− 𝑉 𝑜𝑒 V oe = 0.9 V m = 0.5 𝐶 µ 𝑜 𝐶 µ = 𝑚 () 𝑉 𝐶𝐵 1+ 𝑉 𝑜𝑐 V oc = 0.7 V m = 0.2 to 0.5</p>
+<figure><img src="images/03-bjt_3.png" alt="Diagram" loading="lazy"></figure>
+<p>For external connections use ohmic contact. → A C &gt; A E &gt; A B (area) 𝑅= 𝑝𝑙 𝐴 𝑅∝ 𝑙 𝐴 → R B &gt; R E &gt; R c → Base width should be very less</p>
+<figure><img src="images/03-bjt_4.png" alt="Diagram" loading="lazy"></figure>
+<p>→ CE short circuit current gain (R L = 0)</p>
+<figure><img src="images/03-bjt_5.png" alt="Diagram" loading="lazy"></figure>
+<p>𝑉 𝑐𝑒 0 𝐴 𝑉 = 𝑉 𝑏'𝑒 = 𝑉 𝑏'𝑒 = 0 𝐼 𝑠𝑐 𝐴 𝑠𝑐 = 𝐼 𝑓 →𝑡𝑎𝑟𝑔𝑒𝑡</p>
+<figure><img src="images/03-bjt_6.png" alt="Diagram" loading="lazy"></figure>
+<p>() 𝑅 𝑖𝑛˙ = 𝑟 𝑏'𝑒 ⏟ 𝐶 𝑖𝑛 = 𝐶 π + 𝐶 µ ⏟ 𝑍 𝑖𝑛˙ = 𝑟 𝑏'𝑒 || 𝐶 µ + 𝐶 π (𝑖𝑔𝑛𝑜𝑟𝑒 𝑟𝑒𝑠𝑖𝑠𝑡𝑎𝑛𝑐𝑒) (𝑖𝑔𝑛𝑜𝑟𝑒 𝑐𝑎𝑝𝑎𝑐𝑖𝑡𝑜𝑟)</p>
+<p>I sc = g m V b’e</p>
+<figure><img src="images/03-bjt_7.png" alt="Diagram" loading="lazy"></figure>
+<p>𝐴 𝑠𝑐 = −𝑔𝑚 …(1) 𝑗 𝑚˙ −𝑔𝑚 𝐴 𝑠𝑐 = 𝑔 𝑏'𝑒 +𝑗𝑤(𝐶μ+𝐶 π) −𝑔𝑚/𝑔 𝑏'𝑐 𝐴 𝑠𝑐 = () 1+𝑗𝑤 𝑟 𝑏 ' 𝑒 𝐶 π +𝐶 µ gm / g b’e = hfe ℎ𝑓𝑒 𝐴 𝑠𝑐 = 𝑤 1+𝑗 1 () 𝑟 𝐶π+𝐶µ 𝑏 ' 𝑒</p>
+<p>Remembers here r π ≠r b’e as r bb’ is there 𝑣 𝑏𝑒 𝑟 π = 𝑖 𝑏 𝑣 𝑏'𝑒 𝑟 𝑏'𝑒 = 𝑖 𝑏 ' If r bb’ is ignored them r b’e = rπ y in = g b’e + j’w (C μ + C π) 𝐼 𝑏 𝑣 𝑏'𝑒 = 𝑗 𝑖𝑛 𝐼 𝑏 𝑔𝑚 𝑣 𝑏'𝑒 = 𝑗 𝑖𝑛 𝑔 𝑚 𝐼 𝑏 −𝐼 𝑠𝑐 = 𝑗 𝑖𝑛 𝑔 𝑚</p>
+<figure><img src="images/03-bjt_8.png" alt="Diagram" loading="lazy"></figure>
+<p>𝐼 𝑠𝑐 𝐼 𝑏 = −𝑔𝑚 put this in (1) = 𝐴 𝑠𝑐 𝑗 𝑖𝑛</p>
+<p>1 𝑓 β = () 2π 𝑟 𝑏 ' 𝑒 𝐶 π +𝐶 µ 𝐴 3d B cut-off frequency is the Frequency at which |</p>
+<p>| or any gain become 𝐴 𝑠𝑐 2</p>
+<p>−ℎ𝑓𝑒 𝐴 𝑠𝑐 = 𝑓 1+𝑗 𝑓_β | | = ℎ𝑓𝑒 𝐴 𝑠𝑐</p>
+<figure><img src="images/03-bjt_9.png" alt="Diagram" loading="lazy"></figure>
+<p>𝑓 ∠𝐴 𝑠𝑐 = 180° − 𝑓 β</p>
+<div class="table-wrapper"><table>
+<thead><tr>
+<th>|𝐴 | at f = 0 = hfe
+𝑠𝑐</th>
+<th>180°</th>
+</tr></thead><tbody>
+<tr>
+<td>|𝐴 𝑠𝑐| at f = f = ℎ𝑓 2𝑒
+β</td>
+<td>135°</td>
+</tr>
+<tr>
+<td>|𝐴 | at f = ∞ = 0
+𝑠𝑐</td>
+<td>90°</td>
+</tr>
+</tbody></table></div>
+<p>f T = unit gain B.W = frequency at which product of gain &amp; frequency become 1.</p>
+<p>2</p>
+<h2>( )</h2>
+<p>𝑓 𝑓 at very high frequencies 𝑓 β ≫1;</p>
+<p>≫1 𝑓 β | | = −ℎ𝑓𝑒 2 = −ℎ𝑓𝑒 𝐴 𝑠𝑐 𝑓</p>
+<figure><img src="images/03-bjt_10.png" alt="Diagram" loading="lazy"></figure>
+<p>𝑓 β</p>
+<p>−ℎ𝑓𝑒 𝑓 β | | = f = operating frequency 𝐴 𝑠𝑐; 𝑓 Let f = f T; | | = 1 𝐴 𝑠𝑐 f T = hfe f β gain × B.W = f T hfe = | | at f = 0 𝐴 𝑠𝑐 So f β = B.W. 𝑔𝑚 𝑓 𝑇 = () 2π 𝐶 µ +𝐶 π B.W of common base amplifier BW = 3d B cut off frequency of CB = f α = (1 + β) f β</p>
+<p>Low frequency analysis of amplifier In L.F, coupling capacitors cannot be ignored For finding effect of C 1, put C 2 &amp; C 3 as S.C For C 2, put C 1 &amp; C 3 as S.C and For C 3, put C 1 &amp; C 2 as S.C</p>
+<p>Due to three capacitors we have 3 poles or break points.</p>
+<p>1 𝐶 1, 𝑓 𝑝 1 = 2π𝐶 1 (𝑅 𝐵 ||𝑟 π +𝑅 𝑆) 1 𝐶 3, 𝑓 𝑝 3 = () 2π𝐶 3 𝑅 𝐶 +𝑅 𝐿 1 𝐶 2, 𝑓 𝑝 2 = () 𝑟π+𝑅 𝐵 ||𝑅 𝑆 2π𝐶 2 β+1 Find R th by seeing through operating capacitor as we find it is Theremin Theorem Equivalent resistance is Theremin resistance found by seeing it from capacitor by felting I.S = 0 (R C + R C) is resistance seen between Terminals of C 3 when V s = 0.</p>
+                    
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">GATE, ESE</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal" id="quiz-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Mode</h3>
+                <button type="button" class="modal-close" id="quiz-close">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-body"></div>
+        </div>
+    </div>
+
+    <script>document.write(LL.renderFooter());</script>
+    <script src="../../assets/js/search.js" defer></script>
+    <script src="../../assets/js/features.js" defer></script>
+    <script>
+        // TOC generation with collapse support
+        (function() {
+            var article = document.getElementById('article-content');
+            var tocList = document.getElementById('toc-list');
+            if (!article || !tocList) return;
+            var headings = article.querySelectorAll('h2, h3');
+            var currentH2 = null;
+            var currentSubList = null;
+            headings.forEach(function(heading, idx) {
+                var id = 'section-' + idx;
+                heading.id = id;
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#' + id;
+                a.textContent = heading.textContent;
+                if (heading.tagName === 'H2') {
+                    li.classList.add('toc-parent');
+                    var toggle = document.createElement('button');
+                    toggle.className = 'toc-toggle';
+                    toggle.innerHTML = '&#9660;';
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var sub = li.querySelector('.toc-children');
+                        if (sub) {
+                            sub.classList.toggle('collapsed');
+                            toggle.innerHTML = sub.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+                        }
+                    });
+                    li.appendChild(a);
+                    li.appendChild(toggle);
+                    currentSubList = document.createElement('ul');
+                    currentSubList.className = 'toc-children';
+                    li.appendChild(currentSubList);
+                    tocList.appendChild(li);
+                    currentH2 = li;
+                } else {
+                    li.classList.add('toc-sub');
+                    li.appendChild(a);
+                    if (currentSubList) {
+                        currentSubList.appendChild(li);
+                    } else {
+                        tocList.appendChild(li);
+                    }
+                }
+            });
+            // Collapse all button
+            var collapseBtn = document.getElementById('toc-collapse-all');
+            if (collapseBtn) {
+                var allCollapsed = false;
+                collapseBtn.addEventListener('click', function() {
+                    allCollapsed = !allCollapsed;
+                    document.querySelectorAll('.toc-children').forEach(function(sub) {
+                        if (allCollapsed) sub.classList.add('collapsed');
+                        else sub.classList.remove('collapsed');
+                    });
+                    document.querySelectorAll('.toc-toggle').forEach(function(t) {
+                        t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                    });
+                    collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() { LL.init(); });
+    </script>
+</body>
+</html>
