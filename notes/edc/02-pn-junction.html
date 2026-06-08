@@ -24,7 +24,7 @@
                 <span>/</span>
                 <a href="../index.html">Notes</a>
                 <span>/</span>
-                <a href="index.html">Edc</a>
+                <a href="../index.html?category=edc">Edc</a>
                 <span>/</span>
                 <span>02 Pn Junction</span>
             </nav>
@@ -40,7 +40,7 @@
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span style="display: flex; align-items: center; gap: 8px;">
-                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <button type="button" id="sidebar-toggle" title="Toggle Sidebar">&#9776;</button>
                             <span id="toc-title-text">Table of Contents</span>
                         </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
@@ -124,19 +124,18 @@
 <ul>
 <li>7) ​ value. Form factor = 1.57</li>
 <li>8) ​ Crest factor = 2 = peak facto r</li>
-<li>9) ​ Rectifier efficiency (η) is the ratio between the output DC power and the input AC power. The formula for the efficiency is equal to: η = 40.6%, η = efficiency</li>
-<li>10) ​</li>
+<li>9) ​ Rectifier efficiency (η) is the ratio between the output DC power and the input AC power. The formula for the efficiency is equal to:</li>
 </ul>
-<h3>Peak Inverse Voltage (PIV):</h3>
-<figure><img src="images/02-pn-junction_5.png" alt="Diagram" loading="lazy" style="max-width: 109px; height: auto;"></figure>
+<figure><img src="images/02-pn-junction_5.png" alt="Diagram" loading="lazy" style="max-width: 134.61044311523438px; height: auto;"></figure>
+<figure><img src="images/02-pn-junction_6.png" alt="Diagram" loading="lazy" style="max-width: 109px; height: auto;"></figure>
 <p>​ It is the maximum voltage that occurs across the rectifying diode in the reverse direction.</p>
 <h3>●​ The diode is reverse-biased during the negative half-cycle and the maximum voltage applied across it</h3>
-<ul>
-<li>11) ​ Transformer utilization factor = 0.28 (TUF)</li>
-<li>12) ​ O / P frequency = I / P frequency</li>
-<li>13) ​ Conduction angle, θ = π</li>
-<li>14) ​ Ripple Factor ​ ‘Ripple’ is the unwanted AC component remaining when converting the AC voltage waveform into a DC waveform. ​ Even though we try out best to remove all AC components, there is still some small amount left on the output side which pulsates the DC waveform. This undesirable AC component is called ‘ripple’. ​ To quantify how well the half-wave rectifier can convert the AC voltage into DC voltage, we use what is known as the ripple factor (represented by γ or r). ​ The ripple factor is the ratio between the RMS value of the AC voltage (on the input side) and the DC voltage (on the output side) of the rectifier. Ripple factor = 1.21 D.C = Average value m = Maximum value RMS = Root Mean Square value</li>
-</ul>
+<figure><img src="images/02-pn-junction_7.png" alt="Diagram" loading="lazy" style="max-width: 195.12606811523438px; height: auto;"></figure>
+<p>​ ‘Ripple’ is the unwanted AC component remaining when converting the AC voltage waveform into a DC waveform.</p>
+<p>​ Even though we try out best to remove all AC components, there is still some small amount left on the output side which pulsates the DC waveform. This undesirable AC component is called ‘ripple’.</p>
+<p>​ To quantify how well the half-wave rectifier can convert the AC voltage into DC voltage, we use what is known as the ripple factor (represented by γ or r).</p>
+<p>​ The ripple factor is the ratio between the RMS value of the AC voltage (on the input side) and the DC voltage (on the output side) of the rectifier.</p>
+<p>Ripple factor = 1.21 D.C = Average value m = Maximum value RMS = Root Mean Square value</p>
 <h2>Applications of Half Wave Rectifier</h2>
 <p>Half wave rectifiers are not as commonly used as full-wave rectifiers. Despite this, they still have some uses:</p>
 <p>​ For rectification applications ​ For signal demodulation applications ​ For signal peak applications</p>
@@ -159,11 +158,11 @@
 <p>A Bridge type full wave rectifier contains 4 diodes as shown:</p>
 <h3>Working:</h3>
 <p>For a positive half cycle, two diodes will act as short-circuit as shown</p>
-<figure><img src="images/02-pn-junction_6.png" alt="Diagram" loading="lazy" style="max-width: 210px; height: auto;"></figure>
+<figure><img src="images/02-pn-junction_8.png" alt="Diagram" loading="lazy" style="max-width: 210px; height: auto;"></figure>
 <p>​ Similarly, for a negative half cycle, the other two diodes will be short-circuited resulting in a full-wave recti- fied output.</p>
 <h2>Center-Tap Full Wave Rectifier</h2>
 <p>​ A center tapped rectifier is also called a Full wave Rectifier, which consists of two diodes in its circuit.</p>
-<figure><img src="images/02-pn-junction_7.png" alt="Diagram" loading="lazy" style="max-width: 265px; height: auto;"></figure>
+<figure><img src="images/02-pn-junction_9.png" alt="Diagram" loading="lazy" style="max-width: 265px; height: auto;"></figure>
 <p>During its Half-wave rectification, only one diode is in ON mode.</p>
 <h2>Working:</h2>
 <p>During the first half cycle of input interval:</p>
@@ -177,15 +176,15 @@
 <p>​ This is the reason why a Center tapped transformer is necessary to the center-tapped rectifier.</p>
 <h2>Ideal Case</h2>
 <p>1) 2)</p>
-<figure><img src="images/02-pn-junction_8.png" alt="Diagram" loading="lazy" style="max-width: 70px; height: auto;"></figure>
+<figure><img src="images/02-pn-junction_10.png" alt="Diagram" loading="lazy" style="max-width: 70px; height: auto;"></figure>
 <p>3)</p>
-<figure><img src="images/02-pn-junction_9.png" alt="Diagram" loading="lazy" style="max-width: 75px; height: auto;"></figure>
+<figure><img src="images/02-pn-junction_11.png" alt="Diagram" loading="lazy" style="max-width: 75px; height: auto;"></figure>
 <p>4)</p>
-<figure><img src="images/02-pn-junction_10.png" alt="Diagram" loading="lazy" style="max-width: 73px; height: auto;"></figure>
+<figure><img src="images/02-pn-junction_12.png" alt="Diagram" loading="lazy" style="max-width: 73px; height: auto;"></figure>
 <ul>
 <li>5) ​ Ripple factor = 0.48</li>
 </ul>
-<figure><img src="images/02-pn-junction_11.png" alt="Diagram" loading="lazy" style="max-width: 76px; height: auto;"></figure>
+<figure><img src="images/02-pn-junction_13.png" alt="Diagram" loading="lazy" style="max-width: 76px; height: auto;"></figure>
 <ul>
 <li>6) ​ Form factor = 1.11</li>
 <li>7) ​ Crest factor = √ 2</li>
@@ -205,7 +204,7 @@
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">General</div></a><a href="03-bjt.html" class="note-card"><h4>03 Bjt</h4><div class="meta">GATE, ESE</div></a><a href="04-fet-mosfet.html" class="note-card"><h4>04 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a><a href="05-special-diodes.html" class="note-card"><h4>05 Special Diodes</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">General</div></a><a href="03-bjt.html" class="note-card"><h4>03 Bjt</h4><div class="meta">General</div></a><a href="04-fet-mosfet.html" class="note-card"><h4>04 Fet &amp; Mosfet</h4><div class="meta">General</div></a><a href="05-special-diodes.html" class="note-card"><h4>05 Special Diodes</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -213,10 +212,10 @@
     </main>
 
     <!-- Quiz Modal -->
-    <div class="modal" id="quiz-modal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal">
             <div class="modal-header">
-                <h3>Quiz Mode</h3>
+                <h3>Knowledge Check</h3>
                 <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
@@ -288,31 +287,12 @@
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                 });
             }
-            // Sidebar toggle
+                        // Sidebar toggle
             var sidebarToggle = document.getElementById('sidebar-toggle');
             if (sidebarToggle) {
-                var sidebarCollapsed = false;
                 sidebarToggle.addEventListener('click', function() {
-                    sidebarCollapsed = !sidebarCollapsed;
-                    var sidebar = document.getElementById('toc-sidebar');
                     var notesPage = document.getElementById('notes-page');
-                    var tocListEl = document.getElementById('toc-list');
-                    var tocTitleText = document.getElementById('toc-title-text');
-                    var collapseAllBtn = document.getElementById('toc-collapse-all');
-                    
-                    if (sidebarCollapsed) {
-                        notesPage.style.gridTemplateColumns = 'auto 1fr';
-                        tocListEl.style.display = 'none';
-                        tocTitleText.style.display = 'none';
-                        collapseAllBtn.style.display = 'none';
-                        sidebar.style.width = 'fit-content';
-                    } else {
-                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
-                        tocListEl.style.display = 'block';
-                        tocTitleText.style.display = 'inline';
-                        collapseAllBtn.style.display = 'block';
-                        sidebar.style.width = 'auto';
-                    }
+                    notesPage.classList.toggle('sidebar-collapsed');
                 });
             }
         })();

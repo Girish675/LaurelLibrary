@@ -150,16 +150,18 @@
             var facts = [];
             article.querySelectorAll('strong').forEach(function(el) {
                 var text = el.textContent.trim(), parent = el.parentElement;
-                if (text.length > 3 && text.length < 100 && parent) {
+                if (text.length > 3 && text.length < 100 && parent && !/[∫∑√±≠≈≤≥∞∂∇×÷∈∉⊂∪∩⊕⊗]/.test(text)) {
                     var context = parent.textContent.trim();
-                    if (context.length > 20 && context.length < 500) facts.push({ term: text, context: context });
+                    if (context.length > 20 && context.length < 500 && !/[∫∑√±≠≈≤≥∞∂∇×÷]/.test(context)) facts.push({ term: text, context: context });
                 }
             });
             article.querySelectorAll('li').forEach(function(li) {
                 var text = li.textContent.trim();
-                if (text.length > 15 && text.length < 200 && /\d/.test(text)) {
+                if (text.length > 15 && text.length < 200 && /\d/.test(text) && !/[∫∑√±≠≈≤≥∞∂∇×÷∈∉⊂∪∩⊕⊗]/.test(text)) {
                     var parts = text.split(/[\u2013\u2014:\-]/);
-                    facts.push({ term: parts[0].trim(), context: text });
+                    if (parts.length > 1 && parts[0].trim().length > 3) {
+                        facts.push({ term: parts[0].trim(), context: text });
+                    }
                 }
             });
             return facts;
@@ -247,11 +249,20 @@
             var section = document.createElement('section');
             section.className = 'related-notes';
             section.innerHTML = '<h2>Related Notes</h2><div class="related-grid">' +
-                related.map(function(n) {
+                related.map(function(n, idx) {
                     var mins = n.reading_time ? n.reading_time + ' min read' : '';
-                    return '<a href="' + LL.basePath + n.path + '" class="note-card">' +
-                        '<h4>' + LL.escapeHtml(n.title) + '</h4>' +
-                        '<div class="meta"><span class="tag">' + LL.escapeHtml((n.exam || 'General').split(',')[0]) + '</span>' +
+                    var title = n.title;
+                    var badge = '';
+                    var match = title.match(/^0*(\d+)\s+(.+)$/);
+                    if (match) {
+                        badge = '<div style="font-size:var(--text-xs);color:var(--c-accent);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Unit ' + match[1] + '</div>';
+                        title = match[2];
+                    } else {
+                        badge = '<div style="font-size:var(--text-xs);color:var(--c-accent);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Unit ' + (idx + 1) + '</div>';
+                    }
+                    return '<a href="' + LL.basePath + n.path + '" class="note-card" style="display:flex;flex-direction:column;justify-content:space-between">' +
+                        '<div>' + badge + '<h4 style="margin-top:0">' + LL.escapeHtml(title) + '</h4></div>' +
+                        '<div class="meta" style="margin-top:var(--space-sm)"><span class="tag">' + LL.escapeHtml((n.exam || 'General').split(',')[0]) + '</span>' +
                         (mins ? '<span>' + mins + '</span>' : '') + '</div></a>';
                 }).join('') + '</div>';
             article.parentNode.appendChild(section);

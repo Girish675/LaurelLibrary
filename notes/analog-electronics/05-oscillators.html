@@ -24,7 +24,7 @@
                 <span>/</span>
                 <a href="../index.html">Notes</a>
                 <span>/</span>
-                <a href="index.html">Analog Electronics</a>
+                <a href="../index.html?category=analog-electronics">Analog Electronics</a>
                 <span>/</span>
                 <span>05 Oscillators</span>
             </nav>
@@ -33,14 +33,14 @@
                 <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
                 <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
                 <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
-                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 2 min read</span>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 1 min read</span>
             </div>
 
             <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span style="display: flex; align-items: center; gap: 8px;">
-                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <button type="button" id="sidebar-toggle" title="Toggle Sidebar">&#9776;</button>
                             <span id="toc-title-text">Table of Contents</span>
                         </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
@@ -60,34 +60,53 @@
 <figure><img src="images/05-oscillators_1.jpg" alt="Diagram" loading="lazy" style="max-width: 1315px; height: auto;"></figure>
 <h3>RC - Phase Shift</h3>
 <figure><img src="images/05-oscillators_2.jpg" alt="Diagram" loading="lazy" style="max-width: 891px; height: auto;"></figure>
-<p>​ 𝑉 𝑓 1 𝑉 0 = β =− 29 ​ 1 𝑓 0 = 2π𝑅𝐶6 𝐻𝑧 ​ for sustained oscillation: ⋆ 𝑅 𝑓 ≥29𝑅 1</p>
+<figure><img src="images/05-oscillators_3.png" alt="Diagram" loading="lazy" style="max-width: 79.05355834960938px; height: auto;"></figure>
+<p>​</p>
+<figure><img src="images/05-oscillators_4.png" alt="Diagram" loading="lazy" style="max-width: 79.66722106933594px; height: auto;"></figure>
+<p>​ for sustained oscillation: ⋆ 𝑅 𝑓 ≥29𝑅 1</p>
 <h3>Wein Bridge</h3>
-<figure><img src="images/05-oscillators_3.jpg" alt="Diagram" loading="lazy" style="max-width: 657px; height: auto;"></figure>
-<p>​ ||| ||| = 1 𝑉 𝑓 𝑉 0 3 ​ hence A must be slightly greater than 3.​ for sustain oscillation.</p>
-<p>𝑅 𝑓 ≥2𝑅 1 𝑓 0 = 2π 𝑅 1 𝐶 1 𝑅 2 𝐶 2</p>
+<figure><img src="images/05-oscillators_5.jpg" alt="Diagram" loading="lazy" style="max-width: 657px; height: auto;"></figure>
+<p>​</p>
+<figure><img src="images/05-oscillators_6.png" alt="Diagram" loading="lazy" style="max-width: 28.249053955078125px; height: auto;"></figure>
+<p>​ hence A must be slightly greater than 3.​ for sustain oscillation.</p>
+<p>𝑅 𝑓 ≥2𝑅</p>
+<figure><img src="images/05-oscillators_7.png" alt="Diagram" loading="lazy" style="max-width: 84.34091186523438px; height: auto;"></figure>
 <h3>LC - Oscillators: (Radio frequency oscillators)</h3>
-<figure><img src="images/05-oscillators_4.jpg" alt="Diagram" loading="lazy" style="max-width: 1622px; height: auto;"></figure>
+<figure><img src="images/05-oscillators_8.jpg" alt="Diagram" loading="lazy" style="max-width: 1622px; height: auto;"></figure>
 <h3>Hartley oscillator</h3>
-<p>It consist of Two inductor, one capacitor.​ 1 𝑓 0 = 2π 𝐿𝐶 ​ where 𝐿= 𝐿 1 + 𝐿 2 ​ It become bulky due to two inductors. ​ It has capacitive tuning, no wear and tear problem.</p>
-<p>Its Gain = 𝐿 2 /𝐿 1</p>
+<p>It consist of Two inductor, one capacitor.​</p>
+<figure><img src="images/05-oscillators_9.png" alt="Diagram" loading="lazy" style="max-width: 96.91358947753906px; height: auto;"></figure>
+<p>​ It become bulky due to two inductors. ​ It has capacitive tuning, no wear and tear problem.</p>
+<figure><img src="images/05-oscillators_10.png" alt="Diagram" loading="lazy" style="max-width: 85.18363952636719px; height: auto;"></figure>
 <h3>Colpit oscillator</h3>
-<p>It consist of 2-capacitor, 1-inductor​ 1 𝑓 0 = 2π 𝐿𝐶 ​ 1 𝑐 = 1 𝑐 1 + 1 𝑐 2 where ​ It has inductive tuning and it face wear and tear problem.</p>
+<p>It consist of 2-capacitor, 1-inductor​</p>
+<figure><img src="images/05-oscillators_11.png" alt="Diagram" loading="lazy" style="max-width: 60.129486083984375px; height: auto;"></figure>
+<p>​</p>
+<figure><img src="images/05-oscillators_12.png" alt="Diagram" loading="lazy" style="max-width: 34.96923828125px; height: auto;"></figure>
+<p>​ It has inductive tuning and it face wear and tear problem.</p>
 <h3>Clapp</h3>
 <p>For Clapp oscillator add one extra capacitor in colpit oscillator, in series with the inductor.</p>
-<p>1 𝑓 0 = 2π 𝐿𝐶 𝑒𝑥𝑡 Where is additional capacitor.</p>
+<figure><img src="images/05-oscillators_13.png" alt="Diagram" loading="lazy" style="max-width: 69.58187866210938px; height: auto;"></figure>
+<p>Where is additional capacitor.</p>
 <p>𝐶 𝑒𝑥𝑡</p>
 <h3>Crystal</h3>
 <p>​ It is most stable oscillator it has infinite figure of merit.​ ⋆ 𝐹. 𝑂. 𝑀= 𝑑θ 𝑑𝑓 ​ It is made up of piezo-electric materials​</p>
-<figure><img src="images/05-oscillators_5.jpg" alt="Diagram" loading="lazy" style="max-width: 1069px; height: auto;"></figure>
+<figure><img src="images/05-oscillators_14.jpg" alt="Diagram" loading="lazy" style="max-width: 1069px; height: auto;"></figure>
 <p>​ general dimension are 1 𝑐𝑚× 1 𝑐𝑚× 1 𝑚𝑚 ​ R is assumed to be zero.​ is due to metal plates and.​ ⋆𝐶 2 𝐶 2 ≫𝐶 1</p>
-<figure><img src="images/05-oscillators_6.jpg" alt="Diagram" loading="lazy" style="max-width: 673px; height: auto;"></figure>
-<p>1 1 𝑓 𝑠 = 𝑓 𝑃 = 2π 𝐿𝐶 2π 𝐿𝐶 1 𝑐 1 𝑐 2 Where 𝐶= 𝑐 1 +𝑐 2</p>
-<figure><img src="images/05-oscillators_7.png" alt="Diagram" loading="lazy" style="max-width: 39.811065673828125px; height: auto;"></figure>
-<p>𝑊 𝑃 𝑊 𝑠 =</p>
+<figure><img src="images/05-oscillators_15.jpg" alt="Diagram" loading="lazy" style="max-width: 673px; height: auto;"></figure>
+<figure><img src="images/05-oscillators_16.png" alt="Diagram" loading="lazy" style="max-width: 136.60305786132812px; height: auto;"></figure>
+<figure><img src="images/05-oscillators_17.png" alt="Diagram" loading="lazy" style="max-width: 89.49639892578125px; height: auto;"></figure>
+<figure><img src="images/05-oscillators_18.png" alt="Diagram" loading="lazy" style="max-width: 75.21804809570312px; height: auto;"></figure>
 <h3>Oscillators by using BJT</h3>
-<p>RC-Phase shift​ 1 𝑓 0 = 2π 6+4𝐾𝑅𝐶 ​ 𝐾= 𝑅 𝐶 /𝑅 ​ β ≥23 + 29 𝐾 + 4𝐾 ​ current gain β = ℎ 𝑓𝑒 = ​ minima exist at 𝑘= 2. 7∴ ℎ 𝑓𝑒 ≥44. 5</p>
+<p>RC-Phase shift​</p>
+<figure><img src="images/05-oscillators_19.png" alt="Diagram" loading="lazy" style="max-width: 80.78248596191406px; height: auto;"></figure>
+<p>​</p>
+<figure><img src="images/05-oscillators_20.png" alt="Diagram" loading="lazy" style="max-width: 54.67842102050781px; height: auto;"></figure>
+<p>​</p>
+<figure><img src="images/05-oscillators_21.png" alt="Diagram" loading="lazy" style="max-width: 102.05671691894531px; height: auto;"></figure>
+<p>​ current gain β = ℎ 𝑓𝑒 = ​ minima exist at 𝑘= 2. 7∴ ℎ 𝑓𝑒 ≥44. 5</p>
 <h3>LC - oscillators</h3>
-<p>𝑋 1 𝑋 2 ℎ 𝑖𝑒 ℎ 𝑓𝑒 ≥ 𝑋 2 + 𝑋 1 𝑅 𝑐</p>
+<figure><img src="images/05-oscillators_22.png" alt="Diagram" loading="lazy" style="max-width: 93.41413879394531px; height: auto;"></figure>
 <h3>Points to Remember</h3>
 <p>​ If there is mutual inductance then 𝐿= 𝐿 1 + 𝐿 2 ± 2𝑀 ​ linear oscillators produce sinusoidal wave. ​ Nonlinear oscillators produces square, triangular and other shapes. ​ UJT is used to form relaxation oscillator</p>
                     
@@ -101,10 +120,10 @@
     </main>
 
     <!-- Quiz Modal -->
-    <div class="modal" id="quiz-modal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal">
             <div class="modal-header">
-                <h3>Quiz Mode</h3>
+                <h3>Knowledge Check</h3>
                 <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
@@ -176,31 +195,12 @@
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                 });
             }
-            // Sidebar toggle
+                        // Sidebar toggle
             var sidebarToggle = document.getElementById('sidebar-toggle');
             if (sidebarToggle) {
-                var sidebarCollapsed = false;
                 sidebarToggle.addEventListener('click', function() {
-                    sidebarCollapsed = !sidebarCollapsed;
-                    var sidebar = document.getElementById('toc-sidebar');
                     var notesPage = document.getElementById('notes-page');
-                    var tocListEl = document.getElementById('toc-list');
-                    var tocTitleText = document.getElementById('toc-title-text');
-                    var collapseAllBtn = document.getElementById('toc-collapse-all');
-                    
-                    if (sidebarCollapsed) {
-                        notesPage.style.gridTemplateColumns = 'auto 1fr';
-                        tocListEl.style.display = 'none';
-                        tocTitleText.style.display = 'none';
-                        collapseAllBtn.style.display = 'none';
-                        sidebar.style.width = 'fit-content';
-                    } else {
-                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
-                        tocListEl.style.display = 'block';
-                        tocTitleText.style.display = 'inline';
-                        collapseAllBtn.style.display = 'block';
-                        sidebar.style.width = 'auto';
-                    }
+                    notesPage.classList.toggle('sidebar-collapsed');
                 });
             }
         })();

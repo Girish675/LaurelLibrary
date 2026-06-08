@@ -24,7 +24,7 @@
                 <span>/</span>
                 <a href="../index.html">Notes</a>
                 <span>/</span>
-                <a href="index.html">Analog Electronics</a>
+                <a href="../index.html?category=analog-electronics">Analog Electronics</a>
                 <span>/</span>
                 <span>02 Bipolar Junction Transistors</span>
             </nav>
@@ -33,14 +33,14 @@
                 <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
                 <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
                 <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
-                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 9 min read</span>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 8 min read</span>
             </div>
 
             <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span style="display: flex; align-items: center; gap: 8px;">
-                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <button type="button" id="sidebar-toggle" title="Toggle Sidebar">&#9776;</button>
                             <span id="toc-title-text">Table of Contents</span>
                         </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
@@ -87,17 +87,25 @@
 <h3>PNP</h3>
 <figure><img src="images/02-bipolar-junction-transistors_3.jpg" alt="Diagram" loading="lazy" style="max-width: 459px; height: auto;"></figure>
 <p>​ For a PNP transistor, when the emitter-base junction is forward biased, holes from the emitter start to flow to the base. The direction of the arrow also indicates the same.</p>
-<p>Some of the notations used are as follows​ Collector current​ 𝐼 𝑐 = Emitter current​ 𝐼 𝐸 = Base current​ 𝐼 𝐵 = 𝐼 𝐶 = β𝐼 𝐵 + (β + 1)𝐼 𝐶𝑂 ​ Where current gain of CE (common Emitter)​ β = Leakage current​ 𝐼 𝑐𝑜 = current gain of CB (common Base)​ α = Collector to Base current with Emitter open​ 𝐼 𝐶𝐵𝑂 = collector to Emitter current with Base open​ 𝐼 𝐶𝐸𝑂 = 𝐼 𝐶𝐸𝑂 &gt; 𝐼 𝐶𝐵𝑂 &gt; 𝐼 𝐶𝑂 ​ 𝐼 𝐶𝐸𝑂 = (β + 1)𝐼 𝐶𝐵𝑂 ​ β α = β+1 ​ α β = 1−α ​ 𝐵𝑉 𝐶𝐵𝑂 &gt; 𝐵𝑉 𝐶𝐸𝑂 ​ Breakdown voltage with Emitter open.​ 𝐵𝑉 𝐶𝐵𝑂 → Breakdown voltage with base open​ 𝐵𝑉 𝐶𝐸𝑂 → 𝑉 𝐶𝐵𝑂 𝑉 𝐶𝐸𝑂 = 1 𝑚 (1+β) ​ ​ The order of is 𝑚 4 &lt; 𝑚&lt; 6</p>
+<p>Some of the notations used are as follows​ Collector current​ 𝐼 𝑐 = Emitter current​ 𝐼 𝐸 =</p>
+<figure><img src="images/02-bipolar-junction-transistors_4.png" alt="Diagram" loading="lazy" style="max-width: 116.52980041503906px; height: auto;"></figure>
+<p>​ Where current gain of CE (common Emitter)​ β = Leakage current​ 𝐼 𝑐𝑜 = current gain of CB (common Base)​ α = Collector to Base current with Emitter open​ 𝐼 𝐶𝐵𝑂 = collector to Emitter current with Base open​ 𝐼 𝐶𝐸𝑂 = 𝐼 𝐶𝐸𝑂 &gt; 𝐼 𝐶𝐵𝑂 &gt; 𝐼 𝐶𝑂 ​ 𝐼 𝐶𝐸𝑂 = (β + 1)𝐼 𝐶𝐵𝑂</p>
+<figure><img src="images/02-bipolar-junction-transistors_5.png" alt="Diagram" loading="lazy" style="max-width: 49.20176696777344px; height: auto;"></figure>
+<p>​</p>
+<figure><img src="images/02-bipolar-junction-transistors_6.png" alt="Diagram" loading="lazy" style="max-width: 49.14039611816406px; height: auto;"></figure>
+<p>​ 𝐵𝑉 𝐶𝐵𝑂 &gt; 𝐵𝑉 𝐶𝐸𝑂 ​ Breakdown voltage with Emitter open.​ 𝐵𝑉 𝐶𝐵𝑂 → Breakdown voltage with base open​ 𝐵𝑉 𝐶𝐸𝑂 →</p>
+<figure><img src="images/02-bipolar-junction-transistors_7.png" alt="Diagram" loading="lazy" style="max-width: 75.85905456542969px; height: auto;"></figure>
+<p>​ ​ The order of is 𝑚 4 &lt; 𝑚&lt; 6</p>
 <h3>Transistor Configurations</h3>
 <h3>Common collector configuration</h3>
 <p>The configuration in which the collector is common between emitter and base is known as CC configuration. In CC configuration, the input circuit is connected between emitter and base and the output is taken from the collector and emitter.​</p>
-<figure><img src="images/02-bipolar-junction-transistors_4.jpg" alt="Diagram" loading="lazy" style="max-width: 564px; height: auto;"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_8.jpg" alt="Diagram" loading="lazy" style="max-width: 564px; height: auto;"></figure>
 <h2>Common emitter configuration</h2>
 <p>The configuration in which the emitter is connected between the collector and base is known as a common emitter configuration. The input circuit is connected between emitter and base, and the output circuit is taken from the collector and emitter.​</p>
-<figure><img src="images/02-bipolar-junction-transistors_5.jpg" alt="Diagram" loading="lazy" style="max-width: 676px; height: auto;"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_9.jpg" alt="Diagram" loading="lazy" style="max-width: 676px; height: auto;"></figure>
 <h3>Common base configuration</h3>
 <p>The configuration in which the base of the transistor is common between emitter and collector circuit is called a common base configuration. In common base-emitter connection, the input is connected between emitter and base while the output is taken across collector and base.​</p>
-<figure><img src="images/02-bipolar-junction-transistors_6.jpg" alt="Diagram" loading="lazy" style="max-width: 678px; height: auto;"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_10.jpg" alt="Diagram" loading="lazy" style="max-width: 678px; height: auto;"></figure>
 <h3>Comparison</h3>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -146,6 +154,8 @@
 𝐸</td>
 </tr>
 </tbody></table></div>
+<figure><img src="images/02-bipolar-junction-transistors_11.png" alt="Diagram" loading="lazy" style="max-width: 397.3465270996094px; height: auto;"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_12.png" alt="Diagram" loading="lazy" style="max-width: 51.99861145019531px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Voltage gain</th>
@@ -184,19 +194,20 @@ sistance (𝑅 )
 <p>​ The input (Vin) of CE amplifier is taken from the base terminal and the output</p>
 <p>(Vout). is collected from the collector terminal ​ The emitter terminal is common for both base and collector terminals and the input is applied across the emitter-base junction with the forward-biased this amplifies the signal.</p>
 <p>​ Thus the base current is amplified by applying suitable input voltage across the base-emitter junction and we get amplified output voltage across the collector-emitter junction​</p>
-<figure><img src="images/02-bipolar-junction-transistors_7.jpg" alt="Diagram" loading="lazy" style="max-width: 437px; height: auto;"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_13.jpg" alt="Diagram" loading="lazy" style="max-width: 437px; height: auto;"></figure>
 <p>​ From the above explanation, we can see that, in common emitter configuration, the base current is amplified and we get an amplified output signal.</p>
 <p>​ This configuration can be used as a switching circuit, in which by applying suitable base-emitter current the circuit can be switched on or off.</p>
 <p>​ Hence when a transistor is used in a common emitter configuration the variation is output can be made by varying base current (i.e., by change base-emitter voltage).</p>
 <h3>CE Configuration Input and Output Characteristics</h3>
 <h3>Input Characteristics</h3>
 <p>A graph showing the variation of the base current (IB) with base-emitter voltage (VBE), at constant collec-tor-emitter Voltage (VCE) is called input characteristics of a transistor.​</p>
-<figure><img src="images/02-bipolar-junction-transistors_8.jpg" alt="Diagram" loading="lazy" style="max-width: 906px; height: auto;"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_14.jpg" alt="Diagram" loading="lazy" style="max-width: 906px; height: auto;"></figure>
 <p>​ The input resistance () is defined as the ratio of the small change in the 𝑅 𝑖 () base-emitter voltage to the corresponding small change in base current</p>
-<p>∆𝑉 𝐵𝐸 (), it is given by ∆𝐼 𝐵 () 𝑉 𝐶𝐸 ∆𝑉 𝐵𝐸 𝑅 𝑖 = ∆𝐼 𝐵</p>
+<p>∆𝑉 𝐵𝐸 (), it is given by ∆𝐼 𝐵</p>
+<figure><img src="images/02-bipolar-junction-transistors_15.png" alt="Diagram" loading="lazy" style="max-width: 78.85159301757812px; height: auto;"></figure>
 <h3>Output Characteristics</h3>
 <p>() ​ A graph showing the variation of collector current with collector-emitter 𝐼 𝐶 () () voltage at a constant base current is called output characteristics, it is 𝑉 𝐶𝐸 𝐼 𝐵 given by​</p>
-<figure><img src="images/02-bipolar-junction-transistors_9.jpg" alt="Diagram" loading="lazy" style="max-width: 939px; height: auto;"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_16.jpg" alt="Diagram" loading="lazy" style="max-width: 939px; height: auto;"></figure>
 <p>() From above it is clear that the input resistance is defined as the ratio of the small 𝑅 𝑖 change in the baseemitter voltage () to the corresponding small change in base ∆𝑉 𝐵𝐸 () 𝑉 𝐶𝐸 ∆𝑉 𝐵𝐸 () current, it is given by ∆𝐼 𝐵 𝑅 𝑖 = ∆𝐼 𝐵</p>
 <h3>Different modes of BJT operations</h3>
 <div class="table-wrapper"><table>
@@ -227,7 +238,7 @@ sistance (𝑅 )
 </tr>
 </tbody></table></div>
 <p>V-I characteristics of a common-emitter configuration of BJT as shown:​</p>
-<figure><img src="images/02-bipolar-junction-transistors_10.jpg" alt="Diagram" loading="lazy" style="max-width: 952px; height: auto;"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_17.jpg" alt="Diagram" loading="lazy" style="max-width: 952px; height: auto;"></figure>
 <p>​ In the hard-saturation region, the ON time duration is more. ​ The power dissipation occurs in large amounts as the current is maximum. ​ In the cut-off region current is zero. So no power dissipation occurs in this region during the switchedmode operation of BJT.</p>
 <h3>The applications of BJT and the biasing conditions are shown below</h3>
 <div class="table-wrapper"><table>
@@ -266,7 +277,7 @@ sistance (𝑅 )
 </tbody></table></div>
 <p>​ BJT is never operated in the reverse active region ​ The main application of the BJT is as an amplifier, and this is possible under small-signal conditions.</p>
 <p>​ The characteristics of is as shown below:​ 𝐼 𝐶 −𝑉 𝐵𝐸</p>
-<figure><img src="images/02-bipolar-junction-transistors_11.jpg" alt="Diagram" loading="lazy" style="max-width: 1009px; height: auto;"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_18.jpg" alt="Diagram" loading="lazy" style="max-width: 1009px; height: auto;"></figure>
 <p>​ Current variations are linear in this region. ​ Non-linear behavior becomes linear in that small region. ​ DC operating point is needed so that we can apply the signal at that point to get the amplified signal.</p>
 <p>​ The remaining applications of transistor i.e. ON &amp; OFF switch are possible under the large-signal condition</p>
 <h3>Early effect</h3>
@@ -281,7 +292,7 @@ sistance (𝑅 )
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-diode-circuits.html" class="note-card"><h4>01 Diode Circuits</h4><div class="meta">General</div></a><a href="03-fet-mosfet.html" class="note-card"><h4>03 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a><a href="04-op-amp-and-its-applications.html" class="note-card"><h4>04 Op Amp And Its Applications</h4><div class="meta">GATE, ESE</div></a><a href="05-oscillators.html" class="note-card"><h4>05 Oscillators</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-diode-circuits.html" class="note-card"><h4>01 Diode Circuits</h4><div class="meta">General</div></a><a href="03-fet-mosfet.html" class="note-card"><h4>03 Fet &amp; Mosfet</h4><div class="meta">General</div></a><a href="04-op-amp-and-its-applications.html" class="note-card"><h4>04 Op Amp And Its Applications</h4><div class="meta">General</div></a><a href="05-oscillators.html" class="note-card"><h4>05 Oscillators</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -289,10 +300,10 @@ sistance (𝑅 )
     </main>
 
     <!-- Quiz Modal -->
-    <div class="modal" id="quiz-modal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal">
             <div class="modal-header">
-                <h3>Quiz Mode</h3>
+                <h3>Knowledge Check</h3>
                 <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
@@ -364,31 +375,12 @@ sistance (𝑅 )
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                 });
             }
-            // Sidebar toggle
+                        // Sidebar toggle
             var sidebarToggle = document.getElementById('sidebar-toggle');
             if (sidebarToggle) {
-                var sidebarCollapsed = false;
                 sidebarToggle.addEventListener('click', function() {
-                    sidebarCollapsed = !sidebarCollapsed;
-                    var sidebar = document.getElementById('toc-sidebar');
                     var notesPage = document.getElementById('notes-page');
-                    var tocListEl = document.getElementById('toc-list');
-                    var tocTitleText = document.getElementById('toc-title-text');
-                    var collapseAllBtn = document.getElementById('toc-collapse-all');
-                    
-                    if (sidebarCollapsed) {
-                        notesPage.style.gridTemplateColumns = 'auto 1fr';
-                        tocListEl.style.display = 'none';
-                        tocTitleText.style.display = 'none';
-                        collapseAllBtn.style.display = 'none';
-                        sidebar.style.width = 'fit-content';
-                    } else {
-                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
-                        tocListEl.style.display = 'block';
-                        tocTitleText.style.display = 'inline';
-                        collapseAllBtn.style.display = 'block';
-                        sidebar.style.width = 'auto';
-                    }
+                    notesPage.classList.toggle('sidebar-collapsed');
                 });
             }
         })();

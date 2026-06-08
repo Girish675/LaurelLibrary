@@ -55,7 +55,7 @@
 
         async function init() {
             try {
-                var r = await fetch('index.json');
+                var r = await fetch('index.json?v=' + Date.now());
                 if (r.ok) { var d = await r.json(); notes = d.notes || []; }
             } catch(e) {}
             var params = new URLSearchParams(window.location.search);
@@ -128,10 +128,20 @@
                 list.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><h3>No notes found</h3><p>' + msg + '</p></div>';
                 return;
             }
-            list.innerHTML = filtered.map(function(n) {
+            list.innerHTML = filtered.map(function(n, idx) {
                 var cat = n.category.charAt(0).toUpperCase() + n.category.slice(1).replace(/-/g, ' ');
-                return '<a href="../' + n.path + '" class="note-card"><h4>' + LL.escapeHtml(n.title) + '</h4>' +
-                    '<div class="meta"><span class="tag">' + LL.escapeHtml(cat) + '</span>' +
+                var title = n.title;
+                var badge = '';
+                var match = title.match(/^0*(\d+)\s+(.+)$/);
+                if (match) {
+                    badge = '<div style="font-size:var(--text-xs);color:var(--c-accent);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Unit ' + match[1] + '</div>';
+                    title = match[2];
+                } else {
+                    badge = '<div style="font-size:var(--text-xs);color:var(--c-accent);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Unit ' + (idx + 1) + '</div>';
+                }
+                return '<a href="../' + n.path + '" class="note-card" style="display:flex;flex-direction:column;justify-content:space-between">' +
+                    '<div>' + badge + '<h4 style="margin-top:0">' + LL.escapeHtml(title) + '</h4></div>' +
+                    '<div class="meta" style="margin-top:var(--space-sm)"><span class="tag">' + LL.escapeHtml(cat) + '</span>' +
                     '<span>' + LL.escapeHtml(n.exam || 'General') + '</span></div></a>';
             }).join('');
         }

@@ -381,9 +381,9 @@
       "slug": "01-diode-circuits",
       "exam": "General",
       "pyq": "",
-      "keywords": "across adds also analysis angle applied assume average bias biased both bottom bridge case centre changing check circuit clipper clipping clips coil conduction crest current cutin cycles detector diode diodes direction dissipation efficiency factor find first form formulas forward frequency full half halves ideal input inverse known limiter load maximum",
-      "word_count": 871,
-      "reading_time": 4
+      "keywords": "across adds also analysis angle applied assume average bias biased both bottom bridge case centre changing check circuit clipper clips coil conduction crest current cutin detector diode diodes direction dissipation efficiency factor find first form formulas forward frequency full half halves ideal input inverse known limiter load maximum mean minimum",
+      "word_count": 625,
+      "reading_time": 3
     },
     {
       "title": "02 Bipolar Junction Transistors",
@@ -393,8 +393,8 @@
       "exam": "General",
       "pyq": "",
       "keywords": "above across active acts also amounts amplified amplifier amplifies amplify application applications applied apply applying arrow atom atoms backtoback base basecm baseemitter basic basically because becomes behavior below between bias biased biasing bipolar bjts both breakdown burnout called carriers causes change changes characteristics charge circuit clear collect collected collector collectorbase",
-      "word_count": 1717,
-      "reading_time": 9
+      "word_count": 1675,
+      "reading_time": 8
     },
     {
       "title": "03 Fet & Mosfet",
@@ -404,7 +404,7 @@
       "exam": "General",
       "pyq": "",
       "keywords": "amplification channel characteristics conductance current depletion drain effect enhancement factor field jfet junction linear mode mosfet nchannel nmos pchannel pinch pinchoff pmos region representation resistance saturation shown symbol threshold trans transfer transistor voltage where",
-      "word_count": 390,
+      "word_count": 347,
       "reading_time": 2
     },
     {
@@ -414,9 +414,9 @@
       "slug": "04-op-amp-and-its-applications",
       "exam": "General",
       "pyq": "",
-      "keywords": "according amplifier angle antilog apply assumed astable band because become between block called change changes close compensation configuration converter coupled current decrease defined diagram difference differential differentiator diode diodes direct distorted does either even exponential fast filter filters follower frequency from full functions gain half hence high hysteresis ideal impedance",
-      "word_count": 709,
-      "reading_time": 4
+      "keywords": "according amplifier angle antilog apply assumed astable band because become between block called change changes compensation configuration converter coupled current decrease defined diagram difference differential differentiator diode diodes direct distorted does either even exponential fast filter filters follower frequency from full functions gain half hence high ideal impedance increase independent",
+      "word_count": 502,
+      "reading_time": 3
     },
     {
       "title": "05 Oscillators",
@@ -426,8 +426,8 @@
       "exam": "General",
       "pyq": "",
       "keywords": "additional assumed become bridge bulky capacitive capacitor clapp colpit consist converter crystal current device dimension electronic exist extra face figure form frequency gain general greater hartley hence inductance inductive inductor inductors infinite input linear made materials merit metal minima most must mutual nonlinear oscillation oscillator oscillators other phase piezoelectric plates",
-      "word_count": 401,
-      "reading_time": 2
+      "word_count": 257,
+      "reading_time": 1
     },
     {
       "title": "06 Power Amplifiers And 555 Timer And Voltage Regulators",
@@ -447,8 +447,8 @@
       "slug": "01-logic-gates",
       "exam": "General",
       "pyq": "",
-      "keywords": "acts also andor associative basic because becomes bistable blocks boolean both bubbled buffer buffers building called capacity case causes change circuit circuits classification coincidence combination commutative complement connected control controlled detector diagram digital diodes disable does driving each element enable equal equality equivalence equivalent even exactly exclusive exnor exor expression",
-      "word_count": 1205,
+      "keywords": "acts also andor associative basic because becomes bistable blocks boolean both bubbled buffer buffers building called capacity case causes change circuit circuits coincidence combination commutative complement connected control controlled detector diagram digital diodes disable does driving each element enable equal equality equivalence equivalent even exactly exclusive exnor exor expression feedback",
+      "word_count": 1135,
       "reading_time": 6
     },
     {
@@ -459,8 +459,8 @@
       "exam": "General",
       "pyq": "",
       "keywords": "algebra algebraic also analyze anded andoinverter appearing approach basic binary boolean called canonical change circuit circuits combination combinations common complement complementary complemented compliment conjunctive consensus consists constant constructed contain corresponding counterparts cube decimal different digital disjunctive distributive dual duality each easily either equation equivalent examples expressed expression form formulated found",
-      "word_count": 930,
-      "reading_time": 5
+      "word_count": 842,
+      "reading_time": 4
     },
     {
       "title": "03 Number System & Representation",
@@ -469,9 +469,9 @@
       "slug": "03-number-system-representation",
       "exam": "General",
       "pyq": "",
-      "keywords": "alpha also arithmetic base become binary bits byte changes clocks code codes commonly complement complementing contain conversion convert converted correct counters counting cyclic decimal depends digit digits directly divide during each equal equivalent error excess extension follows fraction fractional from general going gray group have hexadecimal integer into invalid known",
-      "word_count": 1167,
-      "reading_time": 6
+      "keywords": "alpha also arithmetic base become binary bits byte changes clocks code codes complement complementing contain conversion convert converted correct counters counting cyclic decimal depends digit digits directly divide during each equal equivalent error excess extension follows fraction fractional from general going gray group have hexadecimal integer into invalid known largest",
+      "word_count": 1022,
+      "reading_time": 5
     },
     {
       "title": "04 Combinational Circuits",
@@ -480,8 +480,8 @@
       "slug": "04-combinational-circuits",
       "exam": "General",
       "pyq": "",
-      "keywords": "above action activating active addend adder adders addition adds ahead also always application augend basic binary bits boolean called cannot carry circuit circuits code coded codes combinational comparator compare constant contains control conversion convert converter converts corresponding corresponds data decimal decoder delay demultiplexer demux design designed desired determines difference digital",
-      "word_count": 1636,
+      "keywords": "above action activating active addend adder addition adds ahead also always application augend basic binary bits boolean called cannot carry circuit circuits code coded codes combinational comparator compare constant contains control conversion convert converter converts corresponding corresponds data decimal decoder delay demultiplexer demux design designed desired determines difference digital distributor",
+      "word_count": 1518,
       "reading_time": 8
     },
     {
@@ -491,9 +491,9 @@
       "slug": "05-sequential-circuits",
       "exam": "General",
       "pyq": "",
-      "keywords": "ability activating active affect after also applied apply around asynchronous available avoid binary bistable bloc both called case change changes characteristic characteristics circuit circuits clear clock clocked combination comes common commonly complement condition connections consists constantly conversion convert coupled cross crosscoupled cycle data delay depends derive design designation designed desired",
-      "word_count": 1328,
-      "reading_time": 7
+      "keywords": "ability activating active affect after also applied apply around asynchronous available avoid binary bistable bloc both called case change changes characteristic characteristics circuit circuits clock combination comes common commonly complement condition connections consists constantly conversion convert coupled cross crosscoupled cycle data delay depends derive design designation designed desired device diagram",
+      "word_count": 1239,
+      "reading_time": 6
     },
     {
       "title": "06 Adc & Dac",
@@ -502,9 +502,9 @@
       "slug": "06-adc-dac",
       "exam": "General",
       "pyq": "",
-      "keywords": "accepts accuracy accurate acquisition active adcs added advantages affect against aliasing allowed also always among amplitude analog analogtodigital another aperture application applied approach approximation architecture associated automatic average averaging back balance based basically because before below better between binary bits called capacitor case cases cause caused change charging circuit circuits",
-      "word_count": 1901,
-      "reading_time": 10
+      "keywords": "accepts accuracy accurate acquisition active added advantages affect against aliasing allowed also always among amplitude analog analogtodigital another aperture application applied approach approximation architecture associated automatic average averaging back balance based basically because before below better between binary bits called capacitor case cases cause caused change charging circuit circuits clash",
+      "word_count": 1827,
+      "reading_time": 9
     },
     {
       "title": "07 Logic Families",
@@ -513,8 +513,8 @@
       "slug": "07-logic-families",
       "exam": "General",
       "pyq": "",
-      "keywords": "active advantages also applied associated average barrier base basic between biasing case changes channel characteristics circuit cmos collector compared complementary conduction construction cost coupled current cutoff darlington data dctl defined delay density depends desirable digital diode diodes direct disadvantage disadvantages diss dissipation double drain drawn driven driving each effecting either",
-      "word_count": 1014,
+      "keywords": "active advantages also applied associated average barrier base basic between biasing case changes channel circuit cmos collector compared conduction construction cost coupled current cutoff darlington data dctl defined delay density depends desirable digital diode diodes direct disadvantage disadvantages diss dissipation double drain drawn driven driving each effecting either emitter entering",
+      "word_count": 985,
       "reading_time": 5
     },
     {
@@ -525,7 +525,7 @@
       "exam": "General",
       "pyq": "",
       "keywords": "access accessed accommodate account acts actually address advent aerospace after allows almost also amount andor another application applications applied array arrays automotive auxiliary available average back basic basis battery because been before being between bidirectional binary bios bipolar bistable bits blocks boolean both bubble buffer build building byte bytes cache",
-      "word_count": 2221,
+      "word_count": 2202,
       "reading_time": 11
     },
     {
@@ -535,8 +535,8 @@
       "slug": "01-semiconductor-physics",
       "exam": "General",
       "pyq": "",
-      "keywords": "above acceptor action band behaves boltzmanns charge concentration conduction conductivity conductor conductors constant curie dirac donor drift effect electric electron electrons energy equation equilibrium extrinsic fermi field free frequently function general gives highest holes impure insulator insulators intensity intrinsic joulesk level mass mobility notations note number occupancy occupied probability properties",
-      "word_count": 459,
+      "keywords": "above acceptor action band behaves concentration conduction conductivity conductor conductors curie dirac donor drift electric electron electrons energy equation equilibrium extrinsic fermi field free function general gives highest holes impure insulator insulators intensity intrinsic level mass mobility note number occupancy occupied probability properties semiconductor semiconductors temperature that theory type under",
+      "word_count": 380,
       "reading_time": 2
     },
     {
@@ -547,7 +547,7 @@
       "exam": "General",
       "pyq": "",
       "keywords": "acceptor across acts added addition advantage advantages allow also although amount ampere angle antimony applications applied available average backward barrier basic battery because best between bias biased block boron both bottom breakdown bridge called carriers carries case center centertap centertapped change characteristic characteristics charge charged charges cheaper circuit closed coefficient",
-      "word_count": 1631,
+      "word_count": 1589,
       "reading_time": 8
     },
     {
@@ -558,8 +558,8 @@
       "exam": "General",
       "pyq": "",
       "keywords": "absent active admittance amplifier amplifies analysis apply area assume base baseemitter become between break bypass calculate cannot capacitance capacitor capacitors circuit collector common conductance configurations connections contact coupling current cutoff effect emitter equivalent external felting find finding found frequencies frequency from gain have here high hparameter hybrid ignored impedance input",
-      "word_count": 1247,
-      "reading_time": 6
+      "word_count": 951,
+      "reading_time": 5
     },
     {
       "title": "04 Fet & Mosfet",
@@ -569,7 +569,7 @@
       "exam": "General",
       "pyq": "",
       "keywords": "amplification channel characteristics conductance current depletion drain effect enhancement factor field jfet junction linear mode mosfet nchannel nmos pchannel pinch pinchoff pmos region representation resistance saturation shown symbol threshold trans transfer transistor voltage where",
-      "word_count": 391,
+      "word_count": 348,
       "reading_time": 2
     },
     {
@@ -579,8 +579,8 @@
       "slug": "05-special-diodes",
       "exam": "General",
       "pyq": "",
-      "keywords": "allows amplifiers applications between bias biased biasing capacitance circuits compared current depletion difference different differential diode diodes dissipation doped electroluminescence exhibits forward forwardbiased frequencies function good have high highfrequency highly input junction leakage load microwave minimum narrow negative normal operation oscillators power principle rectifier rectifiers region relatively resistance reverse shown",
-      "word_count": 158,
+      "keywords": "allows amplifiers applications between bias biased capacitance circuits compared current depletion difference differential diode diodes dissipation doped electroluminescence exhibits forward forwardbiased frequencies function good have high highfrequency highly input junction leakage load microwave minimum narrow negative normal operation oscillators power principle rectifier rectifiers region relatively resistance reverse shown source switching",
+      "word_count": 151,
       "reading_time": 1
     },
     {
@@ -590,9 +590,9 @@
       "slug": "01-basic-concept-of-network-theory",
       "exam": "General",
       "pyq": "",
-      "keywords": "above across along also aluminum always amount ampere analysis applicable applied basic between bilateral both branch branches building buildings calculation capacitance capacitor capacity cause change changes charge charges circuit circuits classification closed coil companies concept conditions conductance conductivity conductor conductors connect connected connection consider constant convention conventional copper coulomb crosssection",
-      "word_count": 1775,
-      "reading_time": 9
+      "keywords": "above across along also aluminum always amount ampere analysis applicable applied basic between bilateral both branch branches building buildings calculation capacitance capacitor capacity cause change changes charge charges circuit circuits closed coil companies concept conditions conductance conductivity conductor conductors connect connected connection consider constant convention conventional copper coulomb crosssection cube",
+      "word_count": 1472,
+      "reading_time": 7
     },
     {
       "title": "02 Network Theorems",
@@ -601,9 +601,9 @@
       "slug": "02-network-theorems",
       "exam": "General",
       "pyq": "",
-      "keywords": "acting acts algebraic alone amount applicable application apply arrangement assuming balanced based been between bilateral both branch branches bridge calculated calculation carrying case cases change changed choose circuit circuited circuits compensating composed condition conditions connected conservation consisting constant consumed containing coupling current currents delivered dependent difference different diode dissipated disturb",
-      "word_count": 1171,
-      "reading_time": 6
+      "keywords": "acting acts algebraic alone amount applicable apply arrangement assuming balanced based been between bilateral both branch branches bridge calculated calculation carrying case change changed choose circuit circuited circuits compensating composed condition conditions connected conservation consisting constant consumed containing coupling current currents delivered dependent difference different diode dissipated disturb dont dual",
+      "word_count": 999,
+      "reading_time": 5
     },
     {
       "title": "03 Transient Analysis",
@@ -613,7 +613,7 @@
       "exam": "General",
       "pyq": "",
       "keywords": "above allow allows also analysis approach because behaviour both capacitor case change changes circuit closed combination compared condition constant converting cosine current dies does effects elements energy excitation excitationssources first formulas free function given impulse inductor instantaneous instants into laplace more networks occur occurs only order parallel possible presence present",
-      "word_count": 453,
+      "word_count": 379,
       "reading_time": 2
     },
     {
@@ -623,9 +623,9 @@
       "slug": "04-ac-fundamentals",
       "exam": "General",
       "pyq": "",
-      "keywords": "above accept acceptor across acts allow allows along also alternating amplitude analysis angular another anticlockwise applicable approach asec assign assume attenuates attenuation augmented average band bands bandwidth based basic because become behaviour below between blocks both bound brances branch branches called capacitance capacitive capacitor carried cascade case causal certain change",
-      "word_count": 3354,
-      "reading_time": 17
+      "keywords": "above accept acceptor across acts allow allows along also alternating amplitude analysis angular another anticlockwise applicable assign assume attenuates attenuation average band bands bandwidth based because become below between blocks both bound brances branch branches called capacitance capacitive capacitor carried cascade case causal certain change changes characteristically charges chords circuit",
+      "word_count": 2645,
+      "reading_time": 13
     },
     {
       "title": "05 Two Port Networks",
@@ -635,8 +635,8 @@
       "exam": "General",
       "pyq": "",
       "keywords": "abcd above active assumptions barletts bisection cascade circuit classification condition connected dealing defined dependent driving element four from given half having here ideal impedance initial input interconnection into kept mind must neither network networks nonreciprocal open output parallel parameter parameters passive point port reciprocal section series short shunt source split",
-      "word_count": 707,
-      "reading_time": 4
+      "word_count": 606,
+      "reading_time": 3
     },
     {
       "title": "06 Three Phase Circuits",
@@ -646,7 +646,7 @@
       "exam": "General",
       "pyq": "",
       "keywords": "achieved addition aluminum amount angle apart apparent balanced between capacitive cause causes causing compared connected connection connections constant current currents delta difference different drop each ease economic equal factor flow formed four frequency from greater heavy hence impedances important incoming inductive industry input instantaneous interconnection known large less line load",
-      "word_count": 576,
+      "word_count": 509,
       "reading_time": 3
     },
     {
@@ -656,8 +656,8 @@
       "slug": "07-graph-theory",
       "exam": "General",
       "pyq": "",
-      "keywords": "above also applicable assign assume augumented become between brances branch branches called chords circuit circuited closed column complete connected connection contain contains current degree different each elements entering equal find formula full graph graphs have having important incidence incident incoming isomorphic just least leaving line link links made matrix must",
-      "word_count": 453,
+      "keywords": "above also applicable assign assume become between brances branch branches called chords circuit circuited column complete connected connection contain current degree different each elements entering equal find formula full graph graphs have having incidence incident incoming isomorphic just least leaving line link made matrix must network node nodes number only",
+      "word_count": 407,
       "reading_time": 2
     },
     {
@@ -667,9 +667,9 @@
       "slug": "08-magnetic-coupled-circuits",
       "exam": "General",
       "pyq": "",
-      "keywords": "accessed adding addition also always another applicable associated assumed based basic beginning between both bound called carrying change circuit circuits circulate closed coil coils combination conductor conductors couple coupled coupling couplings current defined definitely direction dots each either electric energy enters equal experiences explained faradays field finger first flemings flux",
-      "word_count": 835,
-      "reading_time": 4
+      "keywords": "accessed adding addition also always another applicable assumed based beginning between both bound called carrying change circuit circuits circulate closed coil coils combination conductor conductors couple coupled coupling couplings current defined definitely direction dots each either electric energy enters experiences explained faradays field finger first flemings flux fluxes force fore",
+      "word_count": 621,
+      "reading_time": 3
     }
   ]
 }

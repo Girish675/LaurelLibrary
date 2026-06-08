@@ -24,7 +24,7 @@
                 <span>/</span>
                 <a href="../index.html">Notes</a>
                 <span>/</span>
-                <a href="index.html">Edc</a>
+                <a href="../index.html?category=edc">Edc</a>
                 <span>/</span>
                 <span>03 Bjt</span>
             </nav>
@@ -33,14 +33,14 @@
                 <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
                 <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
                 <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
-                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 6 min read</span>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 5 min read</span>
             </div>
 
             <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span style="display: flex; align-items: center; gap: 8px;">
-                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <button type="button" id="sidebar-toggle" title="Toggle Sidebar">&#9776;</button>
                             <span id="toc-title-text">Table of Contents</span>
                         </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
@@ -58,6 +58,7 @@
                     <h2>BJT</h2>
 <p>Symbolic representation of BJT.</p>
 <p>Configurations of Transistor (npn) (active mode)</p>
+<figure><img src="images/03-bjt_1.png" alt="Diagram" loading="lazy" style="max-width: 455.04974365234375px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Transistor
@@ -170,6 +171,7 @@ CE</td>
 BE</td>
 </tr>
 </tbody></table></div>
+<figure><img src="images/03-bjt_2.png" alt="Diagram" loading="lazy" style="max-width: 255.92843627929688px; height: auto;"></figure>
 <p>Procedure to find region of transistor Method 1 Assume active region</p>
 <ul>
 <li>1) Apply k VL in Base-emitter Ckt &amp; calculate I B</li>
@@ -177,14 +179,20 @@ BE</td>
 <li>3) Apply k VL in CE Ckt &amp; calculate V CE</li>
 <li>4) Now from V CE If V CE &gt; 0.2 then active region If V CE &lt; 0.2 then saturation region</li>
 </ul>
-<p>Method 2 Assume saturation region → Apply k VL in base Ckt. &amp; calculate I B → Apply k VL in CE Ckt &amp; calculate I C min → V CE = 0.2 I C ≠βI B 𝐼 𝐶 𝑚𝑖𝑛 →𝐼 𝐵 𝑚𝑖𝑛 = β → If I B min &lt; I B → (saturation region) If I B min &gt; I B → (active region)</p>
-<figure><img src="images/03-bjt_1.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<p>Method 2 Assume saturation region → Apply k VL in base Ckt. &amp; calculate I B → Apply k VL in CE Ckt &amp; calculate I C min → V CE = 0.2</p>
+<figure><img src="images/03-bjt_3.png" alt="Diagram" loading="lazy" style="max-width: 45.928436279296875px; height: auto;"></figure>
+<p>𝐼 𝐶 𝑚𝑖𝑛</p>
+<figure><img src="images/03-bjt_4.png" alt="Diagram" loading="lazy" style="max-width: 52.43555450439453px; height: auto;"></figure>
+<p>β → If I B min &lt; I B → (saturation region) If I B min &gt; I B → (active region)</p>
+<figure><img src="images/03-bjt_5.png" alt="Diagram" loading="lazy" style="max-width: 460.0px; height: auto;"></figure>
 <p>C E = Emitter bypass capacitor C C = Coupling capacitor</p>
 <p>For DC analysis</p>
 <ul>
-<li>1) frequency (w) = 0, so capacitors are open Ckt 𝐼 𝐶 𝑉 𝑇 𝑉 𝑇</li>
-<li>2) 𝑔 𝑚 = 𝑉 𝑇, 𝑟 π = 𝐼 𝐵, 𝑟 𝐸 = 𝐼 𝐸 g m = trans conductance r E = AC emitter resistance r π = AC base resistance</li>
+<li>1) frequency (w) = 0, so capacitors are open Ckt 𝐼 𝐶 𝑉 𝑇</li>
 </ul>
+<figure><img src="images/03-bjt_6.png" alt="Diagram" loading="lazy" style="max-width: 44.60022735595703px; height: auto;"></figure>
+<figure><img src="images/03-bjt_7.png" alt="Diagram" loading="lazy" style="max-width: 42.56272888183594px; height: auto;"></figure>
+<p>𝑉 𝑇, 𝑟 π = 𝐼 𝐸 g m = trans conductance r E = AC emitter resistance r π = AC base resistance</p>
 <p>For AC analysis</p>
 <ul>
 <li>1) Using hybrid-π model (IF C E is absent)</li>
@@ -193,30 +201,70 @@ BE</td>
 <ul>
 <li>2) By using h-parameter</li>
 </ul>
-<figure><img src="images/03-bjt_2.png" alt="Diagram" loading="lazy" style="max-width: 240px; height: auto;"></figure>
-<p>[] = ℎ 𝑖 ℎ 𝑟 ℎ 𝑓 ℎ 𝑜 [] 𝐼 𝑖 𝑉 𝑜 [] 𝑉 𝑖 𝐼 𝑜 Where, 𝑉 𝑖 𝐼 𝑜 𝑉 𝑖 ℎ 𝑖 = 𝐼 𝑖 |, ℎ 𝑓 = 𝐼 𝑖 |, ℎ 𝑟 = 𝑉 𝑜 | 𝑉 𝑜 =0 𝑉 𝑜 =0 𝐼 𝑖 =0 𝐼 𝑜 ℎ 𝑜 = 𝑉 𝑜 | 𝐼 𝑖 =0 −ℎ 𝑓 1) → Current gain 𝐴 𝐼 = 1+ℎ 𝑜 𝑅 𝐿</p>
+<figure><img src="images/03-bjt_8.png" alt="Diagram" loading="lazy" style="max-width: 240px; height: auto;"></figure>
+<p>[] = ℎ 𝑖 ℎ 𝑟 ℎ 𝑓 ℎ 𝑜 [] 𝐼 𝑖 𝑉 𝑜 [] 𝑉 𝑖 𝐼 𝑜 Where, 𝑉 𝑖 𝐼 𝑜 𝑉 𝑖</p>
+<figure><img src="images/03-bjt_9.png" alt="Diagram" loading="lazy" style="max-width: 24.07636260986328px; height: auto;"></figure>
+<figure><img src="images/03-bjt_10.png" alt="Diagram" loading="lazy" style="max-width: 50.65492248535156px; height: auto;"></figure>
+<figure><img src="images/03-bjt_11.png" alt="Diagram" loading="lazy" style="max-width: 50.07826232910156px; height: auto;"></figure>
+<p>𝐼 𝑖 | 𝐼 𝑖 | 𝑉 𝑜 | 𝐼 𝑖 =0 𝐼 𝑜</p>
+<figure><img src="images/03-bjt_12.png" alt="Diagram" loading="lazy" style="max-width: 25.75318145751953px; height: auto;"></figure>
+<p>𝑉 𝑜 |</p>
+<figure><img src="images/03-bjt_13.png" alt="Diagram" loading="lazy" style="max-width: 29.618484497070312px; height: auto;"></figure>
+<p>1) → Current gain 𝐴 𝐼 =</p>
 <ul>
-<li>2) Z in = R B + h i + A I h r R L → Input impedance 𝑅 𝐿 3) → Voltage gain 𝐴 𝑉 = 𝐴 𝐼 𝑅 𝑖 ℎ 𝑟 ℎ 𝑓 4) → output admittance 𝑦 𝑜 = ℎ 𝑜 − 𝑅 𝑠 +ℎ 𝑖</li>
+<li>2) Z in = R B + h i + A I h r R L → Input impedance 𝑅 𝐿 3) → Voltage gain 𝐴 𝑉 = 𝐴 𝐼 𝑅 𝑖</li>
 </ul>
-<p>High frequency analysis (for CE amplifies only) C π = input capacitance between E &amp; B C μ = capacitance between C &amp; B C π = C de + C je τ𝐼 𝐶 𝐶𝑗 𝑒 0 𝐶 π = 𝑉 𝑇 + 𝑚 () 𝑉 𝐵𝐸 1− 𝑉 𝑜𝑒 V oe = 0.9 V m = 0.5 𝐶 µ 𝑜 𝐶 µ = 𝑚 () 𝑉 𝐶𝐵 1+ 𝑉 𝑜𝑐 V oc = 0.7 V m = 0.2 to 0.5</p>
-<figure><img src="images/03-bjt_3.png" alt="Diagram" loading="lazy" style="max-width: 297px; height: auto;"></figure>
-<p>For external connections use ohmic contact. → A C &gt; A E &gt; A B (area) 𝑅= 𝑝𝑙 𝐴 𝑅∝ 𝑙 𝐴 → R B &gt; R E &gt; R c → Base width should be very less</p>
-<figure><img src="images/03-bjt_4.png" alt="Diagram" loading="lazy" style="max-width: 391px; height: auto;"></figure>
+<figure><img src="images/03-bjt_14.png" alt="Diagram" loading="lazy" style="max-width: 23.347076416015625px; height: auto;"></figure>
+<p>4) → output admittance 𝑦 𝑜 = ℎ 𝑜 −</p>
+<p>High frequency analysis (for CE amplifies only) C π = input capacitance between E &amp; B C μ = capacitance between C &amp; B</p>
+<figure><img src="images/03-bjt_15.png" alt="Diagram" loading="lazy" style="max-width: 78.92425537109375px; height: auto;"></figure>
+<p>𝐶𝑗 𝑒 0</p>
+<figure><img src="images/03-bjt_16.png" alt="Diagram" loading="lazy" style="max-width: 57.00279998779297px; height: auto;"></figure>
+<p>𝑚 () 𝑉 𝐵𝐸 1− 𝑉 𝑜𝑒 V oe = 0.9 V</p>
+<figure><img src="images/03-bjt_17.png" alt="Diagram" loading="lazy" style="max-width: 49.39888000488281px; height: auto;"></figure>
+<p>𝐶 µ 𝑜</p>
+<figure><img src="images/03-bjt_18.png" alt="Diagram" loading="lazy" style="max-width: 26.31719207763672px; height: auto;"></figure>
+<p>𝑚 () 𝑉 𝐶𝐵 1+ 𝑉 𝑜𝑐 V oc = 0.7 V m = 0.2 to 0.5</p>
+<figure><img src="images/03-bjt_19.png" alt="Diagram" loading="lazy" style="max-width: 297px; height: auto;"></figure>
+<p>For external connections use ohmic contact. → A C &gt; A E &gt; A B (area)</p>
+<figure><img src="images/03-bjt_20.png" alt="Diagram" loading="lazy" style="max-width: 36.45655822753906px; height: auto;"></figure>
+<p>𝐴 → R B &gt; R E &gt; R c → Base width should be very less</p>
+<figure><img src="images/03-bjt_21.png" alt="Diagram" loading="lazy" style="max-width: 391px; height: auto;"></figure>
 <p>→ CE short circuit current gain (R L = 0)</p>
-<figure><img src="images/03-bjt_5.png" alt="Diagram" loading="lazy" style="max-width: 539px; height: auto;"></figure>
-<p>𝑉 𝑐𝑒 0 𝐴 𝑉 = 𝑉 𝑏'𝑒 = 𝑉 𝑏'𝑒 = 0 𝐼 𝑠𝑐 𝐴 𝑠𝑐 = 𝐼 𝑓 →𝑡𝑎𝑟𝑔𝑒𝑡</p>
-<figure><img src="images/03-bjt_6.png" alt="Diagram" loading="lazy" style="max-width: 424px; height: auto;"></figure>
-<p>() 𝑅 𝑖𝑛˙ = 𝑟 𝑏'𝑒 ⏟ 𝐶 𝑖𝑛 = 𝐶 π + 𝐶 µ ⏟ 𝑍 𝑖𝑛˙ = 𝑟 𝑏'𝑒 || 𝐶 µ + 𝐶 π (𝑖𝑔𝑛𝑜𝑟𝑒 𝑟𝑒𝑠𝑖𝑠𝑡𝑎𝑛𝑐𝑒) (𝑖𝑔𝑛𝑜𝑟𝑒 𝑐𝑎𝑝𝑎𝑐𝑖𝑡𝑜𝑟)</p>
-<p>I sc = g m V b’e</p>
-<figure><img src="images/03-bjt_7.png" alt="Diagram" loading="lazy" style="max-width: 138px; height: auto;"></figure>
-<p>𝐴 𝑠𝑐 = −𝑔𝑚 …(1) 𝑗 𝑚˙ −𝑔𝑚 𝐴 𝑠𝑐 = 𝑔 𝑏'𝑒 +𝑗𝑤(𝐶μ+𝐶 π) −𝑔𝑚/𝑔 𝑏'𝑐 𝐴 𝑠𝑐 = () 1+𝑗𝑤 𝑟 𝑏 ' 𝑒 𝐶 π +𝐶 µ gm / g b’e = hfe ℎ𝑓𝑒 𝐴 𝑠𝑐 = 𝑤 1+𝑗 1 () 𝑟 𝐶π+𝐶µ 𝑏 ' 𝑒</p>
-<p>Remembers here r π ≠r b’e as r bb’ is there 𝑣 𝑏𝑒 𝑟 π = 𝑖 𝑏 𝑣 𝑏'𝑒 𝑟 𝑏'𝑒 = 𝑖 𝑏 ' If r bb’ is ignored them r b’e = rπ y in = g b’e + j’w (C μ + C π) 𝐼 𝑏 𝑣 𝑏'𝑒 = 𝑗 𝑖𝑛 𝐼 𝑏 𝑔𝑚 𝑣 𝑏'𝑒 = 𝑗 𝑖𝑛 𝑔 𝑚 𝐼 𝑏 −𝐼 𝑠𝑐 = 𝑗 𝑖𝑛 𝑔 𝑚</p>
-<figure><img src="images/03-bjt_8.png" alt="Diagram" loading="lazy" style="max-width: 76.70379638671875px; height: auto;"></figure>
-<p>𝐼 𝑠𝑐 𝐼 𝑏 = −𝑔𝑚 put this in (1) = 𝐴 𝑠𝑐 𝑗 𝑖𝑛</p>
-<p>1 𝑓 β = () 2π 𝑟 𝑏 ' 𝑒 𝐶 π +𝐶 µ 𝐴 3d B cut-off frequency is the Frequency at which |</p>
+<figure><img src="images/03-bjt_22.png" alt="Diagram" loading="lazy" style="max-width: 539px; height: auto;"></figure>
+<figure><img src="images/03-bjt_23.png" alt="Diagram" loading="lazy" style="max-width: 111.12643432617188px; height: auto;"></figure>
+<p>𝐼 𝑠𝑐</p>
+<figure><img src="images/03-bjt_24.png" alt="Diagram" loading="lazy" style="max-width: 29.640899658203125px; height: auto;"></figure>
+<p>𝐼 𝑓 →𝑡𝑎𝑟𝑔𝑒𝑡</p>
+<figure><img src="images/03-bjt_25.png" alt="Diagram" loading="lazy" style="max-width: 424px; height: auto;"></figure>
+<p>()</p>
+<figure><img src="images/03-bjt_26.png" alt="Diagram" loading="lazy" style="max-width: 82.51016235351562px; height: auto;"></figure>
+<p>𝑅 𝑖𝑛˙ = 𝑟 𝑏'𝑒 ⏟ 𝑍 𝑖𝑛˙ = 𝑟 𝑏'𝑒 || 𝐶 µ + 𝐶 π (𝑖𝑔𝑛𝑜𝑟𝑒 𝑟𝑒𝑠𝑖𝑠𝑡𝑎𝑛𝑐𝑒) (𝑖𝑔𝑛𝑜𝑟𝑒 𝑐𝑎𝑝𝑎𝑐𝑖𝑡𝑜𝑟)</p>
+<figure><img src="images/03-bjt_27.png" alt="Diagram" loading="lazy" style="max-width: 71.67793273925781px; height: auto;"></figure>
+<figure><img src="images/03-bjt_28.png" alt="Diagram" loading="lazy" style="max-width: 138px; height: auto;"></figure>
+<p>𝐴 𝑠𝑐 = −𝑔𝑚 …(1) 𝑗 𝑚˙</p>
+<figure><img src="images/03-bjt_29.png" alt="Diagram" loading="lazy" style="max-width: 94.1763916015625px; height: auto;"></figure>
+<p>Remembers here r π ≠r b’e as r bb’ is there 𝑣 𝑏𝑒</p>
+<figure><img src="images/03-bjt_30.png" alt="Diagram" loading="lazy" style="max-width: 25.422386169433594px; height: auto;"></figure>
+<p>𝑖 𝑏 𝑣 𝑏'𝑒</p>
+<figure><img src="images/03-bjt_31.png" alt="Diagram" loading="lazy" style="max-width: 30.62737274169922px; height: auto;"></figure>
+<p>𝑖 𝑏 ' If r bb’ is ignored them r b’e = rπ</p>
+<figure><img src="images/03-bjt_32.png" alt="Diagram" loading="lazy" style="max-width: 136.6815948486328px; height: auto;"></figure>
+<p>𝐼 𝑏</p>
+<figure><img src="images/03-bjt_33.png" alt="Diagram" loading="lazy" style="max-width: 31.37879180908203px; height: auto;"></figure>
+<p>𝑗 𝑖𝑛 𝐼 𝑏</p>
+<figure><img src="images/03-bjt_34.png" alt="Diagram" loading="lazy" style="max-width: 49.74024963378906px; height: auto;"></figure>
+<p>𝑗 𝑖𝑛 𝑔 𝑚 𝐼 𝑏</p>
+<figure><img src="images/03-bjt_35.png" alt="Diagram" loading="lazy" style="max-width: 38.356483459472656px; height: auto;"></figure>
+<p>𝑗 𝑖𝑛 𝑔 𝑚</p>
+<figure><img src="images/03-bjt_36.png" alt="Diagram" loading="lazy" style="max-width: 160.5963897705078px; height: auto;"></figure>
+<p>1 𝑓 β =</p>
+<figure><img src="images/03-bjt_37.png" alt="Diagram" loading="lazy" style="max-width: 35.483238220214844px; height: auto;"></figure>
+<p>2π 𝑟 𝑏 𝐴 3d B cut-off frequency is the Frequency at which |</p>
 <p>| or any gain become 𝐴 𝑠𝑐 2</p>
-<p>−ℎ𝑓𝑒 𝐴 𝑠𝑐 = 𝑓 1+𝑗 𝑓_β | | = ℎ𝑓𝑒 𝐴 𝑠𝑐</p>
-<figure><img src="images/03-bjt_9.png" alt="Diagram" loading="lazy" style="max-width: 39.61543273925781px; height: auto;"></figure>
+<figure><img src="images/03-bjt_38.png" alt="Diagram" loading="lazy" style="max-width: 58.64018249511719px; height: auto;"></figure>
+<p>| | = ℎ𝑓𝑒 𝐴 𝑠𝑐</p>
+<figure><img src="images/03-bjt_39.png" alt="Diagram" loading="lazy" style="max-width: 43.61543273925781px; height: auto;"></figure>
 <p>𝑓 ∠𝐴 𝑠𝑐 = 180° − 𝑓 β</p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -235,19 +283,28 @@ BE</td>
 <td>90°</td>
 </tr>
 </tbody></table></div>
+<figure><img src="images/03-bjt_40.png" alt="Diagram" loading="lazy" style="max-width: 140.9384002685547px; height: auto;"></figure>
 <p>f T = unit gain B.W = frequency at which product of gain &amp; frequency become 1.</p>
 <p>2 () 𝑓 𝑓 at very high frequencies 𝑓 β ≫1;</p>
-<p>≫1 𝑓 β | | = −ℎ𝑓𝑒 2 = −ℎ𝑓𝑒 𝐴 𝑠𝑐 𝑓</p>
-<figure><img src="images/03-bjt_10.png" alt="Diagram" loading="lazy" style="max-width: 29.508956909179688px; height: auto;"></figure>
-<p>𝑓 β</p>
-<p>−ℎ𝑓𝑒 𝑓 β | | = f = operating frequency 𝐴 𝑠𝑐; 𝑓 Let f = f T; | | = 1 𝐴 𝑠𝑐 f T = hfe f β gain × B.W = f T hfe = | | at f = 0 𝐴 𝑠𝑐 So f β = B.W. 𝑔𝑚 𝑓 𝑇 = () 2π 𝐶 µ +𝐶 π B.W of common base amplifier BW = 3d B cut off frequency of CB = f α = (1 + β) f β</p>
+<p>≫1 𝑓 β</p>
+<figure><img src="images/03-bjt_41.png" alt="Diagram" loading="lazy" style="max-width: 72.06465148925781px; height: auto;"></figure>
+<p>−ℎ𝑓𝑒 𝑓 β | | = f = operating frequency 𝐴 𝑠𝑐; 𝑓 Let f = f T; | | = 1 𝐴 𝑠𝑐</p>
+<figure><img src="images/03-bjt_42.png" alt="Diagram" loading="lazy" style="max-width: 108.4468994140625px; height: auto;"></figure>
+<p>So f β = B.W.</p>
+<figure><img src="images/03-bjt_43.png" alt="Diagram" loading="lazy" style="max-width: 69.04783630371094px; height: auto;"></figure>
+<p>B.W of common base amplifier BW = 3d B cut off frequency of CB = f α = (1 + β) f β</p>
 <p>Low frequency analysis of amplifier In L.F, coupling capacitors cannot be ignored For finding effect of C 1, put C 2 &amp; C 3 as S.C For C 2, put C 1 &amp; C 3 as S.C and For C 3, put C 1 &amp; C 2 as S.C</p>
 <p>Due to three capacitors we have 3 poles or break points.</p>
-<p>1 𝐶 1, 𝑓 𝑝 1 = 2π𝐶 1 (𝑅 𝐵 ||𝑟 π +𝑅 𝑆) 1 𝐶 3, 𝑓 𝑝 3 = () 2π𝐶 3 𝑅 𝐶 +𝑅 𝐿 1 𝐶 2, 𝑓 𝑝 2 = () 𝑟π+𝑅 𝐵 ||𝑅 𝑆 2π𝐶 2 β+1 Find R th by seeing through operating capacitor as we find it is Theremin Theorem Equivalent resistance is Theremin resistance found by seeing it from capacitor by felting I.S = 0 (R C + R C) is resistance seen between Terminals of C 3 when V s = 0.</p>
+<figure><img src="images/03-bjt_44.png" alt="Diagram" loading="lazy" style="max-width: 77.37557220458984px; height: auto;"></figure>
+<p>𝐶 1, 𝑓 𝑝 1 𝐶 3, 𝑓 𝑝 3 1 𝐶 2, 𝑓 𝑝 2 =</p>
+<figure><img src="images/03-bjt_45.png" alt="Diagram" loading="lazy" style="max-width: 39.45137023925781px; height: auto;"></figure>
+<p>2π𝐶 2</p>
+<figure><img src="images/03-bjt_46.png" alt="Diagram" loading="lazy" style="max-width: 19.54364013671875px; height: auto;"></figure>
+<p>Equivalent resistance is Theremin resistance found by seeing it from capacitor by felting I.S = 0 (R C + R C) is resistance seen between Terminals of C 3 when V s = 0.</p>
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">General</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">General</div></a><a href="04-fet-mosfet.html" class="note-card"><h4>04 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a><a href="05-special-diodes.html" class="note-card"><h4>05 Special Diodes</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">General</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">General</div></a><a href="04-fet-mosfet.html" class="note-card"><h4>04 Fet &amp; Mosfet</h4><div class="meta">General</div></a><a href="05-special-diodes.html" class="note-card"><h4>05 Special Diodes</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -255,10 +312,10 @@ BE</td>
     </main>
 
     <!-- Quiz Modal -->
-    <div class="modal" id="quiz-modal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal">
             <div class="modal-header">
-                <h3>Quiz Mode</h3>
+                <h3>Knowledge Check</h3>
                 <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
@@ -330,31 +387,12 @@ BE</td>
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                 });
             }
-            // Sidebar toggle
+                        // Sidebar toggle
             var sidebarToggle = document.getElementById('sidebar-toggle');
             if (sidebarToggle) {
-                var sidebarCollapsed = false;
                 sidebarToggle.addEventListener('click', function() {
-                    sidebarCollapsed = !sidebarCollapsed;
-                    var sidebar = document.getElementById('toc-sidebar');
                     var notesPage = document.getElementById('notes-page');
-                    var tocListEl = document.getElementById('toc-list');
-                    var tocTitleText = document.getElementById('toc-title-text');
-                    var collapseAllBtn = document.getElementById('toc-collapse-all');
-                    
-                    if (sidebarCollapsed) {
-                        notesPage.style.gridTemplateColumns = 'auto 1fr';
-                        tocListEl.style.display = 'none';
-                        tocTitleText.style.display = 'none';
-                        collapseAllBtn.style.display = 'none';
-                        sidebar.style.width = 'fit-content';
-                    } else {
-                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
-                        tocListEl.style.display = 'block';
-                        tocTitleText.style.display = 'inline';
-                        collapseAllBtn.style.display = 'block';
-                        sidebar.style.width = 'auto';
-                    }
+                    notesPage.classList.toggle('sidebar-collapsed');
                 });
             }
         })();

@@ -24,7 +24,7 @@
                 <span>/</span>
                 <a href="../index.html">Notes</a>
                 <span>/</span>
-                <a href="index.html">Digital Electronics</a>
+                <a href="../index.html?category=digital-electronics">Digital Electronics</a>
                 <span>/</span>
                 <span>07 Logic Families</span>
             </nav>
@@ -40,7 +40,7 @@
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span style="display: flex; align-items: center; gap: 8px;">
-                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <button type="button" id="sidebar-toggle" title="Toggle Sidebar">&#9776;</button>
                             <span id="toc-title-text">Table of Contents</span>
                         </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
@@ -62,10 +62,12 @@
 <h3>This gate is either the NAND gate or the NOR gate .</h3>
 <p>●</p>
 <h3>Note: A BJT in its simplest construction act as NOT gate or Inverter .</h3>
-<h2>Characteristics of logic family</h2>
+<figure><img src="images/07-logic-families_1.png" alt="Diagram" loading="lazy" style="max-width: 549.0px; height: auto;"></figure>
 <h3>Propagation delay (t PD )</h3>
 <p>It is defined as average transition delay for a signal to propagate from the input to the</p>
-<p>output of a logic gate. It is measured in nanoseconds (ns) 𝑡 𝑃𝐻𝐿 +𝑡 𝑃𝐿𝐻 𝑡 𝑃𝐷 = 2 Where, T PHL = Propagation delay when O/P goes from HIGH to LOW T PLH = Propagation delay when O/P goes from LOW to HIGH.</p>
+<p>output of a logic gate. It is measured in nanoseconds (ns)</p>
+<figure><img src="images/07-logic-families_2.png" alt="Diagram" loading="lazy" style="max-width: 86.69796752929688px; height: auto;"></figure>
+<p>Where, T PHL = Propagation delay when O/P goes from HIGH to LOW T PLH = Propagation delay when O/P goes from LOW to HIGH.</p>
 <h3>Power dissipation (P D )</h3>
 <p>Power drawn by a logic gate from the power supply.</p>
 <p>It is measured in milli Watts (m W) P D = V CC I avg (in m W) Where, V CC = Collector voltage or supply voltage I avg = Average supply current</p>
@@ -75,12 +77,16 @@
 <h3>Fanout</h3>
 <p>It is defined as the maximum number of logic gates that can be successfully driven by the</p>
 <p>output of driving gate.</p>
-<p>𝐼 𝑂𝐻 𝐹𝑎𝑛𝑜𝑢𝑡 𝐻 = 𝐼 𝐼𝐻 𝐼 𝑂𝐿 𝐹𝑎𝑛𝑜𝑢𝑡 𝐿 = 𝐼 𝐼𝐿 Overall fanout = min (fanout H, fanout L)</p>
+<p>𝐼 𝑂𝐻</p>
+<figure><img src="images/07-logic-families_3.png" alt="Diagram" loading="lazy" style="max-width: 56.817535400390625px; height: auto;"></figure>
+<p>𝐼 𝐼𝐻 𝐼 𝑂𝐿</p>
+<figure><img src="images/07-logic-families_4.png" alt="Diagram" loading="lazy" style="max-width: 55.29248046875px; height: auto;"></figure>
+<p>𝐼 𝐼𝐿 Overall fanout = min (fanout H, fanout L)</p>
 <h3>Noise margin</h3>
 <p>It is defined as the maximum noise voltage that can be tolerated by the input of a logic</p>
 <p>gate without effecting the output. Noise margin at higher level NM H = V OH – V IH Overall Noise Margin = Minimum (NM H, NM L)</p>
-<figure><img src="images/07-logic-families_1.png" alt="Diagram" loading="lazy" style="max-width: 362px; height: auto;"></figure>
-<h2>BJT families</h2>
+<figure><img src="images/07-logic-families_5.png" alt="Diagram" loading="lazy" style="max-width: 362px; height: auto;"></figure>
+<figure><img src="images/07-logic-families_6.png" alt="Diagram" loading="lazy" style="max-width: 549.0px; height: auto;"></figure>
 <h3>RTL (Resistor transistor logic) family</h3>
 <h3>Data sheet of RTL:</h3>
 <p>Basic Gate: NOR Gate Propagation delay: 25 ns Power dissipation: 12 m W FOM: 300 p J Fanout: 5 Noise Margin: 0.4 V</p>
@@ -144,7 +150,7 @@
 <h3>Schottky TTL</h3>
 <p>Schottky Barrier Diodes are placed between the base &amp; collector of transistor.</p>
 <p>●</p>
-<figure><img src="images/07-logic-families_2.png" alt="Diagram" loading="lazy" style="max-width: 94px; height: auto;"></figure>
+<figure><img src="images/07-logic-families_7.png" alt="Diagram" loading="lazy" style="max-width: 94px; height: auto;"></figure>
 <p>It prevents the transistor from entering into saturation region.</p>
 <p>Transistor operates in Active &amp; cut off regions.</p>
 <p>Very low propagation delay.</p>
@@ -160,7 +166,7 @@
 <p>Very low Noise margin</p>
 <p>It is also known as MTL (merged Transistor logic)</p>
 <p>Basic Gate: NOR FOM: &lt; 1 p J</p>
-<h2>MOS Families</h2>
+<figure><img src="images/07-logic-families_8.png" alt="Diagram" loading="lazy" style="max-width: 549.0px; height: auto;"></figure>
 <h3>Advantages of MOS families as compared to BJT families</h3>
 <p>It has lower power dissipation.</p>
 <p>It has higher fan out.</p>
@@ -168,7 +174,7 @@
 <p>It has lower cost of fabrication.</p>
 <p>It has higher packing density.</p>
 <p>●</p>
-<h3>NOTE: -</h3>
+<figure><img src="images/07-logic-families_9.png" alt="Diagram" loading="lazy" style="max-width: 51.112571716308594px; height: auto;"></figure>
 <p>1 In MOS, channel resistance 𝑅∝ () 𝑤 𝐿 Where, w = channel width L = channel length MOS can be used as a Load resistor as well by permanently biasing the Gate for</p>
 <p>conduction.</p>
 <h3>NMOS</h3>
@@ -255,19 +261,19 @@
 <td>L</td>
 </tr>
 </tbody></table></div>
-<h2>PMOS</h2>
+<figure><img src="images/07-logic-families_10.png" alt="Diagram" loading="lazy" style="max-width: 549.0px; height: auto;"></figure>
 <h3>Symbol</h3>
 <p>Logic ‘0’ = ON Logic ‘1’ = OFF</p>
 <h3>PMOS NOT Gate</h3>
 <p>A B Y 0 0 1 0 1 0 1 0 0 1 1 0</p>
-<h2>C MOS (Complementary MOS)</h2>
+<figure><img src="images/07-logic-families_11.png" alt="Diagram" loading="lazy" style="max-width: 549.0px; height: auto;"></figure>
 <p>In CMOS, only one MOS is ON at any instant.</p>
 <p>Major power drain occurs in a CMOS when the circuit changes states.</p>
 <p>Power dissipation depends upon the frequency of the input signal.</p>
 <p>V DD may range from 3 V to 15 V, typically V DD = 5V</p>
 <p>●</p>
 <h3>CMOS NOT GATE</h3>
-<figure><img src="images/07-logic-families_3.png" alt="Diagram" loading="lazy" style="max-width: 208px; height: auto;"></figure>
+<figure><img src="images/07-logic-families_12.png" alt="Diagram" loading="lazy" style="max-width: 208px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>A</th>
@@ -302,10 +308,10 @@
     </main>
 
     <!-- Quiz Modal -->
-    <div class="modal" id="quiz-modal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal">
             <div class="modal-header">
-                <h3>Quiz Mode</h3>
+                <h3>Knowledge Check</h3>
                 <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
@@ -377,31 +383,12 @@
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                 });
             }
-            // Sidebar toggle
+                        // Sidebar toggle
             var sidebarToggle = document.getElementById('sidebar-toggle');
             if (sidebarToggle) {
-                var sidebarCollapsed = false;
                 sidebarToggle.addEventListener('click', function() {
-                    sidebarCollapsed = !sidebarCollapsed;
-                    var sidebar = document.getElementById('toc-sidebar');
                     var notesPage = document.getElementById('notes-page');
-                    var tocListEl = document.getElementById('toc-list');
-                    var tocTitleText = document.getElementById('toc-title-text');
-                    var collapseAllBtn = document.getElementById('toc-collapse-all');
-                    
-                    if (sidebarCollapsed) {
-                        notesPage.style.gridTemplateColumns = 'auto 1fr';
-                        tocListEl.style.display = 'none';
-                        tocTitleText.style.display = 'none';
-                        collapseAllBtn.style.display = 'none';
-                        sidebar.style.width = 'fit-content';
-                    } else {
-                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
-                        tocListEl.style.display = 'block';
-                        tocTitleText.style.display = 'inline';
-                        collapseAllBtn.style.display = 'block';
-                        sidebar.style.width = 'auto';
-                    }
+                    notesPage.classList.toggle('sidebar-collapsed');
                 });
             }
         })();

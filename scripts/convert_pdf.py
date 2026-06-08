@@ -32,9 +32,12 @@ WATERMARK_PATTERNS = [
     r'F\d+_[A-Za-z._0-9-]+',
     r'made\s*easy',
     r'gate\s*academy',
+    r'^\s*MAX\s*$',
+    r'\bPASS\s*PRO\s*MAX\b',
+    r'testbook(?!\.com)',
 ]
 
-WATERMARK_WORDS = {'testbook', 'testbook.com', 'www.testbook.com', 'pass pro max'}
+WATERMARK_WORDS = {'testbook', 'testbook.com', 'www.testbook.com', 'pass pro max', 'max'}
 
 # Colors commonly found in testbook branding (RGB)
 BRAND_COLORS = [
@@ -193,13 +196,18 @@ def is_content_image(img_data, img_w, img_h, page_w, page_h, page_num):
 def extract_page(doc, page_num):
     """
     Extract content from a page as positioned items.
-    Uses default text extraction (no TEXT_PRESERVE_WHITESPACE) for proper spacing.
+    
+    Strategy:
+    - ALL text stays as text (including equations with Unicode math symbols)
+    - Only actual vector diagrams (circuits, graphs) become images
+    - Embedded raster images extracted at native resolution
+    - Watermarks filtered at text level, never captured in pixmaps
     """
     page = doc[page_num]
     rect = page.rect
     items = []
 
-    # 1. Detect tables
+    # 1. Detect tables first (to avoid extracting their text separately)
     table_rects = []
     try:
         tabs = page.find_tables()
@@ -211,7 +219,6 @@ def extract_page(doc, page_num):
                     for row in rows:
                         clean_row = [clean_cell_text(str(cell)) if cell else '' for cell in row]
                         clean_rows.append(clean_row)
-                    # Check table has real content
                     total_content = sum(len(c) for row in clean_rows for c in row)
                     if total_content > 20:
                         items.append({
@@ -219,28 +226,31 @@ def extract_page(doc, page_num):
                             "y": tab.bbox[1],
                             "data": clean_rows
                         })
-                        table_rects.append(tab.bbox)
+                        table_rects.append(fitz.Rect(tab.bbox))
     except Exception:
         pass
 
-    # 1.5 Extract vector drawings
+    # 2. Extract vector diagrams ONLY (circuits, graphs, figures)
+    #    Only capture areas with significant drawing paths and minimal text
     diagram_rects = []
     try:
         paths = page.get_drawings()
-        raw_rects = []
-        for p in paths:
-            r = p["rect"]
-            # Ignore full-page backgrounds and tiny artifacts
-            if r.width > rect.width * 0.9 and r.height > rect.height * 0.9:
-                continue
-            if r.width < 5 and r.height < 5:
-                continue
-            raw_rects.append(r)
-        
-        if raw_rects:
+        if len(paths) > 3:  # Need meaningful number of paths to be a diagram
+            raw_rects = []
+            for p in paths:
+                r = p["rect"]
+                # Skip full-page backgrounds
+                if r.width > rect.width * 0.9 and r.height > rect.height * 0.9:
+                    continue
+                # Skip tiny artifacts (dots, underlines)
+                if r.width < 8 or r.height < 8:
+                    continue
+                raw_rects.append(r)
+            
+            # Merge nearby drawing paths into clusters
             merged = []
             for r in raw_rects:
-                r_inflated = r + (-10, -10, 10, 10)
+                r_inflated = r + (-5, -5, 5, 5)
                 matched = [i for i, m in enumerate(merged) if r_inflated.intersects(m)]
                 if matched:
                     new_r = r
@@ -250,43 +260,65 @@ def extract_page(doc, page_num):
                 else:
                     merged.append(r)
             
-            for r in merged:
-                if r.width > 20 and r.height > 20:
-                    diagram_rects.append(r)
-                    pix = page.get_pixmap(clip=r, dpi=150)
-                    img_data = pix.tobytes("png")
+            for cluster in merged:
+                # Only keep clusters that are substantial diagrams (> 60pt in both dims)
+                if cluster.width < 60 or cluster.height < 40:
+                    continue
+                # Skip if overlapping a table
+                if any(cluster.intersects(t) for t in table_rects):
+                    continue
+                
+                # Count paths in this cluster to ensure it's a real diagram
+                paths_in_cluster = sum(1 for p in paths if cluster.contains(p["rect"]))
+                if paths_in_cluster < 4:
+                    continue  # Too few paths = probably just a line or border
+                
+                # Clean watermarks from page before capturing
+                try:
+                    watermarks = ['pro max', 'pass pro max', 'made easy', 'gate academy', 
+                                  'testbook', 'www.testbook.com', 'max']
+                    for w in page.get_text("words"):
+                        txt = w[4].strip().lower()
+                        if any(wm in txt for wm in watermarks):
+                            wr = fitz.Rect(w[:4])
+                            page.draw_rect(wr + (-3, -3, 3, 3), 
+                                         color=(1, 1, 1), fill=(1, 1, 1), overlay=True)
+                except Exception:
+                    pass
+                
+                # Capture the diagram with some padding
+                clip = cluster + (-4, -4, 4, 4)
+                clip.intersect(page.rect)
+                try:
+                    pix = page.get_pixmap(clip=clip, dpi=200)
                     items.append({
                         "type": "image",
-                        "y": r.y0,
-                        "data": {"bytes": img_data, "ext": "png", "width": r.width, "height": r.height}
+                        "y": clip.y0,
+                        "data": {"bytes": pix.tobytes("png"), "ext": "png",
+                                 "width": clip.width, "height": clip.height,
+                                 "rendered_w": clip.width, "rendered_h": clip.height}
                     })
-    except Exception as e:
+                    diagram_rects.append(clip)
+                except Exception:
+                    pass
+    except Exception:
         pass
 
-    # 2. Extract text - NO TEXT_PRESERVE_WHITESPACE so PyMuPDF adds spaces
+    # 3. Extract ALL text blocks as text (including math)
     blocks = page.get_text("dict")["blocks"]
-
     for block in blocks:
         if block["type"] != 0:
             continue
 
-        bbox = block["bbox"]
+        bbox = fitz.Rect(block["bbox"])
+        
         # Skip if overlapping table
-        in_table = False
-        for trect in table_rects:
-            if bbox[1] >= trect[1] - 5 and bbox[3] <= trect[3] + 5:
-                in_table = True
-                break
-        if in_table:
+        if any(bbox.intersects(t) for t in table_rects):
             continue
-
-        # Skip if fully inside a vector diagram
-        in_diagram = False
-        for drect in diagram_rects:
-            if bbox[0] >= drect.x0 - 5 and bbox[1] >= drect.y0 - 5 and bbox[2] <= drect.x1 + 5 and bbox[3] <= drect.y1 + 5:
-                in_diagram = True
-                break
-        if in_diagram:
+        
+        # Skip if fully inside a captured diagram
+        center = fitz.Point(bbox.x0 + bbox.width/2, bbox.y0 + bbox.height/2)
+        if any(d.contains(center) for d in diagram_rects):
             continue
 
         for line in block["lines"]:
@@ -305,7 +337,6 @@ def extract_page(doc, page_num):
                     "flags": span["flags"],
                     "font": span["font"],
                 })
-                # Add space between spans if needed
                 if full_text and not full_text.endswith(' ') and not t.startswith(' '):
                     full_text += ' '
                 full_text += t
@@ -314,7 +345,6 @@ def extract_page(doc, page_num):
             if not full_text or is_watermark_text(full_text):
                 continue
 
-            # Apply spacing fix
             full_text = fix_spacing(full_text)
 
             max_size = max((s["size"] for s in spans_data), default=10)
@@ -333,17 +363,17 @@ def extract_page(doc, page_num):
                 }
             })
 
-    # 3. Extract images
+    # 4. Extract embedded raster images at native quality
     img_list = page.get_images(full=True)
     for img_info in img_list:
         xref = img_info[0]
         try:
             base = doc.extract_image(xref)
             img_data = base["image"]
-            img_w = base["width"]
-            img_h = base["height"]
+            img_w = base["width"]   # Native pixel width
+            img_h = base["height"]  # Native pixel height
             
-            # Get RENDERED size on page (in points) for accurate size checks
+            # Get RENDERED size on page (in points) for proper display sizing
             img_rects = page.get_image_rects(xref)
             if img_rects:
                 rendered_w = img_rects[0].width
@@ -359,7 +389,8 @@ def extract_page(doc, page_num):
                     "type": "image",
                     "y": y_pos,
                     "data": {"bytes": img_data, "ext": base["ext"],
-                             "width": img_w, "height": img_h}
+                             "width": img_w, "height": img_h,
+                             "rendered_w": rendered_w, "rendered_h": rendered_h}
                 })
         except Exception:
             continue
@@ -425,27 +456,33 @@ def should_merge_lines(prev, curr, page_width=595):
     y_gap = curr["y"] - prev["y"]
     line_height = prev_data["size"] * 1.5
     
-    if y_gap > line_height * 1.8:
+    if y_gap > line_height * 2.2:
         return False  # Too much vertical gap = new paragraph
     
     prev_text = prev_data["text"].rstrip()
     curr_text = curr_data["text"].lstrip()
     
-    # If prev line doesn't end with sentence terminator and is short, merge
-    if not prev_text[-1:] in ('.', '!', '?', ':', ';') and len(prev_text) < page_width * 0.08:
-        return True
-    
-    # If curr starts with lowercase, it's a continuation
+    # If curr starts with lowercase, it's definitely a continuation
     if curr_text and curr_text[0].islower():
         return True
     
-    # If the new line is significantly indented compared to previous, it's likely a new block (e.g. equation)
-    if curr_data["x"] - prev_data["x"] > 15:
+    # If the new line is significantly indented compared to previous, it's a new block
+    if curr_data["x"] - prev_data["x"] > 20:
         return False
     
     # If X positions are similar and gap is small, likely same paragraph
     x_diff = abs(curr_data["x"] - prev_data["x"])
-    if x_diff < 15 and y_gap < line_height * 1.3:
+    if x_diff < 15 and y_gap < line_height * 1.5:
+        # Merge unless previous line ends with a strong sentence terminator
+        # AND the current line starts with uppercase (new sentence = new paragraph only if big gap)
+        if prev_text and prev_text[-1] in ('.', '!', '?') and curr_text and curr_text[0].isupper():
+            # Only break if there's a noticeable gap
+            if y_gap > line_height * 1.2:
+                return False
+        return True
+    
+    # If prev line doesn't end with sentence terminator, it's likely a continuation
+    if prev_text and prev_text[-1] not in ('.', '!', '?', ':', ';'):
         return True
     
     return False
@@ -744,9 +781,13 @@ def convert_pdf(pdf_path, output_dir, category, title=None, exam="General", verb
                 img_path = os.path.join(img_dir, fname)
                 with open(img_path, "wb") as f:
                     f.write(item["data"]["bytes"])
+                rendered_w = item["data"].get("rendered_w", item["data"]["width"])
+                rendered_h = item["data"].get("rendered_h", item["data"]["height"])
                 item["data"] = {"path": f"images/{fname}",
                                 "width": item["data"]["width"],
-                                "height": item["data"]["height"]}
+                                "height": item["data"]["height"],
+                                "rendered_w": rendered_w,
+                                "rendered_h": rendered_h}
 
         all_items.extend(page_items)
 
@@ -770,9 +811,10 @@ def convert_pdf(pdf_path, output_dir, category, title=None, exam="General", verb
                 body_parts.append(table_to_html(item["data"]))
             elif item["type"] == "image":
                 path = item["data"]["path"]
-                width = item["data"]["width"]
+                # Use rendered width (page display size) for proper sizing
+                display_w = item["data"].get("rendered_w", item["data"]["width"])
                 body_parts.append(
-                    f'<figure><img src="{path}" alt="Diagram" loading="lazy" style="max-width: {width}px; height: auto;"></figure>'
+                    f'<figure><img src="{path}" alt="Diagram" loading="lazy" style="max-width: {display_w}px; height: auto;"></figure>'
                 )
 
     # Flush remaining text
@@ -916,7 +958,7 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>{title_esc} — Laurel Library</title>
     <meta name="description" content="{title_esc} - {cat_esc} study notes for {exam_esc} exam preparation. Free on Laurel Library.">
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/style.css?v={int(time.time())}">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -934,7 +976,7 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                 <span>/</span>
                 <a href="../index.html">Notes</a>
                 <span>/</span>
-                <a href="index.html">{cat_esc}</a>
+                <a href="../index.html?category={category}">{cat_esc}</a>
                 <span>/</span>
                 <span>{title_esc}</span>
             </nav>
@@ -973,10 +1015,10 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
     </main>
 
     <!-- Quiz Modal -->
-    <div class="modal" id="quiz-modal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal">
             <div class="modal-header">
-                <h3>Quiz Mode</h3>
+                <h3>Knowledge Check</h3>
                 <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
@@ -1051,28 +1093,9 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
             // Sidebar toggle
             var sidebarToggle = document.getElementById('sidebar-toggle');
             if (sidebarToggle) {{
-                var sidebarCollapsed = false;
                 sidebarToggle.addEventListener('click', function() {{
-                    sidebarCollapsed = !sidebarCollapsed;
-                    var sidebar = document.getElementById('toc-sidebar');
                     var notesPage = document.getElementById('notes-page');
-                    var tocListEl = document.getElementById('toc-list');
-                    var tocTitleText = document.getElementById('toc-title-text');
-                    var collapseAllBtn = document.getElementById('toc-collapse-all');
-                    
-                    if (sidebarCollapsed) {{
-                        notesPage.style.gridTemplateColumns = 'auto 1fr';
-                        tocListEl.style.display = 'none';
-                        tocTitleText.style.display = 'none';
-                        collapseAllBtn.style.display = 'none';
-                        sidebar.style.width = 'fit-content';
-                    }} else {{
-                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
-                        tocListEl.style.display = 'block';
-                        tocTitleText.style.display = 'inline';
-                        collapseAllBtn.style.display = 'block';
-                        sidebar.style.width = 'auto';
-                    }}
+                    notesPage.classList.toggle('sidebar-collapsed');
                 }});
             }}
         }})();
@@ -1159,11 +1182,6 @@ def main():
     out_dir = base / "notes" / args.category
     os.makedirs(out_dir, exist_ok=True)
 
-    # Ensure category index exists
-    cat_index = out_dir / "index.html"
-    if not cat_index.exists():
-        create_category_index(out_dir, args.category)
-
     inp = Path(args.input)
     start_time = time.time()
 
@@ -1206,99 +1224,6 @@ def main():
     if elapsed > 0:
         print(f"\nTotal time: {elapsed:.1f}s")
     print(f"Preview: py -m http.server 8000")
-
-
-def create_category_index(out_dir, category):
-    """Create a basic category index page."""
-    cat_display = category.replace('-', ' ').title()
-    html = f"""<!DOCTYPE html>
-<html lang="en-IN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{cat_display} - Laurel Library</title>
-    <meta name="description" content="{cat_display} study notes for competitive exam preparation. Free on Laurel Library.">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:;">
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="manifest" href="../../manifest.json">
-    <meta name="theme-color" content="#5c3d2e">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <a href="#category-notes" class="skip-link">Skip to content</a>
-
-    <header class="site-header" role="banner">
-        <div class="container">
-            <div class="logo">
-                <a href="../../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-                    <span class="logo-icon">&#128218;</span>
-                    <h1>Laurel Library</h1>
-                </a>
-            </div>
-            <nav class="main-nav" role="navigation" aria-label="Main navigation">
-                <a href="../../index.html">Home</a>
-                <a href="../index.html">Notes</a>
-                <a href="../../exams/index.html">Exams</a>
-                <a href="../../about.html">About</a>
-            </nav>
-            <div class="header-actions">
-                <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">
-                    <span class="icon-sun">&#9728;&#65039;</span>
-                    <span class="icon-moon">&#127769;</span>
-                </button>
-                <div class="search-bar" role="search">
-                    <input type="text" id="search-input" placeholder="Search notes..." autocomplete="off" aria-label="Search notes" role="searchbox">
-                    <div id="search-results" class="search-results"></div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main>
-        <div class="container">
-            <nav class="breadcrumbs" aria-label="Breadcrumb">
-                <a href="../../index.html">Home</a>
-                <span>/</span>
-                <a href="../index.html">Notes</a>
-                <span>/</span>
-                <span>{cat_display}</span>
-            </nav>
-            <h2 class="section-title">{cat_display}</h2>
-            <div class="notes-list" id="category-notes"></div>
-        </div>
-    </main>
-    <footer class="site-footer" role="contentinfo">
-        <div class="container">
-            <p>&copy; 2026 Laurel Library. Free educational resource for competitive exam aspirants.</p>
-        </div>
-    </footer>
-    <script src="../../assets/js/app.js" defer></script>
-    <script src="../../assets/js/search.js" defer></script>
-    <script src="../../assets/js/features.js" defer></script>
-    <script>
-        fetch('../../notes/index.json')
-            .then(r => r.json())
-            .then(data => {{
-                var container = document.getElementById('category-notes');
-                var notes = data.notes.filter(n => n.category === '{category}');
-                notes.forEach(function(note) {{
-                    var a = document.createElement('a');
-                    a.className = 'note-card';
-                    a.href = note.path.replace('notes/{category}/', '');
-                    a.innerHTML = '<h4>' + note.title + '</h4><div class="meta">' + note.exam + '</div>';
-                    container.appendChild(a);
-                }});
-                if (notes.length === 0) {{
-                    container.innerHTML = '<p>No notes yet in this category.</p>';
-                }}
-            }});
-    </script>
-</body>
-</html>"""
-    with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as f:
-        f.write(html)
 
 
 if __name__ == "__main__":

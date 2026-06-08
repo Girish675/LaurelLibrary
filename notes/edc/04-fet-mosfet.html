@@ -24,7 +24,7 @@
                 <span>/</span>
                 <a href="../index.html">Notes</a>
                 <span>/</span>
-                <a href="index.html">Edc</a>
+                <a href="../index.html?category=edc">Edc</a>
                 <span>/</span>
                 <span>04 Fet &amp; Mosfet</span>
             </nav>
@@ -40,7 +40,7 @@
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span style="display: flex; align-items: center; gap: 8px;">
-                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <button type="button" id="sidebar-toggle" title="Toggle Sidebar">&#9776;</button>
                             <span id="toc-title-text">Table of Contents</span>
                         </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
@@ -56,22 +56,22 @@
                         <span class="meta-exam">General</span>
                     </div>
                     <h2>Junction Field Effect Transistor (JFET) :</h2>
-<figure><img src="images/04-fet-mosfet_1.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_2.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_3.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_4.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_5.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_6.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_1.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_2.png" alt="Diagram" loading="lazy" style="max-width: 454.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_3.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_4.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_5.png" alt="Diagram" loading="lazy" style="max-width: 454.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_6.png" alt="Diagram" loading="lazy" style="max-width: 477.0px; height: auto;"></figure>
 <figure><img src="images/04-fet-mosfet_7.png" alt="Diagram" loading="lazy" style="max-width: 274px; height: auto;"></figure>
 <p>2 () 𝑉 𝐺𝑆 𝐼 𝐷 = 𝐼 𝐷𝑆𝑆 1 − 𝑉 𝑝</p>
-<figure><img src="images/04-fet-mosfet_8.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_9.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_8.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_9.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
 <figure><img src="images/04-fet-mosfet_10.png" alt="Diagram" loading="lazy" style="max-width: 374px; height: auto;"></figure>
 <h3>Pinch-off region:</h3>
-<figure><img src="images/04-fet-mosfet_11.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_11.png" alt="Diagram" loading="lazy" style="max-width: 454.0px; height: auto;"></figure>
 <h3>Pinch off voltage:</h3>
-<figure><img src="images/04-fet-mosfet_12.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_13.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_12.png" alt="Diagram" loading="lazy" style="max-width: 454.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_13.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
 <figure><img src="images/04-fet-mosfet_14.png" alt="Diagram" loading="lazy" style="max-width: 315px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -86,63 +86,71 @@ n DSS</th>
 <td></td>
 </tr>
 </tbody></table></div>
+<p>2 () 𝑉 𝐺𝑆 𝐼 𝐷𝑆 = 𝐼 𝐷𝑆𝑆 1 − 𝑉 𝑃</p>
+<p>Where I DSS = Saturation current at V GS = 0 V P = pinch-off voltage I DS = Saturation current at any V GS</p>
 <ul>
-<li>1) In Saturation Region 2 () 𝑉 𝐺𝑆 𝐼 𝐷𝑆 = 𝐼 𝐷𝑆𝑆 1 − 𝑉 𝑃 Where I DSS = Saturation current at V GS = 0 V P = pinch-off voltage I DS = Saturation current at any V GS</li>
-<li>2) μ = r d g m Where μ = amplification factor r d = Drain Resistance g m = Trans conductance −2 𝐼 𝐷𝑆𝑆 𝑉 𝐺𝑆 ⎡⎢⎣ ⎤⎥⎦</li>
-<li>3) 𝑔 𝑚 = 1 − 𝑉 𝑃 𝑉 𝑃 Or 2 𝐼 𝐷 𝐼 𝐷𝑆𝑆 |𝑉 𝑃 |</li>
+<li>2) μ = r d g m Where μ = amplification factor r d = Drain Resistance g m = Trans conductance −2 𝐼 𝐷𝑆𝑆 𝑉 𝐺𝑆</li>
 </ul>
-<figure><img src="images/04-fet-mosfet_15.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_16.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_17.png" alt="Diagram" loading="lazy" style="max-width: 263px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_15.png" alt="Diagram" loading="lazy" style="max-width: 44.60022735595703px; height: auto;"></figure>
+<p>⎡⎢⎣ ⎤⎥⎦ 1 − 𝑉 𝑃 𝑉 𝑃</p>
+<p>Or</p>
+<figure><img src="images/04-fet-mosfet_16.png" alt="Diagram" loading="lazy" style="max-width: 40.22215270996094px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_17.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_18.png" alt="Diagram" loading="lazy" style="max-width: 477.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_19.png" alt="Diagram" loading="lazy" style="max-width: 263px; height: auto;"></figure>
 <ul>
 <li><strong>1. Enhancement MOSFET:</strong></li>
 </ul>
-<figure><img src="images/04-fet-mosfet_18.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_20.png" alt="Diagram" loading="lazy" style="max-width: 454.0px; height: auto;"></figure>
 <ul>
 <li><strong>2. Depletion mode MOSFET:</strong></li>
 </ul>
-<figure><img src="images/04-fet-mosfet_19.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_20.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_21.png" alt="Diagram" loading="lazy" style="max-width: 358px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_21.png" alt="Diagram" loading="lazy" style="max-width: 454.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_22.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_23.png" alt="Diagram" loading="lazy" style="max-width: 358px; height: auto;"></figure>
 <h3>Symbol representation of MOSFET:</h3>
-<figure><img src="images/04-fet-mosfet_22.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_24.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
 <h3>N-channel E MOSFET:</h3>
-<figure><img src="images/04-fet-mosfet_23.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_24.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_25.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_25.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_26.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_27.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
 <h3>Transfer characteristics of an n-channel depletion MOSFET is as shown:</h3>
-<figure><img src="images/04-fet-mosfet_26.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
-<figure><img src="images/04-fet-mosfet_27.png" alt="Diagram" loading="lazy" style="max-width: 408px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_28.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_29.png" alt="Diagram" loading="lazy" style="max-width: 408px; height: auto;"></figure>
 <h3>Transfer characteristics of p-channel depletion MOSFET is as shown:</h3>
-<figure><img src="images/04-fet-mosfet_28.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_30.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
 <h3>Transfer characteristics of n-channel Enhancement MOSFET is as shown:</h3>
-<figure><img src="images/04-fet-mosfet_29.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_31.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
 <h3>Transfer characteristics of p-channel Enhancement MOSFET is as shown:</h3>
-<figure><img src="images/04-fet-mosfet_30.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/04-fet-mosfet_32.png" alt="Diagram" loading="lazy" style="max-width: 472.0px; height: auto;"></figure>
 <h3>N channel MOSFET</h3>
 <ul>
 <li>1) If V DS ≥(V GS V T) → saturation Region µ 𝑛 𝐶 𝑜𝑥 𝑊 2 () 𝐼 𝐷 = 1, V T = Threshold voltage of N-MOS 𝑉 𝐺𝑆 −𝑉 𝑇 2 𝐿</li>
-<li>2) If V DS &lt; V GS V T → linear Region 2 µ 𝑛 𝐶 𝑜𝑥 𝑊 𝑉 𝐷𝑆 () 𝑉 𝐷𝑆 − 𝐼 𝐷 = (𝑉 𝐺𝑆 −𝑉 𝑇 2] 𝐿</li>
+<li>2) If V DS &lt; V GS V T → linear Region 2 µ 𝑛 𝐶 𝑜𝑥 𝑊 𝑉 𝐷𝑆 () 𝑉 𝐷𝑆 −</li>
+</ul>
+<figure><img src="images/04-fet-mosfet_33.png" alt="Diagram" loading="lazy" style="max-width: 25.061500549316406px; height: auto;"></figure>
+<p>(𝑉 𝐺𝑆 −𝑉 𝑇 2] 𝐿</p>
+<ul>
 <li>3) If V GS &gt; V T → MOSFET is ON V GS &lt; V T → MOSFET is OFF</li>
 </ul>
-<p>∂𝐼 𝐷</p>
-<ul>
-<li>4) 𝑔 𝑚 = ∂𝑉 𝐺𝑆</li>
-</ul>
+<figure><img src="images/04-fet-mosfet_34.png" alt="Diagram" loading="lazy" style="max-width: 66.11009216308594px; height: auto;"></figure>
 <h3>P Channel MOSFET</h3>
 <ul>
 <li>1) If V SG &gt; |V T | → MOSFET is ON V SG &lt; |V T | → MOSFET is OFF V T = Threshold voltage of P-MOS</li>
-<li>2) If V SD ≥(V SG + V T) → Saturation Region µ 𝑛 𝐶 𝑜𝑥 𝑊 2 () 𝐼 𝐷 = 1 𝑉 𝐺𝑆 + 𝑉 𝑇 2 𝐿</li>
-<li>3) If V SD &lt; V SG + V T → Linear Region µ 𝑛 𝐶 𝑜𝑥 𝑊 () 2 () 𝑉 𝑆𝐷 − 1 𝐼 𝐷 = 𝑉 𝑆𝐺 + 𝑉 𝑇 2 𝑉 𝑆𝐷 𝐿</li>
+<li>2) If V SD ≥(V SG + V T) → Saturation Region µ 𝑛 𝐶 𝑜𝑥 𝑊</li>
 </ul>
-<p>∂𝐼 𝐷</p>
+<figure><img src="images/04-fet-mosfet_35.png" alt="Diagram" loading="lazy" style="max-width: 35.41554260253906px; height: auto;"></figure>
+<p>2 () 𝑉 𝐺𝑆 + 𝑉 𝑇 𝐿</p>
 <ul>
-<li>4) 𝑔 𝑚 = ∂𝑉 𝑆𝐺</li>
+<li>3) If V SD &lt; V SG + V T → Linear Region µ 𝑛 𝐶 𝑜𝑥 𝑊 () 2 () 𝑉 𝑆𝐷 − 1</li>
 </ul>
+<figure><img src="images/04-fet-mosfet_36.png" alt="Diagram" loading="lazy" style="max-width: 25.061500549316406px; height: auto;"></figure>
+<p>𝑉 𝑆𝐺 + 𝑉 𝑇 2 𝑉 𝑆𝐷 𝐿</p>
+<figure><img src="images/04-fet-mosfet_37.png" alt="Diagram" loading="lazy" style="max-width: 66.11276245117188px; height: auto;"></figure>
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">General</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">General</div></a><a href="03-bjt.html" class="note-card"><h4>03 Bjt</h4><div class="meta">General</div></a><a href="05-special-diodes.html" class="note-card"><h4>05 Special Diodes</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">General</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">General</div></a><a href="03-bjt.html" class="note-card"><h4>03 Bjt</h4><div class="meta">General</div></a><a href="05-special-diodes.html" class="note-card"><h4>05 Special Diodes</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -150,10 +158,10 @@ n DSS</th>
     </main>
 
     <!-- Quiz Modal -->
-    <div class="modal" id="quiz-modal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal">
             <div class="modal-header">
-                <h3>Quiz Mode</h3>
+                <h3>Knowledge Check</h3>
                 <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
@@ -225,31 +233,12 @@ n DSS</th>
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                 });
             }
-            // Sidebar toggle
+                        // Sidebar toggle
             var sidebarToggle = document.getElementById('sidebar-toggle');
             if (sidebarToggle) {
-                var sidebarCollapsed = false;
                 sidebarToggle.addEventListener('click', function() {
-                    sidebarCollapsed = !sidebarCollapsed;
-                    var sidebar = document.getElementById('toc-sidebar');
                     var notesPage = document.getElementById('notes-page');
-                    var tocListEl = document.getElementById('toc-list');
-                    var tocTitleText = document.getElementById('toc-title-text');
-                    var collapseAllBtn = document.getElementById('toc-collapse-all');
-                    
-                    if (sidebarCollapsed) {
-                        notesPage.style.gridTemplateColumns = 'auto 1fr';
-                        tocListEl.style.display = 'none';
-                        tocTitleText.style.display = 'none';
-                        collapseAllBtn.style.display = 'none';
-                        sidebar.style.width = 'fit-content';
-                    } else {
-                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
-                        tocListEl.style.display = 'block';
-                        tocTitleText.style.display = 'inline';
-                        collapseAllBtn.style.display = 'block';
-                        sidebar.style.width = 'auto';
-                    }
+                    notesPage.classList.toggle('sidebar-collapsed');
                 });
             }
         })();

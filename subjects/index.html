@@ -67,7 +67,7 @@
                 var countLabel = count > 0
                     ? '<span class="tag" style="background:rgba(27,138,90,0.12);color:var(--c-accent)">' + count + ' note' + (count === 1 ? '' : 's') + '</span>'
                     : '<span class="tag" style="opacity:.6">Coming soon</span>';
-                var href = count > 0 ? '../notes/index.html?category=' + encodeURIComponent(s.id) : '../404.html';
+                var href = '../notes/index.html?category=' + encodeURIComponent(s.id);
                 return '<a href="' + href + '" class="category-card" style="align-items:flex-start;flex-direction:column;padding:var(--space-lg)">' +
                     '<div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm)">' +
                     '<span style="font-size:2rem">' + s.icon + '</span>' +
@@ -79,7 +79,7 @@
         }
 
         function loadCounts() {
-            fetch('../notes/index.json')
+            fetch('../notes/index.json?v=' + Date.now())
                 .then(function(r) { return r.ok ? r.json() : { notes: [] }; })
                 .then(function(data) {
                     var notes = data.notes || [];

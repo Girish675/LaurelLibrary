@@ -24,7 +24,7 @@
                 <span>/</span>
                 <a href="../index.html">Notes</a>
                 <span>/</span>
-                <a href="index.html">Digital Electronics</a>
+                <a href="../index.html?category=digital-electronics">Digital Electronics</a>
                 <span>/</span>
                 <span>01 Logic Gates</span>
             </nav>
@@ -40,7 +40,7 @@
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span style="display: flex; align-items: center; gap: 8px;">
-                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <button type="button" id="sidebar-toggle" title="Toggle Sidebar">&#9776;</button>
                             <span id="toc-title-text">Table of Contents</span>
                         </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
@@ -60,7 +60,7 @@
 <p>Logic gates are the fundamental building blocks of any digital system.</p>
 <p>The function of each logic gate can be represented by a Boolean expression. The number of output combination will be 2 N for ‘N-input’ froth table.</p>
 <p>●</p>
-<h2>Classification of Logic Gates</h2>
+<figure><img src="images/01-logic-gates_1.png" alt="Diagram" loading="lazy" style="max-width: 549.0px; height: auto;"></figure>
 <h3>Basic Gates (NOT, AND, OR)</h3>
 <h2>(i)</h2>
 <h2>AND Gate –</h2>
@@ -96,10 +96,10 @@
 <td>1</td>
 </tr>
 </tbody></table></div>
-<figure><img src="images/01-logic-gates_1.png" alt="Diagram" loading="lazy" style="max-width: 173px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_2.png" alt="Diagram" loading="lazy" style="max-width: 173px; height: auto;"></figure>
 <p>Logical expression: f = x.y or f = x ^ y It follows Commutative law: y.x = x.y It follows Associative law: (x.y).z = x.(y.z)</p>
 <h3>Control inputs of AND gate</h3>
-<figure><img src="images/01-logic-gates_2.png" alt="Diagram" loading="lazy" style="max-width: 175px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_3.png" alt="Diagram" loading="lazy" style="max-width: 175px; height: auto;"></figure>
 <h3>Case I : Disable input (if control = 0)</h3>
 <p>A Control f 0 0 0 1 0 0</p>
 <h3>Case II : Enable input (if control = 1)</h3>
@@ -210,12 +210,12 @@ t</th>
 <td>1</td>
 </tr>
 </tbody></table></div>
-<figure><img src="images/01-logic-gates_3.png" alt="Diagram" loading="lazy" style="max-width: 201px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_4.png" alt="Diagram" loading="lazy" style="max-width: 201px; height: auto;"></figure>
 <p>●</p>
 <h3>The switching circuit diagram for OR gate</h3>
 <h2>(iii)</h2>
 <h2>NOT Gate -</h2>
-<figure><img src="images/01-logic-gates_4.png" alt="Diagram" loading="lazy" style="max-width: 235px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_5.png" alt="Diagram" loading="lazy" style="max-width: 235px; height: auto;"></figure>
 <p>Input Output 0 1 1 0</p>
 <p>●</p>
 <h3>Switching circuit –</h3>
@@ -223,12 +223,12 @@ t</th>
 <h3>When even number of NOT gates are connected, it acts like bistable multivibrator (basic memory</h3>
 <p>element)</p>
 <p>When even number of NOT gates without feedback act like a buffer.</p>
-<figure><img src="images/01-logic-gates_5.png" alt="Diagram" loading="lazy" style="max-width: 156px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_6.png" alt="Diagram" loading="lazy" style="max-width: 156px; height: auto;"></figure>
 <p>Buffers are used to increase the driving capacity of a gate.</p>
 <h3>Universal Gate (NAND, NOR)</h3>
 <h2>(i)</h2>
 <h2>NAND Gate –</h2>
-<figure><img src="images/01-logic-gates_6.png" alt="Diagram" loading="lazy" style="max-width: 148px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_7.png" alt="Diagram" loading="lazy" style="max-width: 148px; height: auto;"></figure>
 <p>Input f x y 0 0 1 0 1 1 1 0 0 1 1 0</p>
 <p>●</p>
 <p>Or f = x ↑ y 𝑓= 𝑥. 𝑦 It follows Commutative law. But, it does not follow Associative law.</p>
@@ -250,10 +250,10 @@ t</th>
 <h3>Unused input –</h3>
 <p>The unused input of NOR gate is connected in exactly the same manner as the unused input of OR gate.</p>
 <h3>Switching circuit diagram -</h3>
-<figure><img src="images/01-logic-gates_7.png" alt="Diagram" loading="lazy" style="max-width: 226px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_8.png" alt="Diagram" loading="lazy" style="max-width: 226px; height: auto;"></figure>
 <h3>Special Purpose Gates (EXOR, EXNOR)</h3>
 <h2>(i) Exclusive – Or gate (EXOR)</h2>
-<figure><img src="images/01-logic-gates_8.png" alt="Diagram" loading="lazy" style="max-width: 156px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_9.png" alt="Diagram" loading="lazy" style="max-width: 156px; height: auto;"></figure>
 <p>x y f 0 0 0 0 1 1 1 0 1 1 1 0</p>
 <p>●</p>
 <h3>EXOR function is an ODD function.</h3>
@@ -262,9 +262,11 @@ t</th>
 <p>(i) Logic ‘O’ = Enable input (Act as Buffer) (ii) Logic = ‘1’ = Act as Inverter</p>
 <p>●</p>
 <h3>Properties of EXOR gate:</h3>
-<p>(i) A ⨁ A = 0 (ii) A ⨁ A ̅ = 1 (iii) A ⨁ 0 = A (iv) A ⨁ 1 = A (v) A ⨁ A ⨁ A = A (vi) If A ⨁ B = C, then B ⨁ C = A, A ⨁ C = B, A ⨁ B ⨁ C = 0 (vii) A ⨁ A ⨁ A ⨁ _ _ _ _ _ n times = 0; when n is even = A; when n is odd</p>
+<p>(i) A ⨁ A = 0 (ii) A ⨁ A ̅ = 1</p>
+<figure><img src="images/01-logic-gates_10.png" alt="Diagram" loading="lazy" style="max-width: 90.324951171875px; height: auto;"></figure>
+<p>(vi) If A ⨁ B = C, then B ⨁ C = A, A ⨁ C = B, A ⨁ B ⨁ C = 0 (vii) A ⨁ A ⨁ A ⨁ _ _ _ _ _ n times = 0; when n is even = A; when n is odd</p>
 <h2>(ii) EXNOR Gate –</h2>
-<figure><img src="images/01-logic-gates_9.png" alt="Diagram" loading="lazy" style="max-width: 157px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_11.png" alt="Diagram" loading="lazy" style="max-width: 157px; height: auto;"></figure>
 <p>x y f</p>
 <p>0 0 1</p>
 <p>0 1 0</p>
@@ -275,15 +277,23 @@ t</th>
 <h3>Control Input</h3>
 <p>Logic ‘0’ = Act as inverter Logic ‘1’ = Act as Buffer</p>
 <h3>Properties:</h3>
-<p>(i) A ⊙ A = 1 (ii) A ⊙ 1 = A (iii) A ⊙ O = A (iv) A ⊙ A ̅ = 0 (v) A ⊙ A ⊙ A = A (vi) A ⊙ A ⊙ A ⊙ A = 1 (vii) If A ⊙ B = C Then, B ⊙ C = A A ⊙ C = B A ⊙ B ⊙ C = 1 (viii) A ⊙ A ⊙ A ⊙ A _ _ _ _ _ _ n times = A; when ‘n’ is odd = 1; when ‘n’ is even</p>
+<p>(i) A ⊙ A = 1</p>
+<figure><img src="images/01-logic-gates_12.png" alt="Diagram" loading="lazy" style="max-width: 72.858154296875px; height: auto;"></figure>
+<p>(iv) A ⊙ A ̅ = 0</p>
+<figure><img src="images/01-logic-gates_13.png" alt="Diagram" loading="lazy" style="max-width: 93.324951171875px; height: auto;"></figure>
+<p>(vi) A ⊙ A ⊙ A ⊙ A = 1</p>
+<figure><img src="images/01-logic-gates_14.png" alt="Diagram" loading="lazy" style="max-width: 82.95263671875px; height: auto;"></figure>
+<p>Then,</p>
+<figure><img src="images/01-logic-gates_15.png" alt="Diagram" loading="lazy" style="max-width: 52.643310546875px; height: auto;"></figure>
+<p>A ⊙ B ⊙ C = 1 (viii) A ⊙ A ⊙ A ⊙ A _ _ _ _ _ _ n times = A; when ‘n’ is odd = 1; when ‘n’ is even</p>
 <p>●</p>
 <h3>Switching circuit diagram –</h3>
-<figure><img src="images/01-logic-gates_10.png" alt="Diagram" loading="lazy" style="max-width: 263px; height: auto;"></figure>
+<figure><img src="images/01-logic-gates_16.png" alt="Diagram" loading="lazy" style="max-width: 263px; height: auto;"></figure>
 <p>For even number of variables, EXOR &amp; EXNOR are complement of each other.</p>
 <p>For odd number of variables, EXOR &amp; EXNOR equal to each other.</p>
-<h2>Bubbled Logic</h2>
+<figure><img src="images/01-logic-gates_17.png" alt="Diagram" loading="lazy" style="max-width: 549.0px; height: auto;"></figure>
 <p>Bubbled OR ⇔ NANAD Bubbled AND ⇔ NOR Bubbled NOR ⇔ AND Bubbled NAND ⇔ OR</p>
-<h2>Realization of Logic Gates</h2>
+<figure><img src="images/01-logic-gates_18.png" alt="Diagram" loading="lazy" style="max-width: 549.0px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Logic Gate</th>
@@ -316,7 +326,7 @@ t</th>
 <td>4</td>
 </tr>
 </tbody></table></div>
-<h2>Points to remember</h2>
+<figure><img src="images/01-logic-gates_19.png" alt="Diagram" loading="lazy" style="max-width: 549.0px; height: auto;"></figure>
 <p>A two level AND- OR implementation is equivalent to a two level NAND – NAND implementation.</p>
 <p>A two level AND-OR implementation is obtained when the circuit is implemented from a SOP expression.</p>
 <p>A two-level OR- AND implementation is equivalent to a Two-level NOR-NOR implementation.</p>
@@ -337,7 +347,7 @@ t</th>
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">GATE, ESE</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">GATE, ESE</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">GATE, ESE</div></a><a href="05-sequential-circuits.html" class="note-card"><h4>05 Sequential Circuits</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">General</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">General</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">General</div></a><a href="05-sequential-circuits.html" class="note-card"><h4>05 Sequential Circuits</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -345,10 +355,10 @@ t</th>
     </main>
 
     <!-- Quiz Modal -->
-    <div class="modal" id="quiz-modal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal">
             <div class="modal-header">
-                <h3>Quiz Mode</h3>
+                <h3>Knowledge Check</h3>
                 <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
@@ -420,31 +430,12 @@ t</th>
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                 });
             }
-            // Sidebar toggle
+                        // Sidebar toggle
             var sidebarToggle = document.getElementById('sidebar-toggle');
             if (sidebarToggle) {
-                var sidebarCollapsed = false;
                 sidebarToggle.addEventListener('click', function() {
-                    sidebarCollapsed = !sidebarCollapsed;
-                    var sidebar = document.getElementById('toc-sidebar');
                     var notesPage = document.getElementById('notes-page');
-                    var tocListEl = document.getElementById('toc-list');
-                    var tocTitleText = document.getElementById('toc-title-text');
-                    var collapseAllBtn = document.getElementById('toc-collapse-all');
-                    
-                    if (sidebarCollapsed) {
-                        notesPage.style.gridTemplateColumns = 'auto 1fr';
-                        tocListEl.style.display = 'none';
-                        tocTitleText.style.display = 'none';
-                        collapseAllBtn.style.display = 'none';
-                        sidebar.style.width = 'fit-content';
-                    } else {
-                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
-                        tocListEl.style.display = 'block';
-                        tocTitleText.style.display = 'inline';
-                        collapseAllBtn.style.display = 'block';
-                        sidebar.style.width = 'auto';
-                    }
+                    notesPage.classList.toggle('sidebar-collapsed');
                 });
             }
         })();

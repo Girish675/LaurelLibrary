@@ -17,14 +17,22 @@
         { id: 'current-affairs', name: 'Current Affairs', icon: '🌐', desc: 'National & international events' },
         { id: 'general-knowledge', name: 'General Knowledge', icon: '💡', desc: 'Static GK & awareness' },
         { id: 'aptitude', name: 'Aptitude', icon: '🧮', desc: 'Quantitative & numerical ability' },
-        { id: 'computer-science', name: 'Computer Science', icon: '💻', desc: 'Programming, DSA & OS' }
+        { id: 'computer-science', name: 'Computer Science', icon: '💻', desc: 'Programming, DSA & OS' },
+        { id: 'analog-electronics', name: 'Analog Electronics', icon: '📻', desc: 'Diodes, BJTs, Op-Amps' },
+        { id: 'digital-electronics', name: 'Digital Electronics', icon: '1️⃣', desc: 'Logic gates, boolean algebra' },
+        { id: 'edc', name: 'EDC', icon: '⚡', desc: 'Electronic Devices and Circuits' },
+        { id: 'network-theory', name: 'Network Theory', icon: '🕸️', desc: 'Circuit analysis and theorems' },
+        { id: 'communications', name: 'Communications', icon: '📡', desc: 'Analog and digital communication' },
+        { id: 'control-systems', name: 'Control Systems', icon: '🎛️', desc: 'System stability and design' },
+        { id: 'emft', name: 'EMFT', icon: '🧲', desc: 'Electromagnetic Field Theory' },
+        { id: 'signals-and-systems', name: 'Signals and Systems', icon: '〰️', desc: 'Continuous and discrete signals' }
     ];
 
     var notes = [];
 
     async function init() {
         try {
-            var r = await fetch('notes/index.json');
+            var r = await fetch('notes/index.json?v=' + Date.now());
             if (r.ok) {
                 var data = await r.json();
                 notes = data.notes || [];
@@ -78,14 +86,26 @@
             list.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><h3>Notes coming soon</h3><p>We\'re adding study material. Check back soon!</p></div>';
             return;
         }
-        var recent = notes.slice(0, 6);
-        list.innerHTML = recent.map(function(n) {
+        var recentNotes = notes.slice(0, 6);
+        var html = '';
+        recentNotes.forEach(function(n, idx) {
             var cat = categories.find(function(c) { return c.id === n.category; });
             var catName = cat ? cat.name : n.category;
-            return '<a href="' + n.path + '" class="note-card"><h4>' + LL.escapeHtml(n.title) + '</h4>' +
-                '<div class="meta"><span class="tag">' + LL.escapeHtml(catName) + '</span>' +
+            var title = n.title;
+            var badge = '';
+            var match = title.match(/^0*(\d+)\s+(.+)$/);
+            if (match) {
+                badge = '<div style="font-size:var(--text-xs);color:var(--c-accent);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Unit ' + match[1] + '</div>';
+                title = match[2];
+            } else {
+                badge = '<div style="font-size:var(--text-xs);color:var(--c-accent);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px">Unit ' + (idx + 1) + '</div>';
+            }
+            html += '<a href="' + LL.basePath + n.path + '" class="note-card" style="display:flex;flex-direction:column;justify-content:space-between">' +
+                '<div>' + badge + '<h4 style="margin-top:0">' + LL.escapeHtml(title) + '</h4></div>' +
+                '<div class="meta" style="margin-top:var(--space-sm)"><span class="tag">' + LL.escapeHtml(catName) + '</span>' +
                 '<span>' + LL.escapeHtml(n.exam || 'General') + '</span></div></a>';
-        }).join('');
+        });
+        list.innerHTML = html;
     }
 
     function renderExams() {

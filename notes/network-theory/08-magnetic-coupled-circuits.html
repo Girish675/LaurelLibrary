@@ -24,7 +24,7 @@
                 <span>/</span>
                 <a href="../index.html">Notes</a>
                 <span>/</span>
-                <a href="index.html">Network Theory</a>
+                <a href="../index.html?category=network-theory">Network Theory</a>
                 <span>/</span>
                 <span>08 Magnetic Coupled Circuits</span>
             </nav>
@@ -33,14 +33,14 @@
                 <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
                 <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
                 <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
-                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 4 min read</span>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 3 min read</span>
             </div>
 
             <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
                     <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                         <span style="display: flex; align-items: center; gap: 8px;">
-                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <button type="button" id="sidebar-toggle" title="Toggle Sidebar">&#9776;</button>
                             <span id="toc-title-text">Table of Contents</span>
                         </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
@@ -71,15 +71,13 @@
 <p>which is called induced EMF. If the conductor circuit is closed, the current will also circulate through the</p>
 <p>circuit and this current is called induced current.</p>
 <h3>Faraday’s Second Law:</h3>
-<p>The magnitude of EMF induced in the coil is equal to the rate of change of</p>
-<p>flux that linkages with the coil. The flux linkage of the coil is the product of the number of turns in the coil</p>
-<p>and flux associated with the coil.</p>
-<p>𝐸=−𝑁 𝑑ϕ 𝑑𝑡 Here negative sign will be explained by Lenz’s law.</p>
+<figure><img src="images/08-magnetic-coupled-circuits_1.png" alt="Diagram" loading="lazy" style="max-width: 57.99188232421875px; height: auto;"></figure>
+<p>Here negative sign will be explained by Lenz’s law.</p>
 <h3>Lenz’s Law:</h3>
 <p>The direction of the induced current in the coil will be always in such a way as to oppose the change which produces current. It is just a small addition to faraday’s law</p>
 <h3>Mutual Inductance:</h3>
 <p>Mutual Inductance between two coils defined as rate of change of flux linkages in a coil w.r.t time varying nature of current through another coil which is magnetically couple to first coil.</p>
-<p>𝐸 𝑚 =−𝑀 𝑑𝑖 𝑑𝑡</p>
+<figure><img src="images/08-magnetic-coupled-circuits_2.png" alt="Diagram" loading="lazy" style="max-width: 61.97802734375px; height: auto;"></figure>
 <p>Where, M is the mutual inductance. E m is the induced EMF i is the current</p>
 <h3>Magnetic Couplings:</h3>
 <p>Type of magnetic coupling.</p>
@@ -93,33 +91,53 @@
 <p>each coil based on sense of coil. If the current enters or leaves the dots at both the coils, it can be accessed</p>
 <p>that the fluxes produced by two coils aid one another in the magnetic circuit and the type of coupling between them is positive. It the current enters the dot at one coil and leaves dot at another coil loss if</p>
 <p>the current leaves the dot at one coil and enters dot at another coil it can be accessed that the fluxes produced by two coils definitely oppose one another in the magnetic circuit and the type of coupling between them is negative.</p>
-<h2>Basic Formulae</h2>
-<figure><img src="images/08-magnetic-coupled-circuits_1.png" alt="Diagram" loading="lazy" style="max-width: 106px; height: auto;"></figure>
-<p>𝑁 1 ϕ 1 𝑁 2 ϕ 2 𝐿 1 = 𝐿 2 = 𝐼 1 𝐼 2 𝑁 2 ϕ 12 𝑁 1 ϕ 21 𝑀= = 𝐼 1 𝐼 2 𝑁 2 ϕ 12 𝑁 1 ϕ 21 --(1) 𝑀= 𝐼 1 ϕ 1 ϕ 1 = 𝐼 2 ϕ 2 ϕ 2 ϕ 12 ϕ 21 ϕ 2 = 𝑢𝑠𝑒𝑓𝑢𝑙 𝑓𝑙𝑢𝑥 𝐾= ϕ 1 = 𝑇𝑜𝑡𝑎𝑙 𝑓𝑙𝑢𝑥 from (1) M 2 = KL 1 L 2 𝑀= 𝐾 𝐿 1 𝐿 2 K = 0 represents Loose Bound K = 1 represents Tight Bound.</p>
-<figure><img src="images/08-magnetic-coupled-circuits_2.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
-<figure><img src="images/08-magnetic-coupled-circuits_3.png" alt="Diagram" loading="lazy" style="max-width: 155px; height: auto;"></figure>
-<p>L eq = L 1 + L 2</p>
-<p>𝐿 1 𝐿 2 𝐿 𝑒𝑞 = 𝐿 1 +𝐿 2</p>
-<figure><img src="images/08-magnetic-coupled-circuits_4.png" alt="Diagram" loading="lazy" style="max-width: 165px; height: auto;"></figure>
-<p>L eq = L 1 + L 2 + 2M</p>
-<figure><img src="images/08-magnetic-coupled-circuits_5.png" alt="Diagram" loading="lazy" style="max-width: 170px; height: auto;"></figure>
-<p>L eq = L 1 + L 2 2M</p>
-<figure><img src="images/08-magnetic-coupled-circuits_6.png" alt="Diagram" loading="lazy" style="max-width: 103px; height: auto;"></figure>
-<p>2 𝐿 1 𝐿 2 −𝑀 𝐿 𝑒𝑞 = 𝐿 1 +𝐿 2 −2𝑀</p>
-<figure><img src="images/08-magnetic-coupled-circuits_7.png" alt="Diagram" loading="lazy" style="max-width: 106px; height: auto;"></figure>
-<p>2 𝐿 1 𝐿 2 −𝑀 𝐿 𝑒𝑞 = 𝐿 1 +𝐿 2 +2𝑀</p>
-<figure><img src="images/08-magnetic-coupled-circuits_8.png" alt="Diagram" loading="lazy" style="max-width: 280px; height: auto;"></figure>
-<figure><img src="images/08-magnetic-coupled-circuits_9.png" alt="Diagram" loading="lazy" style="max-width: 277px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_3.png" alt="Diagram" loading="lazy" style="max-width: 460.0px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_4.png" alt="Diagram" loading="lazy" style="max-width: 106px; height: auto;"></figure>
+<p>𝑁 1 ϕ 1 𝑁 2 ϕ 2</p>
+<figure><img src="images/08-magnetic-coupled-circuits_5.png" alt="Diagram" loading="lazy" style="max-width: 27.642745971679688px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_6.png" alt="Diagram" loading="lazy" style="max-width: 25.664031982421875px; height: auto;"></figure>
+<p>𝐼 1 𝐼 2 𝑁 1 ϕ 21</p>
+<figure><img src="images/08-magnetic-coupled-circuits_7.png" alt="Diagram" loading="lazy" style="max-width: 31.415496826171875px; height: auto;"></figure>
+<p>𝑀= 𝐼 2</p>
+<figure><img src="images/08-magnetic-coupled-circuits_8.png" alt="Diagram" loading="lazy" style="max-width: 179.94847106933594px; height: auto;"></figure>
+<p>ϕ 21 ϕ 2 = 𝑢𝑠𝑒𝑓𝑢𝑙 𝑓𝑙𝑢𝑥</p>
+<figure><img src="images/08-magnetic-coupled-circuits_9.png" alt="Diagram" loading="lazy" style="max-width: 28.321380615234375px; height: auto;"></figure>
+<p>𝐾= 𝑇𝑜𝑡𝑎𝑙 𝑓𝑙𝑢𝑥 from (1) M 2 = KL 1 L 2</p>
+<figure><img src="images/08-magnetic-coupled-circuits_10.png" alt="Diagram" loading="lazy" style="max-width: 67.25181579589844px; height: auto;"></figure>
+<p>K = 0 represents Loose Bound K = 1 represents Tight Bound.</p>
+<figure><img src="images/08-magnetic-coupled-circuits_11.png" alt="Diagram" loading="lazy" style="max-width: 460.0px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_12.png" alt="Diagram" loading="lazy" style="max-width: 155px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_13.png" alt="Diagram" loading="lazy" style="max-width: 72.23788452148438px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_14.png" alt="Diagram" loading="lazy" style="max-width: 55.6031494140625px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_15.png" alt="Diagram" loading="lazy" style="max-width: 165px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_16.png" alt="Diagram" loading="lazy" style="max-width: 105.22032165527344px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_17.png" alt="Diagram" loading="lazy" style="max-width: 170px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_18.png" alt="Diagram" loading="lazy" style="max-width: 99.67137145996094px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_19.png" alt="Diagram" loading="lazy" style="max-width: 103px; height: auto;"></figure>
+<p>2</p>
+<figure><img src="images/08-magnetic-coupled-circuits_20.png" alt="Diagram" loading="lazy" style="max-width: 72.32510375976562px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_21.png" alt="Diagram" loading="lazy" style="max-width: 106px; height: auto;"></figure>
+<p>2</p>
+<figure><img src="images/08-magnetic-coupled-circuits_22.png" alt="Diagram" loading="lazy" style="max-width: 72.32510375976562px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_23.png" alt="Diagram" loading="lazy" style="max-width: 280px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_24.png" alt="Diagram" loading="lazy" style="max-width: 277px; height: auto;"></figure>
 <p>2 𝐿 1 𝐿 2 −𝑀 Irrespective of dots 𝐿 𝑒𝑞 = 𝐿 2</p>
-<figure><img src="images/08-magnetic-coupled-circuits_10.png" alt="Diagram" loading="lazy" style="max-width: 229px; height: auto;"></figure>
-<p>2 ω 2 𝑍 𝑒𝑞 = 𝑍 11 + 𝑀 where Z 11 = R 1 + jωL 1 and Z 2 = R 2 + jωL 2 𝑍 22</p>
-<figure><img src="images/08-magnetic-coupled-circuits_11.png" alt="Diagram" loading="lazy" style="max-width: 354px; height: auto;"></figure>
-<figure><img src="images/08-magnetic-coupled-circuits_12.png" alt="Diagram" loading="lazy" style="max-width: 137px; height: auto;"></figure>
-<p>𝑑𝐼 1 𝑑𝐼 2 𝑉 1 −𝐿 1 𝑑𝑡 −𝑀 𝑑𝑡 = 0 𝑑𝐼 2 𝑑𝐼 1 𝑉 2 −𝐿 2 𝑑𝑡 −𝑀 𝑑𝑡 = 0</p>
+<figure><img src="images/08-magnetic-coupled-circuits_25.png" alt="Diagram" loading="lazy" style="max-width: 229px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_26.png" alt="Diagram" loading="lazy" style="max-width: 319.6769714355469px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_27.png" alt="Diagram" loading="lazy" style="max-width: 354px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_28.png" alt="Diagram" loading="lazy" style="max-width: 137px; height: auto;"></figure>
+<p>𝑑𝐼 1</p>
+<figure><img src="images/08-magnetic-coupled-circuits_29.png" alt="Diagram" loading="lazy" style="max-width: 37.78532409667969px; height: auto;"></figure>
+<p>𝑉 1 −𝐿 1 𝑑𝑡 −𝑀 𝑑𝐼 2</p>
+<figure><img src="images/08-magnetic-coupled-circuits_30.png" alt="Diagram" loading="lazy" style="max-width: 37.78532409667969px; height: auto;"></figure>
+<p>𝑉 2 −𝐿 2 𝑑𝑡 −𝑀</p>
 <h3>Z parameter</h3>
-<figure><img src="images/08-magnetic-coupled-circuits_13.png" alt="Diagram" loading="lazy" style="max-width: 130px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_31.png" alt="Diagram" loading="lazy" style="max-width: 130px; height: auto;"></figure>
 <p>[] 𝑍= 𝑗ω𝐿 1 𝑗ω𝑀 𝑗ω𝑀 𝑗ω𝐿 2</p>
-<p>Imp Points 2 + 1 2 ±𝑀𝐼 1 𝐼 2 1 Energy stored in combination of inductors is 2 𝐿 1 𝐼 1 2 𝐿 2 𝐼 2</p>
+<p>Imp Points</p>
+<figure><img src="images/08-magnetic-coupled-circuits_32.png" alt="Diagram" loading="lazy" style="max-width: 30.173126220703125px; height: auto;"></figure>
+<figure><img src="images/08-magnetic-coupled-circuits_33.png" alt="Diagram" loading="lazy" style="max-width: 42.81036376953125px; height: auto;"></figure>
+<p>1 Energy stored in combination of inductors is 2 𝐿 1 𝐼 1 2 𝐿 2 𝐼 2</p>
 <p>For ideal transformer: the transmission matrix is given by</p>
 <p>𝑁 1 𝑁 2 ⎡⎢⎣ ⎤⎥⎦ where N 1 and N 2 are the number of turns on primary and</p>
 <p>𝐴 𝐵 𝐶 𝐷 [] = 𝑁 2 0 0 𝑁 1 secondary side respectively.</p>
@@ -134,10 +152,10 @@
     </main>
 
     <!-- Quiz Modal -->
-    <div class="modal" id="quiz-modal">
-        <div class="modal-content">
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal">
             <div class="modal-header">
-                <h3>Quiz Mode</h3>
+                <h3>Knowledge Check</h3>
                 <button type="button" class="modal-close" id="quiz-close">&times;</button>
             </div>
             <div class="modal-body" id="quiz-body"></div>
@@ -209,31 +227,12 @@
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                 });
             }
-            // Sidebar toggle
+                        // Sidebar toggle
             var sidebarToggle = document.getElementById('sidebar-toggle');
             if (sidebarToggle) {
-                var sidebarCollapsed = false;
                 sidebarToggle.addEventListener('click', function() {
-                    sidebarCollapsed = !sidebarCollapsed;
-                    var sidebar = document.getElementById('toc-sidebar');
                     var notesPage = document.getElementById('notes-page');
-                    var tocListEl = document.getElementById('toc-list');
-                    var tocTitleText = document.getElementById('toc-title-text');
-                    var collapseAllBtn = document.getElementById('toc-collapse-all');
-                    
-                    if (sidebarCollapsed) {
-                        notesPage.style.gridTemplateColumns = 'auto 1fr';
-                        tocListEl.style.display = 'none';
-                        tocTitleText.style.display = 'none';
-                        collapseAllBtn.style.display = 'none';
-                        sidebar.style.width = 'fit-content';
-                    } else {
-                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
-                        tocListEl.style.display = 'block';
-                        tocTitleText.style.display = 'inline';
-                        collapseAllBtn.style.display = 'block';
-                        sidebar.style.width = 'auto';
-                    }
+                    notesPage.classList.toggle('sidebar-collapsed');
                 });
             }
         })();
