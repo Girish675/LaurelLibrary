@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>05 Special Diodes — Laurel Library</title>
-    <meta name="description" content="05 Special Diodes - Edc study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="05 Special Diodes - Edc study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 1 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,63 +53,70 @@
                     <div class="meta">
                         <span class="meta-category">Edc</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>Zener Diode</h2>
-<figure><img src="images/05-special-diodes_1.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_2.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_3.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_4.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_5.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_6.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_7.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_8.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/05-special-diodes_1.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_2.png" alt="Diagram" loading="lazy" style="max-width: 161px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_3.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_4.png" alt="Diagram" loading="lazy" style="max-width: 404px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_5.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_6.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_7.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_8.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
 <p>Where V z = Zener voltage V in = Input voltage R L = Load resistance R S = Source resistance</p>
-<figure><img src="images/05-special-diodes_9.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/05-special-diodes_9.png" alt="Diagram" loading="lazy" style="max-width: 466.325439453125px; height: auto;"></figure>
 <p>P z max = V z × I z max</p>
 <p>P z min = Minimum power dissipation P z min = V z × I z min Pin Diode</p>
-<figure><img src="images/05-special-diodes_10.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_11.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_12.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_13.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_14.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_15.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/05-special-diodes_10.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_11.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_12.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_13.png" alt="Diagram" loading="lazy" style="max-width: 138px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_14.png" alt="Diagram" loading="lazy" style="max-width: 95px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_15.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <h2>PIN diode with different biasing:</h2>
 <h3>Forward Bias:</h3>
-<figure><img src="images/05-special-diodes_16.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_17.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/05-special-diodes_16.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_17.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <h3>Reverse Bias:</h3>
-<figure><img src="images/05-special-diodes_18.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_19.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_20.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_21.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_22.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_23.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_24.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_25.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/05-special-diodes_18.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_19.png" alt="Diagram" loading="lazy" style="max-width: 104px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_20.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_21.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_22.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_23.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_24.png" alt="Diagram" loading="lazy" style="max-width: 178px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_25.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <p>𝐴 ϵ 𝐶= 𝑊</p>
-<figure><img src="images/05-special-diodes_26.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_27.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_28.png" alt="Diagram" loading="lazy"></figure>
-<p>It is a highly doped PN Junction diode, used for low voltage high-frequency switching applications. It works on the tunneling principle. When compared to a normal p-n junction diode, tunnel diode has a narrow depletion width. In normal forward-biased operation, it exhibits the “Negative resistance region” as shown:</p>
-<p>The negative differential resistance in their operation, allows them to be used as oscillators, amplifiers, and switching circuits. Their low capacitance allows them to function at microwave frequencies. Tunnel diodes are not good rectifiers, as they have relatively high leakage current when reverse biased.</p>
-<figure><img src="images/05-special-diodes_29.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_30.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_31.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_32.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_33.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_34.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_35.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_36.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_37.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/05-special-diodes_26.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_27.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_28.png" alt="Diagram" loading="lazy" style="max-width: 183px; height: auto;"></figure>
+<p>It is a highly doped PN Junction diode, used for low voltage high-frequency</p>
+<p>switching applications. It works on the tunneling principle.</p>
+<p>When compared to a normal p-n junction diode, tunnel diode has a narrow</p>
+<p>depletion width. In normal forward-biased operation, it exhibits the “Negative resistance</p>
+<p>region” as shown:</p>
+<p>The negative differential resistance in their operation, allows them to be used</p>
+<p>as oscillators, amplifiers, and switching circuits. Their low capacitance allows them to function at microwave frequencies.</p>
+<p>Tunnel diodes are not good rectifiers, as they have relatively high leakage</p>
+<p>current when reverse biased.</p>
+<figure><img src="images/05-special-diodes_29.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_30.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_31.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_32.png" alt="Diagram" loading="lazy" style="max-width: 228px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_33.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_34.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_35.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_36.png" alt="Diagram" loading="lazy" style="max-width: 913px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_37.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <h3>Electroluminescence:</h3>
-<figure><img src="images/05-special-diodes_38.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_39.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/05-special-diodes_40.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/05-special-diodes_38.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_39.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/05-special-diodes_40.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">GATE, ESE</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">GATE, ESE</div></a><a href="03-bjt.html" class="note-card"><h4>03 Bjt</h4><div class="meta">GATE, ESE</div></a><a href="04-fet-mosfet.html" class="note-card"><h4>04 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">General</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">General</div></a><a href="03-bjt.html" class="note-card"><h4>03 Bjt</h4><div class="meta">General</div></a><a href="04-fet-mosfet.html" class="note-card"><h4>04 Fet &amp; Mosfet</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -187,6 +197,33 @@
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

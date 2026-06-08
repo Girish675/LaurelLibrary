@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>02 Pn Junction — Laurel Library</title>
-    <meta name="description" content="02 Pn Junction - Edc study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="02 Pn Junction - Edc study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 8 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,9 +53,9 @@
                     <div class="meta">
                         <span class="meta-category">Edc</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
-                    <h2>​</h2>
+                    <p><strong>​ ​</strong></p>
 <h2>P-N Junction Diode</h2>
 <h3>The PN junction region of a Junction Diode has the following important characteristics</h3>
 <h3>●​ Semiconductors contain two types of mobile charge carriers , Holes and Electrons .</h3>
@@ -82,7 +85,7 @@
 <p>​ In this region, the flow of charge carriers (free holes and electrons) is reduced over a given period and finally results in zero charge carriers.</p>
 <p>​ The width of the depletion region depends on the number of impurities added to the semiconductor ​</p>
 <h2>Forward Bias</h2>
-<figure><img src="images/02-pn-junction_1.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_1.png" alt="Diagram" loading="lazy" style="max-width: 480px; height: auto;"></figure>
 <p>​ The charge carriers are pushed towards the junction.</p>
 <p>​ If the voltage of the battery is large enough diode-electrons reach the p-end of the diode and fill the holes.</p>
 <h3>●​ So, the depletion layer in the p-n junction is eliminated , and a current passes through the diode.</h3>
@@ -93,7 +96,8 @@
 <p>​ Very low forward current till the forward voltage reaches the cut-in voltage.</p>
 <p>​ Having low forward and high backward resistance.</p>
 <p>​ VI characteristic of PN junction is non-linear.</p>
-<p>​ The minimum amount of voltage required for conducting the diode is known as &quot;cut-in voltage&quot; or &quot;knee voltage&quot;.</p>
+<p>​ The minimum amount of voltage required for conducting the diode is known as &quot;cut-in voltage&quot; or &quot;knee</p>
+<p>voltage&quot;.</p>
 <p>​ It is the forward voltage at which the current through the PN-junction starts to increase rapidly.</p>
 <h2>Reverse Biased</h2>
 <p>​ The reverse saturation current, in a P-N junction diode, is due to the diffusive flow of the minority holes from the n-side to the p-side and the minority electrons from the p-side to the n-side.</p>
@@ -110,13 +114,13 @@
 <h3>Half wave rectifier circuit diagram:</h3>
 <h2>Ideal case</h2>
 <p>1) 2) 3)</p>
-<figure><img src="images/02-pn-junction_2.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_2.png" alt="Diagram" loading="lazy" style="max-width: 97px; height: auto;"></figure>
 <p>4) 5)</p>
-<figure><img src="images/02-pn-junction_3.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_3.png" alt="Diagram" loading="lazy" style="max-width: 73px; height: auto;"></figure>
 <ul>
 <li>6) ​ The form factor is the ratio between RMS value and average</li>
 </ul>
-<figure><img src="images/02-pn-junction_4.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_4.png" alt="Diagram" loading="lazy" style="max-width: 76px; height: auto;"></figure>
 <ul>
 <li>7) ​ value. Form factor = 1.57</li>
 <li>8) ​ Crest factor = 2 = peak facto r</li>
@@ -124,7 +128,7 @@
 <li>10) ​</li>
 </ul>
 <h3>Peak Inverse Voltage (PIV):</h3>
-<figure><img src="images/02-pn-junction_5.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_5.png" alt="Diagram" loading="lazy" style="max-width: 109px; height: auto;"></figure>
 <p>​ It is the maximum voltage that occurs across the rectifying diode in the reverse direction.</p>
 <h3>●​ The diode is reverse-biased during the negative half-cycle and the maximum voltage applied across it</h3>
 <ul>
@@ -155,11 +159,11 @@
 <p>A Bridge type full wave rectifier contains 4 diodes as shown:</p>
 <h3>Working:</h3>
 <p>For a positive half cycle, two diodes will act as short-circuit as shown</p>
-<figure><img src="images/02-pn-junction_6.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_6.png" alt="Diagram" loading="lazy" style="max-width: 210px; height: auto;"></figure>
 <p>​ Similarly, for a negative half cycle, the other two diodes will be short-circuited resulting in a full-wave recti- fied output.</p>
 <h2>Center-Tap Full Wave Rectifier</h2>
 <p>​ A center tapped rectifier is also called a Full wave Rectifier, which consists of two diodes in its circuit.</p>
-<figure><img src="images/02-pn-junction_7.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_7.png" alt="Diagram" loading="lazy" style="max-width: 265px; height: auto;"></figure>
 <p>During its Half-wave rectification, only one diode is in ON mode.</p>
 <h2>Working:</h2>
 <p>During the first half cycle of input interval:</p>
@@ -173,15 +177,15 @@
 <p>​ This is the reason why a Center tapped transformer is necessary to the center-tapped rectifier.</p>
 <h2>Ideal Case</h2>
 <p>1) 2)</p>
-<figure><img src="images/02-pn-junction_8.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_8.png" alt="Diagram" loading="lazy" style="max-width: 70px; height: auto;"></figure>
 <p>3)</p>
-<figure><img src="images/02-pn-junction_9.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_9.png" alt="Diagram" loading="lazy" style="max-width: 75px; height: auto;"></figure>
 <p>4)</p>
-<figure><img src="images/02-pn-junction_10.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_10.png" alt="Diagram" loading="lazy" style="max-width: 73px; height: auto;"></figure>
 <ul>
 <li>5) ​ Ripple factor = 0.48</li>
 </ul>
-<figure><img src="images/02-pn-junction_11.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-pn-junction_11.png" alt="Diagram" loading="lazy" style="max-width: 76px; height: auto;"></figure>
 <ul>
 <li>6) ​ Form factor = 1.11</li>
 <li>7) ​ Crest factor = √ 2</li>
@@ -201,7 +205,7 @@
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">General</div></a><a href="03-bjt.html" class="note-card"><h4>03 Bjt</h4><div class="meta">GATE, ESE</div></a><a href="04-fet-mosfet.html" class="note-card"><h4>04 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a><a href="05-special-diodes.html" class="note-card"><h4>05 Special Diodes</h4><div class="meta">GATE, ESE</div></a></div>
             </section>
                 </article>
             </div>
@@ -282,6 +286,33 @@
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

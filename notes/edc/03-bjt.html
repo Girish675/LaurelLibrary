@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>03 Bjt — Laurel Library</title>
-    <meta name="description" content="03 Bjt - Edc study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="03 Bjt - Edc study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 6 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,7 +53,7 @@
                     <div class="meta">
                         <span class="meta-category">Edc</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>BJT</h2>
 <p>Symbolic representation of BJT.</p>
@@ -175,7 +178,7 @@ BE</td>
 <li>4) Now from V CE If V CE &gt; 0.2 then active region If V CE &lt; 0.2 then saturation region</li>
 </ul>
 <p>Method 2 Assume saturation region → Apply k VL in base Ckt. &amp; calculate I B → Apply k VL in CE Ckt &amp; calculate I C min → V CE = 0.2 I C ≠βI B 𝐼 𝐶 𝑚𝑖𝑛 →𝐼 𝐵 𝑚𝑖𝑛 = β → If I B min &lt; I B → (saturation region) If I B min &gt; I B → (active region)</p>
-<figure><img src="images/03-bjt_1.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_1.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
 <p>C E = Emitter bypass capacitor C C = Coupling capacitor</p>
 <p>For DC analysis</p>
 <ul>
@@ -190,30 +193,30 @@ BE</td>
 <ul>
 <li>2) By using h-parameter</li>
 </ul>
-<figure><img src="images/03-bjt_2.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_2.png" alt="Diagram" loading="lazy" style="max-width: 240px; height: auto;"></figure>
 <p>[] = ℎ 𝑖 ℎ 𝑟 ℎ 𝑓 ℎ 𝑜 [] 𝐼 𝑖 𝑉 𝑜 [] 𝑉 𝑖 𝐼 𝑜 Where, 𝑉 𝑖 𝐼 𝑜 𝑉 𝑖 ℎ 𝑖 = 𝐼 𝑖 |, ℎ 𝑓 = 𝐼 𝑖 |, ℎ 𝑟 = 𝑉 𝑜 | 𝑉 𝑜 =0 𝑉 𝑜 =0 𝐼 𝑖 =0 𝐼 𝑜 ℎ 𝑜 = 𝑉 𝑜 | 𝐼 𝑖 =0 −ℎ 𝑓 1) → Current gain 𝐴 𝐼 = 1+ℎ 𝑜 𝑅 𝐿</p>
 <ul>
 <li>2) Z in = R B + h i + A I h r R L → Input impedance 𝑅 𝐿 3) → Voltage gain 𝐴 𝑉 = 𝐴 𝐼 𝑅 𝑖 ℎ 𝑟 ℎ 𝑓 4) → output admittance 𝑦 𝑜 = ℎ 𝑜 − 𝑅 𝑠 +ℎ 𝑖</li>
 </ul>
 <p>High frequency analysis (for CE amplifies only) C π = input capacitance between E &amp; B C μ = capacitance between C &amp; B C π = C de + C je τ𝐼 𝐶 𝐶𝑗 𝑒 0 𝐶 π = 𝑉 𝑇 + 𝑚 () 𝑉 𝐵𝐸 1− 𝑉 𝑜𝑒 V oe = 0.9 V m = 0.5 𝐶 µ 𝑜 𝐶 µ = 𝑚 () 𝑉 𝐶𝐵 1+ 𝑉 𝑜𝑐 V oc = 0.7 V m = 0.2 to 0.5</p>
-<figure><img src="images/03-bjt_3.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_3.png" alt="Diagram" loading="lazy" style="max-width: 297px; height: auto;"></figure>
 <p>For external connections use ohmic contact. → A C &gt; A E &gt; A B (area) 𝑅= 𝑝𝑙 𝐴 𝑅∝ 𝑙 𝐴 → R B &gt; R E &gt; R c → Base width should be very less</p>
-<figure><img src="images/03-bjt_4.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_4.png" alt="Diagram" loading="lazy" style="max-width: 391px; height: auto;"></figure>
 <p>→ CE short circuit current gain (R L = 0)</p>
-<figure><img src="images/03-bjt_5.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_5.png" alt="Diagram" loading="lazy" style="max-width: 539px; height: auto;"></figure>
 <p>𝑉 𝑐𝑒 0 𝐴 𝑉 = 𝑉 𝑏'𝑒 = 𝑉 𝑏'𝑒 = 0 𝐼 𝑠𝑐 𝐴 𝑠𝑐 = 𝐼 𝑓 →𝑡𝑎𝑟𝑔𝑒𝑡</p>
-<figure><img src="images/03-bjt_6.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_6.png" alt="Diagram" loading="lazy" style="max-width: 424px; height: auto;"></figure>
 <p>() 𝑅 𝑖𝑛˙ = 𝑟 𝑏'𝑒 ⏟ 𝐶 𝑖𝑛 = 𝐶 π + 𝐶 µ ⏟ 𝑍 𝑖𝑛˙ = 𝑟 𝑏'𝑒 || 𝐶 µ + 𝐶 π (𝑖𝑔𝑛𝑜𝑟𝑒 𝑟𝑒𝑠𝑖𝑠𝑡𝑎𝑛𝑐𝑒) (𝑖𝑔𝑛𝑜𝑟𝑒 𝑐𝑎𝑝𝑎𝑐𝑖𝑡𝑜𝑟)</p>
 <p>I sc = g m V b’e</p>
-<figure><img src="images/03-bjt_7.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_7.png" alt="Diagram" loading="lazy" style="max-width: 138px; height: auto;"></figure>
 <p>𝐴 𝑠𝑐 = −𝑔𝑚 …(1) 𝑗 𝑚˙ −𝑔𝑚 𝐴 𝑠𝑐 = 𝑔 𝑏'𝑒 +𝑗𝑤(𝐶μ+𝐶 π) −𝑔𝑚/𝑔 𝑏'𝑐 𝐴 𝑠𝑐 = () 1+𝑗𝑤 𝑟 𝑏 ' 𝑒 𝐶 π +𝐶 µ gm / g b’e = hfe ℎ𝑓𝑒 𝐴 𝑠𝑐 = 𝑤 1+𝑗 1 () 𝑟 𝐶π+𝐶µ 𝑏 ' 𝑒</p>
 <p>Remembers here r π ≠r b’e as r bb’ is there 𝑣 𝑏𝑒 𝑟 π = 𝑖 𝑏 𝑣 𝑏'𝑒 𝑟 𝑏'𝑒 = 𝑖 𝑏 ' If r bb’ is ignored them r b’e = rπ y in = g b’e + j’w (C μ + C π) 𝐼 𝑏 𝑣 𝑏'𝑒 = 𝑗 𝑖𝑛 𝐼 𝑏 𝑔𝑚 𝑣 𝑏'𝑒 = 𝑗 𝑖𝑛 𝑔 𝑚 𝐼 𝑏 −𝐼 𝑠𝑐 = 𝑗 𝑖𝑛 𝑔 𝑚</p>
-<figure><img src="images/03-bjt_8.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_8.png" alt="Diagram" loading="lazy" style="max-width: 76.70379638671875px; height: auto;"></figure>
 <p>𝐼 𝑠𝑐 𝐼 𝑏 = −𝑔𝑚 put this in (1) = 𝐴 𝑠𝑐 𝑗 𝑖𝑛</p>
 <p>1 𝑓 β = () 2π 𝑟 𝑏 ' 𝑒 𝐶 π +𝐶 µ 𝐴 3d B cut-off frequency is the Frequency at which |</p>
 <p>| or any gain become 𝐴 𝑠𝑐 2</p>
 <p>−ℎ𝑓𝑒 𝐴 𝑠𝑐 = 𝑓 1+𝑗 𝑓_β | | = ℎ𝑓𝑒 𝐴 𝑠𝑐</p>
-<figure><img src="images/03-bjt_9.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_9.png" alt="Diagram" loading="lazy" style="max-width: 39.61543273925781px; height: auto;"></figure>
 <p>𝑓 ∠𝐴 𝑠𝑐 = 180° − 𝑓 β</p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -233,11 +236,9 @@ BE</td>
 </tr>
 </tbody></table></div>
 <p>f T = unit gain B.W = frequency at which product of gain &amp; frequency become 1.</p>
-<p>2</p>
-<h2>( )</h2>
-<p>𝑓 𝑓 at very high frequencies 𝑓 β ≫1;</p>
+<p>2 () 𝑓 𝑓 at very high frequencies 𝑓 β ≫1;</p>
 <p>≫1 𝑓 β | | = −ℎ𝑓𝑒 2 = −ℎ𝑓𝑒 𝐴 𝑠𝑐 𝑓</p>
-<figure><img src="images/03-bjt_10.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/03-bjt_10.png" alt="Diagram" loading="lazy" style="max-width: 29.508956909179688px; height: auto;"></figure>
 <p>𝑓 β</p>
 <p>−ℎ𝑓𝑒 𝑓 β | | = f = operating frequency 𝐴 𝑠𝑐; 𝑓 Let f = f T; | | = 1 𝐴 𝑠𝑐 f T = hfe f β gain × B.W = f T hfe = | | at f = 0 𝐴 𝑠𝑐 So f β = B.W. 𝑔𝑚 𝑓 𝑇 = () 2π 𝐶 µ +𝐶 π B.W of common base amplifier BW = 3d B cut off frequency of CB = f α = (1 + β) f β</p>
 <p>Low frequency analysis of amplifier In L.F, coupling capacitors cannot be ignored For finding effect of C 1, put C 2 &amp; C 3 as S.C For C 2, put C 1 &amp; C 3 as S.C and For C 3, put C 1 &amp; C 2 as S.C</p>
@@ -246,7 +247,7 @@ BE</td>
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">GATE, ESE</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-semiconductor-physics.html" class="note-card"><h4>01 Semiconductor Physics</h4><div class="meta">General</div></a><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">General</div></a><a href="04-fet-mosfet.html" class="note-card"><h4>04 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a><a href="05-special-diodes.html" class="note-card"><h4>05 Special Diodes</h4><div class="meta">GATE, ESE</div></a></div>
             </section>
                 </article>
             </div>
@@ -327,6 +328,33 @@ BE</td>
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

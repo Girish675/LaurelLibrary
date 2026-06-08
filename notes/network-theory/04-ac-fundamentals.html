@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>04 Ac Fundamentals — Laurel Library</title>
-    <meta name="description" content="04 Ac Fundamentals - Network Theory study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="04 Ac Fundamentals - Network Theory study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 17 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,11 +53,13 @@
                     <div class="meta">
                         <span class="meta-category">Network Theory</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>A.C. Fundamentals</h2>
-<figure><img src="images/04-ac-fundamentals_1.png" alt="Diagram" loading="lazy"></figure>
-<p>Nature itself characteristically a sinusoidal. It is easy to generate &amp; easy to transmit. Let, a sinusoidal voltage can be expressed as:</p>
+<figure><img src="images/04-ac-fundamentals_1.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<p>Nature itself characteristically a sinusoidal.</p>
+<p>It is easy to generate &amp; easy to transmit.</p>
+<p>Let, a sinusoidal voltage can be expressed as:</p>
 <p>V = V m Sin (ωt)</p>
 <h2>Important terms</h2>
 <h3>Amplitude</h3>
@@ -71,14 +76,15 @@
 <p>Average value can be expressed as:</p>
 <p>𝑇 𝐴𝑟𝑒𝑎 𝑇𝑖𝑚𝑒 𝑝𝑒𝑟𝑖𝑜𝑑 𝑜𝑟 1 ∫𝑓(𝑡)𝑑𝑡 𝑇0 Average value is based on the transfer of charges.</p>
 <h3>RMS value</h3>
-<figure><img src="images/04-ac-fundamentals_2.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_2.png" alt="Diagram" loading="lazy" style="max-width: 69.76895141601562px; height: auto;"></figure>
 <p>1 𝑅𝑀𝑆 𝑣𝑎𝑙𝑢𝑒= 𝑇0 It is based on the Heating effect.</p>
-<h3>Points to remember:</h3>
-<p>The average value of sine or cosine function of any phase &amp; frequency is zero &amp; its rms value is given as:</p>
-<p>= 𝑀𝑎𝑥𝑖𝑚𝑢𝑚 𝑣𝑎𝑙𝑢𝑒 2</p>
-<h3>Note:</h3>
-<p>If any expression f (t) = a 0 + a 1 sin (ωt) + a 2 sin (2ωt) +.….. Then rms value is given by:</p>
-<figure><img src="images/04-ac-fundamentals_3.png" alt="Diagram" loading="lazy"></figure>
+<p><strong>Points to remember:</strong></p>
+<p>The average value of sine or cosine function of any phase &amp; frequency is</p>
+<p>zero &amp; its rms value is given as:</p>
+<p>= 𝑀𝑎𝑥𝑖𝑚𝑢𝑚 𝑣𝑎𝑙𝑢𝑒 2 <strong>Note:</strong></p>
+<p>If any expression f (t) = a 0 + a 1 sin (ωt) + a 2 sin (2ωt) +.…..</p>
+<p>Then rms value is given by:</p>
+<figure><img src="images/04-ac-fundamentals_3.png" alt="Diagram" loading="lazy" style="max-width: 130.36087036132812px; height: auto;"></figure>
 <p>𝑓𝑡 () 𝑟𝑚𝑠 = 𝑎 0</p>
 <h3>WAVEFORM</h3>
 <h3>SHAPE</h3>
@@ -183,43 +189,40 @@ m</td>
 <td>2</td>
 </tr>
 </tbody></table></div>
-<figure><img src="images/04-ac-fundamentals_4.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_4.png" alt="Diagram" loading="lazy" style="max-width: 222px; height: auto;"></figure>
 <h3>Peak factor (or crest factor)</h3>
 <p>𝑃𝑒𝑎𝑘 𝑓𝑎𝑐𝑡𝑜𝑟= 𝑀𝑎𝑥𝑖𝑚𝑢𝑚 𝑣𝑎𝑙𝑢𝑒 𝑟𝑚𝑠 𝑣𝑎𝑙𝑢𝑒</p>
 <h3>Form factor</h3>
 <p>𝑅𝑀𝑆 𝑣𝑎𝑙𝑢𝑒 𝐹𝑜𝑟𝑚 𝑓𝑎𝑐𝑡𝑜𝑟= 𝐴𝑣𝑒𝑟𝑎𝑔𝑒 𝑣𝑎𝑙𝑢𝑒</p>
 <h2>Phasor</h2>
-<p>A pictorial representation of all the phase voltage &amp; their respective currents in the network. It is a rotating vector which rotates in anti-clockwise direction with angular frequency ‘ω’ in time domain. It may be expressed in exponential form, polar form or rectangular form.</p>
+<p>A pictorial representation of all the phase voltage &amp; their respective</p>
+<p>currents in the network. It is a rotating vector which rotates in anti-clockwise direction with</p>
+<p>angular frequency ‘ω’ in time domain. It may be expressed in exponential form, polar form or rectangular</p>
+<p>form.</p>
 <p>Let, V (t) = V m cos (ωt + ɸ) (a) V = V m e j ɸ → Exponential form of Phasor representation</p>
 <p>(b) V = V m &lt; ɸ → Polar form of Phasor representation</p>
 <p>(c) V = V m (cos ɸ + j sin ɸ) → Rectangular form of Phasor representation</p>
-<h3>Note:</h3>
-<p>In polar form r &lt; ɸ, here r is RMS value. In steady state, analysis of A.C. is generally carried out in Phasor domain.</p>
+<p><strong>Note:</strong></p>
+<p>In polar form r &lt; ɸ, here r is RMS value.</p>
+<p>In steady state, analysis of A.C. is generally carried out in Phasor</p>
+<p>domain.</p>
 <h2>Common symbols used</h2>
 <p>R = Pure resistance element (Ω) L = Pure inductance element (H) C = Pure capacitance element (F or µF) Z = impedance (Ω) X L = inductive reactance (Ω) = ωL = 2 f L π 1 1 𝑋 𝐶 = 𝑐𝑎𝑝𝑎𝑐𝑖𝑡𝑖𝑣𝑒 𝑟𝑒𝑎𝑐𝑡𝑎𝑛𝑐𝑒= ω𝑐 = 2π𝑓𝑐</p>
 <h2>Series RL Circuit</h2>
 <p>G_5-12-2020_Swati_D2</p>
-<figure><img src="images/04-ac-fundamentals_5.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_5.png" alt="Diagram" loading="lazy" style="max-width: 53.071929931640625px; height: auto;"></figure>
 <p>𝑉= 𝑉 𝑅 2 + ω𝐿 2 𝑍 | | = 𝑅 ()</p>
 <p>G_5-12-2020_Swati_D3 ∵ “I” lags “V” so, lagging Pf.</p>
 <p>𝑉 𝑅 𝑝𝑓= cos 𝑐𝑜𝑠 ɸ = 𝑉</p>
-<h2>( ) 𝑜𝑟 ɸ =</h2>
-<p>𝑉 𝐿</p>
-<h2>(</h2>
-<h2>) = 𝐼𝑚𝑝𝑒𝑑𝑎𝑛𝑐𝑒 𝐴𝑛𝑔𝑙𝑒</h2>
-<p>ω𝐿 ɸ = 𝑉 𝑅 𝑅</p>
+<p>() 𝑜𝑟 ɸ = 𝑉 𝐿 () = 𝐼𝑚𝑝𝑒𝑑𝑎𝑛𝑐𝑒 𝐴𝑛𝑔𝑙𝑒 ω𝐿 ɸ = 𝑉 𝑅 𝑅</p>
 <h2>Series RC Circuit</h2>
 <p>G_5-12-2020_Swati_D4</p>
-<figure><img src="images/04-ac-fundamentals_6.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_6.png" alt="Diagram" loading="lazy" style="max-width: 53.436492919921875px; height: auto;"></figure>
 <p>𝑉= 𝑉 𝑅</p>
-<figure><img src="images/04-ac-fundamentals_7.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_7.png" alt="Diagram" loading="lazy" style="max-width: 73.45733642578125px; height: auto;"></figure>
 <p>𝑍 | | = 𝑅 ∵ “I” leads “V”, so leading Pf.</p>
 <p>𝑉 𝑅 𝑃𝑓= cos 𝑐𝑜𝑠 ɸ = 𝑉</p>
-<h2>( ) = 𝐼𝑚𝑝𝑒𝑑𝑎𝑛𝑐𝑒 𝐴𝑛𝑔𝑙𝑒</h2>
-<p>𝑉 𝑐</p>
-<h2>(</h2>
-<h2>) 𝑜𝑟</h2>
-<p>1 ɸ = ω𝑅𝑐 𝑉 𝑅</p>
+<p>() = 𝐼𝑚𝑝𝑒𝑑𝑎𝑛𝑐𝑒 𝐴𝑛𝑔𝑙𝑒 𝑉 𝑐 () 𝑜𝑟 1 ɸ = ω𝑅𝑐 𝑉 𝑅</p>
 <h2>Series RLC Circuit</h2>
 <p>G_5-12-2020_Swati_D5</p>
 <div class="table-wrapper"><table>
@@ -243,33 +246,24 @@ _ _ _</td>
 <td></td>
 </tr>
 </tbody></table></div>
-<figure><img src="images/04-ac-fundamentals_8.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/04-ac-fundamentals_9.png" alt="Diagram" loading="lazy"></figure>
-<p>𝑉= 𝑉 𝑅 G_5-12-2020_Swati</p>
-<h2>(</h2>
-<h2>)</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑉 𝐿 −𝑉 𝐶 𝑉 𝐶 −𝑉 𝐿 ɸ = ɸ = _D8 𝑉 𝑅 𝑉 𝑅 or or ɸ = 0°</p>
-<h2>(</h2>
-<h2>)</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑋 𝐿 −𝑋 𝐶 𝑋 𝐶 −𝑋 𝐿 i.e., unity power ɸ = ɸ = 𝑅 𝑅 factor 𝑉 𝑅 𝑉 𝑅 cos 𝑐𝑜𝑠 ɸ = 𝑝𝑓= 𝑉 cos 𝑐𝑜𝑠 ɸ = 𝑝𝑓= 𝑉 V = V R = IR “I” lags “V” “I” lags “V” “I” is in phase with i.e., lagging pf i.e., lagging pf “V”</p>
+<figure><img src="images/04-ac-fundamentals_8.png" alt="Diagram" loading="lazy" style="max-width: 252px; height: auto;"></figure>
+<figure><img src="images/04-ac-fundamentals_9.png" alt="Diagram" loading="lazy" style="max-width: 257.1524887084961px; height: auto;"></figure>
+<p>𝑉= 𝑉 𝑅 G_5-12-2020_Swati () () 𝑉 𝐿 −𝑉 𝐶 𝑉 𝐶 −𝑉 𝐿 ɸ = ɸ = _D8 𝑉 𝑅 𝑉 𝑅 or or ɸ = 0° () () 𝑋 𝐿 −𝑋 𝐶 𝑋 𝐶 −𝑋 𝐿 i.e., unity power ɸ = ɸ = 𝑅 𝑅 factor 𝑉 𝑅 𝑉 𝑅 cos 𝑐𝑜𝑠 ɸ = 𝑝𝑓= 𝑉 cos 𝑐𝑜𝑠 ɸ = 𝑝𝑓= 𝑉 V = V R = IR “I” lags “V” “I” lags “V” “I” is in phase with i.e., lagging pf i.e., lagging pf “V”</p>
 <h2>Parallel RL Circuit</h2>
-<figure><img src="images/04-ac-fundamentals_10.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_10.png" alt="Diagram" loading="lazy" style="max-width: 609px; height: auto;"></figure>
 <p>G_5-12-2020_Swati_D9 𝐼 𝑅 = 𝑉 𝑉 𝑅, 𝐼 𝐿 = 𝑋 𝐿 𝑉 ⇒𝐼 𝐿 = 𝑋 𝐿 &lt;−90° G_5-12-2020_Swati_D10</p>
-<figure><img src="images/04-ac-fundamentals_11.png" alt="Diagram" loading="lazy"></figure>
-<p>𝐼= 𝐼 𝑅 𝐼 𝑅 𝐿𝑒𝑎𝑑𝑖𝑛𝑔 𝑝𝑜𝑤𝑒𝑟 𝑓𝑎𝑐𝑡𝑜𝑟= cos 𝑐𝑜𝑠 ɸ = 𝐼</p>
-<p>𝐼 𝐿 ɸ =</p>
+<figure><img src="images/04-ac-fundamentals_11.png" alt="Diagram" loading="lazy" style="max-width: 47.153961181640625px; height: auto;"></figure>
+<p>𝐼= 𝐼 𝑅 𝐼 𝑅 𝐿𝑒𝑎𝑑𝑖𝑛𝑔 𝑝𝑜𝑤𝑒𝑟 𝑓𝑎𝑐𝑡𝑜𝑟= cos 𝑐𝑜𝑠 ɸ = 𝐼 𝐼 𝑅 () = 𝐼𝑚𝑝𝑒𝑑𝑎𝑛𝑐𝑒 𝐴𝑛𝑔𝑙𝑒 𝐼 𝐿 ɸ =</p>
 <h2>Parallel RC Circuit</h2>
 <p>G_5-12-2020_Swati_D11 𝑉 𝐼 𝐶 = 𝑋 𝐶 &lt; 90°</p>
 <p>G_5-12-2020_Swati_D12</p>
-<figure><img src="images/04-ac-fundamentals_12.png" alt="Diagram" loading="lazy"></figure>
-<p>𝐼= 𝐼 𝑅 𝐼 𝑅 𝑙𝑎𝑔𝑔𝑖𝑛𝑔 𝑝𝑜𝑤𝑒𝑟 𝑓𝑎𝑐𝑡𝑜𝑟= cos 𝑐𝑜𝑠 ɸ = 𝐼</p>
-<p>𝐼 𝐶 ɸ =</p>
-<figure><img src="images/04-ac-fundamentals_13.png" alt="Diagram" loading="lazy"></figure>
-<p>The resonance is the condition at which the natural frequency of the system is equal to the source frequency of the system. Resonance occurs in the electrical circuit because of L &amp; C elements. Voltage &amp; current are in phase in a circuit.</p>
+<figure><img src="images/04-ac-fundamentals_12.png" alt="Diagram" loading="lazy" style="max-width: 47.518524169921875px; height: auto;"></figure>
+<p>𝐼= 𝐼 𝑅 𝐼 𝑅 𝑙𝑎𝑔𝑔𝑖𝑛𝑔 𝑝𝑜𝑤𝑒𝑟 𝑓𝑎𝑐𝑡𝑜𝑟= cos 𝑐𝑜𝑠 ɸ = 𝐼 𝐼 𝑅 () 𝐼 𝐶 ɸ =</p>
+<figure><img src="images/04-ac-fundamentals_13.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<p>The resonance is the condition at which the natural frequency of the system is</p>
+<p>equal to the source frequency of the system. Resonance occurs in the electrical circuit because of L &amp; C elements.</p>
+<p>Voltage &amp; current are in phase in a circuit.</p>
+<p>●</p>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Series Resonance</th>
@@ -308,8 +302,8 @@ minimum
 ● Unity power factor</td>
 </tr>
 </tbody></table></div>
-<figure><img src="images/04-ac-fundamentals_14.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/04-ac-fundamentals_15.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_14.png" alt="Diagram" loading="lazy" style="max-width: 528.0px; height: auto;"></figure>
+<figure><img src="images/04-ac-fundamentals_15.png" alt="Diagram" loading="lazy" style="max-width: 272px; height: auto;"></figure>
 <p>Series resonance circuit is also called Parallel resonance circuit is also “Acceptor Circuit”. called “Rejector Circuit”.</p>
 <h3>Variation of circuit parameters with frequency</h3>
 <h3>Variation</h3>
@@ -333,12 +327,12 @@ minimum
 <p>1 𝐿 𝐶 𝑄= 𝑄= 𝑅 𝑅 𝐶 𝐿 Series Resonance circuit is also called as Parallel Resonance circuit is also called voltage magnification circuit as current magnification circuit In series Resonance circuit, L &amp; C In parallel Resonance circuit, L &amp; C combination act as short circuit combination act as open circuit</p>
 <h3>Bandwidth</h3>
 <p>1 𝐵 𝑤 = ω 2 −ω 1 = 𝑅𝐶 𝐵𝑊= ω 2 −ω 1 = 𝑅 𝐿 𝑓 0 𝑄= 𝑓 0 𝑓 0 ω 0 𝐵𝑊 𝑄= 𝐵𝑊 = 𝑓 2 −𝑓 1 = ω 2 −ω 1</p>
-<figure><img src="images/04-ac-fundamentals_16.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_16.png" alt="Diagram" loading="lazy" style="max-width: 69.18801879882812px; height: auto;"></figure>
 <p>1 1 ω 1 = − 2𝑅𝐶 + ω 1 = lower Half power frequency</p>
-<figure><img src="images/04-ac-fundamentals_17.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/04-ac-fundamentals_18.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_17.png" alt="Diagram" loading="lazy" style="max-width: 71.01580810546875px; height: auto;"></figure>
+<figure><img src="images/04-ac-fundamentals_18.png" alt="Diagram" loading="lazy" style="max-width: 68.22311401367188px; height: auto;"></figure>
 <p>1 1 () ω 2 = 2𝑅𝐶 + 𝑅 𝑅 ω 1 = − 2𝐿 + 2𝐿 ω 2 = upper Half power frequency ω 0 = ω 1 ω 2</p>
-<figure><img src="images/04-ac-fundamentals_19.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_19.png" alt="Diagram" loading="lazy" style="max-width: 68.22309875488281px; height: auto;"></figure>
 <p>() ω 2 = 𝑅 𝑅 2𝐿 + 2𝐿 ω 0 = ω 1 ω 2 𝑟𝑎𝑑/𝑠𝑒𝑐</p>
 <h3>Note:-</h3>
 <p>ω 1 ≈ω 0 − 𝐵𝑊 2</p>
@@ -346,26 +340,20 @@ minimum
 <p>ω 2 ≈ω 0 + 𝐵𝑊 ω 1 ≈ω 0 − 𝐵𝑊 2 2 Valid Only when Q ≥10 ω 2 ≈ω 0 + 𝐵𝑊 Q ∝ selectivity 2 Valid Only when Q ≥10 Or B W ∝ 1/selectivity 𝑓 0 𝑆𝑒𝑙𝑒𝑐𝑡𝑖𝑣𝑖𝑡𝑦= 𝑓 2 −𝑓 1 𝑓 0 𝑆𝑒𝑙𝑒𝑐𝑡𝑖𝑣𝑖𝑡𝑦= 𝑓 2 −𝑓 1</p>
 <h2>At Half power frequency</h2>
 <h3>For series RLC</h3>
-<h2>{</h2>
-<h2>}</h2>
-<p>𝐼 𝑚𝑎𝑥 𝐼= 2 {Z = √2R}</p>
-<h2>{</h2>
-<h2>}</h2>
-<p>1 𝑐𝑜𝑠ϕ = 2</p>
+<p>{ } 𝐼 𝑚𝑎𝑥 𝐼= 2 {Z = √2R} { } 1 𝑐𝑜𝑠ϕ = 2</p>
 <h2>Resonance between parallel R-C &amp; R-L circuit</h2>
-<figure><img src="images/04-ac-fundamentals_20.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_20.png" alt="Diagram" loading="lazy" style="max-width: 220px; height: auto;"></figure>
 <p>G_5-12-2020_Swati_D17</p>
-<figure><img src="images/04-ac-fundamentals_21.png" alt="Diagram" loading="lazy"></figure>
-<p>1 Resonance frequency ω 0 = Circuit will be at resonance for any frequency at 𝐿 𝑅 1 = 𝑅 2 = 𝐶</p>
+<figure><img src="images/04-ac-fundamentals_21.png" alt="Diagram" loading="lazy" style="max-width: 58.48674011230469px; height: auto;"></figure>
+<p>1 Resonance frequency ω 0 = Circuit will be at resonance for any frequency at</p>
+<p>𝐿 𝑅 1 = 𝑅 2 = 𝐶</p>
 <h2>Relation between damping ratio (ξ) and Quality factor (Q)</h2>
 <p>G_5-12-2020_Swati_D18 1 𝑉 0 𝑠 () 𝐿𝐶 () = 𝐿 () 𝑠+ 1 2 + 𝑉 1 𝑠 𝑅 𝑠 𝐿𝐶 1 ω 𝑛 = 𝐿𝐶 = 𝑁𝑎𝑡𝑢𝑟𝑎𝑙 𝑓𝑟𝑒𝑞𝑢𝑒𝑛𝑐𝑦 ξ = 𝑅 𝐶 2 𝐿 1 ξ = 2𝑄</p>
 <h3>Critically Damped :</h3>
 <p>ξ = 1, 𝑄= 1 𝐿 2, 𝑅= 2 𝐶</p>
 <h3>Over -damped:</h3>
-<h3>●</h3>
 <p>ξ &gt; 1, 𝑄 &lt; 1 𝐿 2, 𝑅&gt; 2 𝐶</p>
 <h3>Under -damped:</h3>
-<h3>●</h3>
 <p>ξ &lt; 1, 𝑄 &gt; 1 𝐿 2, 𝑅&lt; 2 𝐶</p>
 <h3>Undamped :</h3>
 <p>Q → ∞, ξ = 0, R = 0 (Practically impossible)</p>
@@ -406,21 +394,23 @@ D22
 ⇒ unity power factor</td>
 </tr>
 </tbody></table></div>
-<figure><img src="images/04-ac-fundamentals_22.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/04-ac-fundamentals_23.png" alt="Diagram" loading="lazy"></figure>
-<h2>(</h2>
-<h2>)</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>I = I R 𝐼 𝑐 −𝐼 𝐿 𝐼 𝐿 −𝐼 𝑐 ϕ = ϕ = 𝐼 𝑅 𝐼 𝑅 𝐼 𝑅 𝐼 𝑅 𝑐𝑜𝑠ϕ = 𝑝𝑓= 𝐿𝑎𝑔𝑔𝑖𝑛𝑔 𝑝𝑓= 𝐼 𝐼 Leading power factor</p>
-<figure><img src="images/04-ac-fundamentals_24.png" alt="Diagram" loading="lazy"></figure>
-<p>Transient in the system is occur only because of presence of inductor &amp; the capacitor elements (i.e., energy storing elements) There are no transients occurs in the system when only resistance is present. The transients effects are more severe for D.C. as compared to A.C. Inductor does not allow sudden change of current while capacitor does not allow sudden change of voltage.</p>
-<figure><img src="images/04-ac-fundamentals_25.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_22.png" alt="Diagram" loading="lazy" style="max-width: 80.07199096679688px; height: auto;"></figure>
+<figure><img src="images/04-ac-fundamentals_23.png" alt="Diagram" loading="lazy" style="max-width: 79.009765625px; height: auto;"></figure>
+<p>() () I = I R 𝐼 𝑐 −𝐼 𝐿 𝐼 𝐿 −𝐼 𝑐 ϕ = ϕ = 𝐼 𝑅 𝐼 𝑅 𝐼 𝑅 𝐼 𝑅 𝑐𝑜𝑠ϕ = 𝑝𝑓= 𝐿𝑎𝑔𝑔𝑖𝑛𝑔 𝑝𝑓= 𝐼 𝐼 Leading power factor</p>
+<figure><img src="images/04-ac-fundamentals_24.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<p>Transient in the system is occur only because of presence of inductor &amp;</p>
+<p>the capacitor elements (i.e., energy storing elements) There are no transients occurs in the system when only resistance is</p>
+<p>present. The transients effects are more severe for D.C. as compared to A.C.</p>
+<p>Inductor does not allow sudden change of current while capacitor does</p>
+<p>not allow sudden change of voltage.</p>
+<figure><img src="images/04-ac-fundamentals_25.png" alt="Diagram" loading="lazy" style="max-width: 365px; height: auto;"></figure>
 <p>G_5-12-2020_Swati_D1</p>
 <h2>Behaviour of Energy storing elements</h2>
-<p>At t = 0 + instants: L → O.C.</p>
+<p>At t = 0 + instants:</p>
+<p>L → O.C.</p>
 <p>C → S.C.</p>
-<p>At t → ∞instants: L → S.C.</p>
+<p>At t → ∞instants:</p>
+<p>L → S.C.</p>
 <p>C → O.C. i.e., the L &amp; C elements will die for D.C. excitations/sources in steady state.</p>
 <h2>D.C. Transients</h2>
 <h3>Source free RL circuit</h3>
@@ -429,20 +419,12 @@ D22
 <p>G_5-12-2020_Swati_D3 − + () = 𝑉0 () = 𝑉 0 𝑉0 −𝑡/𝑅𝐶 𝑉𝑡 () = 𝑉 0 𝑒</p>
 <h3>RL circuit with source</h3>
 <p>G_5-12-2020_Swati_D4 G_5-12-2020_Swati_D5</p>
-<h2>(</h2>
-<h2>)</h2>
-<p>− 𝑅𝑡 () = 𝑉 𝐿 𝑖𝑡 𝑅 1 −𝑒</p>
-<h2>(</h2>
-<h2>)</h2>
-<p>− 𝑅𝑡 𝐿 𝑉 𝑅 = 𝑉1 −𝑒 − 𝑅𝑡 𝐿 𝑉 𝐿 = 𝑉𝑒</p>
+<p>() − 𝑅𝑡 () = 𝑉 𝐿 𝑖𝑡 𝑅 1 −𝑒 () − 𝑅𝑡 𝐿 𝑉 𝑅 = 𝑉1 −𝑒 − 𝑅𝑡 𝐿 𝑉 𝐿 = 𝑉𝑒</p>
 <h3>RC circuit with source</h3>
-<p>G_5-12-2020_Swati_D6 G_5-12-2020_Swati_D7</p>
-<h2>(</h2>
-<h2>)</h2>
-<p>− 𝑡 𝑅𝐶 𝑉 𝑐 𝑡 () = 𝑉1 −𝑒 − 𝑡 () = 𝑉 𝑅𝐶 𝑖𝑡 𝑅 𝑒 − 𝑡 𝑅𝐶 𝑉 𝑅 𝑡 () = 𝑉𝑒</p>
+<p>G_5-12-2020_Swati_D6 G_5-12-2020_Swati_D7 () − 𝑡 𝑅𝐶 𝑉 𝑐 𝑡 () = 𝑉1 −𝑒 − 𝑡 () = 𝑉 𝑅𝐶 𝑖𝑡 𝑅 𝑒 − 𝑡 𝑅𝐶 𝑉 𝑅 𝑡 () = 𝑉𝑒</p>
 <h2>With Source, using Laplace transform approach</h2>
 <p>𝐹𝑜𝑟 0≤𝑡≤∞ [R]</p>
-<figure><img src="images/04-ac-fundamentals_26.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_26.png" alt="Diagram" loading="lazy" style="max-width: 330px; height: auto;"></figure>
 <p>G_5-12-2020_Swati_D8 [L]</p>
 <p>G_5-12-2020_Swati_D9 Converting into S-domain:</p>
 <p>G_5-12-2020_Swati_D10</p>
@@ -458,24 +440,28 @@ D22
 <h3>For series RC circuit</h3>
 <p>CASE I: For sine excitation: ω𝑡 0 + ɸ = (ω𝑅𝑐) CASE II: For cosine excitation: ω𝑡 0 + ɸ = (ω𝑅𝑐) + π 2</p>
 <h3>  Note:</h3>
-<p>Above all formula (transient free condition) are also valid for parallel combination of RL &amp; RC. Transient free condition in not possible for network with both the energy storing elements i.e., for series RLC network. Inductor allows instantaneous changes for voltage impulse function. Capacitor allows instantaneous changes for current impulse function.</p>
-<h2>Points to Remember:</h2>
+<p>Above all formula (transient free condition) are also valid for parallel</p>
+<p>combination of RL &amp; RC. Transient free condition in not possible for network with both the energy</p>
+<p>storing elements i.e., for series RLC network. Inductor allows instantaneous changes for voltage impulse function.</p>
+<p>Capacitor allows instantaneous changes for current impulse function.</p>
+<p>●</p>
+<p><strong>Points to Remember:</strong></p>
 <p>− 𝑡 + −𝑓∞ τ</p>
 <ul>
 <li>𝑓𝑡 () = 𝑓∞ () + [𝑓(0 ()]𝑒 This above expression is Only valid for RL, RC circuit. Time constant only defined for or causal system. 𝑡≥0 Inductor &amp; Capacitor never dissipates power. Reading of voltmeter represents RMS value. Hence, we assume all currents &amp; voltage values as RMS value. If there is no information of A.C. sources in the form of phasor representation or sinusoidal source, then by default we assume RMS voltage &amp; current in the network. + () 𝑉 𝐿 0 + () = 𝑑 A/sec 𝑑𝑡 𝑖 𝐿 0 𝐿 + () 𝐼 𝐶 0 + () = 𝑑 V/sec 𝑑𝑡 𝑉 𝐶 0 𝐶 If ideal voltage source is directly connected across ideal capacitor, then − + () ≠ 𝑉 𝐶 0 () capacitor does not follow its own property. i.e., 𝑉 𝐶 0 If ideal current source is directly connected across ideal inductor, then − + () ≠ 𝑖 𝐿 0 () inductor does not follow its own property. i.e., 𝑖 𝐿 0</li>
 </ul>
-<figure><img src="images/04-ac-fundamentals_27.png" alt="Diagram" loading="lazy"></figure>
-<p>Electric Filter is used to select certain bands of frequencies to pass along or accept &amp; another band to stops or reject. The frequency at which the transition between passing &amp; rejecting input</p>
-<h3>●</h3>
+<figure><img src="images/04-ac-fundamentals_27.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<p>Electric Filter is used to select certain bands of frequencies to pass along</p>
+<p>or accept &amp; another band to stops or reject. The frequency at which the transition between passing &amp; rejecting input</p>
 <p>signal occurs is called cut-off frequency (f c or</p>
 <p>). ω 𝑐</p>
 <h2>Low pass Filter</h2>
 <p>It allows only low-frequency components (below cut-off frequency).</p>
-<h3>●</h3>
+<p>●</p>
 <h3>First order</h3>
-<figure><img src="images/04-ac-fundamentals_28.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_28.png" alt="Diagram" loading="lazy" style="max-width: 215px; height: auto;"></figure>
 <p>𝑉 0 (𝑠) 1 𝐻𝑠 () = 𝑉 𝑖 (𝑠) = 𝑅𝐶𝑠+1</p>
-<figure><img src="images/04-ac-fundamentals_29.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_29.png" alt="Diagram" loading="lazy" style="max-width: 269px; height: auto;"></figure>
 <h3>Second order</h3>
 <p>𝑉 0 (𝑠) 1/𝐿𝐶 𝐻𝑠 () = 𝑉 𝑖 (𝑠) = 𝐿 () 𝑠+ 1 2 + 𝑅 𝑠 𝐿𝐶</p>
 <h2>High Pass filters</h2>
@@ -483,76 +469,68 @@ D22
 <p>𝑅𝐶𝑠 𝐻𝑠 () = 1+𝑅𝐶𝑠</p>
 <h2>Band pass filter</h2>
 <p>It allows only a certain band of frequency.</p>
-<figure><img src="images/04-ac-fundamentals_30.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_30.png" alt="Diagram" loading="lazy" style="max-width: 269px; height: auto;"></figure>
 <p>𝐿 () 𝑠 𝑅 𝐻𝑠 () = 2 + 𝑅 𝐿 𝑠+ 1 𝑠 𝐿𝐶</p>
-<p>It attenuates signals with frequencies below &amp; above</p>
-<h3>.</h3>
-<h3>●</h3>
+<p>It attenuates signals with frequencies below &amp; above <strong>.</strong></p>
 <p>ω 𝑐 1 ω 𝑐 2</p>
 <h2>Band Stop (or Rejection) filter</h2>
 <p>It blocks a certain band of frequency &amp; passes low &amp; high frequencies.</p>
-<h3>●</h3>
 <p>It attenuates signals that fall in between these two corner frequencies.</p>
+<p>●</p>
 <h2>All Pass filter</h2>
 <p>It passes all frequencies without attenuation but provides a predictable</p>
-<h3>●</h3>
 <p>phase shift. In all pass filter, poles &amp; zeroes are mirror image of each other.</p>
-<h3>●</h3>
 <p>|H (jω)| is independent of frequency but phase may vary.</p>
-<h3>●</h3>
-<h3>Points to Remember:</h3>
+<p><strong>Points to Remember:</strong></p>
 <p>When low pass filter &amp; High pass filter are connected in cascade, if low</p>
-<h3>●</h3>
 <p>pass cutoff frequency is greater than High pass Cutoff frequency then it acts as a Band pass filter. Series &amp; parallel resonance circuit are Band pass filter.</p>
-<h3>●</h3>
 <p>A Notch filter is also known as Band stop filter or Band Reject Filter</p>
-<h3>●</h3>
 <p>which attenuates the particular band of frequencies. When low pass filter &amp; High pass filter are connected in parallel, if High</p>
-<h3>●</h3>
 <p>pass Cut off frequency is greater than low pass cut off frequency then it acts as a Band Rejection filter.</p>
-<figure><img src="images/04-ac-fundamentals_31.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_31.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
 <h2>Basic Formulae</h2>
-<figure><img src="images/04-ac-fundamentals_32.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_32.png" alt="Diagram" loading="lazy" style="max-width: 106px; height: auto;"></figure>
 <p>𝑁 1 ϕ 1 𝑁 2 ϕ 2 𝐿 1 = 𝐿 2 = 𝐼 1 𝐼 2 𝑁 2 ϕ 12 𝑁 1 ϕ 21 𝑀= = 𝐼 1 𝐼 2 𝑁 2 ϕ 12 𝑁 1 ϕ 21 --(1) 𝑀= 𝐼 1 ϕ 1 ϕ 1 = 𝐼 2 ϕ 2 ϕ 2 ϕ 12 ϕ 21 ϕ 2 = 𝑢𝑠𝑒𝑓𝑢𝑙 𝑓𝑙𝑢𝑥 𝐾= ϕ 1 = 𝑇𝑜𝑡𝑎𝑙 𝑓𝑙𝑢𝑥 from (1) M 2 = KL 1 L 2 𝑀= 𝐾 𝐿 1 𝐿 2 K = 0 represents Loose Bound K = 1 represents Tight Bound.</p>
 <h2>Equivalent inductances</h2>
-<figure><img src="images/04-ac-fundamentals_33.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_33.png" alt="Diagram" loading="lazy" style="max-width: 155px; height: auto;"></figure>
 <p>L eq = L 1 + L 2</p>
 <p>𝐿 1 𝐿 2 𝐿 𝑒𝑞 = 𝐿 1 +𝐿 2</p>
-<figure><img src="images/04-ac-fundamentals_34.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_34.png" alt="Diagram" loading="lazy" style="max-width: 165px; height: auto;"></figure>
 <p>L eq = L 1 + L 2 + 2M</p>
-<figure><img src="images/04-ac-fundamentals_35.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_35.png" alt="Diagram" loading="lazy" style="max-width: 170px; height: auto;"></figure>
 <p>L eq = L 1 + L 2 2M</p>
-<figure><img src="images/04-ac-fundamentals_36.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_36.png" alt="Diagram" loading="lazy" style="max-width: 103px; height: auto;"></figure>
 <p>2 𝐿 1 𝐿 2 −𝑀 𝐿 𝑒𝑞 = 𝐿 1 +𝐿 2 −2𝑀</p>
-<figure><img src="images/04-ac-fundamentals_37.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_37.png" alt="Diagram" loading="lazy" style="max-width: 106px; height: auto;"></figure>
 <p>2 𝐿 1 𝐿 2 −𝑀 𝐿 𝑒𝑞 = 𝐿 1 +𝐿 2 +2𝑀</p>
-<figure><img src="images/04-ac-fundamentals_38.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/04-ac-fundamentals_39.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_38.png" alt="Diagram" loading="lazy" style="max-width: 280px; height: auto;"></figure>
+<figure><img src="images/04-ac-fundamentals_39.png" alt="Diagram" loading="lazy" style="max-width: 277px; height: auto;"></figure>
 <p>2 𝐿 1 𝐿 2 −𝑀 Irrespective of dots 𝐿 𝑒𝑞 = 𝐿 2</p>
-<figure><img src="images/04-ac-fundamentals_40.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_40.png" alt="Diagram" loading="lazy" style="max-width: 229px; height: auto;"></figure>
 <p>2 ω 2 𝑍 𝑒𝑞 = 𝑍 11 + 𝑀 where Z 11 = R 1 + jωL 1 and Z 2 = R 2 + jωL 2 𝑍 22</p>
-<figure><img src="images/04-ac-fundamentals_41.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/04-ac-fundamentals_42.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_41.png" alt="Diagram" loading="lazy" style="max-width: 354px; height: auto;"></figure>
+<figure><img src="images/04-ac-fundamentals_42.png" alt="Diagram" loading="lazy" style="max-width: 137px; height: auto;"></figure>
 <p>𝑑𝐼 1 𝑑𝐼 2 𝑉 1 −𝐿 1 𝑑𝑡 −𝑀 𝑑𝑡 = 0 𝑑𝐼 2 𝑑𝐼 1 𝑉 2 −𝐿 2 𝑑𝑡 −𝑀 𝑑𝑡 = 0</p>
 <h3>Z parameter</h3>
-<figure><img src="images/04-ac-fundamentals_43.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_43.png" alt="Diagram" loading="lazy" style="max-width: 130px; height: auto;"></figure>
 <p>[] 𝑍= 𝐽ω𝐿 1 𝐽ω𝑀 𝐽ω𝑀 𝐽ω𝐿 2</p>
 <h2>Points to remember</h2>
 <p>2 + 1 2 ±𝑀𝐼 1 𝐼 2 1 Energy stored in combination of inductors is 2 𝐿 1 𝐼 1 2 𝐿 2 𝐼 2</p>
 <p>For ideal transformer: the transmission matrix is given by</p>
 <p>𝑁 1 𝑁 2 ⎡⎢⎣ ⎤⎥⎦ where N 1 and N 2 are the number of turns on primary and</p>
 <p>𝐴 𝐵 𝐶 𝐷 [] = 𝑁 2 0 0 𝑁 1 secondary side respectively.</p>
-<figure><img src="images/04-ac-fundamentals_44.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/04-ac-fundamentals_45.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_44.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/04-ac-fundamentals_45.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
 <p>It is the representation of the circuit in which current source is made open circuited and voltage source is made short circuited. Other circuit elements are also replaced by just a line eg. Represent the graph of circuit – shown above.</p>
 <p>No of Branches of network ≥Graph</p>
 <h2>Augmented matrix or Incidence matrix</h2>
 <h3>Steps to find incidence matrix</h3>
 <p>(1) Assign a number to the Branches. (2) If current is incident on the node, take it 1 or 1, if current is leaving the node, then take it 1 or 1, if node is not connected to branch then put it zero.</p>
 <p>Sign of entering and leaving should be different.</p>
+<p>●</p>
 <p>E.g:</p>
 <p>The incidence matrix for the graph is let us Assume</p>
-<figure><img src="images/04-ac-fundamentals_46.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_46.png" alt="Diagram" loading="lazy" style="max-width: 162px; height: auto;"></figure>
 <p>Branch</p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -621,7 +599,7 @@ D22
 <h2>Tree</h2>
 <p>It is the unconnected graph which contains all the nodes and there should not be any closed path. The Branches of Tree are called Twigs and other removed branches are called links or Chords</p>
 <p>Eg</p>
-<figure><img src="images/04-ac-fundamentals_47.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-ac-fundamentals_47.png" alt="Diagram" loading="lazy" style="max-width: 300px; height: auto;"></figure>
 <p>For a particular graph, there are number of trees possible. Total number of possible tree = N N – 2 Where N is number of nodes. This formula is valid if (1) Each node in the graph have at least one branch (2) All nodes are full of connection. (3) No repeated branch between nodes.</p>
 <p>𝑇 [] Total number of possible tree = det 𝑑𝑒𝑡 𝐴 [] 𝐴 [] where A is row reduced incidence matrix. This formula is applicable for all graphs.</p>
 <p>Total number of node pair voltages = 𝑛𝑛−1 () 2</p>
@@ -638,7 +616,7 @@ D22
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-basic-concept-of-network-theory.html" class="note-card"><h4>01 Basic Concept Of Network Theory</h4><div class="meta">GATE, ESE</div></a><a href="02-network-theorems.html" class="note-card"><h4>02 Network Theorems</h4><div class="meta">GATE, ESE</div></a><a href="03-transient-analysis.html" class="note-card"><h4>03 Transient Analysis</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-basic-concept-of-network-theory.html" class="note-card"><h4>01 Basic Concept Of Network Theory</h4><div class="meta">General</div></a><a href="02-network-theorems.html" class="note-card"><h4>02 Network Theorems</h4><div class="meta">General</div></a><a href="03-transient-analysis.html" class="note-card"><h4>03 Transient Analysis</h4><div class="meta">General</div></a><a href="05-two-port-networks.html" class="note-card"><h4>05 Two Port Networks</h4><div class="meta">GATE, ESE</div></a></div>
             </section>
                 </article>
             </div>
@@ -719,6 +697,33 @@ D22
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

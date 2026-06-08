@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>07 Logic Families — Laurel Library</title>
-    <meta name="description" content="07 Logic Families - Digital Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="07 Logic Families - Digital Electronics study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 5 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,49 +53,60 @@
                     <div class="meta">
                         <span class="meta-category">Digital Electronics</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>Logic Families</h2>
 <h2>Basic Gate of a logic family</h2>
 <p>Each IC digital logic family has a Basic Gate.</p>
+<p>●</p>
 <h3>This gate is either the NAND gate or the NOR gate .</h3>
 <p>●</p>
 <h3>Note: A BJT in its simplest construction act as NOT gate or Inverter .</h3>
 <h2>Characteristics of logic family</h2>
 <h3>Propagation delay (t PD )</h3>
-<p>It is defined as average transition delay for a signal to propagate from the input to the output of a logic gate. It is measured in nanoseconds (ns) 𝑡 𝑃𝐻𝐿 +𝑡 𝑃𝐿𝐻 𝑡 𝑃𝐷 = 2 Where, T PHL = Propagation delay when O/P goes from HIGH to LOW T PLH = Propagation delay when O/P goes from LOW to HIGH.</p>
+<p>It is defined as average transition delay for a signal to propagate from the input to the</p>
+<p>output of a logic gate. It is measured in nanoseconds (ns) 𝑡 𝑃𝐻𝐿 +𝑡 𝑃𝐿𝐻 𝑡 𝑃𝐷 = 2 Where, T PHL = Propagation delay when O/P goes from HIGH to LOW T PLH = Propagation delay when O/P goes from LOW to HIGH.</p>
 <h3>Power dissipation (P D )</h3>
-<p>Power drawn by a logic gate from the power supply. It is measured in milli Watts (m W) P D = V CC I avg (in m W) Where, V CC = Collector voltage or supply voltage I avg = Average supply current</p>
+<p>Power drawn by a logic gate from the power supply.</p>
+<p>It is measured in milli Watts (m W) P D = V CC I avg (in m W) Where, V CC = Collector voltage or supply voltage I avg = Average supply current</p>
 <h3>Figure of Merit or speed power product</h3>
 <p>It is defined as the product of T PD &amp; P D FOM = P D × t PD (in Joule) It is measured in pico Joules (p J) A low value of FOM is desirable.</p>
+<p>●</p>
 <h3>Fanout</h3>
-<p>It is defined as the maximum number of logic gates that can be successfully driven by the output of driving gate.</p>
+<p>It is defined as the maximum number of logic gates that can be successfully driven by the</p>
+<p>output of driving gate.</p>
 <p>𝐼 𝑂𝐻 𝐹𝑎𝑛𝑜𝑢𝑡 𝐻 = 𝐼 𝐼𝐻 𝐼 𝑂𝐿 𝐹𝑎𝑛𝑜𝑢𝑡 𝐿 = 𝐼 𝐼𝐿 Overall fanout = min (fanout H, fanout L)</p>
 <h3>Noise margin</h3>
-<p>It is defined as the maximum noise voltage that can be tolerated by the input of a logic gate without effecting the output. Noise margin at higher level NM H = V OH – V IH Overall Noise Margin = Minimum (NM H, NM L)</p>
-<figure><img src="images/07-logic-families_1.png" alt="Diagram" loading="lazy"></figure>
+<p>It is defined as the maximum noise voltage that can be tolerated by the input of a logic</p>
+<p>gate without effecting the output. Noise margin at higher level NM H = V OH – V IH Overall Noise Margin = Minimum (NM H, NM L)</p>
+<figure><img src="images/07-logic-families_1.png" alt="Diagram" loading="lazy" style="max-width: 362px; height: auto;"></figure>
 <h2>BJT families</h2>
 <h3>RTL (Resistor transistor logic) family</h3>
 <h3>Data sheet of RTL:</h3>
 <p>Basic Gate: NOR Gate Propagation delay: 25 ns Power dissipation: 12 m W FOM: 300 p J Fanout: 5 Noise Margin: 0.4 V</p>
 <h3>Disadvantage:</h3>
-<p>Lower speed of operation Low noise margin Lowest fanout</p>
-<h3>NOTE:</h3>
+<p>Lower speed of operation Low noise margin Lowest fanout <strong>NOTE:</strong></p>
 <p>In RTL, wired AND logic is possible.</p>
+<p>●</p>
 <h3>DCTL (Direct coupled transistor logic)</h3>
-<p>In RTL logic family, if input resistance removed then resultant is DCTL. Basic Gate: NOR Gate The Problem of current Hogging is associated with this logic family.</p>
+<p>In RTL logic family, if input resistance removed then resultant is DCTL.</p>
+<p>Basic Gate: NOR Gate The Problem of current Hogging is associated with this logic family.</p>
+<p>●</p>
 <h3>DTL (Diode transistor logic) family</h3>
 <h3>Data sheet:</h3>
-<p>Basic Gate – NAND Gate Propagation delay – 30 ns Power dissipation – 12 m W FOM – 360 p J Fanout – 8 Noise margin – 1V</p>
-<h3>NOTE</h3>
-<p>In DTL, wired AND logic is possible. The Fanout of DTL can be increased by replacing diode D, by a transistor. This circuit is known as Integrated DTL gate.</p>
+<p>Basic Gate – NAND Gate Propagation delay – 30 ns Power dissipation – 12 m W FOM – 360 p J Fanout – 8 Noise margin – 1V <strong>NOTE</strong> In DTL, wired AND logic is possible.</p>
+<p>The Fanout of DTL can be increased by replacing diode D, by a transistor. This circuit is</p>
+<p>known as Integrated DTL gate.</p>
 <h3>HTL (High threshold logic) family</h3>
-<p>It is the modification of DTL. Zener diode is used in place of D 2 Noise Margin: 7.5 V In HTL, wired AND logic Gate is possible. Basic Gate: NAND Gate Logic 0 = 2 V ⇒ Higher voltage swing Logic 1 = 12 V ⇒ Higher voltage swing P diss. = 55 m W t pd = 90 ns</p>
+<p>It is the modification of DTL.</p>
+<p>Zener diode is used in place of D 2 Noise Margin: 7.5 V In HTL, wired AND logic Gate is possible.</p>
+<p>Basic Gate: NAND Gate Logic 0 = 2 V ⇒ Higher voltage swing Logic 1 = 12 V ⇒ Higher voltage swing P diss. = 55 m W t pd = 90 ns</p>
 <h3>TTL (Transistor Transistor logic) family</h3>
 <h3>Data sheet</h3>
-<p>Basic Gate: NAND t pd: 9 ns p diss = 10 m W FOM = 90 p J Fanout = 10 Noise margin = 0.4 V Logic 0 = 0.2 V Logic 1 = 2.4 – 5 V</p>
-<h3>Note:</h3>
-<p>In TTL, wired AND logic is Not possible. If any input is open/floating, then no current flows through that input path this is also the case when logic 1 is applied at that input.</p>
+<p>Basic Gate: NAND t pd: 9 ns p diss = 10 m W FOM = 90 p J Fanout = 10 Noise margin = 0.4 V Logic 0 = 0.2 V Logic 1 = 2.4 – 5 V <strong>Note:</strong></p>
+<p>In TTL, wired AND logic is Not possible.</p>
+<p>If any input is open/floating, then no current flows through that input path this is also the</p>
+<p>case when logic 1 is applied at that input.</p>
 <p>Therefore, open or floating input act as logic 1 in TTL.</p>
 <h3>BJT regions of operations</h3>
 <div class="table-wrapper"><table>
@@ -129,18 +143,34 @@
 </tbody></table></div>
 <h3>Schottky TTL</h3>
 <p>Schottky Barrier Diodes are placed between the base &amp; collector of transistor.</p>
-<figure><img src="images/07-logic-families_2.png" alt="Diagram" loading="lazy"></figure>
-<p>It prevents the transistor from entering into saturation region. Transistor operates in Active &amp; cut off regions. Very low propagation delay. Schottky TTL uses a double emitter follower known as Darlington pair to increase the speed of operation.</p>
+<p>●</p>
+<figure><img src="images/07-logic-families_2.png" alt="Diagram" loading="lazy" style="max-width: 94px; height: auto;"></figure>
+<p>It prevents the transistor from entering into saturation region.</p>
+<p>Transistor operates in Active &amp; cut off regions.</p>
+<p>Very low propagation delay.</p>
+<p>Schottky TTL uses a double emitter follower known as Darlington pair to increase the</p>
+<p>speed of operation.</p>
 <h3>ECL (Emitter coupled logic)</h3>
-<p>Basic Gate: NOR/OR It is Never go in saturation region. Only work in cutoff &amp; Active region. Very low propagation delay (1 ns) ECL provide wired OR logic with NOR output. ECL provide wired AND logic with OR output.</p>
+<p>Basic Gate: NOR/OR It is Never go in saturation region. Only work in cutoff &amp; Active region.</p>
+<p>Very low propagation delay (1 ns) ECL provide wired OR logic with NOR output.</p>
+<p>ECL provide wired AND logic with OR output.</p>
+<p>●</p>
 <h3>Disadvantages:</h3>
-<p>Very high power dissipation. Very low Noise margin</p>
-<p>It is also known as MTL (merged Transistor logic) Basic Gate: NOR FOM: &lt; 1 p J</p>
+<p>Very high power dissipation.</p>
+<p>Very low Noise margin</p>
+<p>It is also known as MTL (merged Transistor logic)</p>
+<p>Basic Gate: NOR FOM: &lt; 1 p J</p>
 <h2>MOS Families</h2>
 <h3>Advantages of MOS families as compared to BJT families</h3>
-<p>It has lower power dissipation. It has higher fan out. It is simpler fabrication process. It has lower cost of fabrication. It has higher packing density.</p>
+<p>It has lower power dissipation.</p>
+<p>It has higher fan out.</p>
+<p>It is simpler fabrication process.</p>
+<p>It has lower cost of fabrication.</p>
+<p>It has higher packing density.</p>
+<p>●</p>
 <h3>NOTE: -</h3>
-<p>1 In MOS, channel resistance 𝑅∝ () 𝑤 𝐿 Where, w = channel width L = channel length MOS can be used as a Load resistor as well by permanently biasing the Gate for conduction.</p>
+<p>1 In MOS, channel resistance 𝑅∝ () 𝑤 𝐿 Where, w = channel width L = channel length MOS can be used as a Load resistor as well by permanently biasing the Gate for</p>
+<p>conduction.</p>
 <h3>NMOS</h3>
 <p>Logic ‘0’ = OFF Logic ‘1’ = ON</p>
 <h3>NMOS NOT Gate</h3>
@@ -231,9 +261,13 @@
 <h3>PMOS NOT Gate</h3>
 <p>A B Y 0 0 1 0 1 0 1 0 0 1 1 0</p>
 <h2>C MOS (Complementary MOS)</h2>
-<p>In CMOS, only one MOS is ON at any instant. Major power drain occurs in a CMOS when the circuit changes states. Power dissipation depends upon the frequency of the input signal. V DD may range from 3 V to 15 V, typically V DD = 5V</p>
+<p>In CMOS, only one MOS is ON at any instant.</p>
+<p>Major power drain occurs in a CMOS when the circuit changes states.</p>
+<p>Power dissipation depends upon the frequency of the input signal.</p>
+<p>V DD may range from 3 V to 15 V, typically V DD = 5V</p>
+<p>●</p>
 <h3>CMOS NOT GATE</h3>
-<figure><img src="images/07-logic-families_3.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/07-logic-families_3.png" alt="Diagram" loading="lazy" style="max-width: 208px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>A</th>
@@ -260,7 +294,7 @@
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">GATE, ESE</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">GATE, ESE</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">GATE, ESE</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">General</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">General</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">General</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -341,6 +375,33 @@
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

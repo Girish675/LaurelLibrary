@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>06 Adc &amp; Dac — Laurel Library</title>
-    <meta name="description" content="06 Adc &amp; Dac - Digital Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="06 Adc &amp; Dac - Digital Electronics study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -33,13 +33,16 @@
                 <button type="button" class="btn btn-sm" id="btn-bookmark" title="Save this note">&#9734; Save</button>
                 <button type="button" class="btn btn-sm" id="btn-print" title="Print this note">&#128424; Print</button>
                 <button type="button" class="btn btn-sm" id="btn-quiz" title="Quiz yourself">&#128300; Quiz</button>
-                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 9 min read</span>
+                <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 10 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,80 +53,102 @@
                     <div class="meta">
                         <span class="meta-category">Digital Electronics</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>ADC &amp; DAC Converters</h2>
 <h2>Introduction</h2>
-<p>An electronic integrated circuit which converts a signal from analog (continuous &amp; can take an infinity of values) to digital (discrete digital data) from. Provides a link between the analog world of transducers &amp; the digital world of signal processing &amp; data handling.</p>
-<figure><img src="images/06-adc-dac_1.png" alt="Diagram" loading="lazy"></figure>
-<p>The process of converting an analog signal to a digital form involves the sequence of four processes.</p>
-<p>(i) sampling (ii) Holding (iii) Quantizing (iv) Encoding ‘Sampling &amp; holding’ operations are done simultaneously using a circuit referred to as an ‘Analog to digital Converter’ (A/D converter or ADC) The digital output has to be converted back to analog form referred as ‘Digital to Analog Converter’ (D/A Converter or DAC).</p>
-<figure><img src="images/06-adc-dac_2.png" alt="Diagram" loading="lazy"></figure>
+<p>An electronic integrated circuit which converts a signal from analog (continuous &amp; can</p>
+<p>take an infinity of values) to digital (discrete digital data) from. Provides a link between the analog world of transducers &amp; the digital world of signal processing &amp; data handling.</p>
+<figure><img src="images/06-adc-dac_1.png" alt="Diagram" loading="lazy" style="max-width: 356px; height: auto;"></figure>
+<p>The process of converting an analog signal to a digital form involves the sequence of four</p>
+<p>processes.</p>
+<p>(i) sampling (ii) Holding (iii) Quantizing (iv) Encoding ‘Sampling &amp; holding’ operations are done simultaneously using a circuit referred to as an</p>
+<p>‘Analog to digital Converter’ (A/D converter or ADC) The digital output has to be converted back to analog form referred as ‘Digital to Analog</p>
+<p>Converter’ (D/A Converter or DAC).</p>
+<figure><img src="images/06-adc-dac_2.png" alt="Diagram" loading="lazy" style="max-width: 579px; height: auto;"></figure>
 <h2>Digital to Analog (DAC) Converter</h2>
-<p>DAC is a device that converts digital signals into Analog signals. It accepts an ‘n’ bit digital input &amp; generates a proportional analog output voltage. The analog output voltage V 0 of an N-bit straight binary D/A Converter is related to the digital input by the equation. 𝑛−1 𝑦 𝑛−1 + 2 𝑛−2 𝑦 𝑛−2 + … + 2𝑦 1 + 𝑦 0 ⎡⎢⎣ ⎤⎥⎦ 𝑉 0 = 𝐾2 Or V 0 = K[Decimal equivalent of digital input] Where, K = proportionality factor y n = 1; if the n th bit of input is ‘1’ y n = 0; if the n th bit of input is ‘0’</p>
+<p>DAC is a device that converts digital signals into Analog signals.</p>
+<p>It accepts an ‘n’ bit digital input &amp; generates a proportional analog output voltage.</p>
+<p>The analog output voltage V 0 of an N-bit straight binary D/A Converter is related to the</p>
+<p>digital input by the equation. 𝑛−1 𝑦 𝑛−1 + 2 𝑛−2 𝑦 𝑛−2 + … + 2𝑦 1 + 𝑦 0 ⎡⎢⎣ ⎤⎥⎦ 𝑉 0 = 𝐾2 Or V 0 = K[Decimal equivalent of digital input] Where, K = proportionality factor y n = 1; if the n th bit of input is ‘1’ y n = 0; if the n th bit of input is ‘0’</p>
 <h2>Resolution/Step size</h2>
-<p>It is defined as the change in the analog output voltage corresponding to a change of 1 unit at the digital input.</p>
+<p>It is defined as the change in the analog output voltage corresponding to a change of 1</p>
+<p>unit at the digital input.</p>
 <p>𝑉 𝐹𝑆 𝑅𝑒𝑠𝑜𝑙𝑢𝑡𝑖𝑜𝑛= 𝑛 −1 2 Where, V FS = full scale analog output voltage corresponding to digital input of all 1’s n = number of bits.</p>
 <p>1 % 𝑅𝑒𝑠𝑜𝑙𝑢𝑡𝑖𝑜𝑛 = 𝑛 −1 ×100% 2</p>
-<p>Analog output voltage = Resolution × Decimal equivalent of digital input i.e., A = RD</p>
+<p>Analog output voltage = Resolution × Decimal equivalent of digital input</p>
+<p>i.e., A = RD</p>
 <h2>Types of D/A converters:</h2>
 <h3>(1) Weighted Resistor DAC</h3>
 <p>This technique uses a resistor scaling and a common reference voltage.</p>
-<figure><img src="images/06-adc-dac_3.png" alt="Diagram" loading="lazy"></figure>
-<h2>(</h2>
-<h2>) 𝐷. 𝐺</h2>
-<p>𝑉 Analog output voltage (V 0) = 𝑛−1 2 Where, D = decimal equivalent of digital input G = Gain of op-Amp Analog output voltage is proportional to the digital input. LSB resistance = (2 n-1) × MSB resistance. Typical value of resistance ‘R’ ranges from 2.5 kΩ to 10 kΩ.</p>
+<p>●</p>
+<figure><img src="images/06-adc-dac_3.png" alt="Diagram" loading="lazy" style="max-width: 400px; height: auto;"></figure>
+<p>() 𝐷. 𝐺 𝑉 Analog output voltage (V 0) = 𝑛−1 2 Where, D = decimal equivalent of digital input G = Gain of op-Amp Analog output voltage is proportional to the digital input.</p>
+<p>LSB resistance = (2 n-1) × MSB resistance.</p>
+<p>Typical value of resistance ‘R’ ranges from 2.5 kΩ to 10 kΩ.</p>
+<p>●</p>
 <h3>Drawbacks:</h3>
-<p>The resistance used for LSB has very large value when no. of bits is large. Accuracy of system is less.</p>
+<p>The resistance used for LSB has very large value when no. of bits is large.</p>
+<p>Accuracy of system is less.</p>
+<p>●</p>
 <h3>R-2R Ladder DAC</h3>
 <p>This technique uses voltage scaling &amp; identical resistors.</p>
-<figure><img src="images/06-adc-dac_4.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/06-adc-dac_5.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/06-adc-dac_6.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/06-adc-dac_7.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/06-adc-dac_8.png" alt="Diagram" loading="lazy"></figure>
+<p>●</p>
+<figure><img src="images/06-adc-dac_4.png" alt="Diagram" loading="lazy" style="max-width: 285px; height: auto;"></figure>
+<figure><img src="images/06-adc-dac_5.png" alt="Diagram" loading="lazy" style="max-width: 159px; height: auto;"></figure>
+<figure><img src="images/06-adc-dac_6.png" alt="Diagram" loading="lazy" style="max-width: 160px; height: auto;"></figure>
+<figure><img src="images/06-adc-dac_7.png" alt="Diagram" loading="lazy" style="max-width: 167px; height: auto;"></figure>
+<figure><img src="images/06-adc-dac_8.png" alt="Diagram" loading="lazy" style="max-width: 126px; height: auto;"></figure>
 <p>Non-inverting OP-Amp Type Non-inverting OP-Amp type</p>
 <h3>R-2R Ladder DAC by using Non-inverting OP-Amp -</h3>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑛−1</p>
-<h2>(</h2>
-<h2>)</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑅 𝑓 𝑉 𝑟𝑒𝑓 𝑖 𝑏 𝑖 Output analog voltage (V 0) = 1 + ∑2 𝑛 𝑅 1 2 𝑖=0</p>
+<p>() 𝑛−1 () () 𝑅 𝑓 𝑉 𝑟𝑒𝑓 𝑖 𝑏 𝑖 Output analog voltage (V 0) = 1 + ∑2 𝑛 𝑅 1 2 𝑖=0</p>
 <h3>R-2R Ladder DAC by using inverting OP-Amp -</h3>
-<figure><img src="images/06-adc-dac_9.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/06-adc-dac_9.png" alt="Diagram" loading="lazy" style="max-width: 411px; height: auto;"></figure>
 <p>The total resistance of the ladder network is R.</p>
-<h2>( )</h2>
-<p>𝑉 Analog output voltage (V 0) = D.G 𝑛 2 Where, −𝑅 𝑓 𝐺= 𝑅 1 +𝑅</p>
+<p>() 𝑉 Analog output voltage (V 0) = D.G 𝑛 2 Where, −𝑅 𝑓 𝐺= 𝑅 1 +𝑅</p>
 <h3>Inverted R-2R Ladder DAC -</h3>
-<figure><img src="images/06-adc-dac_10.png" alt="Diagram" loading="lazy"></figure>
-<p>Output Analog output voltage (V 0)</p>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑛−1</p>
-<h2>(</h2>
-<h2>)</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑅 𝑓 −𝑉 𝑟𝑒𝑓 𝑖 𝑏 𝑖 − ∑2 𝑛 𝑅 1 2 𝑖=0 The R-2R DAC has better linearity. It requires only two different type of resistor with value R &amp; 2R</p>
+<figure><img src="images/06-adc-dac_10.png" alt="Diagram" loading="lazy" style="max-width: 338px; height: auto;"></figure>
+<p>Output Analog output voltage (V 0) () 𝑛−1 () () 𝑅 𝑓 −𝑉 𝑟𝑒𝑓 𝑖 𝑏 𝑖 − ∑2 𝑛 𝑅 1 2 𝑖=0 The R-2R DAC has better linearity.</p>
+<p>It requires only two different type of resistor with value R &amp; 2R</p>
+<p>●</p>
 <h2>Application of D/A converter</h2>
 <p>Control Automatic testing Signal reconstruction A/D conversion</p>
 <h2>Analog to Digital Conversion (ADC)</h2>
 <p>It accepts an Analog input voltage &amp; generates a proportional digital output.</p>
-<p>Decimal equivalent of digital output = 𝐴𝑛𝑎𝑙𝑜𝑔 𝑖𝑛𝑝𝑢𝑡 𝑣𝑜𝑙𝑡𝑎𝑔𝑒 𝑅𝑒𝑠𝑜𝑙𝑢𝑡𝑖𝑜𝑛 𝐷= 𝐴 𝑅 An ADC process is basically a quantization process &amp; ADC is always defined &amp; design for a finite number of quantized analog voltage levels. If the analog input to an ADC falls in between two quantized analog voltage levels, then the digital output corresponds to either of the two quantized analog voltage levels. In either case, an error is associated in the conversion process. This error is known as</p>
+<p>●</p>
+<p>Decimal equivalent of digital output = 𝐴𝑛𝑎𝑙𝑜𝑔 𝑖𝑛𝑝𝑢𝑡 𝑣𝑜𝑙𝑡𝑎𝑔𝑒</p>
+<p>𝑅𝑒𝑠𝑜𝑙𝑢𝑡𝑖𝑜𝑛 𝐷= 𝐴 𝑅 An ADC process is basically a quantization process &amp; ADC is always defined &amp; design for a</p>
+<p>finite number of quantized analog voltage levels. If the analog input to an ADC falls in between two quantized analog voltage levels, then</p>
+<p>the digital output corresponds to either of the two quantized analog voltage levels. In either case, an error is associated in the conversion process. This error is known as</p>
+<p>●</p>
 <h3>‘ Quantization Errors ’.</h3>
 <h2>Types of ADC’s</h2>
 <h3>The Counter type ADC</h3>
-<figure><img src="images/06-adc-dac_11.png" alt="Diagram" loading="lazy"></figure>
-<p>It uses linear search for conversion. Conversion time is not constant. It depends upon the magnitude of analog input. The maximum conversion time in counter type A/D converter (2 n – 1) T clk ≈2 n T clk. So, for every bit added conversion time doubles. DC voltage is proportional to digital output. The maximum conversion time depends on the number of bits. It uses DAC in the feedback path</p>
+<figure><img src="images/06-adc-dac_11.png" alt="Diagram" loading="lazy" style="max-width: 365px; height: auto;"></figure>
+<p>It uses linear search for conversion.</p>
+<p>Conversion time is not constant. It depends upon the magnitude of analog input.</p>
+<p>The maximum conversion time in counter type A/D converter (2 n – 1) T clk ≈2 n T clk. So, for</p>
+<p>every bit added conversion time doubles. DC voltage is proportional to digital output.</p>
+<p>The maximum conversion time depends on the number of bits.</p>
+<p>It uses DAC in the feedback path</p>
 <h3>Operation</h3>
-<p>The N bit counter generates an n bit digital output which is applied as an input to the DAC. The analog output corresponding to the digital input from DAC is compared with the input analog voltage using an op-amp comparator. The op-amp compares the two voltages and if the generated DAC voltage is less; it generates a high pulse to the N bit counter as a clock pulse to increment the counter. The same process will be repeated until the DAC output equals to the input analog voltage. If the DAC output voltage is equal to the input analog voltage, then it generates low clock pulse and it also generates a clear signal to the counter and load signal to the storage resistor to store the corresponding digital bits. These digital values are closely matched with the input analog values with small quantization error. For every sampling interval the DAC output follows a ramp fashion so that it is called as Digital ramp type ADC. And this ramp looks like stair cases for every sampling time so that it is also called as staircase approximation type ADC.</p>
+<p>The N bit counter generates an n bit digital output which is applied as an input to the DAC.</p>
+<p>The analog output corresponding to the digital input from DAC is compared with the input analog</p>
+<p>voltage using an op-amp comparator.</p>
+<p>The op-amp compares the two voltages and if the generated DAC voltage is less; it generates</p>
+<p>a high pulse to the N bit counter as a clock pulse to increment the counter. The same process will be repeated until the DAC output equals to the input analog voltage.</p>
+<p>If the DAC output voltage is equal to the input analog voltage, then it generates low clock</p>
+<p>pulse and it also generates a clear signal to the counter and load signal to the storage resistor to store the corresponding digital bits. These digital values are closely matched with the input analog values with small quantization</p>
+<p>error. For every sampling interval the DAC output follows a ramp fashion so that it is called as</p>
+<p>Digital ramp type ADC. And this ramp looks like stair cases for every sampling time so that it is also called as staircase approximation type ADC.</p>
 <h3>Advantages of Counter type ADC</h3>
-<p>Simple to understand and operate. Cost is less because of less complexity in design.</p>
+<p>Simple to understand and operate.</p>
+<p>Cost is less because of less complexity in design.</p>
+<p>●</p>
 <h3>Disadvantages or limitations of Counter type of ADC</h3>
-<p>Speed is less because every time the counter has to start from ZERO. There may be clash or aliasing effect if the next input is sampled before completion of one operation.</p>
+<p>Speed is less because every time the counter has to start from ZERO.</p>
+<p>There may be clash or aliasing effect if the next input is sampled before completion of one</p>
+<p>operation.</p>
 <h3>NOTE -</h3>
 <h3>Linear Search -It is a search that finds an element in the list by searching the element</h3>
 <p>sequentially until the element is found in the list.</p>
@@ -136,37 +161,82 @@
 <h3>Counter type ADC . Average conversion time =</h3>
 <p>2</p>
 <h3>Flash type ADC</h3>
-<p>It is the fastest ADC among all the ADC types. It uses multiple comparators to increase the speed of operation. Therefore, it is also known as simultaneous or parallel/comparator type ADC. A reference voltage divider generates equally spaced reference voltage levels. No clock pulse is required in this ADC. It produces the output instantaneously. Therefore, conversion time is not constant. Flash type ADC requires no counter An n-bit flash type ADC requires:</p>
+<p>It is the fastest ADC among all the ADC types.</p>
+<p>It uses multiple comparators to increase the speed of operation. Therefore, it is also known</p>
+<p>as simultaneous or parallel/comparator type ADC. A reference voltage divider generates equally spaced reference voltage levels.</p>
+<p>No clock pulse is required in this ADC.</p>
+<p>It produces the output instantaneously. Therefore, conversion time is not constant.</p>
+<p>Flash type ADC requires no counter An n-bit flash type ADC requires:</p>
+<p>●</p>
 <ul>
 <li><strong>1. 2 n 1</strong> comparators and <strong>2 n</strong> registers.</li>
 <li><strong>2.</strong> One <strong>2 n × n</strong> priority encoder.</li>
 </ul>
 <h3>Example :</h3>
 <h3>3-bit flash ADC:</h3>
-<p>It uses 23 x 3 priority encoder. The following figure shows a 3-bit flash ADC circuit.</p>
-<figure><img src="images/06-adc-dac_12.png" alt="Diagram" loading="lazy"></figure>
-<p>It is formed of a series of comparators, each one comparing the input signal to a unique reference voltage. The comparator outputs connect to the inputs of a priority encoder circuit, which then produces a binary output. V ref is a stable reference voltage provided by a precision voltage regulator as part of the converter circuit. As the analog input voltage exceeds the reference voltage at each comparator, the comparator outputs will sequentially saturate to a high state. The priority encoder generates a binary number based on the highest-order active input, ignoring all other active inputs.</p>
+<p>It uses 23 x 3 priority encoder.</p>
+<p>The following figure shows a 3-bit flash ADC circuit.</p>
+<p>●</p>
+<figure><img src="images/06-adc-dac_12.png" alt="Diagram" loading="lazy" style="max-width: 430px; height: auto;"></figure>
+<p>It is formed of a series of comparators, each one comparing the input signal to a unique</p>
+<p>reference voltage. The comparator outputs connect to the inputs of a priority encoder circuit, which then</p>
+<p>produces a binary output. V ref is a stable reference voltage provided by a precision voltage regulator as part of the</p>
+<p>converter circuit. As the analog input voltage exceeds the reference voltage at each comparator, the</p>
+<p>comparator outputs will sequentially saturate to a high state. The priority encoder generates a binary number based on the highest-order active input,</p>
+<p>ignoring all other active inputs.</p>
 <h3>Successive approximation type ADC</h3>
-<p>A successive-approximation ADC is a type of analog-to-digital converter that converts a continuous analog waveform into a discrete digital representation using a binary search through all possible quantization levels before finally converging upon a digital output for each analog voltage conversion. This ADC requires an internal DAC and also comparator The approach of this ADC is similar to measuring an unknown weight with a balance scale and a set of standard weights. For an N-bit successive approximation ADC, the conversion time is = N T Where, T is the time period of the clock pulse. Therefore, conversion time does not depend on the magnitude of the input voltage. The SAR ADC will use widely data acquisition techniques at sampling rates higher than 10 k Hz.</p>
+<p>A successive-approximation ADC is a type of analog-to-digital converter that converts a</p>
+<p>continuous analog waveform into a discrete digital representation using a binary search through all possible quantization levels before finally converging upon a digital output for each analog voltage conversion. This ADC requires an internal DAC and also comparator</p>
+<p>The approach of this ADC is similar to measuring an unknown weight with a balance scale</p>
+<p>and a set of standard weights. For an N-bit successive approximation ADC, the conversion time is = N T</p>
+<p>Where, T is the time period of the clock pulse. Therefore, conversion time does not depend on the magnitude of the input voltage. The SAR ADC will use widely data acquisition techniques at sampling rates higher than 10</p>
+<p>k Hz.</p>
 <p>1 Aperture time = 𝑛 −1) ω(2 Ring counter is used to successively set the bits.</p>
-<figure><img src="images/06-adc-dac_13.png" alt="Diagram" loading="lazy"></figure>
+<p>●</p>
+<figure><img src="images/06-adc-dac_13.png" alt="Diagram" loading="lazy" style="max-width: 385px; height: auto;"></figure>
 <h3>Advantages :</h3>
-<p>Speed is high compared to counter type ADC. Good ratio of speed to power. Compact design compared to Flash Type and it is inexpensive. SAR type ADC is mostly used in digital circuits to provide interfacing with microprocessor.</p>
+<p>Speed is high compared to counter type ADC.</p>
+<p>Good ratio of speed to power.</p>
+<p>Compact design compared to Flash Type and it is inexpensive.</p>
+<p>SAR type ADC is mostly used in digital circuits to provide interfacing with microprocessor.</p>
+<p>●</p>
 <h3>Disadvantage:</h3>
 <p>Cost is high because of SAR Complexity in design.</p>
+<p>●</p>
 <h3>Single slope ADC</h3>
-<p>The simplest form of an integrating ADC uses a single-slope architecture. In this, an unknown input voltage is integrated and the value is compared against a known reference value. The time it takes for the integrator to trip the comparator is proportional to the unknown voltage. In this case, the known reference voltage must be stable and accurate to guarantee the accuracy of the measurement. Conversion time of single slope ADC is not constant. It depends upon the amplitude of the analog input voltage. If the analog input voltage falls in between the quantized analog voltage levels, then the digital output always corresponds to the smaller quantized analog voltage levels. The counter will be ON while discharging Principle:</p>
+<p>The simplest form of an integrating ADC uses a single-slope architecture.</p>
+<p>In this, an unknown input voltage is integrated and the value is compared against a known</p>
+<p>reference value. The time it takes for the integrator to trip the comparator is proportional to the unknown</p>
+<p>voltage. In this case, the known reference voltage must be stable and accurate to guarantee the accuracy of the measurement. Conversion time of single slope ADC is not constant. It depends upon the amplitude of the</p>
+<p>analog input voltage. If the analog input voltage falls in between the quantized analog voltage levels, then the</p>
+<p>digital output always corresponds to the smaller quantized analog voltage levels. The counter will be ON while discharging Principle:</p>
+<p>●</p>
 <ul>
 <li>1. Charging time (T 1) → V C ∝ | Vin |</li>
 <li>2. Discharging time (T 2) → count goes down V C to zero</li>
 </ul>
 <h3>Dual slope ADC</h3>
-<p>In dual slope type ADC, the integrator generates two different ramps, one with the known analog input voltage VA and another with a known reference voltage –V ref. Hence, it is called a dual-slope A to D converter. The logic diagram for the same is shown below. The dual ramp output waveform is shown below:</p>
-<p>The Output Voltage of Integrator is given by: 𝑉 0 𝑅𝐶 𝑉 𝑟𝑒𝑓 (𝑡−𝑇 1) 𝑉 0 = − 𝑇 0 + 𝑅𝐶 In dual-slope reference voltage count up to 2 N 1 and when input voltage V a is integrated the counter is allowed to count maximum up to 2 N – 1 Dual Slope ADC requires maximum conversion time i.e., 2 n+1 T clk It is mostly used in digital voltmeters &amp; multi-meters. It is the most accurate ADC of all. It does not require internal DAC. In the dual-slope A/D converter, the leakage current of the capacitor can cause errors in the integration and consequentially, an error. These effects, in the dual-slope AID converter, will manifest themselves as a reading of the DVM when no input voltage is present. It is less sensitive towards noise, variation in power supply, temperature caused variations in circuit component values (R &amp; C) The dual-slope is the slowest ADC These are used in the precision application. Noise present on the input voltage is reduced by averaging. The value of the capacitor and conversion clock does not affect conversion accuracy, since they act equivalently on the up-slope and down-slope. Its main disadvantage is of slow conversion rate and also due to the integration process during input hold time.</p>
+<p>In dual slope type ADC, the integrator generates two different ramps, one with the known</p>
+<p>analog input voltage VA and another with a known reference voltage –V ref. Hence, it is called a dual-slope A to D converter. The logic diagram for the same is shown below. The dual ramp output waveform is shown below:</p>
+<p>●</p>
+<p>The Output Voltage of Integrator is given by:</p>
+<p>𝑉 0 𝑅𝐶 𝑉 𝑟𝑒𝑓 (𝑡−𝑇 1) 𝑉 0 = − 𝑇 0 + 𝑅𝐶 In dual-slope reference voltage count up to 2 N 1 and when input voltage V a is integrated the</p>
+<p>counter is allowed to count maximum up to 2 N – 1 Dual Slope ADC requires maximum conversion time i.e., 2 n+1 T clk</p>
+<p>It is mostly used in digital voltmeters &amp; multi-meters.</p>
+<p>It is the most accurate ADC of all.</p>
+<p>It does not require internal DAC.</p>
+<p>In the dual-slope A/D converter, the leakage current of the capacitor can cause errors in the</p>
+<p>integration and consequentially, an error. These effects, in the dual-slope AID converter, will manifest themselves as a reading of the</p>
+<p>DVM when no input voltage is present. It is less sensitive towards noise, variation in power supply, temperature caused variations in</p>
+<p>circuit component values (R &amp; C) The dual-slope is the slowest ADC These are used in the precision application.</p>
+<p>Noise present on the input voltage is reduced by averaging.</p>
+<p>The value of the capacitor and conversion clock does not affect conversion accuracy, since</p>
+<p>they act equivalently on the up-slope and down-slope. Its main disadvantage is of slow conversion rate and also due to the integration process</p>
+<p>during input hold time.</p>
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">GATE, ESE</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">GATE, ESE</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">GATE, ESE</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">General</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">General</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">General</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -247,6 +317,33 @@
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>01 Semiconductor Physics — Laurel Library</title>
-    <meta name="description" content="01 Semiconductor Physics - Edc study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="01 Semiconductor Physics - Edc study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 2 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,40 +53,40 @@
                     <div class="meta">
                         <span class="meta-category">Edc</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>Semiconductor Theory</h2>
-<figure><img src="images/01-semiconductor-physics_1.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_1.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <h3>Conductor</h3>
-<figure><img src="images/01-semiconductor-physics_2.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_3.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_2.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_3.png" alt="Diagram" loading="lazy" style="max-width: 306px; height: auto;"></figure>
 <h3>Insulator</h3>
-<figure><img src="images/01-semiconductor-physics_4.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_5.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_6.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_4.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_5.png" alt="Diagram" loading="lazy" style="max-width: 306px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_6.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <h3>Semiconductor</h3>
-<figure><img src="images/01-semiconductor-physics_7.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_8.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_9.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_7.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_8.png" alt="Diagram" loading="lazy" style="max-width: 247px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_9.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <h3>Properties of Semiconductors:</h3>
-<figure><img src="images/01-semiconductor-physics_10.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_10.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <h2>Effect of Temperature</h2>
 <h3>Conductors:</h3>
-<figure><img src="images/01-semiconductor-physics_11.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_12.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_11.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_12.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
 <h3>Semiconductors:</h3>
-<figure><img src="images/01-semiconductor-physics_13.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_14.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_13.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_14.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
 <h3>Insulators:</h3>
-<figure><img src="images/01-semiconductor-physics_15.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_15.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <h2>Semiconductor</h2>
-<figure><img src="images/01-semiconductor-physics_16.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_17.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_18.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_16.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_17.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_18.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <h3>Impure semiconductor or extrinsic semiconductor:</h3>
-<figure><img src="images/01-semiconductor-physics_19.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_19.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <p>There are two types of extrinsic semiconductor:</p>
-<figure><img src="images/01-semiconductor-physics_20.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_20.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>N-type Semiconductor</th>
@@ -118,14 +121,14 @@ in n-type semiconductors.</td>
 p-type semiconductor are holes.</td>
 </tr>
 </tbody></table></div>
-<figure><img src="images/01-semiconductor-physics_21.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_21.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
 <h2>Some frequently used notations</h2>
 <p>n 0 ⇒ Number of free electrons in conduction band under equilibrium in intrinsic semiconductor p 0 Number of holes in the Valence Band under equilibrium in intrinsic ⇒ semiconductor K = Boltzmann’s constant = 8.62 × 10 5 e V/k = 1.38 × 10 23 Joules/k</p>
 <p>N a = Acceptor Concentration N d = Donor Concentration n i = Intrinsic Concentration σ = conductivity µ n = mobility of e, σ n = Conductivity of e µ p = mobility of holes, σ p = Conductivity of holes</p>
 <h3>Conductivity</h3>
 <p>→ σ = qn 0 μ n + qp 0 μ p → General equation → σ = qni (μ n + μ p) → for intrinsic semiconductor as n i = n 0 = p 0</p>
 <p>→ σ = q N d μ n → for N type semiconductor → σ = q N a μ p → for P type semiconductor</p>
-<h3>Note</h3>
+<p><strong>Note</strong></p>
 <ul>
 <li>1. σ of Intrinsic semiconductor ↑ with Temperature ↑</li>
 <li>2. σ of Extrinsic semiconductor ↓ with Temperature ↑ above 300° k. But up to 300° K, σ n and σ p ↑ with T ↑.</li>
@@ -133,23 +136,29 @@ p-type semiconductor are holes.</td>
 <li>4. At curie temperature, extrinsic SC behaves as intrinsic semiconductor</li>
 </ul>
 <h3>Mass Action law</h3>
-<figure><img src="images/01-semiconductor-physics_22.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_22.png" alt="Diagram" loading="lazy" style="max-width: 467.7108154296875px; height: auto;"></figure>
 <p>2 = n 0 p 0 Intrinsic semiconductor → n i</p>
 <h2>Mobility</h2>
-<figure><img src="images/01-semiconductor-physics_23.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_24.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_23.png" alt="Diagram" loading="lazy" style="max-width: 256px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_24.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <p>𝑉 𝑑 µ = 𝐸 V d = drift velocity E = electric field intensity</p>
-<figure><img src="images/01-semiconductor-physics_25.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_25.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
 <h3>Drift velocity:</h3>
-<figure><img src="images/01-semiconductor-physics_26.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_26.png" alt="Diagram" loading="lazy" style="max-width: 450.0px; height: auto;"></figure>
 <p>| | 𝑉 𝑑 = 𝑞τ μ = 𝐸 𝑚 Where, 𝑉 𝑑 = 𝑞𝐸τ 𝑚 q is the charge, E is the electric field, and τ is the relaxation time.</p>
 <h2>Fermi Energy</h2>
-<p>Fermi Energy is the highest energy occupied by an electron Fermi Energy level gives probability of 50% occupancy of electron 1 𝑓𝐸 () = 𝐸−𝐸𝐹 ⎡⎢⎣ ⎤⎥⎦ 𝑘𝑇 1+𝑒</p>
+<p>Fermi Energy is the highest energy occupied by an electron</p>
+<p>Fermi Energy level gives probability of 50% occupancy of electron</p>
+<p>1 𝑓𝐸 () = 𝐸−𝐸𝐹 ⎡⎢⎣ ⎤⎥⎦ 𝑘𝑇 1+𝑒</p>
 <p>Where f (E) is Fermi Dirac function which gives probability that energy level E occupied by an electron at T, under equilibrium</p>
-<figure><img src="images/01-semiconductor-physics_27.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_28.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-semiconductor-physics_29.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-semiconductor-physics_27.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_28.png" alt="Diagram" loading="lazy" style="max-width: 468.0px; height: auto;"></figure>
+<figure><img src="images/01-semiconductor-physics_29.png" alt="Diagram" loading="lazy" style="max-width: 500px; height: auto;"></figure>
                     
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="02-pn-junction.html" class="note-card"><h4>02 Pn Junction</h4><div class="meta">GATE, ESE</div></a><a href="03-bjt.html" class="note-card"><h4>03 Bjt</h4><div class="meta">GATE, ESE</div></a><a href="04-fet-mosfet.html" class="note-card"><h4>04 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a><a href="05-special-diodes.html" class="note-card"><h4>05 Special Diodes</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
                 </article>
             </div>
         </div>
@@ -229,6 +238,33 @@ p-type semiconductor are holes.</td>
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

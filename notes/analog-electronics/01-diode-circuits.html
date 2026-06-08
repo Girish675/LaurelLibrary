@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>01 Diode Circuits — Laurel Library</title>
-    <meta name="description" content="01 Diode Circuits - Analog Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="01 Diode Circuits - Analog Electronics study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 4 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,49 +53,34 @@
                     <div class="meta">
                         <span class="meta-category">Analog Electronics</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>Normal Diode</h2>
 <h2>For DC analysis</h2>
-<figure><img src="images/01-diode-circuits_1.png" alt="Diagram" loading="lazy"></figure>
-<p>∂𝐼 𝐷 1 𝑅𝑑𝑐 = ∂𝑉 𝐷 Where I D = Diode current V D = Diode voltage V r = Cut in voltage</p>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑉 𝐷 𝑛𝑉 𝑇 −1 𝐼 𝐷 = 𝐼 𝑆 𝑒</p>
+<figure><img src="images/01-diode-circuits_1.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<p>∂𝐼 𝐷 1 𝑅𝑑𝑐 = ∂𝑉 𝐷 Where I D = Diode current V D = Diode voltage V r = Cut in voltage () 𝑉 𝐷 𝑛𝑉 𝑇 −1 𝐼 𝐷 = 𝐼 𝑆 𝑒</p>
 <h2>For AC analysis</h2>
-<p>V d = V D + 𝑣 𝑑</p>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑉 𝑑 𝑒𝑉 𝑇 −1 𝐼 𝑑 = 𝐼 𝑆 𝑒</p>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑉 𝐷 +𝑣 𝑑 𝑛𝑉 𝑇 −1 𝐼 𝑑 = 𝐼 𝑆 𝑒 V D = DC Diode voltage v d = AC Diode voltage V d = Total Diode voltage</p>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑉 𝐷 𝑣 𝑑 𝑛𝑉 𝑇. 𝑒 𝑛𝑉 𝑇 𝐼 𝐷 + 𝑖𝑑≃𝐼 𝑆 𝑒 𝑣 𝑑 𝑛𝑉 𝑇 𝐼 𝐷 + 𝑖𝑑≃𝐼 𝐷 𝑒</p>
-<h2>(</h2>
-<h2>)</h2>
-<p>as e x = 1 + x 𝑣 𝑑 𝐼 𝐷 + 𝑖𝑑≃𝐼 𝐷 1 + 𝑛𝑉 𝑇 𝐼 𝐷 𝑣 𝑑 𝐼 𝐷 + 𝑖𝑑≃𝐼 𝐷 + 𝑛𝑉 𝑇 𝑣 𝑑 𝑖𝑑= 𝐼 𝐷 𝑛𝑉 𝑇 𝐼 𝐷 𝑖𝑑 1 where r ac = AC resistance 𝑣 𝑑 = 𝑟 𝑎𝑐 = 𝑛𝑉 𝑇</p>
+<p>V d = V D + 𝑣 𝑑 () 𝑉 𝑑 𝑒𝑉 𝑇 −1 𝐼 𝑑 = 𝐼 𝑆 𝑒 () 𝑉 𝐷 +𝑣 𝑑 𝑛𝑉 𝑇 −1 𝐼 𝑑 = 𝐼 𝑆 𝑒 V D = DC Diode voltage v d = AC Diode voltage V d = Total Diode voltage () 𝑉 𝐷 𝑣 𝑑 𝑛𝑉 𝑇. 𝑒 𝑛𝑉 𝑇 𝐼 𝐷 + 𝑖𝑑≃𝐼 𝑆 𝑒 𝑣 𝑑 𝑛𝑉 𝑇 𝐼 𝐷 + 𝑖𝑑≃𝐼 𝐷 𝑒 () as e x = 1 + x 𝑣 𝑑 𝐼 𝐷 + 𝑖𝑑≃𝐼 𝐷 1 + 𝑛𝑉 𝑇 𝐼 𝐷 𝑣 𝑑 𝐼 𝐷 + 𝑖𝑑≃𝐼 𝐷 + 𝑛𝑉 𝑇 𝑣 𝑑 𝑖𝑑= 𝐼 𝐷 𝑛𝑉 𝑇 𝐼 𝐷 𝑖𝑑 1 where r ac = AC resistance 𝑣 𝑑 = 𝑟 𝑎𝑐 = 𝑛𝑉 𝑇</p>
 <h2>Open Ckt Test of Diode</h2>
 <ul>
 <li>1) open all the diodes in the Ckt</li>
 <li>2) find V D i.e. voltage across Diode</li>
 <li>3) If V D &gt; V r then diode is forward biased (ON). V D &lt; V r then diode is RB (off) Where V r is cut-in voltage of diode</li>
 </ul>
-<figure><img src="images/01-diode-circuits_2.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-diode-circuits_2.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
 <ul>
 <li>1) Replace all diodes in the Ckt by SC &amp; assume current I D in p to n direction</li>
 <li>2) If I D &gt; 0 → Diode is ON I D &lt; 0 → Diode is off</li>
 </ul>
-<figure><img src="images/01-diode-circuits_3.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-diode-circuits_4.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-diode-circuits_5.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-diode-circuits_3.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<figure><img src="images/01-diode-circuits_4.png" alt="Diagram" loading="lazy" style="max-width: 235px; height: auto;"></figure>
+<figure><img src="images/01-diode-circuits_5.png" alt="Diagram" loading="lazy" style="max-width: 240px; height: auto;"></figure>
 <p>Zener Diode works in Reverse Bias Mode. In forward Bias, it act as Normal Diode Steps: first check V oc by replacing Zener Diode with open Ckt. If V oc ≥V z then replace zener by a source of V z If V oc &lt; V z then replace zener by open circuit.</p>
-<figure><img src="images/01-diode-circuits_6.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-diode-circuits_6.png" alt="Diagram" loading="lazy" style="max-width: 183px; height: auto;"></figure>
 <p>Where V oc = open Ckt voltage V z = Zener voltage V i = Input voltage R L = Load resistance R S = Source resistance</p>
 <p>→ P z max = Max. power dissipation, minimum power rating required, Maximum power rating = V z × I z max</p>
 <p>→ P z min = Minimum power dissipation = V z × I z min</p>
-<figure><img src="images/01-diode-circuits_7.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-diode-circuits_7.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
 <p>D.C = average value m = maximum value rms = root mean square value</p>
 <h3>Ideal case:</h3>
 <p>𝐼 𝑚</p>
@@ -144,8 +132,10 @@
 </ul>
 <h2>Bridge rectifier</h2>
 <p>𝑅 𝑆 For bridge rectifier, In all formulas of centre tap full wave rectifier, is replaced by 2 R S &amp; R f is replaced by 2R f → PIV = V m → TUF = 0.812 2𝑉 𝑟 → θ = 2π −4 𝑉 𝑚</p>
-<figure><img src="images/01-diode-circuits_8.png" alt="Diagram" loading="lazy"></figure>
-<p>It adds DC or Avg value in the applied AC signal without changing the shape of it. It is also known as peak detector and DC re-insertion.</p>
+<figure><img src="images/01-diode-circuits_8.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
+<p>It adds DC or Avg value in the applied AC signal without changing the shape</p>
+<p>of it. It is also known as peak detector and DC re-insertion.</p>
+<p>●</p>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Clamper Ckt</th>
@@ -160,15 +150,19 @@ m</td>
 m</td>
 </tr>
 </tbody></table></div>
-<figure><img src="images/01-diode-circuits_9.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-diode-circuits_9.png" alt="Diagram" loading="lazy" style="max-width: 275px; height: auto;"></figure>
 <p>| | 𝑣 𝑜 = 𝑉 𝑚 sin 𝑠𝑖𝑛 𝑤𝑡 + 𝑉 𝑚 𝑚𝑎𝑥 v o = 2 V m</p>
-<figure><img src="images/01-diode-circuits_10.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-diode-circuits_10.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
 <p>Diode clipper is known as Diode limiter, is a wave shaping circuit that takes an input waveform and clips off its top half, bottom half or both halves together.</p>
 <h2>a) Positive Clipper</h2>
 <h2>b) Negative Clipper</h2>
 <h2>c) Clipping of both Half cycles</h2>
-<figure><img src="images/01-diode-circuits_11.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-diode-circuits_11.png" alt="Diagram" loading="lazy" style="max-width: 378px; height: auto;"></figure>
                     
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="02-bipolar-junction-transistors.html" class="note-card"><h4>02 Bipolar Junction Transistors</h4><div class="meta">GATE, ESE</div></a><a href="03-fet-mosfet.html" class="note-card"><h4>03 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a><a href="04-op-amp-and-its-applications.html" class="note-card"><h4>04 Op Amp And Its Applications</h4><div class="meta">GATE, ESE</div></a><a href="05-oscillators.html" class="note-card"><h4>05 Oscillators</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
                 </article>
             </div>
         </div>
@@ -248,6 +242,33 @@ m</td>
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

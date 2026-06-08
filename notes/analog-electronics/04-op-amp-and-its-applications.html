@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>04 Op Amp And Its Applications — Laurel Library</title>
-    <meta name="description" content="04 Op Amp And Its Applications - Analog Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="04 Op Amp And Its Applications - Analog Electronics study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 4 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,62 +53,63 @@
                     <div class="meta">
                         <span class="meta-category">Analog Electronics</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h3>Operational Amplifier</h3>
 <p>Block diagram of an op-amp:​</p>
-<figure><img src="images/04-op-amp-and-its-applications_1.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_1.jpg" alt="Diagram" loading="lazy" style="max-width: 1337px; height: auto;"></figure>
 <p>Op-amp is a high gain, direct coupled amplifier, used to do all the mathematical operations.​</p>
 <p>Open loop gain ​ →∞ 𝑉 𝑜 −𝑅 𝑓 Close loop gain​ 𝑉 𝑖 = = 𝑅 1</p>
-<figure><img src="images/04-op-amp-and-its-applications_2.jpg" alt="Diagram" loading="lazy"></figure>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑉 𝑜 𝑅 𝑓 𝑉 𝑖𝑛 = 1 + 𝑅 1</p>
+<figure><img src="images/04-op-amp-and-its-applications_2.jpg" alt="Diagram" loading="lazy" style="max-width: 557px; height: auto;"></figure>
+<p>() 𝑉 𝑜 𝑅 𝑓 𝑉 𝑖𝑛 = 1 + 𝑅 1</p>
 <h3>Op-amp as a summer</h3>
-<figure><img src="images/04-op-amp-and-its-applications_3.jpg" alt="Diagram" loading="lazy"></figure>
-<p>−𝑅 𝑓 𝑅 𝑓 𝑅 𝑓 𝑉 𝑜 = · 𝑉 1 − 𝑅 𝑛 𝑉 2...− 𝑅 𝑁 𝑉 𝑁 𝑅 1</p>
+<figure><img src="images/04-op-amp-and-its-applications_3.jpg" alt="Diagram" loading="lazy" style="max-width: 668px; height: auto;"></figure>
+<p>−𝑅 𝑓 𝑅 𝑓 𝑅 𝑓 𝑉 𝑜 =</p>
+<ul>
+<li>𝑉 1 − 𝑅 𝑛 𝑉 2...− 𝑅 𝑁 𝑉 𝑁 𝑅 1</li>
+</ul>
 <h3>Op-amp as voltage follower</h3>
-<figure><img src="images/04-op-amp-and-its-applications_4.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_4.jpg" alt="Diagram" loading="lazy" style="max-width: 348px; height: auto;"></figure>
 <p>​ It is used for impedance matching ​ It has unity gain ​ It has high input impedance and very low output impedance</p>
 <h3>Voltage to current converter</h3>
 <p>If then this configuration has 𝑅 1 𝑅 3 = 𝑅 𝑓 𝑅 2 −𝑉 𝑖𝑛 1.​ this current is independent of hence called current source 𝐼 𝐿 = 𝑅 𝐿 𝑅 2 𝐶𝑀𝑅𝑅= ∞ 2.​ ​</p>
-<figure><img src="images/04-op-amp-and-its-applications_5.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_5.jpg" alt="Diagram" loading="lazy" style="max-width: 700px; height: auto;"></figure>
 <h3>Differential amplifier</h3>
-<figure><img src="images/04-op-amp-and-its-applications_6.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_6.jpg" alt="Diagram" loading="lazy" style="max-width: 692px; height: auto;"></figure>
 <p>𝑅 2 [] 𝐼𝑓 𝑅 2 𝑅 3 = 𝑅 1 𝑅 4 𝑡ℎ𝑒𝑛 𝑉 𝑜 = 𝑅 1 𝑉 2 −𝑉 1 𝑅 𝑖𝑛 = 𝑅 1 + 𝑅 3</p>
 <h3>Op-amp as an integrator</h3>
-<figure><img src="images/04-op-amp-and-its-applications_7.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_7.jpg" alt="Diagram" loading="lazy" style="max-width: 535px; height: auto;"></figure>
 <p>​ 𝑉 𝑜 −1 𝑉 𝑖𝑛 = 𝑅𝐶𝑆 ​ 𝑉 𝑜 (𝑡) ∝∫𝑉 𝑖𝑛 (𝑡)𝑑𝑡</p>
 <h3>Op-amp as a differentiator</h3>
-<figure><img src="images/04-op-amp-and-its-applications_8.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_8.jpg" alt="Diagram" loading="lazy" style="max-width: 497px; height: auto;"></figure>
 <p>​ 𝑉 𝑜 𝑉 𝑖𝑛 =−𝑅𝐶𝑆 ​ 𝑑 𝑉 𝑜 (𝑡) ∝ 𝑑𝑡 𝑉 𝑖𝑛 (𝑡)</p>
 <h3>Op-amp as log amplifier</h3>
-<figure><img src="images/04-op-amp-and-its-applications_9.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_9.jpg" alt="Diagram" loading="lazy" style="max-width: 613px; height: auto;"></figure>
 <p>​ () 𝑉 𝑜 ∝𝑙𝑜𝑔 𝑒 ⁡ 𝑉 𝑖𝑛</p>
 <h3>Op-amp as antilog or exponential amplifier</h3>
-<figure><img src="images/04-op-amp-and-its-applications_10.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_10.jpg" alt="Diagram" loading="lazy" style="max-width: 554px; height: auto;"></figure>
 <p>​ 𝑉 𝑖𝑛 (𝑡) 𝑉 𝑜 ∝𝑒</p>
 <h3>Op-amp as precision diode</h3>
 <p>In normal diodes, if, then diode remains off but in precision diode even voltage</p>
 <p>𝑉 𝑖𝑛 &lt; 𝑉 𝑟 of milli volt make diode ON because of high gain of the amplifier.​</p>
-<figure><img src="images/04-op-amp-and-its-applications_11.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_11.jpg" alt="Diagram" loading="lazy" style="max-width: 440px; height: auto;"></figure>
 <h3>Op-amp as half wave rectifier</h3>
-<figure><img src="images/04-op-amp-and-its-applications_12.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_12.jpg" alt="Diagram" loading="lazy" style="max-width: 722px; height: auto;"></figure>
 <p>Op-amp as full wave rectifier​</p>
-<figure><img src="images/04-op-amp-and-its-applications_13.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_13.jpg" alt="Diagram" loading="lazy" style="max-width: 939px; height: auto;"></figure>
 <h3>Op-amp as astable multi-vibrator</h3>
-<figure><img src="images/04-op-amp-and-its-applications_14.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_14.jpg" alt="Diagram" loading="lazy" style="max-width: 516px; height: auto;"></figure>
 <h3>Op-amp as Schmitt trigger</h3>
-<figure><img src="images/04-op-amp-and-its-applications_15.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_15.jpg" alt="Diagram" loading="lazy" style="max-width: 540px; height: auto;"></figure>
 <p>𝑅 2 Upper threshold:</p>
-<p>​ 𝑉 𝑠𝑎𝑡 · 𝑅 1 +𝑅 2 𝑅 2 Lower threshold:</p>
+<p>​ 𝑉 𝑠𝑎𝑡 𝑅 1 +𝑅 2 𝑅 2 Lower threshold:</p>
 <p>−𝑉 𝑠𝑎𝑡 𝑅 1 +𝑅 2</p>
 <h3>If reference voltage is used:</h3>
-<figure><img src="images/04-op-amp-and-its-applications_16.jpg" alt="Diagram" loading="lazy"></figure>
-<p>​ 𝑉 𝑅 ·𝑅 1 𝑅 2 𝑉 𝑈𝑇 = 𝑅 1 +𝑅 2 + 𝑉 𝑠𝑎𝑡 𝑅 1 +𝑅 2 ​ 𝑉 𝑅 ·𝑅 1 𝑉 𝑠𝑎𝑡 ·𝑅 2 𝑉 𝐿𝑇 = 𝑅 1 +𝑅 2 − 𝑅 1 +𝑅 2 ​</p>
-<figure><img src="images/04-op-amp-and-its-applications_17.jpg" alt="Diagram" loading="lazy"></figure>
-<p>​ Hysteresis width ​ 𝑉 𝐻 = = 𝑉 𝑈𝑇 −𝑉 𝐿𝑇 It is independent of ​ 𝑉 𝑅 𝑅 2 𝑉 𝐻 = 2𝑉 𝑠𝑎𝑡 · 𝑅 1 +𝑅 2 ​</p>
-<figure><img src="images/04-op-amp-and-its-applications_18.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_16.jpg" alt="Diagram" loading="lazy" style="max-width: 600px; height: auto;"></figure>
+<p>​ 𝑉 𝑅 𝑅 1 𝑅 2 𝑉 𝑈𝑇 = 𝑅 1 +𝑅 2 + 𝑉 𝑠𝑎𝑡 𝑅 1 +𝑅 2 ​ 𝑉 𝑅 𝑅 1 𝑉 𝑠𝑎𝑡 𝑅 2 𝑉 𝐿𝑇 = 𝑅 1 +𝑅 2 − 𝑅 1 +𝑅 2 ​</p>
+<figure><img src="images/04-op-amp-and-its-applications_17.jpg" alt="Diagram" loading="lazy" style="max-width: 594px; height: auto;"></figure>
+<p>​ Hysteresis width ​ 𝑉 𝐻 = = 𝑉 𝑈𝑇 −𝑉 𝐿𝑇 It is independent of ​ 𝑉 𝑅 𝑅 2 𝑉 𝐻 = 2𝑉 𝑠𝑎𝑡 𝑅 1 +𝑅 2 ​</p>
+<figure><img src="images/04-op-amp-and-its-applications_18.jpg" alt="Diagram" loading="lazy" style="max-width: 1558px; height: auto;"></figure>
 <h3>Difference between Ideal and Practical OP-AMP</h3>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -153,27 +157,27 @@
 <p>From (1)​ 𝑑𝑉 𝑖𝑛 ||| ||| 𝑚𝑎𝑥 |𝑆. 𝑅| 𝑚𝑎𝑥 = 𝐴 𝑑𝑡</p>
 <p>​ 𝐼𝑆. 𝑅𝐼 𝑚𝑎𝑥 = 𝐴· 𝐴 𝑚 𝑊 𝑚 ​ If S.R is less, then output does not changes as fast as input and hence output signal get distorted.</p>
 <h3>Frequency Response</h3>
-<figure><img src="images/04-op-amp-and-its-applications_19.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_19.jpg" alt="Diagram" loading="lazy" style="max-width: 505px; height: auto;"></figure>
 <p>Op-amp can be assumed as a low pass filter​ 𝐴 𝐶𝐿 Hence, 𝐻(𝑓) = 1+𝑗 𝑓 𝑐</p>
 <h3>Input off set voltage</h3>
 <p>It is the voltage we need to apply at the input so that output become zero.​</p>
-<figure><img src="images/04-op-amp-and-its-applications_20.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_20.jpg" alt="Diagram" loading="lazy" style="max-width: 434px; height: auto;"></figure>
 <p>𝑅 1 ⎡⎢⎣ ⎤⎥⎦ () 𝑉 𝑖𝑜 = 𝑉 𝑜 𝑅 1 +𝑅 2</p>
 <h3>Compensation resistance:</h3>
 <p>𝑅 𝑐𝑜𝑚</p>
-<figure><img src="images/04-op-amp-and-its-applications_21.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_21.jpg" alt="Diagram" loading="lazy" style="max-width: 524px; height: auto;"></figure>
 <p>𝑅 1 𝑅 𝑓 𝑅 𝑐𝑜𝑚 = 𝑅 1 +𝑅 𝑓</p>
 <h3>Filters using op-amp</h3>
-<figure><img src="images/04-op-amp-and-its-applications_22.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_22.jpg" alt="Diagram" loading="lazy" style="max-width: 556px; height: auto;"></figure>
 <p>Low Pass Filter 1 𝑓 𝑐 = 2π𝑅 𝑓 𝑐</p>
-<figure><img src="images/04-op-amp-and-its-applications_23.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_23.jpg" alt="Diagram" loading="lazy" style="max-width: 635px; height: auto;"></figure>
 <p>HPF 1 𝑓 𝑐 = 2π𝑅 1 𝑐</p>
-<figure><img src="images/04-op-amp-and-its-applications_24.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_24.jpg" alt="Diagram" loading="lazy" style="max-width: 828px; height: auto;"></figure>
 <p>Band Pass Filter​</p>
-<figure><img src="images/04-op-amp-and-its-applications_25.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_25.jpg" alt="Diagram" loading="lazy" style="max-width: 613px; height: auto;"></figure>
 <h3>All pass filter</h3>
 <p>It has unity gain for all frequency.​</p>
-<figure><img src="images/04-op-amp-and-its-applications_26.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-op-amp-and-its-applications_26.jpg" alt="Diagram" loading="lazy" style="max-width: 1534px; height: auto;"></figure>
 <p>It is used to provide only phase change (either increase or decrease the phase angle) according to operating frequency.</p>
 <p>𝑛𝑑</p>
 <h3>order filter transfer functions</h3>
@@ -186,7 +190,7 @@
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-diode-circuits.html" class="note-card"><h4>01 Diode Circuits</h4><div class="meta">GATE, ESE</div></a><a href="02-bipolar-junction-transistors.html" class="note-card"><h4>02 Bipolar Junction Transistors</h4><div class="meta">GATE, ESE</div></a><a href="03-fet-mosfet.html" class="note-card"><h4>03 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-diode-circuits.html" class="note-card"><h4>01 Diode Circuits</h4><div class="meta">General</div></a><a href="02-bipolar-junction-transistors.html" class="note-card"><h4>02 Bipolar Junction Transistors</h4><div class="meta">General</div></a><a href="03-fet-mosfet.html" class="note-card"><h4>03 Fet &amp; Mosfet</h4><div class="meta">General</div></a><a href="05-oscillators.html" class="note-card"><h4>05 Oscillators</h4><div class="meta">GATE, ESE</div></a></div>
             </section>
                 </article>
             </div>
@@ -267,6 +271,33 @@
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

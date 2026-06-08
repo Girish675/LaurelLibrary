@@ -378,13 +378,20 @@ def classify(elem, page_width=595):
     x = elem.get("x", 0)
 
     # Bullet point detection
-    if re.match(r'^[●•\-▶►]\s+', text):
+    if re.match(r'^[●•\-▶►○▪◦■▸·❖➢]\s+', text.strip()):
         return "li"
-    if re.match(r'^[○▪◦■▸]\s+', text):
-        return "li-sub"
     # Numbered list
-    if re.match(r'^\d+[.)]\s+', text) and len(text) < 200:
+    if re.match(r'^\d+[.)]\s+', text.strip()) and len(text) < 200:
         return "li"
+
+    # Filter out empty or single character junk from being headings
+    clean_text = text.strip()
+    if len(clean_text) < 2 or not re.search(r'[a-zA-Z]', clean_text):
+        return "p"
+        
+    lower_text = clean_text.lower()
+    if lower_text in ("note :", "note:", "note", "notes", "points to be remember :", "points to be remember:", "points to remember:", "remember:", "important:"):
+        return "p"
 
     # Headings
     if size >= 16:
@@ -411,8 +418,8 @@ def should_merge_lines(prev, curr, page_width=595):
     
     if prev_role != curr_role:
         return False
-    if prev_role in ("h2", "h3"):
-        return False  # Don't merge headings
+    if prev_role in ("h2", "h3", "li", "li-sub"):
+        return False  # Don't merge headings or separate list items
     
     # Check Y gap - should be within normal line spacing
     y_gap = curr["y"] - prev["y"]
@@ -421,7 +428,6 @@ def should_merge_lines(prev, curr, page_width=595):
     if y_gap > line_height * 1.8:
         return False  # Too much vertical gap = new paragraph
     
-    # Check if previous line looks like it was cut mid-sentence
     prev_text = prev_data["text"].rstrip()
     curr_text = curr_data["text"].lstrip()
     
@@ -433,9 +439,13 @@ def should_merge_lines(prev, curr, page_width=595):
     if curr_text and curr_text[0].islower():
         return True
     
+    # If the new line is significantly indented compared to previous, it's likely a new block (e.g. equation)
+    if curr_data["x"] - prev_data["x"] > 15:
+        return False
+    
     # If X positions are similar and gap is small, likely same paragraph
     x_diff = abs(curr_data["x"] - prev_data["x"])
-    if x_diff < 30 and y_gap < line_height * 1.3:
+    if x_diff < 15 and y_gap < line_height * 1.3:
         return True
     
     return False
@@ -541,7 +551,7 @@ def consolidate_bold_spans(spans):
         if not t or is_watermark_text(t):
             continue
         # Remove bullet chars from spans
-        t = re.sub(r'^[●•\-○▪◦■▶►▸]\s*', '', t)
+        t = re.sub(r'^[●•\-○▪◦■▶►▸·❖➢]\s*', '', t)
         if not t:
             continue
 
@@ -760,8 +770,9 @@ def convert_pdf(pdf_path, output_dir, category, title=None, exam="General", verb
                 body_parts.append(table_to_html(item["data"]))
             elif item["type"] == "image":
                 path = item["data"]["path"]
+                width = item["data"]["width"]
                 body_parts.append(
-                    f'<figure><img src="{path}" alt="Diagram" loading="lazy"></figure>'
+                    f'<figure><img src="{path}" alt="Diagram" loading="lazy" style="max-width: {width}px; height: auto;"></figure>'
                 )
 
     # Flush remaining text
@@ -935,10 +946,13 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; {reading_time} min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -1032,6 +1046,33 @@ def generate_page(title, category, body, exam, word_count=0, related_notes=None)
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     }});
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                }});
+            }}
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {{
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {{
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {{
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    }} else {{
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }}
                 }});
             }}
         }})();

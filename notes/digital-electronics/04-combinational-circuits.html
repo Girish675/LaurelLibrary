@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>04 Combinational Circuits — Laurel Library</title>
-    <meta name="description" content="04 Combinational Circuits - Digital Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="04 Combinational Circuits - Digital Electronics study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 8 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,16 +53,24 @@
                     <div class="meta">
                         <span class="meta-category">Digital Electronics</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>Combinational Circuits</h2>
 <h2>Decoder</h2>
-<p>A decoder is a combinational circuit that converts binary coded data into other forms e.g. Octal, decimal, hexadecimal etc. It has ‘n’ inputs &amp; ≤2 n outputs.</p>
+<p>A decoder is a combinational circuit that converts binary coded data into other forms e.g.</p>
+<p>Octal, decimal, hexadecimal etc. It has ‘n’ inputs &amp; ≤2 n outputs.</p>
+<p>●</p>
 <h3>Enable input -</h3>
-<p>It is activating signal It is an optional input. Active High enable (E) and Active low enable.</p>
-<p>(𝐸) Decoder contains AND gate or NAND gates. At any instant, only one output is logic ‘1’ and all other outputs are logic ‘0’. Therefore, n × 2 n decoder is also known as 1 of 2 n decoder. An n × 2 n decoder generates all the 2 n possible minterms for the ‘n’ input variables. Any Boolean function can be implemental with a decoder by summing or ORing the desired minterms.</p>
-<h3>NOTE:</h3>
+<p>It is activating signal It is an optional input.</p>
+<p>Active High enable (E) and Active low enable.</p>
+<p>(𝐸) Decoder contains AND gate or NAND gates.</p>
+<p>At any instant, only one output is logic ‘1’ and all other outputs are logic ‘0’. Therefore,</p>
+<p>n × 2 n decoder is also known as 1 of 2 n decoder. An n × 2 n decoder generates all the 2 n possible minterms for the ‘n’ input variables.</p>
+<p>Any Boolean function can be implemental with a decoder by summing or ORing the desired</p>
+<p>minterms.</p>
+<p><strong>NOTE:</strong></p>
 <p>Implementation of higher order decoder using lower order decoder.</p>
+<p>●</p>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Give Decoder</th>
@@ -85,16 +96,29 @@ decoders</th>
 </tbody></table></div>
 <h2>Encoder</h2>
 <h3>It performs the inverse operation of decoder .</h3>
-<p>It generates the binary code corresponding to the input value. It has ≤2 n input and ‘n’ outputs.</p>
-<p>Encoder is used to convert other codes to binary such as, i. Octal to binary encoder (8 × 3 line) ii. Decimal to BCD encoder (10 × 4 line) iii. Hexadecimal to binary encoder (16 × 4 line)</p>
-<p>Encoder contains OR gate. In a basic encoder, at any instant only one input must be logic ‘1’ or other input must be logic ‘0’ otherwise, the circuit produces invalid output. Above problem is resolved by priority encoder. In a priority encoder, if more than one input is at logic ‘1’, then the output corresponds to the input having the highest decimal value.</p>
+<p>It generates the binary code corresponding to the input value.</p>
+<p>It has ≤2 n input and ‘n’ outputs.</p>
+<p>●</p>
+<p>Encoder is used to convert other codes to binary such as,</p>
+<p>i. Octal to binary encoder (8 × 3 line) ii. Decimal to BCD encoder (10 × 4 line) iii. Hexadecimal to binary encoder (16 × 4 line)</p>
+<p>Encoder contains OR gate.</p>
+<p>In a basic encoder, at any instant only one input must be logic ‘1’ or other input must be</p>
+<p>logic ‘0’ otherwise, the circuit produces invalid output. Above problem is resolved by priority encoder.</p>
+<p>In a priority encoder, if more than one input is at logic ‘1’, then the output corresponds to</p>
+<p>the input having the highest decimal value.</p>
 <h2>Multiplexers (MUX)</h2>
-<p>The ‘Multiplexer’ is a special versatile and one of the most widely used standard circuit in digital design. It has ‘2 n ’ input lines, ‘n’ selection lines and 1 output.</p>
-<figure><img src="images/04-combinational-circuits_1.png" alt="Diagram" loading="lazy"></figure>
+<p>The ‘Multiplexer’ is a special versatile and one of the most widely used standard circuit in</p>
+<p>digital design. It has ‘2 n ’ input lines, ‘n’ selection lines and 1 output.</p>
+<p>●</p>
+<figure><img src="images/04-combinational-circuits_1.png" alt="Diagram" loading="lazy" style="max-width: 261px; height: auto;"></figure>
 <p>MUX is also known as- i. Data selector ii. Parallel to serial converts iii. Many to one circuit iv. Universal logic circuit v. Waveform generator</p>
-<p>A decoder is exactly the same as the selection network of the MUX. To implement an ‘n’ variable Boolean function, a MUX with ‘n’ select inputs is needed, that is a 2 n × 1 MUX. An ‘n’ variable Boolean function can also be implemented using a MUX having only (n 1) select input i.e., 2 n-1 × 1 MUX.</p>
-<h3>NOTE:</h3>
-<p>To implement 2 n ∶ 1 MUX by using 2 ∶ 1 MUX, the total number of 2 ∶ 1 MUX required is (2 n 1).</p>
+<p>A decoder is exactly the same as the selection network of the MUX.</p>
+<p>To implement an ‘n’ variable Boolean function, a MUX with ‘n’ select inputs is needed, that is</p>
+<p>a 2 n × 1 MUX. An ‘n’ variable Boolean function can also be implemented using a MUX having only (n 1)</p>
+<p>select input i.e., 2 n-1 × 1 MUX.</p>
+<p><strong>NOTE:</strong></p>
+<p>To implement 2 n ∶ 1 MUX by using 2 ∶ 1 MUX, the total number of 2 ∶ 1 MUX required is</p>
+<p>(2 n 1).</p>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Given MUX</th>
@@ -127,11 +151,21 @@ decoders</th>
 <td>32 + 4 + 1 = 37</td>
 </tr>
 </tbody></table></div>
-<p>For implementation of basic gates, the required number of 2 ∶ 1 MUX is 1. For implementation of universal and special purpose gates, the required number of 2 ∶ 1 MUX is 2.</p>
+<p>For implementation of basic gates, the required number of 2 ∶ 1 MUX is 1.</p>
+<p>For implementation of universal and special purpose gates, the required number of 2 ∶ 1 MUX</p>
+<p>is 2.</p>
 <h3>Application :</h3>
 <p>i. Data selection, data routing ii. Operation sequencing iii. Parallel to serial conversion iv. Waveform generation v. Logic function generation</p>
 <h2>DEMULTIPLEXER</h2>
-<p>DEMULTIPLEXER perform the inverse operation of MUX. A ‘decoder’ with an enable input can function as a ‘DEMULTIPLEXER’ It has one input, n select lines and 2 n output. DEMUX is also known as- i. Data distributor ii. Serial to parallel converter iii. One to many circuit DEMUX cannot be used as an ‘Universal gate’. In DEMUX, MUX selection network remain same. 10 NAND gate is needed. An n × 2 n decoder is equivalent to 1 × 2 n DEMUX. Implementation of large size circuit (Decoder, MUX, DEMUX) from smaller size circuit.</p>
+<p>DEMULTIPLEXER perform the inverse operation of MUX.</p>
+<p>A ‘decoder’ with an enable input can function as a ‘DEMULTIPLEXER’</p>
+<p>It has one input, n select lines and 2 n output.</p>
+<p>DEMUX is also known as- i. Data distributor ii. Serial to parallel converter iii. One to many circuit DEMUX cannot be used as an ‘Universal gate’.</p>
+<p>In DEMUX, MUX selection network remain same.</p>
+<p>10 NAND gate is needed.</p>
+<p>An n × 2 n decoder is equivalent to 1 × 2 n DEMUX.</p>
+<p>Implementation of large size circuit (Decoder, MUX, DEMUX) from smaller size circuit.</p>
+<p>●</p>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Given DEMUX</th>
@@ -169,7 +203,7 @@ decoders</th>
 <h2>Adders</h2>
 <h3>Half-Adder</h3>
 <p>It adds two bits</p>
-<figure><img src="images/04-combinational-circuits_2.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-combinational-circuits_2.png" alt="Diagram" loading="lazy" style="max-width: 311px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Input</th>
@@ -208,14 +242,15 @@ decoders</th>
 <td>1</td>
 </tr>
 </tbody></table></div>
-<p>The logical expression for sum and carry are: S = x ⊕ y C = xy</p>
+<p>The logical expression for sum and carry are:</p>
+<p>S = x ⊕ y C = xy</p>
 <p>Half adder can be realized by using one EX-OR gate and an AND gate</p>
-<figure><img src="images/04-combinational-circuits_3.png" alt="Diagram" loading="lazy"></figure>
-<h3>NOTE :</h3>
-<p>To implement a half adder- i. Number of NAND gate required is 5. ii. Number of NOR gate required is 5. iii. Number of 2 × 1 MUX required is 3. iv. Minimum number of logic gates, if we have all gates except EX-OR and EX-NOR is 3.</p>
+<p>●</p>
+<figure><img src="images/04-combinational-circuits_3.png" alt="Diagram" loading="lazy" style="max-width: 207px; height: auto;"></figure>
+<p><strong>NOTE</strong>: To implement a half adder- i. Number of NAND gate required is 5. ii. Number of NOR gate required is 5. iii. Number of 2 × 1 MUX required is 3. iv. Minimum number of logic gates, if we have all gates except EX-OR and EX-NOR is 3.</p>
 <h3>Full Adder</h3>
 <p>It adds three bits</p>
-<figure><img src="images/04-combinational-circuits_4.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-combinational-circuits_4.png" alt="Diagram" loading="lazy" style="max-width: 242px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>Input</th>
@@ -288,43 +323,48 @@ decoders</th>
 <td>1</td>
 </tr>
 </tbody></table></div>
-<p>Logical expressions for SUM and CARRY are: S = ∑(1, 2, 4, 7) = 𝑆= 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧</p>
+<p>Logical expressions for SUM and CARRY are:</p>
+<p>S = ∑(1, 2, 4, 7) = 𝑆= 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧</p>
 <p>The SUM is an ‘ODD’ function C = ∑(3, 5, 6, 7) 𝑆= 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧</p>
 <p>The CARRY is a majority function S = x ⊕ y ⊕ z and C = XY + Z (X ⊕ Y)</p>
 <h3>Full Adder from two half adder:</h3>
-<h3>●</h3>
-<h3>NOTE:</h3>
-<p>To implement a Full Adder, i. Number of NAND gates required is 9. ii. Number of NOR gates required is 9.</p>
+<p>●</p>
+<p><strong>NOTE:</strong> To implement a Full Adder, i.</p>
+<p>Number of NAND gates required is 9. ii.</p>
+<p>Number of NOR gates required is 9.</p>
 <h2>Binary Parallel Adder</h2>
-<p>A binary parallel adder is a combinational digital circuit that adds two binary number in parallel form. Let the two four bit inputs designed as X (Augend) and Y (Addend) then,</p>
-<figure><img src="images/04-combinational-circuits_5.png" alt="Diagram" loading="lazy"></figure>
-<p>In general, for ‘n’ bit addition, ‘n’ binary parallel adder requires: ‘n’ full adder Or (n 1) full adder and one half adder Or (n 2) [2 half adder + 1 OR gate] and a half adder</p>
+<p>A binary parallel adder is a combinational digital circuit that adds two binary number in</p>
+<p>parallel form. Let the two four bit inputs designed as X (Augend) and Y (Addend) then,</p>
+<p>●</p>
+<figure><img src="images/04-combinational-circuits_5.png" alt="Diagram" loading="lazy" style="max-width: 352px; height: auto;"></figure>
+<p>In general, for ‘n’ bit addition, ‘n’ binary parallel adder requires:</p>
+<p>‘n’ full adder Or (n 1) full adder and one half adder Or (n 2) [2 half adder + 1 OR gate] and a half adder</p>
 <p>Or (2n 1) half adder and (n 1) OR gate.</p>
 <h2>Ripple Carry Adder</h2>
-<p>In parallel adder, propagation delay is present from input carry to output carry, hence it is called Ripple Carry Adder. The carry bit propagation from LSB to MSB position in a ripple manner therefore, this type of parallel adder is known as ‘Ripple Carry Adder’.</p>
-<h3>NOTE</h3>
-<p>In a ‘n’ bit carry generator circuit, 𝑛(𝑛+1) Number of AND gates = 2 Number of OR gates = n The propagation delay of carry look ahead adder is always a constant factor and is independent of the number of bits in the adder. 𝑛(𝑛+1) A look-ahead-carry scheme for ‘n’ bit addition requires (n + 1) OR gates and</p>
+<p>In parallel adder, propagation delay is present from input carry to output carry, hence it is</p>
+<p>called Ripple Carry Adder. The carry bit propagation from LSB to MSB position in a ripple manner therefore, this type</p>
+<p>of parallel adder is known as ‘Ripple Carry Adder’.</p>
+<p><strong>NOTE</strong> In a ‘n’ bit carry generator circuit, 𝑛(𝑛+1) Number of AND gates = 2 Number of OR gates = n The propagation delay of carry look ahead adder is always a constant factor and is</p>
+<p>independent of the number of bits in the adder. 𝑛(𝑛+1) A look-ahead-carry scheme for ‘n’ bit addition requires (n + 1) OR gates and</p>
 <p>AND 2 gates.</p>
 <h2>Subtractors</h2>
 <h3>Half Subtractor</h3>
-<p>A half subtractor is a combinational circuit that subtracts one bit from the other and produces the difference.</p>
-<figure><img src="images/04-combinational-circuits_6.png" alt="Diagram" loading="lazy"></figure>
-<h3>X</h3>
-<h3>Y</h3>
-<h3>D</h3>
-<h3>B</h3>
-<p>0 0 0 0 0 1 1 1 1 0 1 0 1 1 0 0</p>
+<p>A half subtractor is a combinational circuit that subtracts one bit from the other and produces</p>
+<p>the difference.</p>
+<figure><img src="images/04-combinational-circuits_6.png" alt="Diagram" loading="lazy" style="max-width: 376px; height: auto;"></figure>
+<p><strong>X Y D B</strong> 0 0 0 0 0 1 1 1 1 0 1 0 1 1 0 0</p>
 <p>Logical expression: D = x ⊕ y and B = 𝐵= 𝑥𝑦</p>
 <h3>Implementation of half subtractor circuit</h3>
-<h3>●</h3>
-<figure><img src="images/04-combinational-circuits_7.png" alt="Diagram" loading="lazy"></figure>
+<p>●</p>
+<figure><img src="images/04-combinational-circuits_7.png" alt="Diagram" loading="lazy" style="max-width: 210px; height: auto;"></figure>
 <p>Half subtractor or half adder circuit by using control action of EX-OR gate.</p>
+<p>●</p>
 <p>When control input = 0 ⇒ Half adder operation When control input = 1 ⇒ Half subtractor operation</p>
-<h3>NOTE</h3>
-<p>To implement a half subtractor i. Number of NAND gates needed = 5 ii. Number of NOR gates needed = 5</p>
+<p><strong>NOTE</strong> To implement a half subtractor i. Number of NAND gates needed = 5 ii. Number of NOR gates needed = 5</p>
 <h3>Full Subtractor</h3>
 <p>It subtracts three bits.</p>
-<figure><img src="images/04-combinational-circuits_8.png" alt="Diagram" loading="lazy"></figure>
+<p>●</p>
+<figure><img src="images/04-combinational-circuits_8.png" alt="Diagram" loading="lazy" style="max-width: 276px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>X</th>
@@ -390,18 +430,21 @@ decoders</th>
 <td>1</td>
 </tr>
 </tbody></table></div>
-<p>Logical Expression: 𝐷= 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧 or D = ∑(1, 2, 4, 7) It is an ‘ODD’ function. B = ∑(1, 2, 3, 7) Or 𝐵= 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧</p>
+<p>Logical Expression:</p>
+<p>𝐷= 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧 or D = ∑(1, 2, 4, 7) It is an ‘ODD’ function.</p>
+<p>B = ∑(1, 2, 3, 7) Or 𝐵= 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧+ 𝑥𝑦𝑧</p>
 <h3>Full subtractor from two half subtractor</h3>
-<h3>●</h3>
-<figure><img src="images/04-combinational-circuits_9.png" alt="Diagram" loading="lazy"></figure>
+<p>●</p>
+<figure><img src="images/04-combinational-circuits_9.png" alt="Diagram" loading="lazy" style="max-width: 395px; height: auto;"></figure>
 <p>Full subtractor = 2 half subtractor + 1 OR</p>
-<h3>NOTE :</h3>
-<p>To implement a full subtractor, Number of NAND gates required = 9 Number of NOR gates required = 9</p>
+<p><strong>NOTE</strong>: To implement a full subtractor, Number of NAND gates required = 9 Number of NOR gates required = 9</p>
 <h2>Magnitude Comparator</h2>
-<p>A magnitude comparator is a combinational circuit which is used to compare two numbers A and B, determines their relative magnitudes. There are two types of magnitude comparator i. Single bit magnitude comparator ii. Multiple bit magnitude comparator.</p>
+<p>A magnitude comparator is a combinational circuit which is used to compare two numbers A</p>
+<p>and B, determines their relative magnitudes. There are two types of magnitude comparator i. Single bit magnitude comparator ii. Multiple bit magnitude comparator.</p>
 <h3>Single bit magnitude comparator</h3>
 <p>The inputs are of 1 bit each.</p>
-<figure><img src="images/04-combinational-circuits_10.png" alt="Diagram" loading="lazy"></figure>
+<p>●</p>
+<figure><img src="images/04-combinational-circuits_10.png" alt="Diagram" loading="lazy" style="max-width: 193px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>A</th>
@@ -445,19 +488,20 @@ decoders</th>
 </tr>
 </tbody></table></div>
 <p>𝑋= 𝐴𝐵 𝑌= 𝐴𝐵+ 𝐴𝐵= 𝐴 𝐵 𝑋= 𝐴𝐵</p>
-<figure><img src="images/04-combinational-circuits_11.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-combinational-circuits_11.png" alt="Diagram" loading="lazy" style="max-width: 248px; height: auto;"></figure>
 <h3>Multiple bit magnitude comparator</h3>
 <p>The two inputs of 4 bits each.</p>
+<p>●</p>
 <h3>Example : 4-bit magnitude comparator.</h3>
-<figure><img src="images/04-combinational-circuits_12.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-combinational-circuits_12.png" alt="Diagram" loading="lazy" style="max-width: 374px; height: auto;"></figure>
 <p>Y = Y 3 Y 2 Y 1 Y 0 Where,</p>
-<figure><img src="images/04-combinational-circuits_13.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/04-combinational-circuits_13.png" alt="Diagram" loading="lazy" style="max-width: 23.732177734375px; height: auto;"></figure>
 <p>Y 3 = A 3 ⊙B 3 Y 2 = A 2 ⊙B 2 Y 1 = A 1 ⊙B 1 Y 0 = A 0 ⊙B 0</p>
 <p>𝑋= 𝐴 3 𝐵 3 + 𝑌 3 𝐴 2 𝐵 2 + 𝑌 3 𝑌 2 𝐴 1 𝐵 1 + 𝑌 3 𝑌 2 𝑌 1 𝐴 0 𝐵 0 𝑍= 𝐴 3 𝐵 3 + 𝑌 3 𝐴 2 𝐵 2 + 𝑌 3 𝑌 2 𝐴 1 𝐵 1 + 𝑌 3 𝑌 2 𝑌 1 𝐴 0 𝐵 0</p>
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">GATE, ESE</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">GATE, ESE</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">General</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">General</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">General</div></a><a href="05-sequential-circuits.html" class="note-card"><h4>05 Sequential Circuits</h4><div class="meta">GATE, ESE</div></a></div>
             </section>
                 </article>
             </div>
@@ -538,6 +582,33 @@ decoders</th>
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

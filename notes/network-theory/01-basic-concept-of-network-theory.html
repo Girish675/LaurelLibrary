@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>01 Basic Concept Of Network Theory — Laurel Library</title>
-    <meta name="description" content="01 Basic Concept Of Network Theory - Network Theory study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="01 Basic Concept Of Network Theory - Network Theory study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 9 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,42 +53,69 @@
                     <div class="meta">
                         <span class="meta-category">Network Theory</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>Basic concept of network theory</h2>
 <h2>Network &amp; circuits</h2>
-<p>Circuit must have a closed Path whereas network may be open or closed path. Every circuit is a network but every network is not circuit. Circuit is the subset of network.</p>
+<p>Circuit must have a closed Path whereas network may be open or closed</p>
+<p>path. Every circuit is a network but every network is not circuit.</p>
+<p>Circuit is the subset of network.</p>
+<p>●</p>
 <p>Consider building to be Network &amp; building’s rooms to be circuit.</p>
-<figure><img src="images/01-basic-concept-of-network-theory_1.png" alt="Diagram" loading="lazy"></figure>
-<p>Quantity which is responsible for electric phenomenon. Q = ne where, n = no. of e or protons q = total charge e = charge on e or protons Fundamental unit: Coulomb (C)</p>
-<figure><img src="images/01-basic-concept-of-network-theory_2.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-basic-concept-of-network-theory_3.png" alt="Diagram" loading="lazy"></figure>
-<p>Charge in motion represent a current. { } () = 𝑑𝑞(𝑡) 𝑖𝑡 𝑑𝑡 𝑡 𝑞𝑡 () = 𝐼𝑜 () + ∫𝐼𝑡 ()𝑑𝑡 𝑜 Fundamental unit: Ampere (A)</p>
-<h2>Note :</h2>
-<p>Electron current flows from negative terminal of source to positive terminal. Conventional current flows from positive terminal of source to negative terminal. Conventional current’s direction is opposite to the flow of electron direction. Electron current is obtained due to the movement of free electrons. Conventional current is obtained due to the movement of free positive charges.</p>
-<figure><img src="images/01-basic-concept-of-network-theory_4.png" alt="Diagram" loading="lazy"></figure>
-<p>Amount of work required to move a charge through the element. { } 𝑣= 𝑑𝑤 𝑊 𝑄 = 𝐽 or or Volt (V) 𝑑𝑞 𝐶 Where, W is the potential energy (in Joule) Q is the charge (in Coulomb) Electric field intensity is (-) ve potential gradient. 𝐸= 𝑉 = ∇ V or 𝐸 𝑙</p>
+<figure><img src="images/01-basic-concept-of-network-theory_1.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<p>Quantity which is responsible for electric phenomenon.</p>
+<p>Q = ne where, n = no. of e or protons q = total charge e = charge on e or protons Fundamental unit: Coulomb (C)</p>
+<figure><img src="images/01-basic-concept-of-network-theory_2.png" alt="Diagram" loading="lazy" style="max-width: 303px; height: auto;"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_3.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<p>Charge in motion represent a current.</p>
+<p>{ } () = 𝑑𝑞(𝑡) 𝑖𝑡 𝑑𝑡 𝑡 𝑞𝑡 () = 𝐼𝑜 () + ∫𝐼𝑡 ()𝑑𝑡 𝑜 Fundamental unit: Ampere (A)</p>
+<p><strong>Note</strong>:</p>
+<p>Electron current flows from negative terminal of source to positive terminal.</p>
+<p>Conventional current flows from positive terminal of source to negative</p>
+<p>terminal. Conventional current’s direction is opposite to the flow of electron direction.</p>
+<p>Electron current is obtained due to the movement of free electrons.</p>
+<p>Conventional current is obtained due to the movement of free positive</p>
+<p>charges.</p>
+<figure><img src="images/01-basic-concept-of-network-theory_4.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<p>Amount of work required to move a charge through the element.</p>
+<p>{ } 𝑣= 𝑑𝑤 𝑊 𝑄 = 𝐽 or or Volt (V) 𝑑𝑞 𝐶 Where, W is the potential energy (in Joule) Q is the charge (in Coulomb) Electric field intensity is (-) ve potential gradient.</p>
+<p>𝐸= 𝑉 = ∇ V or 𝐸 𝑙</p>
 <p>Direction of voltage is always from (-) ve to (+ve).</p>
-<figure><img src="images/01-basic-concept-of-network-theory_5.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-basic-concept-of-network-theory_6.png" alt="Diagram" loading="lazy"></figure>
-<p>The electromotive force is the cause of the potential difference, whereas the potential difference is the effect of the potential difference. The magnitude of emf has always remained constant, whereas the magnitude of the potential difference varies. The electromotive force does not depend on the internal resistance of the circuit whereas the potential difference is directly proportional to the resistance of the circuit. The electromotive force is represented by the symbol ‘E’ whereas the symbol ‘V’ represents the potential difference.</p>
-<figure><img src="images/01-basic-concept-of-network-theory_7.png" alt="Diagram" loading="lazy"></figure>
-<p>Power can be defined as the rate of flow of electrical energy. Mathematically, it can be written as 𝑃= 𝑑𝑤 𝑑𝑡 = 𝑑𝑤 𝑑𝑞. 𝑑𝑞 𝑑𝑡 Or 2 P = VI or P = I 2 R or 𝑃= 𝑉 𝑅 Instantaneous power: P (t) = v (t).i (t) Fundamental unit: Watt (W)</p>
+<p>●</p>
+<figure><img src="images/01-basic-concept-of-network-theory_5.png" alt="Diagram" loading="lazy" style="max-width: 133px; height: auto;"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_6.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<p>The electromotive force is the cause of the potential difference, whereas</p>
+<p>the potential difference is the effect of the potential difference. The magnitude of emf has always remained constant, whereas the</p>
+<p>magnitude of the potential difference varies. The electromotive force does not depend on the internal resistance of the</p>
+<p>circuit whereas the potential difference is directly proportional to the resistance of the circuit. The electromotive force is represented by the symbol ‘E’ whereas the</p>
+<p>symbol ‘V’ represents the potential difference.</p>
+<figure><img src="images/01-basic-concept-of-network-theory_7.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<p>Power can be defined as the rate of flow of electrical energy. Mathematically, it can be written as 𝑃= 𝑑𝑤 𝑑𝑡 = 𝑑𝑤 𝑑𝑞. 𝑑𝑞 𝑑𝑡 Or 2 P = VI or P = I 2 R or 𝑃= 𝑉 𝑅 Instantaneous power:</p>
+<p>P (t) = v (t).i (t) Fundamental unit: Watt (W)</p>
 <p>Sign convention for power calculation:</p>
-<h2>Points to be Remember :</h2>
+<p>●</p>
+<p><strong>Points to be Remember</strong>:</p>
 <p>1 hp = 746 W −3 𝑊 1𝑚𝑊= 10 −6 𝑊 1μ𝑊= 10 −9 𝑊 1𝑛𝑊= 10 3 𝑊 1𝑘𝑊= 10 6 𝑊 1𝑀𝑊= 10 9 𝑊 1𝐺𝑊= 10</p>
-<figure><img src="images/01-basic-concept-of-network-theory_8.png" alt="Diagram" loading="lazy"></figure>
-<p>The capacity to do work is known as Energy W = ∫Pdt Fundamental unit: Joule (J) The electric power utility companies measure energy in Watt hours (Wh) 1 Wh = 3600 J</p>
-<figure><img src="images/01-basic-concept-of-network-theory_9.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-basic-concept-of-network-theory_10.png" alt="Diagram" loading="lazy"></figure>
-<p>At constant temperature, J ∝ E Or J = σ E Where, J = Current density (A/m 2) E= Electric Field intensity (V/m) σ= Conductivity (1/Ohm-m) Current flowing through conductor is proportional to the potential difference between two ends provided external conditions to be constant. i.e., I ∝ V { } { } 𝐼= 𝑉 𝑅= 𝑉 or, or 𝑅 𝐼</p>
-<h2>Points to be Remember :</h2>
-<p>1 is proportional constant. 𝑅</p>
-<figure><img src="images/01-basic-concept-of-network-theory_11.png" alt="Diagram" loading="lazy"></figure>
-<p>Resistance does not depend upon voltage or current. Resistance is depend upon the ratio of voltage to the current.</p>
-<figure><img src="images/01-basic-concept-of-network-theory_12.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_8.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<p>The capacity to do work is known as Energy W = ∫Pdt Fundamental unit: Joule (J) The electric power utility companies measure energy in Watt hours (Wh)</p>
+<p>1 Wh = 3600 J</p>
+<figure><img src="images/01-basic-concept-of-network-theory_9.png" alt="Diagram" loading="lazy" style="max-width: 281px; height: auto;"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_10.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<p>At constant temperature, J ∝ E Or J = σ E Where, J = Current density (A/m 2) E= Electric Field intensity (V/m) σ= Conductivity (1/Ohm-m) Current flowing through conductor is proportional to the potential difference</p>
+<p>between two ends provided external conditions to be constant. i.e., I ∝ V { } { } 𝐼= 𝑉 𝑅= 𝑉 or, or 𝑅 𝐼</p>
+<p><strong>Points to be Remember</strong>:</p>
+<p>1 is proportional constant.</p>
+<p>𝑅</p>
+<figure><img src="images/01-basic-concept-of-network-theory_11.png" alt="Diagram" loading="lazy" style="max-width: 201px; height: auto;"></figure>
+<p>Resistance does not depend upon voltage or current.</p>
+<p>Resistance is depend upon the ratio of voltage to the current.</p>
+<p>●</p>
+<figure><img src="images/01-basic-concept-of-network-theory_12.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
 <p>Specific resistance is defined as the resistance offered by a unit length and unit cross-section of the substance to a current when a voltage is applied to it. Its SI unit is Ω−m.</p>
-<p>{ } ρ = 𝑅𝐴 Ohm – m 𝑙 It depends upon type of material but NOT on dimensions. Resistance depends upon temperature, along with dimension. The resistivity of the cube having one-meter side is defined as the resistance offered between the opposite two phases of the one-meter cube.</p>
+<p>{ } ρ = 𝑅𝐴 Ohm – m 𝑙 It depends upon type of material but NOT on dimensions.</p>
+<p>Resistance depends upon temperature, along with dimension.</p>
+<p>The resistivity of the cube having one-meter side is defined as the resistance</p>
+<p>offered between the opposite two phases of the one-meter cube.</p>
 <p>R 2 = R 1 [1 + α Δ T] Where, R 2 = Resistance at temperature T 2 R 1 = Resistance at temperature T 1</p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -107,25 +137,36 @@
 <td>(-)ve temperature coefficient</td>
 </tr>
 </tbody></table></div>
-<p>Reciprocal of resistance is conductance. { } 𝐴 1 or mho or Siemens 𝐺= 𝑅 𝑉 Reciprocal of resistivity is conductivity. { } σ = 1 1 or Siemens/m ρ Ω−𝑚 Copper and Aluminum have low resistivity. Good conductors have less resistivity. Insulators have a high resistivity. The resistivity of semiconductors lies between conductors and insulators. Gold is a good conductor of electricity and so it has low resistivity.</p>
-<figure><img src="images/01-basic-concept-of-network-theory_13.png" alt="Diagram" loading="lazy"></figure>
-<p>Applicable only for linear elements. Temperature must be constant.</p>
-<figure><img src="images/01-basic-concept-of-network-theory_14.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/01-basic-concept-of-network-theory_15.png" alt="Diagram" loading="lazy"></figure>
+<p>Reciprocal of resistance is conductance.</p>
+<p>{ } 𝐴 1 or mho or Siemens 𝐺= 𝑅 𝑉 Reciprocal of resistivity is conductivity.</p>
+<p>{ } σ = 1 1 or Siemens/m ρ Ω−𝑚 Copper and Aluminum have low resistivity.</p>
+<p>Good conductors have less resistivity. Insulators have a high resistivity.</p>
+<p>The resistivity of semiconductors lies between conductors and insulators.</p>
+<p>Gold is a good conductor of electricity and so it has low resistivity.</p>
+<p>●</p>
+<figure><img src="images/01-basic-concept-of-network-theory_13.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<p>Applicable only for linear elements.</p>
+<p>Temperature must be constant.</p>
+<p>●</p>
+<figure><img src="images/01-basic-concept-of-network-theory_14.png" alt="Diagram" loading="lazy" style="max-width: 456.0px; height: auto;"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_15.png" alt="Diagram" loading="lazy" style="max-width: 437px; height: auto;"></figure>
 <h2>Inductance</h2>
-<p>{ } 𝑊𝑏 𝐿= 𝑁ϕ or Henry (H) 𝑖 𝐴 If inductance does not depend upon flux linkage or current, then it is known as linear inductor otherwise Non-linear inductor. With any change of flow or direction of current, the electromagnetic field changes. This change of field induces a voltage (V L) across the coil, is given by (Lenz’s law)</p>
-<h2>{</h2>
-<h2>}</h2>
-<p>𝑉 𝐿 =−𝐿 𝑑𝑖 𝑑𝑡</p>
+<p>{ } 𝑊𝑏 𝐿= 𝑁ϕ or Henry (H) 𝑖 𝐴 If inductance does not depend upon flux linkage or current, then it is known</p>
+<p>as linear inductor otherwise Non-linear inductor. With any change of flow or direction of current, the electromagnetic field</p>
+<p>changes. This change of field induces a voltage (V L) across the coil, is given by (Lenz’s law)</p>
+<p>{ } 𝑉 𝐿 =−𝐿 𝑑𝑖 𝑑𝑡</p>
 <p>Practical inductance has very low value of resistance.</p>
 <h2>Inductance of solenoid</h2>
-<h2>{</h2>
-<h2>}</h2>
-<p>2 𝐴 𝐿= µ𝑁 𝑙 Energy stored in inductor: 2 (𝑡) () = 1 J 𝑤𝑡 2 𝐿 𝑖 The inductor stores the energy in the form of magnetic field. A pure inductor does not dissipate energy, but only stores it.</p>
+<p>{ } 2 𝐴 𝐿= µ𝑁 𝑙 Energy stored in inductor:</p>
+<p>2 (𝑡) () = 1 J 𝑤𝑡 2 𝐿 𝑖 The inductor stores the energy in the form of magnetic field.</p>
+<p>A pure inductor does not dissipate energy, but only stores it.</p>
+<p>●</p>
 <h2>Capacitance</h2>
-<p>{ } 𝐶= ϵ𝐴; ϵ: permittivity 𝑑 unit: F/m { } 𝐶= 𝑄 Farad 𝑉 If capacitance does not depend on Q or V then it is Linear capacitor otherwise Non-linear capacitor. { } 𝑖 = 𝐶 𝑑𝑉 𝑑𝑡</p>
-<h2>Note :</h2>
-<p>Reciprocal of capacitance is Elastence. 𝑆= 1 𝐶 Unit: DARAF Energy stored in capacitor 2 (𝑡) () = 1 𝑤𝑡 2 𝐶𝑉 The capacitor stores the energy in the form of electric field.</p>
+<p>{ } 𝐶= ϵ𝐴; ϵ: permittivity 𝑑 unit: F/m { } 𝐶= 𝑄 Farad 𝑉 If capacitance does not depend on Q or V then it is Linear capacitor otherwise</p>
+<p>Non-linear capacitor. { } 𝑖 = 𝐶 𝑑𝑉 𝑑𝑡 <strong><em>Note</em></strong>:</p>
+<p>Reciprocal of capacitance is Elastence.</p>
+<p>𝑆= 1 𝐶 Unit: DARAF Energy stored in capacitor 2 (𝑡) () = 1 𝑤𝑡 2 𝐶𝑉 The capacitor stores the energy in the form of electric field.</p>
+<p>●</p>
 <h2>Classification of elements</h2>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -175,12 +216,21 @@ otherwise distributed</td>
 <td>Lumped, R, L, C distributed – Transmission line</td>
 </tr>
 </tbody></table></div>
-<h2>Points to be remember :</h2>
-<p>All the linear elements are bilateral but bilateral element need not to be a linear. KCL &amp; KVL are not applicable for distributed elements. Circuit theory is applicable up to high frequency. At steady state, consider distributed element as lumped element.</p>
+<p><strong>Points to be remember</strong>:</p>
+<p>All the linear elements are bilateral but bilateral element need not to be a</p>
+<p>linear. KCL &amp; KVL are not applicable for distributed elements.</p>
+<p>Circuit theory is applicable up to high frequency.</p>
+<p>At steady state, consider distributed element as lumped element.</p>
+<p>●</p>
 <h2>Sources</h2>
-<figure><img src="images/01-basic-concept-of-network-theory_16.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/01-basic-concept-of-network-theory_16.png" alt="Diagram" loading="lazy" style="max-width: 551px; height: auto;"></figure>
 <h2>Remember :</h2>
-<p>Ideal voltage source has zero internal resistance. Ideal current source has infinite internal resistance. Dependent sources are useful to represent electrical models for solid state devices e.g. transistors, op-amp. Don’t connect different ideal voltage sources in parallel. Don’t connect different ideal current sources in series.</p>
+<p>Ideal voltage source has zero internal resistance.</p>
+<p>Ideal current source has infinite internal resistance.</p>
+<p>Dependent sources are useful to represent electrical models for solid state</p>
+<p>devices e.g. transistors, op-amp. Don’t connect different ideal voltage sources in parallel.</p>
+<p>Don’t connect different ideal current sources in series.</p>
+<p>●</p>
 <h2>Kirchhoff’s Laws</h2>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -216,40 +266,10 @@ distributed networks</td>
 </tbody></table></div>
 <h2>Voltage Division Rule</h2>
 <p>→ For Series connected elements only.</p>
-<h2>(</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑅 1 𝑅 2 𝑅 [] 𝑉 𝑅1 = 𝑉 𝑅 1 +𝑅 2 𝑅 1 +𝑅 2</p>
-<h2>(</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝐿 1 𝐿 2 𝐿 [] 𝑉 𝐿1 = 𝑉 𝐿 1 +𝐿 2 𝐿 1 +𝐿 2</p>
-<h2>(</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝐶 2 𝐶 1 𝐶 [] 𝑉 𝐶1 = 𝑉 𝐶 1 +𝐶 2 𝐶 1 +𝐶 2</p>
-<h2>(</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝐺 2 𝐺 1 𝐺 [] 𝑉 𝐺1 = 𝑉 𝐺 1 +𝐺 2 𝐺 1 +𝐺 2</p>
+<p>(), 𝑉 𝑅2 = 𝑉 () 𝑅 1 𝑅 2 𝑅 [] 𝑉 𝑅1 = 𝑉 𝑅 1 +𝑅 2 𝑅 1 +𝑅 2 (), 𝑉 𝐿1 = 𝑉 () 𝐿 1 𝐿 2 𝐿 [] 𝑉 𝐿1 = 𝑉 𝐿 1 +𝐿 2 𝐿 1 +𝐿 2 (), 𝑉 𝐶2 = 𝑉 () 𝐶 2 𝐶 1 𝐶 [] 𝑉 𝐶1 = 𝑉 𝐶 1 +𝐶 2 𝐶 1 +𝐶 2 (), 𝑉 𝐺2 = 𝑉 () 𝐺 2 𝐺 1 𝐺 [] 𝑉 𝐺1 = 𝑉 𝐺 1 +𝐺 2 𝐺 1 +𝐺 2</p>
 <h2>Current Division Rule</h2>
 <p>→ For Parallel connected elements only.</p>
-<h2>(</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝑅 2 𝑅 1 𝑅 [] 𝐼 𝑅1 = 𝐼 𝑅 1 +𝑅 2 𝑅 1 +𝑅 2</p>
-<h2>(</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝐿 2 𝐿 1 𝐿 [] 𝐼 𝐿1 = 𝐼 𝐿 1 +𝐿 2 𝐿 1 +𝐿 2</p>
-<h2>(</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝐶 1 𝐶 2 𝐶 [] 𝐼 𝐶1 = 𝐼 𝐶 1 +𝐶 2 𝐶 1 +𝐶 2</p>
-<h2>(</h2>
-<h2>(</h2>
-<h2>)</h2>
-<p>𝐺 1 𝐺 2 𝐺 [] 𝐼 𝐺1 = 𝐼 𝐺 1 +𝐺 2 𝐺 1 +𝐺 2</p>
+<p>(), 𝐼 𝑅2 = 𝐼 () 𝑅 2 𝑅 1 𝑅 [] 𝐼 𝑅1 = 𝐼 𝑅 1 +𝑅 2 𝑅 1 +𝑅 2 (), 𝐼 𝐿2 = 𝐼 () 𝐿 2 𝐿 1 𝐿 [] 𝐼 𝐿1 = 𝐼 𝐿 1 +𝐿 2 𝐿 1 +𝐿 2 (), 𝐼 𝐶2 = 𝐼 () 𝐶 1 𝐶 2 𝐶 [] 𝐼 𝐶1 = 𝐼 𝐶 1 +𝐶 2 𝐶 1 +𝐶 2 (), 𝐼 𝐺2 = 𝐼 () 𝐺 1 𝐺 2 𝐺 [] 𝐼 𝐺1 = 𝐼 𝐺 1 +𝐺 2 𝐺 1 +𝐺 2</p>
 <h2>Simplification techniques</h2>
 <h3>Nodal Analysis</h3>
 <p>Applicable to both planar &amp; Non-planner networks. No. of equation =n-1</p>
@@ -258,7 +278,10 @@ distributed networks</td>
 <p>Here, b = branches &amp; n = Nodes.</p>
 <h2>Source Transformation</h2>
 <p>Points to remember:</p>
-<p>Source transformation is only applied to Practical Sources. Above circuit diagram are equivalent in respect with performance, the only difference in connection. This technique is also applicable to dependent sources, but it should be kept in mind that dependent variable lies outside that branch (where source transformation is applied)</p>
+<p>Source transformation is only applied to Practical Sources.</p>
+<p>Above circuit diagram are equivalent in respect with performance, the only</p>
+<p>difference in connection. This technique is also applicable to dependent sources, but it should be</p>
+<p>kept in mind that dependent variable lies outside that branch (where source transformation is applied)</p>
 <h2>Delta to Star &amp; Star to Delta</h2>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -336,6 +359,10 @@ distributed networks</td>
 </tr>
 </tbody></table></div>
                     
+            <section class="related-notes">
+                <h3>Related Notes</h3>
+                <div class="related-grid"><a href="02-network-theorems.html" class="note-card"><h4>02 Network Theorems</h4><div class="meta">GATE, ESE</div></a><a href="03-transient-analysis.html" class="note-card"><h4>03 Transient Analysis</h4><div class="meta">GATE, ESE</div></a><a href="04-ac-fundamentals.html" class="note-card"><h4>04 Ac Fundamentals</h4><div class="meta">GATE, ESE</div></a><a href="05-two-port-networks.html" class="note-card"><h4>05 Two Port Networks</h4><div class="meta">GATE, ESE</div></a></div>
+            </section>
                 </article>
             </div>
         </div>
@@ -415,6 +442,33 @@ distributed networks</td>
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>02 Bipolar Junction Transistors — Laurel Library</title>
-    <meta name="description" content="02 Bipolar Junction Transistors - Analog Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="02 Bipolar Junction Transistors - Analog Electronics study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 9 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,12 +53,25 @@
                     <div class="meta">
                         <span class="meta-category">Analog Electronics</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>BJT</h2>
-<p>​ A transistor is a semiconductor device used to amplify or switch electronic signals and electrical power. It is composed of semiconductor material usually with at least three terminals for connection to an external circuit. ​ Bipolar Junction Transistor constructed with three doped Semiconductor Regions (Base, Collector, and Emitter) separated by two p-n Junctions. ​ Emitter, Collector, and the Base is the correct order of decreasing impurities. ​ Doping is the intentional introduction of impurities into an intrinsic semiconductor for the purpose of modulating its electrical, optical and structural properties. ​ Bipolar junction transistors have three terminals and they are Base (B), collector (C) and emitter (E). ​ Bipolar (because conduction is due to two opposite type of carriers Holes 𝐵= and electrons) ​ J = Junction refers to the two PN junctions between emitter and base, and collector and base. ​ BJT's are current-driven devices i.e. It is a current-controlled device. ​ The current through the two terminals is controlled by a current at the third terminal (base). ​ It is a bipolar device (current conduction by both types of carriers, i.e. majority and minority electrons and holes) ​ It has a low input impedance. ​ Basically, the bipolar junction transistor consists of two back-to-back P-N junctions manufactured in a single piece of a semiconductor crystal. ​ These two junctions give rise to three regions called emitter, base, and collector. As shown in Fig. junction transistor is simply a sandwich of one type of semiconductor material between two layers of the other type.​</p>
-<figure><img src="images/02-bipolar-junction-transistors_1.jpg" alt="Diagram" loading="lazy"></figure>
-<p>​ The emitter, base, and collector are provided with terminals that are labeled as E, B, and C. ​ The two junctions are: emitter-base (E/B) junction and collector-base (C/B) junction.</p>
+<p>​ A transistor is a semiconductor device used to amplify or switch electronic signals and electrical power. It is composed of semiconductor material usually with at least three terminals for connection to an external circuit.</p>
+<p>​ Bipolar Junction Transistor constructed with three doped Semiconductor Regions</p>
+<p>(Base, Collector, and Emitter) separated by two p-n Junctions.</p>
+<p>​ Emitter, Collector, and the Base is the correct order of decreasing impurities. ​ Doping is the intentional introduction of impurities into an intrinsic semiconductor for the purpose of modulating its electrical, optical and structural properties.</p>
+<p>​ Bipolar junction transistors have three terminals and they are Base (B), collector</p>
+<p>(C) and emitter (E).</p>
+<p>​ Bipolar (because conduction is due to two opposite type of carriers Holes</p>
+<p>𝐵= and electrons) ​ J = Junction refers to the two PN junctions between emitter and base, and collector and base.</p>
+<p>​ BJT's are current-driven devices i.e. It is a current-controlled device. ​ The current through the two terminals is controlled by a current at the third terminal (base).</p>
+<p>​ It is a bipolar device (current conduction by both types of carriers, i.e. majority and minority electrons and holes) ​ It has a low input impedance. ​ Basically, the bipolar junction transistor consists of two back-to-back P-N junctions manufactured in a single piece of a semiconductor crystal.</p>
+<p>​ These two junctions give rise to three regions called emitter, base, and collector.</p>
+<p>As shown in Fig. junction transistor is simply a sandwich of one type of semiconductor material between two layers of the other type.​</p>
+<figure><img src="images/02-bipolar-junction-transistors_1.jpg" alt="Diagram" loading="lazy" style="max-width: 860px; height: auto;"></figure>
+<p>​ The emitter, base, and collector are provided with terminals that are labeled as E,</p>
+<p>B, and C.</p>
+<p>​ The two junctions are: emitter-base (E/B) junction and collector-base (C/B) junction.</p>
 <ul>
 <li><strong>1. Emitter</strong> ​ It is more heavily doped than any of the other regions because its main function is to supply majority charge carriers (either electrons or holes) to the base.</li>
 <li><strong>2. Base</strong> ​ It forms the middle section of the transistor. It is very thin (10-6 m) as compared to either the emitter or collector and is very lightly doped.</li>
@@ -66,22 +82,22 @@
 <h3>Types of BJT</h3>
 <p>​ The arrow on the symbol for bipolar transistors indicates the PN junction between base and emitter and points in the direction in which conventional current travels, i.e. the direction of holes.</p>
 <h3>NPN​</h3>
-<figure><img src="images/02-bipolar-junction-transistors_2.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_2.jpg" alt="Diagram" loading="lazy" style="max-width: 408px; height: auto;"></figure>
 <p>​ For an NPN transistor, when the emitter-base is forward biased, holes from the base (p-type) start to flow to the emitter side (n-type) and electrons start to flow from the emitter to the base. The direction, however, represents the direction of the hole flow.</p>
 <h3>PNP</h3>
-<figure><img src="images/02-bipolar-junction-transistors_3.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_3.jpg" alt="Diagram" loading="lazy" style="max-width: 459px; height: auto;"></figure>
 <p>​ For a PNP transistor, when the emitter-base junction is forward biased, holes from the emitter start to flow to the base. The direction of the arrow also indicates the same.</p>
 <p>Some of the notations used are as follows​ Collector current​ 𝐼 𝑐 = Emitter current​ 𝐼 𝐸 = Base current​ 𝐼 𝐵 = 𝐼 𝐶 = β𝐼 𝐵 + (β + 1)𝐼 𝐶𝑂 ​ Where current gain of CE (common Emitter)​ β = Leakage current​ 𝐼 𝑐𝑜 = current gain of CB (common Base)​ α = Collector to Base current with Emitter open​ 𝐼 𝐶𝐵𝑂 = collector to Emitter current with Base open​ 𝐼 𝐶𝐸𝑂 = 𝐼 𝐶𝐸𝑂 &gt; 𝐼 𝐶𝐵𝑂 &gt; 𝐼 𝐶𝑂 ​ 𝐼 𝐶𝐸𝑂 = (β + 1)𝐼 𝐶𝐵𝑂 ​ β α = β+1 ​ α β = 1−α ​ 𝐵𝑉 𝐶𝐵𝑂 &gt; 𝐵𝑉 𝐶𝐸𝑂 ​ Breakdown voltage with Emitter open.​ 𝐵𝑉 𝐶𝐵𝑂 → Breakdown voltage with base open​ 𝐵𝑉 𝐶𝐸𝑂 → 𝑉 𝐶𝐵𝑂 𝑉 𝐶𝐸𝑂 = 1 𝑚 (1+β) ​ ​ The order of is 𝑚 4 &lt; 𝑚&lt; 6</p>
 <h3>Transistor Configurations</h3>
 <h3>Common collector configuration</h3>
 <p>The configuration in which the collector is common between emitter and base is known as CC configuration. In CC configuration, the input circuit is connected between emitter and base and the output is taken from the collector and emitter.​</p>
-<figure><img src="images/02-bipolar-junction-transistors_4.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_4.jpg" alt="Diagram" loading="lazy" style="max-width: 564px; height: auto;"></figure>
 <h2>Common emitter configuration</h2>
 <p>The configuration in which the emitter is connected between the collector and base is known as a common emitter configuration. The input circuit is connected between emitter and base, and the output circuit is taken from the collector and emitter.​</p>
-<figure><img src="images/02-bipolar-junction-transistors_5.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_5.jpg" alt="Diagram" loading="lazy" style="max-width: 676px; height: auto;"></figure>
 <h3>Common base configuration</h3>
 <p>The configuration in which the base of the transistor is common between emitter and collector circuit is called a common base configuration. In common base-emitter connection, the input is connected between emitter and base while the output is taken across collector and base.​</p>
-<figure><img src="images/02-bipolar-junction-transistors_6.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_6.jpg" alt="Diagram" loading="lazy" style="max-width: 678px; height: auto;"></figure>
 <h3>Comparison</h3>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -164,24 +180,24 @@ sistance (𝑅 )
 </tr>
 </tbody></table></div>
 <h3>Points to Remember</h3>
-<p>​ The three basic single-stage bipolar junction transistor which is used as a voltage amplifier is called CE amplifier. ​ The input (Vin) of CE amplifier is taken from the base terminal and the output (Vout). is collected from the collector terminal ​ The emitter terminal is common for both base and collector terminals and the input is applied across the emitter-base junction with the forward-biased this amplifies the signal. ​ Thus the base current is amplified by applying suitable input voltage across the base-emitter junction and we get amplified output voltage across the collector-emitter junction​</p>
-<figure><img src="images/02-bipolar-junction-transistors_7.jpg" alt="Diagram" loading="lazy"></figure>
-<p>​ From the above explanation, we can see that, in common emitter configuration, the base current is amplified and we get an amplified output signal. ​ This configuration can be used as a switching circuit, in which by applying suitable base-emitter current the circuit can be switched on or off. ​ Hence when a transistor is used in a common emitter configuration the variation is output can be made by varying base current (i.e., by change base-emitter voltage).</p>
+<p>​ The three basic single-stage bipolar junction transistor which is used as a voltage amplifier is called CE amplifier.</p>
+<p>​ The input (Vin) of CE amplifier is taken from the base terminal and the output</p>
+<p>(Vout). is collected from the collector terminal ​ The emitter terminal is common for both base and collector terminals and the input is applied across the emitter-base junction with the forward-biased this amplifies the signal.</p>
+<p>​ Thus the base current is amplified by applying suitable input voltage across the base-emitter junction and we get amplified output voltage across the collector-emitter junction​</p>
+<figure><img src="images/02-bipolar-junction-transistors_7.jpg" alt="Diagram" loading="lazy" style="max-width: 437px; height: auto;"></figure>
+<p>​ From the above explanation, we can see that, in common emitter configuration, the base current is amplified and we get an amplified output signal.</p>
+<p>​ This configuration can be used as a switching circuit, in which by applying suitable base-emitter current the circuit can be switched on or off.</p>
+<p>​ Hence when a transistor is used in a common emitter configuration the variation is output can be made by varying base current (i.e., by change base-emitter voltage).</p>
 <h3>CE Configuration Input and Output Characteristics</h3>
 <h3>Input Characteristics</h3>
 <p>A graph showing the variation of the base current (IB) with base-emitter voltage (VBE), at constant collec-tor-emitter Voltage (VCE) is called input characteristics of a transistor.​</p>
-<figure><img src="images/02-bipolar-junction-transistors_8.jpg" alt="Diagram" loading="lazy"></figure>
-<p>​ The input resistance () is defined as the ratio of the small change in the 𝑅 𝑖 () base-emitter voltage to the corresponding small change in base current ∆𝑉 𝐵𝐸 (), it is given by ∆𝐼 𝐵</p>
-<h2>(</h2>
-<h2>) 𝑉 𝐶𝐸</h2>
-<p>∆𝑉 𝐵𝐸 𝑅 𝑖 = ∆𝐼 𝐵</p>
+<figure><img src="images/02-bipolar-junction-transistors_8.jpg" alt="Diagram" loading="lazy" style="max-width: 906px; height: auto;"></figure>
+<p>​ The input resistance () is defined as the ratio of the small change in the 𝑅 𝑖 () base-emitter voltage to the corresponding small change in base current</p>
+<p>∆𝑉 𝐵𝐸 (), it is given by ∆𝐼 𝐵 () 𝑉 𝐶𝐸 ∆𝑉 𝐵𝐸 𝑅 𝑖 = ∆𝐼 𝐵</p>
 <h3>Output Characteristics</h3>
 <p>() ​ A graph showing the variation of collector current with collector-emitter 𝐼 𝐶 () () voltage at a constant base current is called output characteristics, it is 𝑉 𝐶𝐸 𝐼 𝐵 given by​</p>
-<figure><img src="images/02-bipolar-junction-transistors_9.jpg" alt="Diagram" loading="lazy"></figure>
-<p>() From above it is clear that the input resistance is defined as the ratio of the small 𝑅 𝑖 change in the baseemitter voltage () to the corresponding small change in base ∆𝑉 𝐵𝐸</p>
-<h2>(</h2>
-<h2>) 𝑉 𝐶𝐸</h2>
-<p>∆𝑉 𝐵𝐸 () current, it is given by ∆𝐼 𝐵 𝑅 𝑖 = ∆𝐼 𝐵</p>
+<figure><img src="images/02-bipolar-junction-transistors_9.jpg" alt="Diagram" loading="lazy" style="max-width: 939px; height: auto;"></figure>
+<p>() From above it is clear that the input resistance is defined as the ratio of the small 𝑅 𝑖 change in the baseemitter voltage () to the corresponding small change in base ∆𝑉 𝐵𝐸 () 𝑉 𝐶𝐸 ∆𝑉 𝐵𝐸 () current, it is given by ∆𝐼 𝐵 𝑅 𝑖 = ∆𝐼 𝐵</p>
 <h3>Different modes of BJT operations</h3>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -211,7 +227,7 @@ sistance (𝑅 )
 </tr>
 </tbody></table></div>
 <p>V-I characteristics of a common-emitter configuration of BJT as shown:​</p>
-<figure><img src="images/02-bipolar-junction-transistors_10.jpg" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/02-bipolar-junction-transistors_10.jpg" alt="Diagram" loading="lazy" style="max-width: 952px; height: auto;"></figure>
 <p>​ In the hard-saturation region, the ON time duration is more. ​ The power dissipation occurs in large amounts as the current is maximum. ​ In the cut-off region current is zero. So no power dissipation occurs in this region during the switchedmode operation of BJT.</p>
 <h3>The applications of BJT and the biasing conditions are shown below</h3>
 <div class="table-wrapper"><table>
@@ -248,17 +264,24 @@ sistance (𝑅 )
 <td></td>
 </tr>
 </tbody></table></div>
-<p>​ BJT is never operated in the reverse active region ​ The main application of the BJT is as an amplifier, and this is possible under small-signal conditions. ​ The characteristics of is as shown below:​ 𝐼 𝐶 −𝑉 𝐵𝐸</p>
-<figure><img src="images/02-bipolar-junction-transistors_11.jpg" alt="Diagram" loading="lazy"></figure>
-<p>​ Current variations are linear in this region. ​ Non-linear behavior becomes linear in that small region. ​ DC operating point is needed so that we can apply the signal at that point to get the amplified signal. ​ The remaining applications of transistor i.e. ON &amp; OFF switch are possible under the large-signal condition</p>
+<p>​ BJT is never operated in the reverse active region ​ The main application of the BJT is as an amplifier, and this is possible under small-signal conditions.</p>
+<p>​ The characteristics of is as shown below:​ 𝐼 𝐶 −𝑉 𝐵𝐸</p>
+<figure><img src="images/02-bipolar-junction-transistors_11.jpg" alt="Diagram" loading="lazy" style="max-width: 1009px; height: auto;"></figure>
+<p>​ Current variations are linear in this region. ​ Non-linear behavior becomes linear in that small region. ​ DC operating point is needed so that we can apply the signal at that point to get the amplified signal.</p>
+<p>​ The remaining applications of transistor i.e. ON &amp; OFF switch are possible under the large-signal condition</p>
 <h3>Early effect</h3>
-<p>​ Due to forward bias, the base-emitter junction JE acts as a forward-biased diode and due to reverse bias, the collector-base junction JC acts as a reverse-biased diode. ​ If the output voltage VCB applied to the collector-base junction JC is further increased, the depletion region width further increases. ​ The base region is lightly doped as compared to the collector region. ​ So the depletion region penetrates more into the base region and less into the collector region. ​ As a result, the width of the base region decreases. This dependency of base width on the output voltage (VCB) is known as an 'early effect'.</p>
+<p>​ Due to forward bias, the base-emitter junction JE acts as a forward-biased diode and due to reverse bias, the collector-base junction JC acts as a reverse-biased diode.</p>
+<p>​ If the output voltage VCB applied to the collector-base junction JC is further increased, the depletion region width further increases.</p>
+<p>​ The base region is lightly doped as compared to the collector region. ​ So the depletion region penetrates more into the base region and less into the collector region.</p>
+<p>​ As a result, the width of the base region decreases. This dependency of base width on the output voltage (VCB) is known as an 'early effect'.</p>
 <h3>Thermal Runaway</h3>
-<p>​ Thermal runaway is a situation in which an increase in temperature changes the conditions in a way that further causes temperature to increase. ​ The minority current is a function of the junction temperature of the transistor. ​ As the junction temperature increases, the minority current also increases. ​ In BJTs the collector current dissipates a lot of heat, this increase in temperature causes increased flow of minority carriers from collector to base, further increasing the collector current. ​ This increase in collector current further raises the temperature, thus thermal runaway occurs ending in burnout of BJT.</p>
+<p>​ Thermal runaway is a situation in which an increase in temperature changes the conditions in a way that further causes temperature to increase.</p>
+<p>​ The minority current is a function of the junction temperature of the transistor. ​ As the junction temperature increases, the minority current also increases. ​ In BJTs the collector current dissipates a lot of heat, this increase in temperature causes increased flow of minority carriers from collector to base, further increasing the collector current.</p>
+<p>​ This increase in collector current further raises the temperature, thus thermal runaway occurs ending in burnout of BJT.</p>
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-diode-circuits.html" class="note-card"><h4>01 Diode Circuits</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-diode-circuits.html" class="note-card"><h4>01 Diode Circuits</h4><div class="meta">General</div></a><a href="03-fet-mosfet.html" class="note-card"><h4>03 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a><a href="04-op-amp-and-its-applications.html" class="note-card"><h4>04 Op Amp And Its Applications</h4><div class="meta">GATE, ESE</div></a><a href="05-oscillators.html" class="note-card"><h4>05 Oscillators</h4><div class="meta">GATE, ESE</div></a></div>
             </section>
                 </article>
             </div>
@@ -339,6 +362,33 @@ sistance (𝑅 )
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

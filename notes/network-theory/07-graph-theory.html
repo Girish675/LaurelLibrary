@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>07 Graph Theory — Laurel Library</title>
-    <meta name="description" content="07 Graph Theory - Network Theory study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="07 Graph Theory - Network Theory study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 2 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,7 +53,7 @@
                     <div class="meta">
                         <span class="meta-category">Network Theory</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>Graph Theory</h2>
 <h2>Graph : It is the representation of the circuit in which current source is made open</h2>
@@ -60,9 +63,10 @@
 <h2>Augumented matrix or Incidence matrix</h2>
 <h3>Steps to find incidence matrix</h3>
 <p>(1) Assign a number to the Branches. (2) If current is incident on the node, take it 1 or 1, if current is leaving the node, then take it 1 or 1, if node is not connected to branch then put it zero.</p>
-<p>Sign of entering and leaving should be different. E.g:</p>
+<p>Sign of entering and leaving should be different.</p>
+<p>E.g:</p>
 <p>The incidence matrix for the graph is let us Assume</p>
-<figure><img src="images/07-graph-theory_1.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/07-graph-theory_1.png" alt="Diagram" loading="lazy" style="max-width: 162px; height: auto;"></figure>
 <p>Branch</p>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -128,9 +132,9 @@
 </tbody></table></div>
 <h3>Properties of incidence matrix:</h3>
 <p>(1) Sum of each column must be zero (2) It is not unique. (3) Each column contain one +1 and one 1. (4) order of matrix is (node X Brances) (5) Two graph having same incidence matrix are called Isomorphic graph. (6) If we remove any of the row of incidence matrix, then it become row reduced incident matrix.</p>
-<figure><img src="images/07-graph-theory_2.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/07-graph-theory_2.png" alt="Diagram" loading="lazy" style="max-width: 473.0px; height: auto;"></figure>
 <p>It is the unconnected graph which contains all the nodes and there should not be any closed path. The Branches of Tree are called Twigs and other removed branches are called links or Chords Eg</p>
-<figure><img src="images/07-graph-theory_3.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/07-graph-theory_3.png" alt="Diagram" loading="lazy" style="max-width: 300px; height: auto;"></figure>
 <p>For a particular graph, there are number of trees possible. Total number of possible tree = N N – 2 Where N is number of nodes. This formula is valid if (1) Each node in the graph have at least one branch (2) All nodes are full of connection. (3) No repeated branch between nodes.</p>
 <p>𝑇 [] Total number of possible tree = det 𝑑𝑒𝑡 𝐴 [] 𝐴 [] where A is row reduced incidence matrix. This formula is applicable for all graphs.</p>
 <p>Total number of node pair voltages = 𝑛𝑛−1 () 2</p>
@@ -147,7 +151,7 @@
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-basic-concept-of-network-theory.html" class="note-card"><h4>01 Basic Concept Of Network Theory</h4><div class="meta">GATE, ESE</div></a><a href="02-network-theorems.html" class="note-card"><h4>02 Network Theorems</h4><div class="meta">GATE, ESE</div></a><a href="03-transient-analysis.html" class="note-card"><h4>03 Transient Analysis</h4><div class="meta">GATE, ESE</div></a><a href="04-ac-fundamentals.html" class="note-card"><h4>04 Ac Fundamentals</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-basic-concept-of-network-theory.html" class="note-card"><h4>01 Basic Concept Of Network Theory</h4><div class="meta">General</div></a><a href="02-network-theorems.html" class="note-card"><h4>02 Network Theorems</h4><div class="meta">General</div></a><a href="03-transient-analysis.html" class="note-card"><h4>03 Transient Analysis</h4><div class="meta">General</div></a><a href="04-ac-fundamentals.html" class="note-card"><h4>04 Ac Fundamentals</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -228,6 +232,33 @@
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

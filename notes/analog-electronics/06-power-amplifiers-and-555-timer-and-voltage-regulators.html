@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>06 Power Amplifiers And 555 Timer And Voltage Regulators — Laurel Library</title>
-    <meta name="description" content="06 Power Amplifiers And 555 Timer And Voltage Regulators - Analog Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="06 Power Amplifiers And 555 Timer And Voltage Regulators - Analog Electronics study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 2 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,7 +53,7 @@
                     <div class="meta">
                         <span class="meta-category">Analog Electronics</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h3>Timer 555</h3>
 <h3>1)​ Introduction to Timer 555</h3>
@@ -60,7 +63,7 @@
 <h3>●​ Used in timers, waveform generation, LED flashing circuits, frequency modulation,</h3>
 <h3>PWM control, etc.</h3>
 <h3>Pin diagram</h3>
-<figure><img src="images/06-power-amplifiers-and-555-timer-and-voltage-regulators_1.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/06-power-amplifiers-and-555-timer-and-voltage-regulators_1.png" alt="Diagram" loading="lazy" style="max-width: 344px; height: auto;"></figure>
 <h3>●​ Pin 1 (GND): Ground connection.</h3>
 <h3>●​ Pin 2 (Trigger): Input for triggering the timer. A low voltage (less than 1/3 VCC) triggers</h3>
 <p>the timer.</p>
@@ -78,7 +81,7 @@
 <h3>a) Monostable Mode (One-shot Timer)</h3>
 <p>​ Description: Generates a single output pulse in response to an external trigger. ​ Application: Pulse generation, delay circuits.</p>
 <h3>●​ Formula for Time Period: 1.1 RC</h3>
-<figure><img src="images/06-power-amplifiers-and-555-timer-and-voltage-regulators_2.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/06-power-amplifiers-and-555-timer-and-voltage-regulators_2.png" alt="Diagram" loading="lazy" style="max-width: 772px; height: auto;"></figure>
 <h3>Key Features:</h3>
 <p>​ One stable state (LOW).</p>
 <h3>●​ High output lasts for T seconds .</h3>
@@ -86,7 +89,7 @@
 <h3>b) Astable multivibrator</h3>
 <p>Description: Generates a continuous square wave without external triggers.</p>
 <p>Application: LED blinking, waveform generators, clock pulses.</p>
-<figure><img src="images/06-power-amplifiers-and-555-timer-and-voltage-regulators_3.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/06-power-amplifiers-and-555-timer-and-voltage-regulators_3.png" alt="Diagram" loading="lazy" style="max-width: 250px; height: auto;"></figure>
 <p>Where T C = (R 1 + R 2) C ln 2 T C = 0.693 (R 1 + R 2) C &amp; T d = 0.692 R 2 C</p>
 <h3>Key Features:</h3>
 <p>​ No stable state, continuously oscillates.</p>
@@ -112,7 +115,7 @@
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-diode-circuits.html" class="note-card"><h4>01 Diode Circuits</h4><div class="meta">GATE, ESE</div></a><a href="02-bipolar-junction-transistors.html" class="note-card"><h4>02 Bipolar Junction Transistors</h4><div class="meta">GATE, ESE</div></a><a href="03-fet-mosfet.html" class="note-card"><h4>03 Fet &amp; Mosfet</h4><div class="meta">GATE, ESE</div></a><a href="04-op-amp-and-its-applications.html" class="note-card"><h4>04 Op Amp And Its Applications</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-diode-circuits.html" class="note-card"><h4>01 Diode Circuits</h4><div class="meta">General</div></a><a href="02-bipolar-junction-transistors.html" class="note-card"><h4>02 Bipolar Junction Transistors</h4><div class="meta">General</div></a><a href="03-fet-mosfet.html" class="note-card"><h4>03 Fet &amp; Mosfet</h4><div class="meta">General</div></a><a href="04-op-amp-and-its-applications.html" class="note-card"><h4>04 Op Amp And Its Applications</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -193,6 +196,33 @@
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();

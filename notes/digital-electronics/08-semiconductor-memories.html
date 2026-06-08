@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
     <title>08 Semiconductor Memories — Laurel Library</title>
-    <meta name="description" content="08 Semiconductor Memories - Digital Electronics study notes for GATE, ESE exam preparation. Free on Laurel Library.">
+    <meta name="description" content="08 Semiconductor Memories - Digital Electronics study notes for General exam preparation. Free on Laurel Library.">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#1a202c">
@@ -36,10 +36,13 @@
                 <span style="color:var(--c-text-muted);font-size:var(--text-sm)">&#128337; 11 min read</span>
             </div>
 
-            <div class="notes-page">
+            <div class="notes-page" id="notes-page">
                 <aside class="sidebar" id="toc-sidebar">
-                    <h4 class="toc-header">
-                        <span>Table of Contents</span>
+                    <h4 class="toc-header" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <button type="button" id="sidebar-toggle" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--c-text-muted);" title="Toggle Sidebar">☰</button>
+                            <span id="toc-title-text">Table of Contents</span>
+                        </span>
                         <button type="button" class="toc-collapse-btn" id="toc-collapse-all" title="Collapse all">&#9660;</button>
                     </h4>
                     <ul id="toc-list"></ul>
@@ -50,11 +53,19 @@
                     <div class="meta">
                         <span class="meta-category">Digital Electronics</span>
                         <span class="meta-separator">&bull;</span>
-                        <span class="meta-exam">GATE, ESE</span>
+                        <span class="meta-exam">General</span>
                     </div>
                     <h2>Semiconductor memories</h2>
 <h2>Introduction to memories</h2>
-<p>A memory is a semiconductor of magnetic device used for storage of digital data. Computer memory is a device that is used to store data or programs (sequences of instructions) on a temporary or permanent basis for use in an electronic digital computer. Computers represent information in binary code, written as sequences of 0’s and 1’s. Each binary digit may be stored by any physical system that can be in either of two stable states, to represent 0 and 1. Such a system is called bi-stable. Computers do all calculations using a code made of just two numbers; 0 and 1. This system is called binary code. Bits and bytes are the basic building blocks of memory. &quot;Bit&quot; stands for binary digit. A bit is a one or a zero, on or off, which is how all computer information is stored. A byte is made up of eight bits. A nibble (also spelled 'nybble') is 4 bit, half of a byte.</p>
+<p>A memory is a semiconductor of magnetic device used for storage of digital data.</p>
+<p>Computer memory is a device that is used to store data or programs (sequences of</p>
+<p>instructions) on a temporary or permanent basis for use in an electronic digital computer. Computers represent information in binary code, written as sequences of 0’s and 1’s.</p>
+<p>Each binary digit may be stored by any physical system that can be in either of two stable</p>
+<p>states, to represent 0 and 1. Such a system is called bi-stable. Computers do all calculations using a code made of just two numbers; 0 and 1. This</p>
+<p>system is called binary code. Bits and bytes are the basic building blocks of memory. &quot;Bit&quot; stands for binary digit.</p>
+<p>A bit is a one or a zero, on or off, which is how all computer information is stored. A byte</p>
+<p>is made up of eight bits. A nibble (also spelled 'nybble') is 4 bit, half of a byte.</p>
+<p>●</p>
 <h3>Memory size = 2 k ×(no of data lines) bits.</h3>
 <p>●</p>
 <p>●</p>
@@ -98,20 +109,24 @@
 </tbody></table></div>
 <h3>Memory Chips-</h3>
 <p>The number of address pins is related to the number of memory locations.</p>
-<h3>●</h3>
-<p>The data pins are typically bi-directional in read-write memories. The number of data pins is related to the size of the memory location. The size or the capacity of each memory chip is specified by (M×N). Where, M specifies the number of locations available in the memory N specifies the number of bits that can be stored in each memory location</p>
+<p>The data pins are typically bi-directional in read-write memories. The number of data pins is related to the size of the memory location. The size or the capacity of each memory chip is specified by (M×N).</p>
+<p>Where, M specifies the number of locations available in the memory N specifies the number of bits that can be stored in each memory location</p>
 <p>For 'N-Bits' address pins, the number of locations that will accommodate is 2 N.</p>
+<p>●</p>
 <h3>Cache Memory-</h3>
 <h3>Cache Memory is a special very high-speed memory .</h3>
-<p>Cache memory is costlier than main memory or disk memory but economical than CPU registers.</p>
+<p>Cache memory is costlier than main memory or disk memory but economical than CPU</p>
+<p>registers.</p>
 <h3>Cache memory is an extremely fast memory type that acts as a buffer between RAM and</h3>
-<h3>●</h3>
+<p>●</p>
 <h3>the CPU.</h3>
-<p>It holds frequently requested data and instructions so that they are immediately available to the CPU when needed.</p>
+<p>It holds frequently requested data and instructions so that they are immediately available</p>
+<p>to the CPU when needed.</p>
 <h3>Cache memory is used to reduce the average time to access data from the Main</h3>
 <p>●</p>
 <h3>memory .</h3>
 <p>Cache memory is slightly different from RAM as it can’t store huge files.</p>
+<p>●</p>
 <h3>Auxiliary Memory-</h3>
 <p>Auxiliary memory is</p>
 <h3>the non-volatile memory lowest-cost , highest-capacity, and</h3>
@@ -121,27 +136,46 @@
 <p>●</p>
 <h3>use .</h3>
 <h3>It used as permanent storage of data in mainframes and supercomputers.</h3>
-<h3>●</h3>
+<p>●</p>
 <h3>Virtual Memory -</h3>
-<p>A computer can address more memory than the amount physically installed on the system. This extra memory is actually called virtual memory. It allows us to extend the use of physical memory by using the disk. Second, it allows us to have memory protection because each virtual address is translated to a physical address.</p>
+<p>A computer can address more memory than the amount physically installed on the</p>
+<p>system. This extra memory is actually called virtual memory.</p>
+<p>It allows us to extend the use of physical memory by using the disk.</p>
+<p>Second, it allows us to have memory protection because each virtual address is translated</p>
+<p>to a physical address.</p>
 <h2>Specifications</h2>
 <h3>Access time is the time required to access a memory location for reading or writing</h3>
-<p>operation. Random access is the time which is independent of the position of memory location Memory word is a group of bits in a memory which represents instructions or data of same type A memory in which the location can be accessed in a sequence only is referred to as sequential memory e.g., magnetic tape, magnetic bubble etc...</p>
+<p>operation. Random access is the time which is independent of the position of memory location</p>
+<p>Memory word is a group of bits in a memory which represents instructions or data of same</p>
+<p>type A memory in which the location can be accessed in a sequence only is referred to as</p>
+<p>sequential memory e.g., magnetic tape, magnetic bubble etc...</p>
 <h3>Read operation is often called a Fetch operation.</h3>
 <p>●</p>
 <p>location.</p>
 <h2>Classification of memories</h2>
 <h3>Read/Write Memory (RAM)</h3>
 <h3>RAM stands for Random Access Memory .</h3>
-<p>Random-access memory is a form of computer memory that can be read and changed in any order, typically used to store working data and machine code. A random-access memory device allows data items to be read or written in almost the same amount of time irrespective of the physical location of data inside the memory. In contrast, with other direct-access data storage media such as hard disks, CD-RWs, DVD-RWs, and the older magnetic tapes. Read-only memory is a type of non-volatile memory used in computers and other electronic devices.</p>
-<figure><img src="images/08-semiconductor-memories_1.png" alt="Diagram" loading="lazy"></figure>
-<p>The two widely used forms of modern RAM are static RAM (SRAM) and dynamic RAM (DRAM).</p>
+<p>Random-access memory is a form of computer memory that can be read and changed in</p>
+<p>any order, typically used to store working data and machine code. A random-access memory device allows data items to be read or written in almost the</p>
+<p>same amount of time irrespective of the physical location of data inside the memory. In contrast, with other direct-access data storage media such as hard disks, CD-RWs,</p>
+<p>DVD-RWs, and the older magnetic tapes. Read-only memory is a type of non-volatile memory used in computers and other</p>
+<p>electronic devices.</p>
+<figure><img src="images/08-semiconductor-memories_1.png" alt="Diagram" loading="lazy" style="max-width: 658px; height: auto;"></figure>
+<p>The two widely used forms of modern RAM are static RAM (SRAM) and dynamic RAM</p>
+<p>(DRAM).</p>
 <h3>SRAM -</h3>
-<p>In SRAM, a bit of data is stored using the state of a six-transistor memory cell. The SRAM memories consist of circuits capable of retaining the stored information as long as the power is applied i.e. it requires constant power. SRAM memories are used to build cache memory. It can retain stored data indefinitely and it can be implemented as a flip flop circuit to store one bit of information.</p>
+<p>In SRAM, a bit of data is stored using the state of a six-transistor memory cell.</p>
+<p>The SRAM memories consist of circuits capable of retaining the stored information as long</p>
+<p>as the power is applied i.e. it requires constant power. SRAM memories are used to build cache memory.</p>
+<p>It can retain stored data indefinitely and it can be implemented as a flip flop circuit to</p>
+<p>store one bit of information.</p>
 <h3>DRAM -</h3>
 <p>DRAM stores a bit of data using a transistor and capacitor pair.</p>
-<figure><img src="images/08-semiconductor-memories_2.png" alt="Diagram" loading="lazy"></figure>
-<p>DRAM stores the binary information in the form of electric charges that applied to capacitors. The stored information on the capacitors tends to lose over a period of time and thus the capacitors must be periodically recharged to retain their users. The main memory is generally made up of DRAM chips. Both read and write operations cannot be performed simultaneously.</p>
+<p>●</p>
+<figure><img src="images/08-semiconductor-memories_2.png" alt="Diagram" loading="lazy" style="max-width: 175px; height: auto;"></figure>
+<p>DRAM stores the binary information in the form of electric charges that applied to</p>
+<p>capacitors. The stored information on the capacitors tends to lose over a period of time and thus the capacitors must be periodically recharged to retain their users. The main memory is generally made up of DRAM chips. Both read and write operations cannot be performed simultaneously.</p>
+<p>●</p>
 <h3>The difference between SRAM and DRAM-</h3>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -187,55 +221,94 @@ required</td>
 </tr>
 </tbody></table></div>
 <h3>ROM</h3>
-<p>ROM is a semiconductor memory that is designed to hold data either permanently or do not change frequently. During normal operation, no new data can be written into RAM, but data can be read from ROM ROM is a Non-volatile memory. Non-volatile memory, NVM or non-volatile storage is a type of computer memory that can retrieve stored information even after having been power cycled (turned off and back on). Whereas Volatile memory is the memory that cannot be retrieved after having been power cycled. It is constructed by diodes, bipolar cells or MOSFETs. Examples of non-volatile memory include Read-Only Memory (ROM), flash memory, ferroelectric RAM, most types of magnetic computer storage devices (e.g. hard disk drives, floppy disks, and magnetic tape), optical discs, and early computer storage methods such as paper tape and punched cards. ROM contains a decoder followed by OR gates.</p>
+<p>ROM is a semiconductor memory that is designed to hold data either permanently or do not</p>
+<p>change frequently. During normal operation, no new data can be written into RAM, but data can be read from</p>
+<p>ROM ROM is a Non-volatile memory.</p>
+<p>Non-volatile memory, NVM or non-volatile storage is a type of computer memory that can</p>
+<p>retrieve stored information even after having been power cycled (turned off and back on). Whereas Volatile memory is the memory that cannot be retrieved after having been power</p>
+<p>cycled. It is constructed by diodes, bipolar cells or MOSFETs.</p>
+<p>Examples of non-volatile memory include Read-Only Memory (ROM), flash memory, ferroelectric RAM, most types of magnetic computer storage devices (e.g. hard disk drives, floppy disks, and magnetic tape), optical discs, and early computer storage methods such as paper tape and punched cards. ROM contains a decoder followed by OR gates.</p>
+<p>●</p>
 <h3>Boolean function implementation using ROM –</h3>
-<h3>●</h3>
-<p>A 2 k ×n ROM contains a k×2 n decoder followed by n OR gates   The k×2 n decoder generates all the 2 k possible min-terms for k input variables     The n OR gates can implement n Boolean functions of k variables each</p>
+<p>A 2 k ×n ROM contains a k×2 n decoder followed by n OR gates</p>
+<p>  The k×2 n decoder generates all the 2 k possible min-terms for k input variables</p>
+<p>    The n OR gates can implement n Boolean functions of k variables each</p>
 <h3>Classifications of ROM’s</h3>
-<figure><img src="images/08-semiconductor-memories_3.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_4.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_5.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_6.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_7.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_8.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_9.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_3.png" alt="Diagram" loading="lazy" style="max-width: 140px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_4.png" alt="Diagram" loading="lazy" style="max-width: 200px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_5.png" alt="Diagram" loading="lazy" style="max-width: 166px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_6.png" alt="Diagram" loading="lazy" style="max-width: 200px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_7.png" alt="Diagram" loading="lazy" style="max-width: 169px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_8.png" alt="Diagram" loading="lazy" style="max-width: 169px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_9.png" alt="Diagram" loading="lazy" style="max-width: 249px; height: auto;"></figure>
 <p>PROM Masked ROM EPROM EEPROM Flash memory</p>
 <h3>PROM –</h3>
-<p>It is known as programmable read-only memory. A PROM has a fixed AND array but a programmable OR array. it is difficult to manufacture and program. When the AND array is fixed that means we can only get certain min-terms. As OR can be programmable, we can combine them in whatever combinations we like. A programmable ROM is also referred to as a FPROM (field programmable read-only memory) or OTP (one-time programmable) chip. So not all but a few logic functions can be implemented It is known as programmable read-only memory It includes both AND array &amp; OR array Out of these two arrays AND array is fixed and OR array is programmable. A variation of the PROM is an EPROM, which is a PROM that can be erased and reprogrammed without being replaced.</p>
+<p>It is known as programmable read-only memory.</p>
+<p>A PROM has a fixed AND array but a programmable OR array. it is difficult to manufacture</p>
+<p>and program. When the AND array is fixed that means we can only get certain min-terms. As OR can be</p>
+<p>programmable, we can combine them in whatever combinations we like. A programmable ROM is also referred to as a FPROM (field programmable read-only memory)</p>
+<p>or OTP (one-time programmable) chip. So not all but a few logic functions can be implemented</p>
+<p>It is known as programmable read-only memory It includes both AND array &amp; OR array Out of these two arrays AND array is fixed and OR array is programmable.</p>
+<p>A variation of the PROM is an EPROM, which is a PROM that can be erased and reprogrammed</p>
+<p>without being replaced.</p>
 <h3>Uses – They have several different applications, including cell phones, video game consoles,</h3>
 <p>RFID tags, medical devices, and other electronics.</p>
-<figure><img src="images/08-semiconductor-memories_10.png" alt="Diagram" loading="lazy"></figure>
+<figure><img src="images/08-semiconductor-memories_10.png" alt="Diagram" loading="lazy" style="max-width: 362px; height: auto;"></figure>
 <h3>Masked ROM -</h3>
-<p>In this type of ROM, the specification of the ROM (its contents and their location), is taken by the manufacturer from the customer in tabular form in a specified format and then makes corresponding masks for the paths to produce the desired output. This is costly, as the vendor charges special fee from the customer for making a particular ROM (recommended, only if large quantity of the same ROM is required).</p>
+<p>In this type of ROM, the specification of the ROM (its contents and their location), is taken by</p>
+<p>the manufacturer from the customer in tabular form in a specified format and then makes corresponding masks for the paths to produce the desired output. This is costly, as the vendor charges special fee from the customer for making a particular</p>
+<p>ROM (recommended, only if large quantity of the same ROM is required).</p>
 <h3>Uses – They are used in network operating systems, server operating systems, storing of fonts</h3>
 <p>for laser printers, sound data in electronic musical instruments.</p>
 <h3>EPROM –</h3>
-<p>EPROM is an erasable programmable read-only memory. It is a non-volatile memory that means its data will be retained even when the power is turned off. EEPROM (electrically erasable programmable read-only memory) is a user-modifiable read-only memory (ROM) that can be erased and reprogrammed (written to) repeatedly through the application of higher than normal electrical voltage. Data in ROM can be accessed randomly and hence EPROM and EEPROM are random access memory. To erase data in EPROM, 15-20 min are required. EPROM is also called UV-ROM. Programming is done by electric signals and erasing is through ultra-violet rays.</p>
+<p>EPROM is an erasable programmable read-only memory.</p>
+<p>It is a non-volatile memory that means its data will be retained even when the power is</p>
+<p>turned off. EEPROM (electrically erasable programmable read-only memory) is a user-modifiable read-only memory (ROM) that can be erased and reprogrammed (written to) repeatedly through the application of higher than normal electrical voltage. Data in ROM can be accessed randomly and hence EPROM and EEPROM are random access</p>
+<p>memory. To erase data in EPROM, 15-20 min are required.</p>
+<p>EPROM is also called UV-ROM.</p>
+<p>Programming is done by electric signals and erasing is through ultra-violet rays.</p>
+<p>●</p>
 <h3>Uses – Before the advent of EEPROMs, some micro-controllers, like some versions of Intel</h3>
 <p>8048, the Freescale 68HC11 used EPROM to store their program.</p>
 <h3>EEPROM –</h3>
-<p>EEPROM stands for Electrically Erasable Programmable Read-Only Memory. It is a non-volatile memory in which the information stored Is retained even after the power goes off. A special type of PROM in which the information stored in it can be erased by exposing it to an electrical charge at one byte at a time. EEPROM generally offers excellent capabilities and performance. EEPROMs are constructed as arrays of floating-gate transistors. EEPROM is also known as EAROM or Flash-ROM or NOVRAM.</p>
+<p>EEPROM stands for Electrically Erasable Programmable Read-Only Memory.</p>
+<p>It is a non-volatile memory in which the information stored Is retained even after the power</p>
+<p>goes off. A special type of PROM in which the information stored in it can be erased by exposing it to</p>
+<p>an electrical charge at one byte at a time. EEPROM generally offers excellent capabilities and performance.</p>
+<p>EEPROMs are constructed as arrays of floating-gate transistors.</p>
+<p>EEPROM is also known as EAROM or Flash-ROM or NOVRAM.</p>
+<p>●</p>
 <h3>Uses – It is used for storing the computer system BIOS.</h3>
 <h3>Flash ROM –</h3>
-<p>It is an enhanced version of EEPROM. The difference between EEPROM and Flash ROM is that in EEPROM, only 1 byte of data can be deleted or written at a particular time, whereas, in flash memory, blocks of data (usually 512 bytes) can be deleted or written at a particular time. So, Flash ROM is much faster than EEPROM. Flash memory is a non-volatile memory chip used for storage and for transferring data between a personal computer (PC) and digital devices. It can be electronically reprogrammed and erased. It is often found in USB flash drives, MP3 players, digital cameras and solid-state drives.</p>
+<p>It is an enhanced version of EEPROM.</p>
+<p>The difference between EEPROM and Flash ROM is that in EEPROM, only 1 byte of data can be</p>
+<p>deleted or written at a particular time, whereas, in flash memory, blocks of data (usually 512 bytes) can be deleted or written at a particular time. So, Flash ROM is much faster than EEPROM. Flash memory is a non-volatile memory chip used for storage and for transferring data</p>
+<p>between a personal computer (PC) and digital devices. It can be electronically reprogrammed and erased.</p>
+<p>It is often found in USB flash drives, MP3 players, digital cameras and solid-state drives.</p>
+<p>●</p>
 <h3>Uses – Many modern PCs have their BIOS stored on a flash memory chip, called as flash BIOS</h3>
 <p>and they are also used in modems as well.</p>
 <h3>NOVRAM (Non-Volatile Random Access Memory) -</h3>
-<p>It is a type of memory that retains its contents when power is turned off. One type of NOVRAM is SRAM that is made non-volatile by connecting it to a constant power source such as a battery. Another type of NVRAM uses EEPROM chips to save its contents when power is turned off. In this case, NVRAM is composed of a combination of SRAM and EEPROM chips.</p>
+<p>It is a type of memory that retains its contents when power is turned off.</p>
+<p>One type of NOVRAM is SRAM that is made non-volatile by connecting it to a constant power</p>
+<p>source such as a battery. Another type of NVRAM uses EEPROM chips to save its contents when power is turned off. In</p>
+<p>this case, NVRAM is composed of a combination of SRAM and EEPROM chips.</p>
 <h2>Programmable Logic Devices (PLD)</h2>
-<p>PLD’s (Programmable Logic Devices) are the circuits that contain an array of AND gates and another array of OR gates. These are LSI devices and are classified as- (i) PROM (ii) PAL (iii) PLA A combinational PLD is an IC with programmable gates divided into AND array and OR array to provide AND-OR or SOP realization of a particular Boolean expression.</p>
-<figure><img src="images/08-semiconductor-memories_11.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_12.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_13.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_14.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_15.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_16.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_17.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_18.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_19.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_20.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_21.png" alt="Diagram" loading="lazy"></figure>
-<figure><img src="images/08-semiconductor-memories_22.png" alt="Diagram" loading="lazy"></figure>
+<p>PLD’s (Programmable Logic Devices) are the circuits that contain an array of AND gates and</p>
+<p>another array of OR gates. These are LSI devices and are classified as- (i) PROM (ii) PAL (iii) PLA A combinational PLD is an IC with programmable gates divided into AND array and OR array</p>
+<p>to provide AND-OR or SOP realization of a particular Boolean expression.</p>
+<figure><img src="images/08-semiconductor-memories_11.png" alt="Diagram" loading="lazy" style="max-width: 176px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_12.png" alt="Diagram" loading="lazy" style="max-width: 176px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_13.png" alt="Diagram" loading="lazy" style="max-width: 73px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_14.png" alt="Diagram" loading="lazy" style="max-width: 122px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_15.png" alt="Diagram" loading="lazy" style="max-width: 176px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_16.png" alt="Diagram" loading="lazy" style="max-width: 176px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_17.png" alt="Diagram" loading="lazy" style="max-width: 73px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_18.png" alt="Diagram" loading="lazy" style="max-width: 122px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_19.png" alt="Diagram" loading="lazy" style="max-width: 176px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_20.png" alt="Diagram" loading="lazy" style="max-width: 176px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_21.png" alt="Diagram" loading="lazy" style="max-width: 73px; height: auto;"></figure>
+<figure><img src="images/08-semiconductor-memories_22.png" alt="Diagram" loading="lazy" style="max-width: 545.0px; height: auto;"></figure>
 <div class="table-wrapper"><table>
 <thead><tr>
 <th>PROM</th>
@@ -277,8 +350,12 @@ minterm</td>
 </tr>
 </tbody></table></div>
 <h2>MARAM</h2>
-<p>It stores the data in magnetic form instead of electric charges. It uses far less power than other RAMs so it is good for portable devices. Magnetoresistance is the tendency of a material (often ferromagnetic) to change the value of its electrical resistance in an externally-applied magnetic field. On account of the rising demand for fast, scalable, low power consuming, and non-volatile memory devices, especially in the automotive, enterprise storage, and aerospace and defense sectors, the global market for magneto resistive RAM (MRAM) is likely to gain significant impetus over the forthcoming years.</p>
-<figure><img src="images/08-semiconductor-memories_23.png" alt="Diagram" loading="lazy"></figure>
+<p>It stores the data in magnetic form instead of electric charges.</p>
+<p>It uses far less power than other RAMs so it is good for portable devices.</p>
+<p>Magnetoresistance is the tendency of a material (often ferromagnetic) to change the value of</p>
+<p>its electrical resistance in an externally-applied magnetic field. On account of the rising demand for fast, scalable, low power consuming, and non-volatile</p>
+<p>memory devices, especially in the automotive, enterprise storage, and aerospace and defense sectors, the global market for magneto resistive RAM (MRAM) is likely to gain significant impetus over the forthcoming years.</p>
+<figure><img src="images/08-semiconductor-memories_23.png" alt="Diagram" loading="lazy" style="max-width: 358px; height: auto;"></figure>
 <h2>Difference between Volatile and Non-volatile memory</h2>
 <div class="table-wrapper"><table>
 <thead><tr>
@@ -326,7 +403,7 @@ memory.</td>
                     
             <section class="related-notes">
                 <h3>Related Notes</h3>
-                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">GATE, ESE</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">GATE, ESE</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">GATE, ESE</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">GATE, ESE</div></a></div>
+                <div class="related-grid"><a href="01-logic-gates.html" class="note-card"><h4>01 Logic Gates</h4><div class="meta">General</div></a><a href="02-boolean-algebra.html" class="note-card"><h4>02 Boolean Algebra</h4><div class="meta">General</div></a><a href="03-number-system-representation.html" class="note-card"><h4>03 Number System &amp; Representation</h4><div class="meta">General</div></a><a href="04-combinational-circuits.html" class="note-card"><h4>04 Combinational Circuits</h4><div class="meta">General</div></a></div>
             </section>
                 </article>
             </div>
@@ -407,6 +484,33 @@ memory.</td>
                         t.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
                     });
                     collapseBtn.innerHTML = allCollapsed ? '&#9654;' : '&#9660;';
+                });
+            }
+            // Sidebar toggle
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (sidebarToggle) {
+                var sidebarCollapsed = false;
+                sidebarToggle.addEventListener('click', function() {
+                    sidebarCollapsed = !sidebarCollapsed;
+                    var sidebar = document.getElementById('toc-sidebar');
+                    var notesPage = document.getElementById('notes-page');
+                    var tocListEl = document.getElementById('toc-list');
+                    var tocTitleText = document.getElementById('toc-title-text');
+                    var collapseAllBtn = document.getElementById('toc-collapse-all');
+                    
+                    if (sidebarCollapsed) {
+                        notesPage.style.gridTemplateColumns = 'auto 1fr';
+                        tocListEl.style.display = 'none';
+                        tocTitleText.style.display = 'none';
+                        collapseAllBtn.style.display = 'none';
+                        sidebar.style.width = 'fit-content';
+                    } else {
+                        notesPage.style.gridTemplateColumns = 'var(--sidebar-width) 1fr';
+                        tocListEl.style.display = 'block';
+                        tocTitleText.style.display = 'inline';
+                        collapseAllBtn.style.display = 'block';
+                        sidebar.style.width = 'auto';
+                    }
                 });
             }
         })();
